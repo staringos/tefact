@@ -1,0 +1,37 @@
+@startuml
+
+class Leads {
+
+}
+
+package "Customer" {
+  class Customer {
+
+  }
+
+  class CustomerContact {
+  }
+
+}
+
+class Leads {
+
+}
+
+class Opportunities {
+
+}
+
+class Product {
+
+}
+
+class Contract {
+
+}
+
+class Money {
+
+}
+
+@enduml

@@ -1,0 +1,16 @@
+{
+  "name": "@arrplat/common",
+  "version": "0.0.7",
+  "main": "./dist/index.js",
+  "author": "GeorgeZou",
+  "license": "MIT",
+  "scripts": {
+    "build": "npm run clean && npm run compile",
+    "clean": "rm -rf ./dist",
+    "compile": "tsc -p tsconfig.build.json"
+  },
+  "dependencies": {
+    "lodash": "^4.17.15"
+  },
+  "gitHead": "b8077bbae746bd6bb291e509887082e09108ef28"
+}

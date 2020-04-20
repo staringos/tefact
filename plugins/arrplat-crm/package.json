@@ -1,0 +1,16 @@
+{
+  "name": "@arrplat/plus-crm",
+  "version": "0.0.7",
+  "description": "The PaaS open-source platform arrplat's crm application",
+  "main": "lib/index.js",
+  "scripts": {},
+  "files": [
+    "dist"
+  ],
+  "author": "GeorgeZou",
+  "license": "MIT",
+  "dependencies": {
+    "nuxt-property-decorator": "^2.5.0"
+  },
+  "gitHead": "b8077bbae746bd6bb291e509887082e09108ef28"
+}

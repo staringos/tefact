@@ -1,0 +1,20 @@
+.page-header {
+  flex: 1;
+  display: flex;
+  height: 100px;
+  border-bottom: 1px solid #e2e3e6;
+  flex-direction: row;
+  padding-left: 32px;
+  padding-right: 32px;
+  align-items: center;
+
+  .open-drawer {
+    position: absolute;
+  }
+
+  .page-header-title {
+    text-align: center;
+    flex: 1;
+    font-size: 32px;
+  }
+}

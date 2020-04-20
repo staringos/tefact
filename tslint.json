@@ -1,0 +1,28 @@
+{
+  "defaultSeverity": "warning",
+  "extends": [
+    "tslint:recommended"
+  ],
+  "linterOptions": {
+    "exclude": [
+      "node_modules/**"
+    ]
+  },
+  "rules": {
+    "no-unused-expressions": [0],
+    "curly": ["error", "multi"],
+    "member-ordering": false,
+    "interface-over-type-literal": false,
+    "arrow-parens": false,
+    "semicolon": [true, "never"],
+    "jsx-quotes": [2, "prefer-double"],
+    "no-console": false, // 关闭console告警
+    "quotemark": [false, "single"],
+    "indent": [true, "spaces", 2],
+    "interface-name": false,
+    "ordered-imports": false,
+    "object-literal-sort-keys": false,
+    "no-consecutive-blank-lines": false,
+    "no-trailing-whitespace": true // 关闭trailing whitespace告警
+  }
+}

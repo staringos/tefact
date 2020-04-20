@@ -1,0 +1,2592 @@
+{
+  "adminRoute": "guitar",
+  "apiRoute": "guitar",
+  "description": "The guitar course skill management",
+  "entities": [
+    {
+      "data_type": "db_table",
+      "fields": [
+        {
+          "buttons": [],
+          "data_type": "string",
+          "dict_list": [],
+          "display_type": "auto",
+          "exists": [
+            "list",
+            "details"
+          ],
+          "has_go_details": false,
+          "has_search": false,
+          "has_sort": false,
+          "iframe_url": null,
+          "is_primary": true,
+          "key": "id",
+          "name": "ID",
+          "sql": null,
+          "type": "value"
+        },
+        {
+          "buttons": [],
+          "data_type": "string",
+          "dict_list": [],
+          "display_type": "auto",
+          "exists": [
+            "list",
+            "details",
+            "modify"
+          ],
+          "has_go_details": false,
+          "has_search": false,
+          "has_sort": false,
+          "iframe_url": null,
+          "is_primary": false,
+          "key": "name",
+          "name": "课程种类",
+          "sql": null,
+          "type": "value"
+        },
+        {
+          "buttons": [],
+          "data_type": "key_value",
+          "dict_list": [],
+          "display_type": "auto",
+          "exists": [
+            "list",
+            "details",
+            "modify"
+          ],
+          "has_go_details": false,
+          "has_search": false,
+          "has_sort": false,
+          "iframe_url": null,
+          "is_primary": false,
+          "key": "employee_id",
+          "name": "创建人",
+          "sql": "select user.nickname as `value`, edu_employee.id as `key` from edu_employee inner join user on user.id = edu_employee.user_id where edu_employee.id = ${employee_id}",
+          "type": "sql"
+        },
+        {
+          "buttons": [],
+          "data_type": "datetime",
+          "dict_list": [],
+          "display_type": "auto",
+          "exists": [
+            "list",
+            "details"
+          ],
+          "has_go_details": false,
+          "has_search": false,
+          "has_sort": false,
+          "iframe_url": null,
+          "is_primary": false,
+          "key": "create_time",
+          "name": "创建时间",
+          "sql": null,
+          "type": "value"
+        },
+        {
+          "buttons": [],
+          "data_type": "boolean",
+          "dict_list": [],
+          "display_type": "auto",
+          "exists": [
+            "list",
+            "details",
+            "modify"
+          ],
+          "has_go_details": false,
+          "has_search": false,
+          "has_sort": false,
+          "iframe_url": null,
+          "is_primary": false,
+          "key": "status",
+          "name": "是否停启用",
+          "sql": null,
+          "type": "value"
+        },
+        {
+          "buttons": [
+            {
+              "link": "",
+              "name": "编辑",
+              "type": "edit"
+            },
+            {
+              "link": "",
+              "name": "删除",
+              "type": "delete"
+            }
+          ],
+          "data_type": "string",
+          "dict_list": [],
+          "display_type": "auto",
+          "exists": [
+            "list"
+          ],
+          "has_go_details": false,
+          "has_search": false,
+          "has_sort": false,
+          "iframe_url": null,
+          "is_primary": false,
+          "key": "options",
+          "name": "操作",
+          "sql": null,
+          "type": "buttons"
+        }
+      ],
+      "has_connect_org": false,
+      "key": "edu-course-type-entity",
+      "sql": null,
+      "table_name": "edu_course_type",
+      "type": "db_table"
+    },
+    {
+      "data_type": "db_table",
+      "fields": [
+        {
+          "data_type": "string",
+          "dict_list": [],
+          "display_type": "auto",
+          "exists": [
+            "list",
+            "details"
+          ],
+          "has_go_details": false,
+          "has_search": false,
+          "has_sort": false,
+          "iframe_url": null,
+          "is_primary": true,
+          "key": "id",
+          "name": "ID",
+          "sql": null,
+          "type": "value"
+        },
+        {
+          "data_type": "string",
+          "dict_list": [],
+          "display_type": "auto",
+          "exists": [
+            "list",
+            "details",
+            "modify"
+          ],
+          "has_go_details": false,
+          "has_search": false,
+          "has_sort": false,
+          "iframe_url": null,
+          "is_primary": false,
+          "key": "name",
+          "name": "素材名称",
+          "sort": 1,
+          "sql": null,
+          "type": "value"
+        },
+        {
+          "data_type": "key_value",
+          "dict_list": [],
+          "display_type": "auto",
+          "exists": [
+            "list",
+            "details",
+            "modify"
+          ],
+          "has_go_details": false,
+          "has_search": false,
+          "has_sort": false,
+          "iframe_url": null,
+          "is_primary": false,
+          "key": "employee_id",
+          "name": "创建人",
+          "sort": 1,
+          "sql": "select user.nickname as `value`, edu_employee.id as `key` from edu_employee inner join user on user.id = edu_employee.user_id where edu_employee.id = ${employee_id}",
+          "type": "sql"
+        },
+        {
+          "data_type": "datetime",
+          "dict_list": [],
+          "display_type": "auto",
+          "exists": [
+            "list",
+            "details"
+          ],
+          "has_go_details": false,
+          "has_search": false,
+          "has_sort": false,
+          "iframe_url": null,
+          "is_primary": false,
+          "key": "create_time",
+          "name": "创建时间",
+          "sort": 1,
+          "sql": null,
+          "type": "value"
+        },
+        {
+          "buttons": [],
+          "data_type": "boolean",
+          "dict_list": [],
+          "display_type": "auto",
+          "exists": [
+            "list",
+            "details",
+            "modify"
+          ],
+          "has_go_details": false,
+          "has_search": false,
+          "has_sort": false,
+          "iframe_url": null,
+          "is_primary": false,
+          "key": "status",
+          "name": "是否停启用",
+          "sort": 1,
+          "sql": null,
+          "type": "value"
+        },
+        {
+          "buttons": [
+            {
+              "link": "",
+              "name": "编辑",
+              "type": "edit"
+            },
+            {
+              "link": "",
+              "name": "删除",
+              "type": "delete"
+            }
+          ],
+          "data_type": "string",
+          "dict_list": [],
+          "display_type": "auto",
+          "exists": [
+            "list"
+          ],
+          "has_go_details": false,
+          "has_search": false,
+          "has_sort": false,
+          "iframe_url": null,
+          "is_primary": false,
+          "key": "options",
+          "name": "操作",
+          "sort": 1,
+          "sql": null,
+          "type": "buttons"
+        },
+        {
+          "data_type": "key_value",
+          "dict_list": [],
+          "display_type": "auto",
+          "exists": [
+            "list",
+            "details",
+            "modify"
+          ],
+          "has_go_details": false,
+          "has_search": false,
+          "has_sort": false,
+          "iframe_url": null,
+          "is_primary": false,
+          "key": "teacher_id",
+          "name": "所属教师",
+          "sort": 1,
+          "sql": "select user.nickname as `value`, edu_employee.id as `key` from edu_employee inner join user on user.id = edu_employee.user_id where edu_employee.id = ${teacher_id} and edu_employee.is_teacher = 1 ",
+          "type": "sql"
+        }
+      ],
+      "has_connect_org": false,
+      "key": "edu-material-entity",
+      "sql": null,
+      "table_name": "edu_material",
+      "type": "db_table"
+    },
+    {
+      "data_type": "db_table",
+      "fields": [
+        {
+          "data_type": "string",
+          "dict_list": [],
+          "display_type": "auto",
+          "exists": [
+            "list",
+            "details"
+          ],
+          "has_go_details": false,
+          "has_search": false,
+          "has_sort": false,
+          "iframe_url": null,
+          "is_primary": true,
+          "key": "id",
+          "name": "ID",
+          "sort": 1,
+          "sql": null,
+          "type": "value"
+        },
+        {
+          "data_type": "string",
+          "dict_list": [],
+          "display_type": "auto",
+          "exists": [
+            "list",
+            "details",
+            "modify"
+          ],
+          "has_go_details": false,
+          "has_search": false,
+          "has_sort": false,
+          "iframe_url": null,
+          "is_primary": false,
+          "key": "name",
+          "name": "要点名称",
+          "sort": 1,
+          "sql": null,
+          "type": "value"
+        },
+        {
+          "data_type": "number",
+          "dict_list": [],
+          "display_type": "auto",
+          "exists": [
+            "list",
+            "details",
+            "modify"
+          ],
+          "has_go_details": false,
+          "has_search": false,
+          "has_sort": false,
+          "iframe_url": null,
+          "is_primary": false,
+          "key": "level",
+          "name": "要点级别",
+          "sort": 1,
+          "sql": null,
+          "type": "value"
+        },
+        {
+          "data_type": "string",
+          "dict_list": [],
+          "display_type": "auto",
+          "exists": [
+            "list",
+            "details",
+            "modify"
+          ],
+          "has_go_details": false,
+          "has_search": false,
+          "has_sort": false,
+          "iframe_url": null,
+          "is_primary": false,
+          "key": "content",
+          "name": "要点内容",
+          "sort": 1,
+          "sql": null,
+          "type": "value"
+        },
+        {
+          "data_type": "number",
+          "dict_list": [],
+          "display_type": "auto",
+          "exists": [
+            "list",
+            "details",
+            "modify"
+          ],
+          "has_go_details": false,
+          "has_search": false,
+          "has_sort": false,
+          "iframe_url": null,
+          "is_primary": false,
+          "key": "class_hours",
+          "name": "参考课时",
+          "sort": 1,
+          "sql": null,
+          "type": "value"
+        },
+        {
+          "data_type": "key_value",
+          "dict_list": [],
+          "display_type": "auto",
+          "exists": [
+            "list",
+            "details",
+            "modify"
+          ],
+          "has_go_details": false,
+          "has_search": false,
+          "has_sort": false,
+          "iframe_url": null,
+          "is_primary": false,
+          "key": "employee_id",
+          "name": "创建人",
+          "sort": 1,
+          "sql": "select user.nickname as `value`, edu_employee.id as `key` from edu_employee inner join user on user.id = edu_employee.user_id where edu_employee.id = ${employee_id}",
+          "type": "sql"
+        },
+        {
+          "data_type": "datetime",
+          "dict_list": [],
+          "display_type": "auto",
+          "exists": [
+            "list",
+            "details"
+          ],
+          "has_go_details": false,
+          "has_search": false,
+          "has_sort": false,
+          "iframe_url": null,
+          "is_primary": false,
+          "key": "create_time",
+          "name": "创建时间",
+          "sort": 1,
+          "sql": null,
+          "type": "value"
+        },
+        {
+          "buttons": [],
+          "data_type": "boolean",
+          "dict_list": [],
+          "display_type": "auto",
+          "exists": [
+            "list",
+            "details",
+            "modify"
+          ],
+          "has_go_details": false,
+          "has_search": false,
+          "has_sort": false,
+          "iframe_url": null,
+          "is_primary": false,
+          "key": "status",
+          "name": "是否停启用",
+          "sort": 1,
+          "sql": null,
+          "type": "value"
+        },
+        {
+          "buttons": [
+            {
+              "link": "",
+              "name": "编辑",
+              "type": "edit"
+            },
+            {
+              "link": "",
+              "name": "删除",
+              "type": "delete"
+            }
+          ],
+          "data_type": "string",
+          "dict_list": [],
+          "display_type": "auto",
+          "exists": [
+            "list"
+          ],
+          "has_go_details": false,
+          "has_search": false,
+          "has_sort": false,
+          "iframe_url": null,
+          "is_primary": false,
+          "key": "options",
+          "name": "操作",
+          "sort": 1,
+          "sql": null,
+          "type": "buttons"
+        }
+      ],
+      "has_connect_org": false,
+      "key": "edu-essential-entity",
+      "sql": null,
+      "table_name": "edu_essential",
+      "type": "db_table"
+    },
+    {
+      "data_type": "db_table",
+      "fields": [
+        {
+          "data_type": "string",
+          "dict_list": [],
+          "display_type": "auto",
+          "exists": [
+            "list",
+            "details"
+          ],
+          "has_go_details": false,
+          "has_search": false,
+          "has_sort": false,
+          "iframe_url": null,
+          "is_primary": true,
+          "key": "id",
+          "name": "ID",
+          "sort": 1,
+          "sql": null,
+          "type": "value"
+        },
+        {
+          "data_type": "string",
+          "dict_list": [],
+          "display_type": "auto",
+          "exists": [
+            "list",
+            "details",
+            "modify"
+          ],
+          "has_go_details": false,
+          "has_search": false,
+          "has_sort": false,
+          "iframe_url": null,
+          "is_primary": false,
+          "key": "name",
+          "name": "名称",
+          "sort": 1,
+          "sql": null,
+          "type": "value"
+        },
+        {
+          "data_type": "key_value",
+          "dict_list": [],
+          "display_type": "auto",
+          "exists": [
+            "list",
+            "details",
+            "modify"
+          ],
+          "has_go_details": false,
+          "has_search": false,
+          "has_sort": false,
+          "iframe_url": null,
+          "is_primary": false,
+          "key": "employee_id",
+          "name": "创建人",
+          "sort": 1,
+          "sql": "select user.nickname as `value`, edu_employee.id as `key` from edu_employee inner join user on user.id = edu_employee.user_id where edu_employee.id = ${employee_id}",
+          "type": "sql"
+        },
+        {
+          "data_type": "datetime",
+          "dict_list": [],
+          "display_type": "auto",
+          "exists": [
+            "list",
+            "details"
+          ],
+          "has_go_details": false,
+          "has_search": false,
+          "has_sort": false,
+          "iframe_url": null,
+          "is_primary": false,
+          "key": "create_time",
+          "name": "创建时间",
+          "sort": 1,
+          "sql": null,
+          "type": "value"
+        },
+        {
+          "buttons": [],
+          "data_type": "boolean",
+          "dict_list": [],
+          "display_type": "auto",
+          "exists": [
+            "list",
+            "details",
+            "modify"
+          ],
+          "has_go_details": false,
+          "has_search": false,
+          "has_sort": false,
+          "iframe_url": null,
+          "is_primary": false,
+          "key": "status",
+          "name": "是否停启用",
+          "sort": 1,
+          "sql": null,
+          "type": "value"
+        },
+        {
+          "buttons": [
+            {
+              "link": "",
+              "name": "编辑",
+              "type": "edit"
+            },
+            {
+              "link": "",
+              "name": "删除",
+              "type": "delete"
+            }
+          ],
+          "data_type": "string",
+          "dict_list": [],
+          "display_type": "auto",
+          "exists": [
+            "list"
+          ],
+          "has_go_details": false,
+          "has_search": false,
+          "has_sort": false,
+          "iframe_url": null,
+          "is_primary": false,
+          "key": "options",
+          "name": "操作",
+          "sort": 1,
+          "sql": null,
+          "type": "buttons"
+        }
+      ],
+      "has_connect_org": false,
+      "key": "edu-difficulty-level-entity",
+      "sql": null,
+      "table_name": "edu_difficulty_level",
+      "type": "db_table"
+    },
+    {
+      "data_type": "db_table",
+      "fields": [
+        {
+          "data_type": "string",
+          "dict_list": [],
+          "display_type": "auto",
+          "exists": [
+            "list",
+            "details"
+          ],
+          "has_go_details": false,
+          "has_search": false,
+          "has_sort": false,
+          "iframe_url": null,
+          "is_primary": true,
+          "key": "id",
+          "name": "ID",
+          "sort": 1,
+          "sql": null,
+          "type": "value"
+        },
+        {
+          "data_type": "string",
+          "dict_list": [],
+          "display_type": "auto",
+          "exists": [
+            "list",
+            "details",
+            "modify"
+          ],
+          "has_go_details": false,
+          "has_search": false,
+          "has_sort": false,
+          "iframe_url": null,
+          "is_primary": false,
+          "key": "name",
+          "name": "名称",
+          "sort": 1,
+          "sql": null,
+          "type": "value"
+        },
+        {
+          "data_type": "key_value",
+          "dict_list": [],
+          "display_type": "auto",
+          "exists": [
+            "list",
+            "details",
+            "modify"
+          ],
+          "has_go_details": false,
+          "has_search": false,
+          "has_sort": false,
+          "iframe_url": null,
+          "is_primary": false,
+          "key": "employee_id",
+          "name": "创建人",
+          "sort": 1,
+          "sql": "select user.nickname as `value`, edu_employee.id as `key` from edu_employee inner join user on user.id = edu_employee.user_id where edu_employee.id = ${employee_id}",
+          "type": "sql"
+        },
+        {
+          "data_type": "datetime",
+          "dict_list": [],
+          "display_type": "auto",
+          "exists": [
+            "list",
+            "details"
+          ],
+          "has_go_details": false,
+          "has_search": false,
+          "has_sort": false,
+          "iframe_url": null,
+          "is_primary": false,
+          "key": "create_time",
+          "name": "创建时间",
+          "sort": 1,
+          "sql": null,
+          "type": "value"
+        },
+        {
+          "buttons": [],
+          "data_type": "boolean",
+          "dict_list": [],
+          "display_type": "auto",
+          "exists": [
+            "list",
+            "modify",
+            "details"
+          ],
+          "has_go_details": false,
+          "has_search": false,
+          "has_sort": false,
+          "iframe_url": null,
+          "is_primary": false,
+          "key": "status",
+          "name": "是否停启用",
+          "sort": 1,
+          "sql": null,
+          "type": "value"
+        },
+        {
+          "buttons": [
+            {
+              "link": "",
+              "name": "编辑",
+              "type": "edit"
+            },
+            {
+              "link": "",
+              "name": "删除",
+              "type": "delete"
+            }
+          ],
+          "data_type": "string",
+          "dict_list": [],
+          "display_type": "auto",
+          "exists": [
+            "list"
+          ],
+          "has_go_details": false,
+          "has_search": false,
+          "has_sort": false,
+          "iframe_url": null,
+          "is_primary": false,
+          "key": "options",
+          "name": "操作",
+          "sort": 1,
+          "sql": null,
+          "type": "buttons"
+        }
+      ],
+      "has_connect_org": false,
+      "key": "edu-instrument-type-entity",
+      "sql": null,
+      "table_name": "edu_instrument_type",
+      "type": "db_table"
+    },
+    {
+      "data_type": "db_table",
+      "fields": [
+        {
+          "data_type": "string",
+          "dict_list": [],
+          "display_type": "auto",
+          "exists": [
+            "list",
+            "details"
+          ],
+          "has_go_details": false,
+          "has_search": false,
+          "has_sort": false,
+          "iframe_url": null,
+          "is_primary": true,
+          "key": "id",
+          "name": "ID",
+          "sort": 1,
+          "sql": null,
+          "type": "value"
+        },
+        {
+          "data_type": "string",
+          "dict_list": [],
+          "display_type": "auto",
+          "exists": [
+            "list",
+            "details",
+            "modify"
+          ],
+          "has_go_details": false,
+          "has_search": false,
+          "has_sort": false,
+          "iframe_url": null,
+          "is_primary": false,
+          "key": "name",
+          "name": "名称",
+          "sort": 1,
+          "sql": null,
+          "type": "value"
+        },
+        {
+          "data_type": "key_value",
+          "dict_list": [],
+          "display_type": "auto",
+          "exists": [
+            "list",
+            "details",
+            "modify"
+          ],
+          "has_go_details": false,
+          "has_search": false,
+          "has_sort": false,
+          "iframe_url": null,
+          "is_primary": false,
+          "key": "employee_id",
+          "name": "创建人",
+          "sort": 1,
+          "sql": "select user.nickname as `value`, edu_employee.id as `key` from edu_employee inner join user on user.id = edu_employee.user_id where edu_employee.id = ${employee_id}",
+          "type": "sql"
+        },
+        {
+          "data_type": "datetime",
+          "dict_list": [],
+          "display_type": "auto",
+          "exists": [
+            "list",
+            "details"
+          ],
+          "has_go_details": false,
+          "has_search": false,
+          "has_sort": false,
+          "iframe_url": null,
+          "is_primary": false,
+          "key": "create_time",
+          "name": "创建时间",
+          "sort": 1,
+          "sql": null,
+          "type": "value"
+        },
+        {
+          "buttons": [],
+          "data_type": "boolean",
+          "dict_list": [],
+          "display_type": "auto",
+          "exists": [
+            "list",
+            "details",
+            "modify"
+          ],
+          "has_go_details": false,
+          "has_search": false,
+          "has_sort": false,
+          "iframe_url": null,
+          "is_primary": false,
+          "key": "status",
+          "name": "是否停启用",
+          "sort": 1,
+          "sql": null,
+          "type": "value"
+        },
+        {
+          "buttons": [
+            {
+              "link": "",
+              "name": "编辑",
+              "type": "edit"
+            },
+            {
+              "link": "",
+              "name": "删除",
+              "type": "delete"
+            }
+          ],
+          "data_type": "string",
+          "dict_list": [],
+          "display_type": "auto",
+          "exists": [
+            "list"
+          ],
+          "has_go_details": false,
+          "has_search": false,
+          "has_sort": false,
+          "iframe_url": null,
+          "is_primary": false,
+          "key": "options",
+          "name": "操作",
+          "sort": 1,
+          "sql": null,
+          "type": "buttons"
+        }
+      ],
+      "has_connect_org": false,
+      "key": "edu-student-level-entity",
+      "sql": null,
+      "table_name": "edu_student_level",
+      "type": "db_table"
+    },
+    {
+      "data_type": "db_table",
+      "fields": [
+        {
+          "data_type": "string",
+          "dict_list": [],
+          "display_type": "auto",
+          "exists": [
+            "list",
+            "details"
+          ],
+          "has_go_details": false,
+          "has_search": false,
+          "has_sort": false,
+          "iframe_url": null,
+          "is_primary": true,
+          "key": "id",
+          "name": "ID",
+          "sort": 1,
+          "sql": null,
+          "type": "value"
+        },
+        {
+          "data_type": "string",
+          "dict_list": [],
+          "display_type": "auto",
+          "exists": [
+            "list",
+            "details",
+            "modify"
+          ],
+          "has_go_details": false,
+          "has_search": false,
+          "has_sort": false,
+          "iframe_url": null,
+          "is_primary": false,
+          "key": "name",
+          "name": "名称",
+          "sort": 1,
+          "sql": null,
+          "type": "value"
+        },
+        {
+          "data_type": "key_value",
+          "dict_list": [],
+          "display_type": "auto",
+          "exists": [
+            "list",
+            "details",
+            "modify"
+          ],
+          "has_go_details": false,
+          "has_search": false,
+          "has_sort": false,
+          "iframe_url": null,
+          "is_primary": false,
+          "key": "employee_id",
+          "name": "创建人",
+          "sort": 1,
+          "sql": "select user.nickname as `value`, edu_employee.id as `key` from edu_employee inner join user on user.id = edu_employee.user_id where edu_employee.id = ${employee_id}",
+          "type": "sql"
+        },
+        {
+          "data_type": "datetime",
+          "dict_list": [],
+          "display_type": "auto",
+          "exists": [
+            "list",
+            "details"
+          ],
+          "has_go_details": false,
+          "has_search": false,
+          "has_sort": false,
+          "iframe_url": null,
+          "is_primary": false,
+          "key": "create_time",
+          "name": "创建时间",
+          "sort": 1,
+          "sql": null,
+          "type": "value"
+        },
+        {
+          "buttons": [],
+          "data_type": "boolean",
+          "dict_list": [],
+          "display_type": "auto",
+          "exists": [
+            "list",
+            "details",
+            "modify"
+          ],
+          "has_go_details": false,
+          "has_search": false,
+          "has_sort": false,
+          "iframe_url": null,
+          "is_primary": false,
+          "key": "status",
+          "name": "是否停启用",
+          "sort": 1,
+          "sql": null,
+          "type": "value"
+        },
+        {
+          "buttons": [
+            {
+              "link": "",
+              "name": "编辑",
+              "type": "edit"
+            },
+            {
+              "link": "",
+              "name": "删除",
+              "type": "delete"
+            }
+          ],
+          "data_type": "string",
+          "dict_list": [],
+          "display_type": "auto",
+          "exists": [
+            "list"
+          ],
+          "has_go_details": false,
+          "has_search": false,
+          "has_sort": false,
+          "iframe_url": null,
+          "is_primary": false,
+          "key": "options",
+          "name": "操作",
+          "sort": 1,
+          "sql": null,
+          "type": "buttons"
+        }
+      ],
+      "has_connect_org": false,
+      "key": "edu-teacher-level-entity",
+      "sql": null,
+      "table_name": "edu_teacher_level",
+      "type": "db_table"
+    },
+    {
+      "data_type": "db_table",
+      "fields": [
+        {
+          "data_type": "string",
+          "dict_list": [],
+          "display_type": "auto",
+          "exists": [
+            "list",
+            "details"
+          ],
+          "has_go_details": false,
+          "has_search": false,
+          "has_sort": false,
+          "iframe_url": null,
+          "is_primary": true,
+          "key": "id",
+          "name": "ID",
+          "sort": 1,
+          "sql": null,
+          "type": "value"
+        },
+        {
+          "data_type": "string",
+          "dict_list": [],
+          "display_type": "auto",
+          "exists": [
+            "list",
+            "details",
+            "modify"
+          ],
+          "has_go_details": false,
+          "has_search": false,
+          "has_sort": false,
+          "iframe_url": null,
+          "is_primary": false,
+          "key": "name",
+          "name": "名称",
+          "sort": 1,
+          "sql": null,
+          "type": "value"
+        },
+        {
+          "data_type": "datetime",
+          "dict_list": [],
+          "display_type": "auto",
+          "exists": [
+            "list",
+            "details"
+          ],
+          "has_go_details": false,
+          "has_search": false,
+          "has_sort": false,
+          "iframe_url": null,
+          "is_primary": false,
+          "key": "create_time",
+          "name": "创建时间",
+          "sort": 1,
+          "sql": null,
+          "type": "value"
+        },
+        {
+          "buttons": [],
+          "data_type": "boolean",
+          "dict_list": [],
+          "display_type": "auto",
+          "exists": [
+            "list",
+            "details",
+            "modify"
+          ],
+          "has_go_details": false,
+          "has_search": false,
+          "has_sort": false,
+          "iframe_url": null,
+          "is_primary": false,
+          "key": "status",
+          "name": "是否停启用",
+          "sort": 1,
+          "sql": null,
+          "type": "value"
+        },
+        {
+          "data_type": "key_value",
+          "dict_list": [],
+          "display_type": "auto",
+          "exists": [
+            "list",
+            "details",
+            "modify"
+          ],
+          "has_go_details": false,
+          "has_search": false,
+          "has_sort": false,
+          "iframe_url": null,
+          "is_primary": false,
+          "key": "employee_id",
+          "name": "创建人",
+          "sort": 1,
+          "sql": "select user.nickname as `value`, edu_employee.id as `key` from edu_employee inner join user on user.id = edu_employee.user_id where edu_employee.id = ${employee_id}",
+          "type": "sql"
+        },
+        {
+          "buttons": [
+            {
+              "link": "",
+              "name": "编辑",
+              "type": "edit"
+            },
+            {
+              "link": "",
+              "name": "删除",
+              "type": "delete"
+            }
+          ],
+          "data_type": "string",
+          "dict_list": [],
+          "display_type": "auto",
+          "exists": [
+            "list"
+          ],
+          "has_go_details": false,
+          "has_search": false,
+          "has_sort": false,
+          "iframe_url": null,
+          "is_primary": false,
+          "key": "options",
+          "name": "操作",
+          "sort": 1,
+          "sql": null,
+          "type": "buttons"
+        }
+      ],
+      "has_connect_org": false,
+      "key": "edu-course-level-entity",
+      "sql": null,
+      "table_name": "edu_course_level",
+      "type": "db_table"
+    },
+    {
+      "data_type": "db_table",
+      "fields": [
+        {
+          "data_type": "string",
+          "dict_list": [],
+          "display_type": "auto",
+          "exists": [
+            "list",
+            "details"
+          ],
+          "has_go_details": false,
+          "has_search": false,
+          "has_sort": false,
+          "iframe_url": null,
+          "is_primary": true,
+          "key": "id",
+          "name": "ID",
+          "sort": 1,
+          "sql": null,
+          "type": "value"
+        },
+        {
+          "data_type": "string",
+          "dict_list": [],
+          "display_type": "auto",
+          "exists": [
+            "list",
+            "details",
+            "modify"
+          ],
+          "has_go_details": false,
+          "has_search": false,
+          "has_sort": false,
+          "iframe_url": null,
+          "is_primary": false,
+          "key": "name",
+          "name": "来源",
+          "sort": 1,
+          "sql": null,
+          "type": "value"
+        },
+        {
+          "data_type": "datetime",
+          "dict_list": [],
+          "display_type": "auto",
+          "exists": [
+            "list",
+            "details"
+          ],
+          "has_go_details": false,
+          "has_search": false,
+          "has_sort": false,
+          "iframe_url": null,
+          "is_primary": false,
+          "key": "create_time",
+          "name": "创建时间",
+          "sort": 1,
+          "sql": null,
+          "type": "value"
+        },
+        {
+          "buttons": [],
+          "data_type": "boolean",
+          "dict_list": [],
+          "display_type": "auto",
+          "exists": [
+            "list",
+            "details",
+            "modify"
+          ],
+          "has_go_details": false,
+          "has_search": false,
+          "has_sort": false,
+          "iframe_url": null,
+          "is_primary": false,
+          "key": "status",
+          "name": "是否停启用",
+          "sort": 1,
+          "sql": null,
+          "type": "value"
+        },
+        {
+          "buttons": [],
+          "data_type": "key_value",
+          "dict_list": [],
+          "display_type": "auto",
+          "exists": [
+            "list",
+            "details",
+            "modify"
+          ],
+          "has_go_details": false,
+          "has_search": false,
+          "has_sort": false,
+          "iframe_url": null,
+          "is_primary": false,
+          "key": "employee_id",
+          "name": "创建人",
+          "sort": 1,
+          "sql": "select user.nickname as `value`, edu_employee.id as `key` from edu_employee inner join user on user.id = edu_employee.user_id where edu_employee.id = ${employee_id}",
+          "type": "sql"
+        },
+        {
+          "buttons": [
+            {
+              "link": "",
+              "name": "编辑",
+              "type": "edit"
+            },
+            {
+              "link": "",
+              "name": "删除",
+              "type": "delete"
+            }
+          ],
+          "data_type": "string",
+          "dict_list": [],
+          "display_type": "auto",
+          "exists": [
+            "list"
+          ],
+          "has_go_details": false,
+          "has_search": false,
+          "has_sort": false,
+          "iframe_url": null,
+          "is_primary": false,
+          "key": "options",
+          "name": "操作",
+          "sort": 1,
+          "sql": null,
+          "type": "buttons"
+        }
+      ],
+      "has_connect_org": false,
+      "key": "edu-customer-source-entity",
+      "sql": null,
+      "table_name": "edu_customer_source",
+      "type": "db_table"
+    },
+    {
+      "data_type": "db_table",
+      "fields": [
+        {
+          "data_type": "string",
+          "dict_list": [],
+          "display_type": "auto",
+          "exists": [
+            "list",
+            "details"
+          ],
+          "has_go_details": false,
+          "has_search": false,
+          "has_sort": false,
+          "iframe_url": null,
+          "is_primary": true,
+          "key": "id",
+          "name": "ID",
+          "sort": 1,
+          "sql": null,
+          "type": "value"
+        },
+        {
+          "data_type": "string",
+          "dict_list": [],
+          "display_type": "auto",
+          "exists": [
+            "list",
+            "details",
+            "modify"
+          ],
+          "has_go_details": false,
+          "has_search": false,
+          "has_sort": false,
+          "iframe_url": null,
+          "is_primary": false,
+          "key": "name",
+          "name": "名称",
+          "sort": 1,
+          "sql": null,
+          "type": "value"
+        },
+        {
+          "data_type": "string",
+          "dict_list": [],
+          "display_type": "auto",
+          "exists": [
+            "list",
+            "details",
+            "modify"
+          ],
+          "has_go_details": false,
+          "has_search": false,
+          "has_sort": false,
+          "iframe_url": null,
+          "is_primary": false,
+          "key": "image_url",
+          "name": "图片",
+          "sort": 1,
+          "sql": null,
+          "type": "value"
+        },
+        {
+          "buttons": [],
+          "data_source_sql": "select id as `key`, title as `value` from edu_article",
+          "data_type": "foreign-key",
+          "default_value": null,
+          "description": null,
+          "dict_list": [],
+          "display_component": null,
+          "display_type": "auto",
+          "exists": [
+            "list",
+            "details",
+            "modify"
+          ],
+          "foreign_our_key": null,
+          "foreign_table_name": null,
+          "foreign_their_key": null,
+          "foreign_type": "one-to-one",
+          "form_component": null,
+          "has_link": false,
+          "has_search": false,
+          "has_sort": false,
+          "iframe_url": null,
+          "is_primary": false,
+          "key": "article_id",
+          "link_address": null,
+          "name": "文章",
+          "sql": null,
+          "table_name": "",
+          "type": "value",
+          "verify_max": 0,
+          "verify_min": 0,
+          "verify_only": false,
+          "verify_pattern": null,
+          "verify_require": false
+        },
+        {
+          "data_type": "string",
+          "dict_list": [],
+          "display_type": "auto",
+          "exists": [
+            "list",
+            "details",
+            "modify"
+          ],
+          "has_go_details": false,
+          "has_search": false,
+          "has_sort": false,
+          "iframe_url": null,
+          "is_primary": false,
+          "key": "link_url",
+          "name": "跳转URL",
+          "sort": 1,
+          "sql": null,
+          "type": "value"
+        },
+        {
+          "data_type": "datetime",
+          "dict_list": [],
+          "display_type": "auto",
+          "exists": [
+            "list",
+            "details"
+          ],
+          "has_go_details": false,
+          "has_search": false,
+          "has_sort": false,
+          "iframe_url": null,
+          "is_primary": false,
+          "key": "create_time",
+          "name": "创建时间",
+          "sort": 1,
+          "sql": null,
+          "type": "value"
+        },
+        {
+          "buttons": [],
+          "data_type": "key_value",
+          "dict_list": [],
+          "display_type": "auto",
+          "exists": [
+            "list",
+            "details",
+            "modify"
+          ],
+          "has_go_details": false,
+          "has_search": false,
+          "has_sort": false,
+          "iframe_url": null,
+          "is_primary": false,
+          "key": "employee_id",
+          "name": "创建人",
+          "sort": 1,
+          "sql": "select user.nickname as `value`, edu_employee.id as `key` from edu_employee inner join user on user.id = edu_employee.user_id where edu_employee.id = ${employee_id}",
+          "type": "sql"
+        },
+        {
+          "buttons": [
+            {
+              "link": "",
+              "name": "编辑",
+              "type": "edit"
+            },
+            {
+              "link": "",
+              "name": "删除",
+              "type": "delete"
+            }
+          ],
+          "data_type": "string",
+          "dict_list": [],
+          "display_type": "auto",
+          "exists": [
+            "list"
+          ],
+          "has_go_details": false,
+          "has_search": false,
+          "has_sort": false,
+          "iframe_url": null,
+          "is_primary": false,
+          "key": "options",
+          "name": "操作",
+          "sort": 1,
+          "sql": null,
+          "type": "buttons"
+        },
+        {
+          "data_type": "number",
+          "dict_list": [],
+          "display_type": "auto",
+          "exists": [
+            "details",
+            "modify"
+          ],
+          "has_go_details": false,
+          "has_search": false,
+          "has_sort": false,
+          "iframe_url": null,
+          "is_primary": false,
+          "key": "sort",
+          "name": "排序",
+          "sort": 1,
+          "sql": null,
+          "type": "value"
+        }
+      ],
+      "has_connect_org": false,
+      "key": "edu-banner-entity",
+      "sql": null,
+      "table_name": "edu_banner",
+      "type": "db_table"
+    },
+    {
+      "data_type": "db_table",
+      "fields": [
+        {
+          "buttons": [],
+          "data_type": "string",
+          "dict_list": [],
+          "display_component": null,
+          "display_type": "auto",
+          "exists": [
+            "list",
+            "details"
+          ],
+          "form_component": null,
+          "has_go_details": false,
+          "has_search": false,
+          "has_sort": false,
+          "iframe_url": null,
+          "is_primary": true,
+          "key": "id",
+          "name": "ID",
+          "sql": null,
+          "type": "value"
+        },
+        {
+          "buttons": [],
+          "data_type": "boolean",
+          "dict_list": [],
+          "display_component": null,
+          "display_type": "auto",
+          "exists": [
+            "list",
+            "details",
+            "modify"
+          ],
+          "form_component": null,
+          "has_go_details": false,
+          "has_search": false,
+          "has_sort": false,
+          "iframe_url": null,
+          "is_primary": false,
+          "key": "is_top",
+          "name": "是否置顶",
+          "sql": null,
+          "type": "value"
+        },
+        {
+          "buttons": [],
+          "data_type": "number",
+          "dict_list": [],
+          "display_component": null,
+          "display_type": "auto",
+          "exists": [
+            "list",
+            "details",
+            "modify"
+          ],
+          "form_component": null,
+          "has_go_details": false,
+          "has_search": false,
+          "has_sort": false,
+          "iframe_url": null,
+          "is_primary": false,
+          "key": "visible_type",
+          "name": "可见类型",
+          "sql": null,
+          "type": "value"
+        },
+        {
+          "buttons": [],
+          "data_type": "string",
+          "dict_list": [],
+          "display_component": null,
+          "display_type": "auto",
+          "exists": [
+            "list",
+            "details",
+            "modify"
+          ],
+          "form_component": null,
+          "has_go_details": false,
+          "has_search": false,
+          "has_sort": false,
+          "iframe_url": null,
+          "is_primary": false,
+          "key": "title",
+          "name": "文章标题",
+          "sql": null,
+          "type": "value"
+        },
+        {
+          "buttons": [],
+          "data_type": "string",
+          "dict_list": [],
+          "display_component": null,
+          "display_type": "auto",
+          "exists": [
+            "list",
+            "details",
+            "modify"
+          ],
+          "form_component": null,
+          "has_go_details": false,
+          "has_search": false,
+          "has_sort": false,
+          "iframe_url": null,
+          "is_primary": false,
+          "key": "subtitle",
+          "name": "副标题",
+          "sql": null,
+          "type": "value"
+        },
+        {
+          "buttons": [],
+          "data_type": "string",
+          "dict_list": [],
+          "display_component": null,
+          "display_type": "auto",
+          "exists": [
+            "list",
+            "details",
+            "modify"
+          ],
+          "form_component": null,
+          "has_go_details": false,
+          "has_search": false,
+          "has_sort": false,
+          "iframe_url": null,
+          "is_primary": false,
+          "key": "author",
+          "name": "作者",
+          "sql": null,
+          "type": "value"
+        },
+        {
+          "buttons": [],
+          "data_type": "key_value",
+          "dict_list": [],
+          "display_component": null,
+          "display_type": "auto",
+          "exists": [
+            "list",
+            "details",
+            "modify"
+          ],
+          "form_component": null,
+          "has_go_details": false,
+          "has_search": false,
+          "has_sort": false,
+          "iframe_url": null,
+          "is_primary": false,
+          "key": "employee_id",
+          "name": "创建人",
+          "sql": "select user.nickname as `value`, edu_employee.id as `key` from edu_employee inner join user on user.id = edu_employee.user_id where edu_employee.id = ${employee_id}",
+          "type": "sql"
+        },
+        {
+          "buttons": [],
+          "data_type": "datetime",
+          "dict_list": [],
+          "display_component": null,
+          "display_type": "auto",
+          "exists": [
+            "list",
+            "details"
+          ],
+          "form_component": null,
+          "has_go_details": false,
+          "has_search": false,
+          "has_sort": false,
+          "iframe_url": null,
+          "is_primary": false,
+          "key": "create_time",
+          "name": "发布时间",
+          "sql": null,
+          "type": "value"
+        },
+        {
+          "buttons": [],
+          "data_source_sql": null,
+          "data_type": "rich_text",
+          "default_value": null,
+          "description": null,
+          "dict_list": [],
+          "display_component": null,
+          "display_type": "auto",
+          "exists": [
+            "details",
+            "modify"
+          ],
+          "foreign_our_key": null,
+          "foreign_table_name": null,
+          "foreign_their_key": null,
+          "foreign_type": "one-to-one",
+          "form_component": null,
+          "has_link": false,
+          "has_search": false,
+          "has_sort": false,
+          "iframe_url": null,
+          "is_primary": false,
+          "key": "content",
+          "link_address": null,
+          "name": "文章内容",
+          "sql": null,
+          "type": "value",
+          "verify_max": 0,
+          "verify_min": 0,
+          "verify_only": false,
+          "verify_pattern": null,
+          "verify_require": false
+        },
+        {
+          "buttons": [
+            {
+              "link": "",
+              "name": "编辑",
+              "type": "edit"
+            },
+            {
+              "link": "",
+              "name": "删除",
+              "type": "delete"
+            }
+          ],
+          "data_type": "string",
+          "dict_list": [],
+          "display_component": null,
+          "display_type": "auto",
+          "exists": [
+            "list"
+          ],
+          "form_component": null,
+          "has_go_details": false,
+          "has_search": false,
+          "has_sort": false,
+          "iframe_url": null,
+          "is_primary": false,
+          "key": "options",
+          "name": "操作",
+          "sql": null,
+          "type": "buttons"
+        }
+      ],
+      "has_connect_org": false,
+      "key": "edu-article-entity",
+      "sql": null,
+      "table_name": "edu_article",
+      "type": "db_table"
+    },
+    {
+      "data_type": "db_table",
+      "fields": [
+        {
+          "buttons": [],
+          "data_type": "string",
+          "dict_list": [],
+          "display_component": null,
+          "display_type": "auto",
+          "exists": [
+            "list",
+            "details"
+          ],
+          "form_component": null,
+          "has_go_details": false,
+          "has_search": false,
+          "has_sort": false,
+          "iframe_url": null,
+          "is_primary": true,
+          "key": "id",
+          "name": "ID",
+          "sql": null,
+          "type": "value"
+        },
+        {
+          "buttons": [],
+          "data_type": "string",
+          "dict_list": [],
+          "display_component": null,
+          "display_type": "auto",
+          "exists": [
+            "list",
+            "details",
+            "modify"
+          ],
+          "form_component": null,
+          "has_go_details": false,
+          "has_search": false,
+          "has_sort": false,
+          "iframe_url": null,
+          "is_primary": false,
+          "key": "title",
+          "name": "标题",
+          "sql": null,
+          "type": "value"
+        },
+        {
+          "buttons": [],
+          "data_type": "key_value",
+          "dict_list": [],
+          "display_component": null,
+          "display_type": "auto",
+          "exists": [
+            "list",
+            "details",
+            "modify"
+          ],
+          "form_component": null,
+          "has_go_details": false,
+          "has_search": false,
+          "has_sort": false,
+          "iframe_url": null,
+          "is_primary": false,
+          "key": "employee_id",
+          "name": "创建人",
+          "sql": "select user.nickname as `value`, edu_employee.id as `key` from edu_employee inner join user on user.id = edu_employee.user_id where edu_employee.id = ${employee_id}",
+          "type": "sql"
+        },
+        {
+          "buttons": [],
+          "data_type": "datetime",
+          "dict_list": [],
+          "display_component": null,
+          "display_type": "auto",
+          "exists": [
+            "list",
+            "details"
+          ],
+          "form_component": null,
+          "has_go_details": false,
+          "has_search": false,
+          "has_sort": false,
+          "iframe_url": null,
+          "is_primary": false,
+          "key": "create_time",
+          "name": "创建时间",
+          "sql": null,
+          "type": "value"
+        },
+        {
+          "buttons": [],
+          "data_type": "rich_text",
+          "dict_list": [],
+          "display_component": null,
+          "display_type": "auto",
+          "exists": [
+            "details",
+            "modify"
+          ],
+          "form_component": null,
+          "has_go_details": false,
+          "has_search": false,
+          "has_sort": false,
+          "iframe_url": null,
+          "is_primary": false,
+          "key": "content",
+          "name": "内容",
+          "sql": null,
+          "type": "value"
+        },
+        {
+          "buttons": [
+            {
+              "link": "",
+              "name": "编辑",
+              "type": "edit"
+            },
+            {
+              "link": "",
+              "name": "删除",
+              "type": "delete"
+            }
+          ],
+          "data_type": "string",
+          "dict_list": [],
+          "display_component": null,
+          "display_type": "auto",
+          "exists": [
+            "list"
+          ],
+          "form_component": null,
+          "has_go_details": false,
+          "has_search": false,
+          "has_sort": false,
+          "iframe_url": null,
+          "is_primary": false,
+          "key": "options",
+          "name": "操作",
+          "sql": null,
+          "type": "buttons"
+        }
+      ],
+      "has_connect_org": false,
+      "key": "edu-agreement-entity",
+      "sql": null,
+      "table_name": "edu_agreement",
+      "type": "db_table"
+    },
+    {
+      "data_type": "db_table",
+      "fields": [
+        {
+          "buttons": [],
+          "data_type": "string",
+          "dict_list": [],
+          "display_component": null,
+          "display_type": "auto",
+          "exists": [
+            "list",
+            "details"
+          ],
+          "form_component": null,
+          "has_go_details": false,
+          "has_search": false,
+          "has_sort": false,
+          "iframe_url": null,
+          "is_primary": true,
+          "key": "id",
+          "name": "ID",
+          "sql": null,
+          "type": "value"
+        },
+        {
+          "buttons": [],
+          "data_type": "string",
+          "dict_list": [],
+          "display_component": null,
+          "display_type": "auto",
+          "exists": [
+            "list",
+            "details",
+            "modify"
+          ],
+          "form_component": null,
+          "has_go_details": false,
+          "has_search": false,
+          "has_sort": false,
+          "iframe_url": null,
+          "is_primary": false,
+          "key": "title",
+          "name": "标题",
+          "sql": null,
+          "type": "value"
+        },
+        {
+          "buttons": [],
+          "data_type": "rich_text",
+          "dict_list": [],
+          "display_component": null,
+          "display_type": "auto",
+          "exists": [
+            "details",
+            "modify"
+          ],
+          "form_component": null,
+          "has_go_details": false,
+          "has_search": false,
+          "has_sort": false,
+          "iframe_url": null,
+          "is_primary": false,
+          "key": "content",
+          "name": "内容",
+          "sql": null,
+          "type": "value"
+        },
+        {
+          "buttons": [],
+          "data_type": "key_value",
+          "dict_list": [],
+          "display_component": null,
+          "display_type": "auto",
+          "exists": [
+            "list",
+            "details",
+            "modify"
+          ],
+          "form_component": null,
+          "has_go_details": false,
+          "has_search": false,
+          "has_sort": false,
+          "iframe_url": null,
+          "is_primary": false,
+          "key": "employee_id",
+          "name": "创建人",
+          "sql": "select user.nickname as `value`, edu_employee.id as `key` from edu_employee inner join user on user.id = edu_employee.user_id where edu_employee.id = ${employee_id}",
+          "type": "sql"
+        },
+        {
+          "buttons": [],
+          "data_type": "datetime",
+          "dict_list": [],
+          "display_component": null,
+          "display_type": "auto",
+          "exists": [
+            "list",
+            "details"
+          ],
+          "form_component": null,
+          "has_go_details": false,
+          "has_search": false,
+          "has_sort": false,
+          "iframe_url": null,
+          "is_primary": false,
+          "key": "create_time",
+          "name": "创建时间",
+          "sql": null,
+          "type": "value"
+        },
+        {
+          "buttons": [
+            {
+              "link": "",
+              "name": "编辑",
+              "type": "edit"
+            },
+            {
+              "link": "",
+              "name": "删除",
+              "type": "delete"
+            }
+          ],
+          "data_type": "string",
+          "dict_list": [],
+          "display_component": null,
+          "display_type": "auto",
+          "exists": [
+            "list"
+          ],
+          "form_component": null,
+          "has_go_details": false,
+          "has_search": false,
+          "has_sort": false,
+          "iframe_url": null,
+          "is_primary": false,
+          "key": "options",
+          "name": "操作",
+          "sql": null,
+          "type": "buttons"
+        }
+      ],
+      "has_connect_org": false,
+      "key": "edu-about-entity",
+      "sql": null,
+      "table_name": "edu_about",
+      "type": "db_table"
+    },
+    {
+      "data_type": "db_table",
+      "fields": [
+        {
+          "buttons": [],
+          "data_type": "string",
+          "dict_list": [],
+          "display_component": null,
+          "display_type": "auto",
+          "exists": [
+            "list",
+            "details"
+          ],
+          "form_component": null,
+          "has_go_details": false,
+          "has_search": false,
+          "has_sort": false,
+          "iframe_url": null,
+          "is_primary": true,
+          "key": "id",
+          "name": "ID",
+          "sql": null,
+          "type": "value"
+        },
+        {
+          "buttons": [],
+          "data_type": "string",
+          "dict_list": [],
+          "display_component": null,
+          "display_type": "auto",
+          "exists": [
+            "list",
+            "details",
+            "modify"
+          ],
+          "form_component": null,
+          "has_go_details": false,
+          "has_search": false,
+          "has_sort": false,
+          "iframe_url": null,
+          "is_primary": false,
+          "key": "name",
+          "name": "名称",
+          "sql": null,
+          "type": "value"
+        },
+        {
+          "buttons": [],
+          "data_type": "key_value",
+          "dict_list": [],
+          "display_component": null,
+          "display_type": "auto",
+          "exists": [
+            "list",
+            "details",
+            "modify"
+          ],
+          "form_component": null,
+          "has_go_details": false,
+          "has_search": false,
+          "has_sort": false,
+          "iframe_url": null,
+          "is_primary": false,
+          "key": "employee_id",
+          "name": "创建人",
+          "sql": "select user.nickname as `value`, edu_employee.id as `key` from edu_employee inner join user on user.id = edu_employee.user_id where edu_employee.id = ${employee_id}",
+          "type": "sql"
+        },
+        {
+          "buttons": [],
+          "data_type": "datetime",
+          "dict_list": [],
+          "display_component": null,
+          "display_type": "auto",
+          "exists": [
+            "list",
+            "details"
+          ],
+          "form_component": null,
+          "has_go_details": false,
+          "has_search": false,
+          "has_sort": false,
+          "iframe_url": null,
+          "is_primary": false,
+          "key": "create_time",
+          "name": "创建时间",
+          "sql": null,
+          "type": "value"
+        },
+        {
+          "buttons": [],
+          "data_type": "boolean",
+          "dict_list": [],
+          "display_component": null,
+          "display_type": "auto",
+          "exists": [
+            "list",
+            "details",
+            "modify"
+          ],
+          "form_component": null,
+          "has_go_details": false,
+          "has_search": false,
+          "has_sort": false,
+          "iframe_url": null,
+          "is_primary": false,
+          "key": "status",
+          "name": "是否停启用",
+          "sql": null,
+          "type": "value"
+        },
+        {
+          "buttons": [
+            {
+              "link": "",
+              "name": "编辑",
+              "type": "edit"
+            },
+            {
+              "link": "",
+              "name": "删除",
+              "type": "delete"
+            }
+          ],
+          "data_type": "string",
+          "dict_list": [],
+          "display_component": null,
+          "display_type": "auto",
+          "exists": [
+            "list"
+          ],
+          "form_component": null,
+          "has_go_details": false,
+          "has_search": false,
+          "has_sort": false,
+          "iframe_url": null,
+          "is_primary": false,
+          "key": "options",
+          "name": "操作",
+          "sql": null,
+          "type": "buttons"
+        }
+      ],
+      "has_connect_org": false,
+      "key": "edu-instrument-use-entity",
+      "sql": null,
+      "table_name": "edu_instrument_use",
+      "type": "db_table"
+    }
+  ],
+  "globalComponents": [],
+  "icon": "http://arrplatimg.arrway.cn/匠心吉他icon.png",
+  "key": "arrplat-guitar",
+  "menus": [
+    {
+      "icon": "http://arrplatimg.arrway.cn/伊i表盘.png",
+      "link": "",
+      "name": "仪表盘",
+      "sort": 0
+    },
+    {
+      "icon": "el-icon-s-check",
+      "link": "",
+      "name": "客户管理",
+      "sort": 1
+    },
+    {
+      "children": [
+        {
+          "link": "",
+          "name": "课程种类设置",
+          "page_key": "edu-course-type-page",
+          "type": "page"
+        },
+        {
+          "link": "",
+          "name": "课程素材设置",
+          "page_key": "edu-material-page",
+          "sort": 1,
+          "type": "page"
+        },
+        {
+          "link": "",
+          "name": "课程要点设置",
+          "page_key": "edu-essential-page",
+          "sort": 1,
+          "type": "page"
+        },
+        {
+          "link": "",
+          "name": "难度等级设置",
+          "page_key": "edu-difficulty-level-page",
+          "sort": 1,
+          "type": "page"
+        },
+        {
+          "link": "",
+          "name": "乐器类型设置",
+          "page_key": "edu-instrument-type-page",
+          "sort": 1,
+          "type": "page"
+        },
+        {
+          "link": "",
+          "name": "乐器使用情况设置",
+          "page_key": "edu-instrument-use-page",
+          "type": "page"
+        }
+      ],
+      "icon": "http://arrplatimg.arrway.cn/课程设置.png",
+      "link": "",
+      "name": "课程设置",
+      "page_key": "",
+      "type": "customer"
+    },
+    {
+      "children": [
+        {
+          "link": "",
+          "name": "学员等级设置",
+          "page_key": "edu-student-level-page",
+          "sort": 1,
+          "type": "page"
+        },
+        {
+          "link": "",
+          "name": "教师等级设置",
+          "page_key": "edu-teacher-level-page",
+          "sort": 1,
+          "type": "page"
+        },
+        {
+          "link": "",
+          "name": "课程等级设置",
+          "page_key": "edu-course-level-page",
+          "sort": 1,
+          "type": "page"
+        },
+        {
+          "link": "",
+          "name": "客户来源设置",
+          "page_key": "edu-customer-source-page",
+          "sort": 1,
+          "type": "page"
+        }
+      ],
+      "icon": "http://arrplatimg.arrway.cn/其他设置.png",
+      "link": "",
+      "name": "其它设置",
+      "page_key": "",
+      "sort": 1,
+      "type": "customer"
+    },
+    {
+      "children": [
+        {
+          "link": "",
+          "name": "轮播图设置",
+          "page_key": "edu-banner-page",
+          "sort": 1,
+          "type": "page"
+        },
+        {
+          "link": "",
+          "name": "首页文章设置",
+          "page_key": "edu-article-page",
+          "type": "page"
+        },
+        {
+          "link": "",
+          "name": "约课协议设置",
+          "page_key": "edu-agreement-page",
+          "type": "page"
+        },
+        {
+          "link": "",
+          "name": "关于我们设置",
+          "page_key": "edu-about-page",
+          "type": "page"
+        }
+      ],
+      "link": "",
+      "name": "小程序设置",
+      "page_key": "",
+      "sort": 1,
+      "type": "customer"
+    }
+  ],
+  "name": "@arrplat/plus-guitar",
+  "pages": [
+    {
+      "direction": "column",
+      "key": "edu-course-type-page",
+      "sections": [
+        {
+          "entity_key": "edu-course-type-entity",
+          "entity_params": null,
+          "has_add_btn": true,
+          "title": "列表",
+          "type": "list"
+        }
+      ],
+      "title": "课程种类设置"
+    },
+    {
+      "direction": "column",
+      "key": "edu-material-page",
+      "sections": [
+        {
+          "entity_key": "edu-material-entity",
+          "entity_params": null,
+          "has_add_btn": true,
+          "title": "列表",
+          "type": "list"
+        }
+      ],
+      "title": "课程素材设置"
+    },
+    {
+      "direction": "column",
+      "key": "edu-essential-page",
+      "sections": [
+        {
+          "entity_key": "edu-essential-entity",
+          "entity_params": null,
+          "has_add_btn": true,
+          "title": "列表",
+          "type": "list"
+        }
+      ],
+      "title": "课程要点配置"
+    },
+    {
+      "direction": "column",
+      "key": "edu-difficulty-level-page",
+      "sections": [
+        {
+          "entity_key": "edu-difficulty-level-entity",
+          "entity_params": null,
+          "has_add_btn": true,
+          "title": "列表",
+          "type": "list"
+        }
+      ],
+      "title": "难度等级设置"
+    },
+    {
+      "direction": "column",
+      "key": "edu-instrument-type-page",
+      "sections": [
+        {
+          "entity_key": "edu-instrument-type-entity",
+          "entity_params": null,
+          "has_add_btn": true,
+          "title": "列表",
+          "type": "list"
+        }
+      ],
+      "title": "乐器类型设置"
+    },
+    {
+      "direction": "column",
+      "key": "edu-student-level-page",
+      "sections": [
+        {
+          "entity_key": "edu-student-level-entity",
+          "entity_params": null,
+          "has_add_btn": true,
+          "title": "列表",
+          "type": "list"
+        }
+      ],
+      "title": "学员等级设置"
+    },
+    {
+      "direction": "column",
+      "key": "edu-teacher-level-page",
+      "sections": [
+        {
+          "entity_key": "edu-teacher-level-entity",
+          "entity_params": null,
+          "has_add_btn": true,
+          "title": "列表",
+          "type": "list"
+        }
+      ],
+      "title": "教师等级设置"
+    },
+    {
+      "direction": "column",
+      "key": "edu-course-level-page",
+      "sections": [
+        {
+          "entity_key": "edu-course-level-entity",
+          "entity_params": null,
+          "has_add_btn": true,
+          "title": "列表",
+          "type": "list"
+        }
+      ],
+      "title": "课程等级设置"
+    },
+    {
+      "direction": "column",
+      "key": "edu-customer-source-page",
+      "sections": [
+        {
+          "entity_key": "edu-customer-source-entity",
+          "entity_params": null,
+          "has_add_btn": true,
+          "title": "列表",
+          "type": "list"
+        }
+      ],
+      "title": "客户来源设置"
+    },
+    {
+      "direction": "column",
+      "key": "edu-banner-page",
+      "sections": [
+        {
+          "entity_key": "edu-banner-entity",
+          "entity_params": null,
+          "has_add_btn": true,
+          "title": "列表",
+          "type": "list"
+        }
+      ],
+      "title": "轮播图设置"
+    },
+    {
+      "direction": "column",
+      "key": "edu-article-page",
+      "sections": [
+        {
+          "entity_key": "edu-article-entity",
+          "entity_params": null,
+          "has_add_btn": true,
+          "title": "列表",
+          "type": "list"
+        }
+      ],
+      "title": "首页文章设置"
+    },
+    {
+      "direction": "column",
+      "key": "edu-agreement-page",
+      "sections": [
+        {
+          "entity_key": "edu-agreement-entity",
+          "entity_params": null,
+          "has_add_btn": true,
+          "title": "列表",
+          "type": "list"
+        }
+      ],
+      "title": "约课协议设置"
+    },
+    {
+      "direction": "column",
+      "key": "edu-about-page",
+      "sections": [
+        {
+          "entity_key": "edu-about-entity",
+          "entity_params": null,
+          "has_add_btn": true,
+          "title": "列表",
+          "type": "list"
+        }
+      ],
+      "title": "关于我们设置"
+    },
+    {
+      "direction": "column",
+      "key": "edu-instrument-use-page",
+      "sections": [
+        {
+          "entity_key": "edu-instrument-use-entity",
+          "entity_params": null,
+          "has_add_btn": true,
+          "title": "列表",
+          "type": "list"
+        }
+      ],
+      "title": "乐器使用情况设置"
+    }
+  ],
+  "path": "arrplat-guitar",
+  "routes": [
+    {
+      "chunkName": "arrplat-guitar/admin/pages/index",
+      "component": "@arrplat/plus-guitar/admin/pages/index.vue",
+      "name": "plugins-guitar",
+      "path": "/plugins/guitar"
+    }
+  ],
+  "sort": "5",
+  "title": "匠心吉他"
+}

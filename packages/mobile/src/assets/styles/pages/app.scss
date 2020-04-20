@@ -1,0 +1,27 @@
+.app-center {
+  .app-list {
+    display: flex;
+    flex-direction: row;
+    padding-top: 32px;
+    padding-left: 32px;
+    flex-flow: row wrap;
+  }
+
+  .app-footer {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 136px;
+    display: flex;
+    align-items: center;
+    background-color: white;
+    padding-left: 32px;
+    padding-right: 32px;
+
+    at-button {
+      flex: 1;
+    }
+  }
+}
+

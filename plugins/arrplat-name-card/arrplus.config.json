@@ -1,0 +1,14 @@
+{
+  "name": "@arrplat/plus-card",
+  "title": "智能名片",
+  "description": "The NameCard for wechat",
+  "key": "arrplat-name-card",
+  "icon": "http://arrplatimg.arrway.cn/%E5%90%8D%E7%89%87.png",
+  "sort": "5",
+  "menus": [{
+    "icon": "http://arrplatimg.arrway.cn/伊i表盘.png",
+    "name": "仪表盘",
+    "sort": 0,
+    "link": ""
+  }]
+}

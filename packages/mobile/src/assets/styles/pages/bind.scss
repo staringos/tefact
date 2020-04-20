@@ -1,0 +1,35 @@
+@import "../variables";
+
+.bind-page {
+  background-color: $mainColor;
+
+  .bind-form {
+    width: 85%;
+    background-color: white;
+    border-radius: 10px;
+    padding: 32px;
+  }
+
+  .input-area {
+    display: flex;
+    flex-direction: column;
+    margin-top: 90px;
+  }
+
+  .bind-button {
+    margin-top: 90px;
+    margin-bottom: 60px;
+    width: 100%;
+
+  }
+
+  .verify-code {
+    display: flex;
+
+    .verify-image {
+      flex: 1;
+      height: 50px;
+      width: auto;
+    }
+  }
+}

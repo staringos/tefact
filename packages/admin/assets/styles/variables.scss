@@ -1,0 +1,15 @@
+@import "~@arrplat/ui/src/theme/variables";
+
+// main
+$mainColor: #3181DE;
+$borderColor: #e2e8f0;
+$borderSecondColor: #E2E2EA;
+
+
+$editor-main-color: #00b4ff;
+$editor-border-active-color: #00b4ff;
+
+
+:export{
+  mainColor : $mainColor
+}

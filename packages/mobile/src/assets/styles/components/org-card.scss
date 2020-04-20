@@ -1,0 +1,49 @@
+
+org-card {
+  width: 90%;
+}
+
+.org-card-wrapper {
+  display: flex;
+  padding: 30px 0;
+
+  card {
+    flex: 1;
+    width: 85%;
+    background: url('../../images/bg-card.png');
+    background-size: 100% 100%;
+  }
+
+  .org-card-container {
+    display: flex;
+    flex: 1;
+    flex-direction: row;
+    overflow: hidden;
+
+    .avatar-wrapper {
+      flex: 1;
+      padding-top: 30px;
+    }
+
+    .details {
+      flex: 2;
+      display: flex;
+      flex-direction: column;
+
+      .title {
+        font-size: 49px;
+        font-family: PingFangSC-Semibold,PingFang SC;
+        font-weight: 600;
+        color: #fff;
+        line-height: 68px;
+        margin: 20px 0;
+      }
+
+      .details-item {
+        font-size: 29px;
+        line-height: 50px;
+        color: #fff;
+      }
+    }
+  }
+}

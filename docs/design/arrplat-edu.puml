@@ -1,0 +1,363 @@
+@startuml
+
+' 课程
+package "Course" #DDD {
+
+  ' 正式课/试听课
+  class Course {
+    String id
+    String name
+    String teacherEmployeeId 教师
+    String baseCourseId 基础课程
+    String campusId 校区
+    String classroomId 教室
+    String materialId 素材
+    TimeStamp startTime
+    TimeStamp endTime
+    Number color 颜色(标签)
+    Number status
+    String remark 备注
+    Boolean isLimitStudent 仅自己学员可见
+    Number applyType 约课方式(小程序/后台 暂未用到)
+
+    Number course_type 课程类型
+    Number course_level_id 课程等级
+    String saleEmployeeId 销售人员
+    Number intention 客户意向
+    String intentionRemark 意向(签到)备注
+    TimeStamp createTime
+    String customer_id 客户id
+    String business_id 客户商机
+    String subscript 角标
+  }
+
+  ' 基础课程
+  class BaseCourse {
+    String id
+    String name
+    Number courseTypeId 课程种类
+    String instrumentTypeId 乐器类型
+    Number classPoints 每次消耗课点
+    Number classMinutes 每课时分钟数
+    Number crowdType 适合人群
+    Number studentCount 最大学员数
+    Boolean isFormal 是否是正式课
+    Boolean isOther 能不能约别的课
+    Number color 颜色(标签)
+    Boolean isCancel 是否是允许学员取消
+    Boolean isEnabled 是否启用
+    TimeStamp createTime
+  }
+
+  ' 课程校区(关系表)
+  class BaseCourseCampus {
+    String baseCourseId
+    String campusId
+  }
+
+  ' 课程学员(关系表)
+  class CourseStudent {
+    String courseId
+    String studentId
+  }
+
+  ' 课程标签(关系表)
+  class CourseTag {
+    String courseId
+    String tagId
+  }
+
+  ' 课程签到(关系表)
+  class CourseSign {
+    String courseId
+    String studentId
+    String teacherId
+    String signStudentLevelId 签到学员等级
+    String subjectRemark 主题要点
+    Number completePercent 完成率
+    String subjectId 主题
+    String materialId 课程素材
+    String studentRemark 备注(学员可见)
+    String teacherRemark 备注(后台可见)
+    Number status 签到状态
+    Number signType 签到类型(正式\试听\非体系课程)
+    TimeStamp createTime
+  }
+
+  ' 校区
+  class Campus {
+    String id
+    Number number 编号
+    String name
+    String address
+    String manageEmployeeId
+    Number classroomCount 教室数
+    Number staffCount 员工数
+    String description
+    TimeStamp createTime
+    Boolean isEnabled 是否启用
+  }
+
+  ' 教室
+  class CampusClassroom {
+    String id
+    String name
+    String campusId 校区
+    Boolean isEnabled 是否启用
+  }
+
+  ' 标签
+  class Tag {
+    String id
+    String name
+  }
+
+  ' 课程颜色(标签)
+  enum CourseColor {
+    RED
+    BLUE
+  }
+
+  ' 主题
+  class Subject {
+    String id
+    String name
+    String instrumentTypeId 乐器类型
+    Number difficultyLevelId 难度等级
+    Number crowdType 适合人群
+    Boolean isEnabled 是否启用
+  }
+
+  ' 主题要点(关系表)
+  class SubjectEssential {
+    String subjectId
+    String essentialId
+  }
+
+  ' 主题校区(关系表)
+  class SubjectCampus {
+    String subjectId
+    String campusId
+  }
+
+  ' 套餐
+  class Packet {
+    String id
+    String name
+    Number price
+    Number originPrice
+    String intro
+    String baseCourseId 基础课程
+    Boolean isHourLimit 是否限课时
+    Number classHours 课时
+    Number classPoints 课点
+    TimeStamp startTime 有效期时间
+    TimeStamp endTime
+    Boolean isEnabled 是否启用
+  }
+
+  ' 套餐主题(关系表)
+  class PacketSubject {
+    String packetId
+    String subjectId
+  }
+
+  ' 套餐校区(关系表)
+  class PacketCampus {
+    String packetId
+    String campusId
+  }
+
+}
+
+
+' 人员
+package "People" #DDD {
+
+  ' 学员
+  class Student {
+    String id
+    String name
+    String phone
+    Number sex 性别
+    String number 学号
+    String campusId 校区
+    Number studentLevelId 等级
+    TimeStamp applyTime 报名时间
+    String teacherEmployeeId 所属老师
+    Boolean hasBasis 有无基础
+    Boolean isLockTeacher 锁定老师
+    String currentPacketId 当前套餐
+    Boolean isTeachPlan 是否教学计划
+    String instrumentTypeId 乐器类型
+    String instrumentUseId 乐器使用情况
+    Boolean hasComment 是否点评
+    Boolean isEnabled 能否约课
+    Boolean isEnd 是否结课
+    TimeStamp endTime 结课时间
+    Number allClassHours 总课时
+    Number usedClassHours 已用课时
+    Number remainderClassPoints 剩余课点
+    Number signTimes 签到次数
+    Boolean isLocked 是否冻结课程
+    Number lockedTimes 冻结课程次数(需要关系表记录)
+    Number color 颜色(标签)
+    Boolean showStudentValue 学员的能力值是否可见
+  }
+
+  ' 学员能力值(即主题列表)
+  class StudentValue {
+    String studentId
+    String subjectId
+    Number value 能力值（备用）
+    TimeStamp createTime
+  }
+
+  ' 冻结课程(关联表)
+  class StudentCourseLock {
+    String teacherEmployeeId
+    String studentId
+    TimeStamp startTime
+    TimeStamp endTime
+    TimeStamp createTime
+  }
+
+  ' 学员备注(关联表)
+  class StudentRemark {
+    String teacherEmployeeId
+    String studentId
+    Number remarkType 备注类型(学员/教师)
+    String remark
+    TimeStamp createTime
+  }
+
+  ' 员工
+  class Employee {
+    String id
+    Number level
+    TimeStamp createTime
+    Boolean isTeacher 是否是教师
+    String campusId 校区
+    User userId 平台登录用户ID
+  }
+
+  ' 客户
+  class Customer {
+    String id
+    String name
+    String phone
+    Number sex
+    Number ages 年龄段
+    Number hasArrived 是否二次到店
+    Number customerSourceId 客户来源
+    String saleEmployeeId 销售人员
+    Number hasBasis 有无基础
+    String currentPacketId 当前套餐
+    String instrumentTypeId 乐器类型
+    String campusId 校区
+    Number status 客户状态(进行中\已成单)
+    Number intention 客户意向
+    String remark
+    Number color 颜色(标签)
+    String connectEmployeeId 联系客户人
+    String recommendEmployeeId 获取信息人
+    TimeStamp createTime
+  }
+
+  ' 商机
+  class Business {
+    String id
+    String name 客户名称
+    String phone
+    String businessName 商机名称
+    String customerId 关联客户
+    Number intention 客户意向
+    Number businessType 商机类型(试听/非试听)
+    String saleEmployeeId 销售人员
+    String teacherEmployeeId 教师
+    Number sex
+    Number ages 年龄段
+    String instrumentTypeId 乐器类型
+    Number hasBasis 有无基础
+    String remark
+    Number color 颜色(标签)
+    TimeStamp createTime
+  }
+
+}
+
+
+' 订单
+package "Order" #DDD {
+  class Order {
+    String id
+    String customerId 客户id
+    String businessId 商机id(获取关联信息)
+    Number category 订单二级类目
+    Number orderType 课程类 物品类
+    String packetId 课程套餐
+    String instrumentId 物品(与课程套餐/其它三选一)
+    String otherName 名称(其它时填写)
+    Number price 价格
+    Number payPrice 付款金额
+    Boolean isOwed 是否欠费
+    PayType payType 付款方式
+    String connectEmployeeId 联系客户人
+    String recommendEmployeeId 获取信息人
+    String saleEmployeeId 销售人员
+    String auditionTeacherEmployeeId 试听课教师
+    String teacherEmployeeId 所属老师
+    String campusId 校区
+    Number status 状态(有效/退款等)
+    String remark 备注
+    String statusRemark 异常情况备注
+    TimeStamp createTime
+  }
+
+  ' 付款类型
+  enum PayType {
+    WEIXIN
+    ALIPAY
+    BANKCARD
+    CASH
+  }
+
+}
+
+
+' 乐器物品
+package "Instrument" #DDD {
+
+  class instrument {
+    String id
+    String name
+    Number instrumentTypeId 物品种类
+    Number price
+  }
+}
+
+package "DataAnalysis" {
+
+  class OrderData {
+    String id
+    Number finishOrder 已完成订单
+    Number refundOrder 退费订单
+    Number courseOrder 课程类订单
+    Number productOrder 物品类订单
+    Number allOrder 全部订单
+    TimeStamp createTime
+    String remark
+  }
+
+  class TeachData {
+    String id
+    Number teacherNum 教师数
+    Number courseNum 课程数
+    Number workTime 工作时长
+    Number usedCourseTime 消耗课时数
+    Number studentNum 学生数
+  }
+
+
+}
+@enduml

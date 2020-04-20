@@ -1,0 +1,53 @@
+@startuml
+package "User" #DCD{
+  class Cluster {
+    UUID id
+    UUID org_id
+    Number name
+    String host
+    String port
+    Text token
+    Number add_time
+  }
+  class Node {
+    UUID id
+    UUID cluster_id
+    String name
+    Int status
+  }
+  class Namespace {
+    UUID id
+    String name
+    String labels
+    String status
+  }
+  class Deployment {
+    UUID id
+    String name
+    UUID namespace_id
+    Number replicas
+    String labels
+  }
+  class Service {
+    UUID id
+    String name
+    UUID namespace_id
+    Number create_time
+    String cluster_ip
+    String selectorApp
+  }
+  class Ingress {
+    UUID id
+    String name
+    UUID namespace_id
+  }
+}
+
+
+OrgRole "N" o-- "N" OrgStaffRole
+OrgStaffRole "N" o--o "N" OrgStaff
+Organization "N" o-- "N" OrgStaff
+
+
+
+@enduml

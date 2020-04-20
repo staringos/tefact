@@ -1,0 +1,17 @@
+@import "../variables";
+
+.welcome-page {
+  background-color: $mainColor;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  .logo {
+    width: 500px;
+  }
+
+  .login-button {
+    width: 500px;
+    border-radius: 50px;
+  }
+}

@@ -1,0 +1,22 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: arrplat
+  namespace: arrway
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: arrplat
+  template:
+    metadata:
+      labels:
+        app: arrplat
+    spec:
+      containers:
+      - name: arrplat
+        image: registry.cn-hangzhou.aliyuncs.com/skykxt/arrway:IMAGE_TAG
+        imagePullPolicy: Always
+        ports:
+        - containerPort: 5000
+          protocol: TCP

@@ -1,0 +1,178 @@
+@startuml
+package "User" #DCD{
+  class User {
+    Number id
+    Number phone
+    String password
+    String salt
+    String nickname
+    String email
+    String name
+    Boolean isEnabled
+    Boolean registerTime
+    Boolean lastLoginTime
+  }
+  class UserInfo {
+    Number userId
+    String headUrl
+    String signature
+  }
+}
+package "Organization" #DDD {
+  enum OrgType {
+    GOV
+    Company
+    Person
+  }
+
+  class Organization {
+    Number id
+    GroupType type
+    String name
+    String address
+    Number ownUserId
+    String officialCompanyName
+    String officialOrgCode
+  }
+
+  class OrgStaff {
+    Number id
+    Number orgId
+    Number userId
+    String jobTitle
+  }
+
+  class OrgDepartment {
+    Number id
+    Number orgId
+    String name
+    Number parentID
+  }
+
+  class OrgDepartmentStaff {
+    Number id
+    Number orgStaffId
+    Number orgDepartmentId
+  }
+  class OrgRole {
+    Number id
+    Number orgId
+    String name
+    String intro
+    Number type
+  }
+   class OrgStaffRole {
+    Number id
+    Number orgRoleId
+    Number staffId
+    String intro
+  }
+
+}
+
+class OrgRoleAuth {
+  Number id
+  Number orgId
+  Number roleId
+}
+
+package "Authorization" #DDD {
+
+  enum DataAuthType {
+    Person
+    PersonAndLower
+    Department
+    DepartmentAndLower
+    All
+  }
+
+  enum AuthType {
+    Menu
+    Button
+    Page
+  }
+
+  class Auth {
+    String id
+    String key
+    String name
+    String remark
+    String parentId
+    String appId
+  }
+}
+
+class OrgApplication {
+  Number id
+  Number orgId
+  Number appId
+  Date expireDate
+  Number status (1. disabled 0. enabled)
+}
+
+
+package "Application" #DDD {
+  class Application {
+    Number id
+    String name
+    String description
+    String officialWebsite
+    Number installNumber
+    String version
+    String icon
+    String headImage
+    Number visible
+    Number deletable
+    Number official
+    String images
+  }
+
+  class AppMenus {
+    Number id
+    Number appId
+    String name
+    String icon
+    String link
+  }
+
+'  class AppDeveloper {
+'    Number administratorId<User>
+'    Number ownOrgId<Organization>
+'  }
+}
+
+class Message {
+  Number id
+  String title
+  String context
+  TimeStamp sendTime
+  TimeStamp readTime
+  Number isRead(0. false 1. true)
+  Number type (1. system 2. plus ...)
+  Number appId
+  Number orgId
+  Number staffId
+}
+
+
+OrgRole "N" o-- "N" OrgStaffRole
+OrgStaffRole "N" o--o "N" OrgStaff
+Organization "N" o-- "N" OrgStaff
+Organization "N" o-- "N" OrgDepartment
+OrgDepartmentStaff "N" o-- "N" OrgStaff
+OrgDepartmentStaff "N" o-- "N" OrgDepartment
+User "N" --o "N" OrgStaff
+Organization "N" o--o "N" OrgRole
+
+User "N" o--o "N" UserInfo
+
+Organization "N" o-- "N" OrgApplication
+OrgApplication "N" o-- "N" Application
+Organization "N" o-- "N" User
+
+Message "N" --o "1" Application
+Message "1" o-- "1" OrgStaff
+Message "1" o-- "1" Organization
+
+
+@enduml

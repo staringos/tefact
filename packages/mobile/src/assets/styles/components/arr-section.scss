@@ -1,0 +1,20 @@
+@import '../variables';
+
+.arr-section {
+  width: 100%;
+  padding: 29px;
+  background: $panelBgColor;
+  box-shadow: 0 4px 8px 0 rgba(191,191,191,0.5);
+  margin-top: 29px;
+  display: flex;
+  flex-direction: column;
+
+  .title {
+    font-size: 36px;
+  }
+
+  .arr-section-container {
+    display: flex;
+    flex-direction: row;
+  }
+}

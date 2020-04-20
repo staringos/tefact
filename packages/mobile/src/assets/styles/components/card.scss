@@ -1,0 +1,13 @@
+
+card {
+  display: flex;
+}
+
+.card-component {
+  flex: 1;
+  border-radius: 20px;
+  min-height: 100px;
+  box-shadow:0px 4px 16px 0px rgba(177,174,174,0.5);
+  padding: 30px;
+  flex: 1;
+}

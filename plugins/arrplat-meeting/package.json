@@ -1,0 +1,15 @@
+{
+  "name": "@arrplat/plus-meeting",
+  "version": "0.0.7",
+  "description": "The Meeting Application",
+  "main": "lib/index.js",
+  "scripts": {},
+  "files": [
+    "dist"
+  ],
+  "author": "GeorgeZou",
+  "license": "MIT",
+  "dependencies": {
+    "nuxt-property-decorator": "^2.5.0"
+  }
+}

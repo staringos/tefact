@@ -1,0 +1,6 @@
+export const OPEN_DIALOG = 'OPEN_DIALOG'
+export const CLOSE_DIALOG = 'CLOSE_DIALOG'
+
+export const DIALOGS = {
+  ORG_MODIFY_DIALOG: 'ORG_MODIFY_DIALOG',
+}

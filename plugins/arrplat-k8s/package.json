@@ -1,0 +1,12 @@
+{
+  "name": "@arrplat/plus-k8s",
+  "version": "0.0.7",
+  "description": "The k8s management",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "GeorgeZou",
+  "license": "MIT",
+  "gitHead": "b8077bbae746bd6bb291e509887082e09108ef28"
+}

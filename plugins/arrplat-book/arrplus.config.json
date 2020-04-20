@@ -1,0 +1,23 @@
+{
+  "name": "@arrplat/plus-book",
+  "title": "书单",
+  "description": "The best free CRM",
+  "icon": "http://arrplatimg.arrway.cn/book.png",
+  "apiRoute": "book",
+  "adminRoute": "book",
+  "key": "arrplat-book",
+  "sort": "5",
+  "menus": [{
+    "icon": "http://arrplatimg.arrway.cn/伊i表盘.png",
+    "name": "好书搜索",
+    "sort": 0,
+    "link": ""
+  }, {
+    "icon": "el-icon-s-check",
+    "name": "星空",
+    "sort": 1,
+    "link": "galaxy"
+  }],
+  "pages": [],
+  "entities": []
+}

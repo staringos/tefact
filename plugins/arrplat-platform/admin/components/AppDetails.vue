@@ -1,0 +1,91 @@
+<template>
+  <div>
+    <ArrTitle bordered>应用基本信息
+      <el-button size="small" icon="el-icon-edit" @click="handleDialogOpen" circle />
+    </ArrTitle>
+    <div class="app-base-details">
+      <div class="title-part">
+        <el-avatar :size="100" :src="app.icon" />
+        <h3>{{app.title}}</h3>
+      </div>
+      <div class="flex2">
+        <AttributeList :attributes="attributes" />
+      </div>
+
+      <el-dialog
+        title="应用基本信息编辑"
+        :visible.sync="dialogVisible"
+        :close-on-click-modal="false"
+        :close-on-press-escape="false"
+        width="30%">
+        <el-form label-width="80px" :model="form">
+          <el-form-item label="应用ICON">
+            <el-input v-model="form.icon"></el-input>
+          </el-form-item>
+          <el-form-item label="应用包名">
+            <el-input v-model="form.name"></el-input>
+          </el-form-item>
+          <el-form-item label="应用中文名">
+            <el-input v-model="form.title"></el-input>
+          </el-form-item>
+          <el-form-item label="描述">
+            <el-input v-model="form.description"></el-input>
+          </el-form-item>
+          <el-form-item label="后台路由">
+            <el-input v-model="form.apiRoute"></el-input>
+          </el-form-item>
+          <el-form-item label="接口路由">
+            <el-input v-model="form.adminRoute"></el-input>
+          </el-form-item>
+          <el-form-item label="排序">
+            <el-input v-model="form.sort"></el-input>
+          </el-form-item>
+          <el-form-item label="key">
+            <el-input v-model="form.key"></el-input>
+          </el-form-item>
+        </el-form>
+        <span slot="footer" class="dialog-footer">
+          <el-button @click="dialogVisible = false">取 消</el-button>
+          <el-button type="primary" @click="handleSave()">确 定</el-button>
+        </span>
+      </el-dialog>
+    </div>
+  </div>
+</template>
+<style lang="scss">
+
+</style>
+<script lang="ts">
+  import { Vue, Component, Prop } from 'nuxt-property-decorator'
+
+  @Component
+  export default class AppDetails extends Vue {
+    @Prop() app
+    @Prop() onChange
+
+    dialogVisible = false
+    form = {} as any
+
+    public handleSave() {
+      this.onChange(this.form)
+      this.dialogVisible = false
+    }
+
+    public handleDialogOpen() {
+      this.dialogVisible = true
+    }
+
+    get attributes() {
+      return [
+        { key: '应用包名', value: this.app.name },
+        { key: '应用中文名', value: this.app.title },
+        { key: '描述', value: this.app.description },
+        { key: '后台路由', value: this.app.adminRoute },
+        { key: '接口路由', value: this.app.apiRoute }]
+    }
+
+    mounted() {
+      this.form = { ...this.app }
+    }
+  }
+</script>

@@ -1,0 +1,191 @@
+*.py[cod]
+venv
+.qiniu_pythonsdk_hostscache.json
+# C extensions
+*.so
+
+# Packages
+*.egg
+*.egg-info
+eggs
+parts
+var
+sdist
+develop-eggs
+.installed.cfg
+lib
+lib64
+.cache
+
+# Installer logs
+pip-log.txt
+
+# Unit test / coverage reports
+.coverage
+htmlcov/
+.tox
+nosetests.xml
+
+#Translations
+*.mo
+
+#Mr Developer
+.mr.developer.cfg
+cover
+
+#Docs
+docs/_build
+
+#Pycharm
+.idea
+
+#Eclipse/Aptana
+.project
+.pydevproject
+
+# Front End
+.DS_Store
+node_modules/
+dist/
+npm-debug.log
+
+
+############################
+# OS X
+############################
+
+.DS_Store
+.AppleDouble
+.LSOverride
+.Spotlight-V100
+.Trashes
+._*
+
+
+############################
+# Linux
+############################
+
+*~
+
+
+############################
+# Windows
+############################
+
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+$RECYCLE.BIN/
+*.cab
+*.msi
+*.msm
+*.msp
+
+
+############################
+# Packages
+############################
+
+*.7z
+*.csv
+*.dat
+*.dmg
+*.gz
+*.iso
+*.jar
+*.rar
+*.tar
+*.zip
+*.com
+*.class
+*.dll
+*.exe
+*.o
+*.seed
+*.so
+*.swo
+*.swp
+*.swn
+*.swm
+*.out
+*.pid
+
+
+############################
+# Logs and databases
+############################
+
+.tmp
+*.log
+*.sql
+*.sqlite
+
+
+############################
+# Misc.
+############################
+
+*#
+.idea
+nbproject
+.vscode/
+
+
+############################
+# Node.js
+############################
+
+lib-cov
+lcov.info
+pids
+logs
+results
+build
+node_modules
+.node_history
+package-lock.json
+**/package-lock.json
+!docs/package-lock.json
+
+
+############################
+# Tests
+############################
+
+testApp
+coverage
+cypress/screenshots
+cypress/videos
+
+
+############################
+# Documentation
+############################
+
+dist
+
+############################
+# Builds
+############################
+
+packages/strapi-generate-new/files/public/
+
+############################
+# Example app
+############################
+
+# *.cache
+
+############################
+# Visual Studio Code
+############################
+
+front-workspace.code-workspace
+
+lerna-debug.log
+npm-debug.log
+packages/*/lib
+.arrplat.json
+
+pid.txt

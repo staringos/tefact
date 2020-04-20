@@ -1,0 +1,11 @@
+@import "../variables";
+
+.arr-title {
+  border-left: 10px solid $mainColor;
+  margin: 30px;
+  padding-left: 30px;
+
+  .text {
+    font-size: 32px;
+  }
+}

@@ -1,0 +1,56 @@
+{
+  "name": "tefact-saas",
+  "version": "0.0.1",
+  "description": "A nodejs application management system",
+  "main": "index.js",
+  "author": "GeorgeZou",
+  "license": "MIT",
+  "bin": {
+    "arrplat": "./bin/startup.js"
+  },
+  "scripts": {
+    "setup": "yarn && yarn build && yarn run init",
+    "init": "arrplat",
+    "bootstrap": "lerna bootstrap && yarn run init",
+    "start": "yarn workspace @arrplat/admin start",
+    "dev": "yarn workspace @arrplat/admin dev",
+    "build:start": "yarn run build:common && yarn run build:core && yarn run build:ui",
+    "build:common": "yarn workspace @arrplat/common build",
+    "build:core": "yarn workspace @arrplat/core build",
+    "debug": "yarn workspace @arrplat/admin debug",
+    "dev:h5": "yarn workspace @arrplat/mobile dev:h5",
+    "dev:weapp": "yarn workspace @arrplat/mobile dev:weapp",
+    "clean": "lerna run clean",
+    "build": "yarn run build:start && yarn workspace @arrplat/admin build",
+    "build:ui": "yarn workspace @arrplat/ui build",
+    "pub": "lerna publish",
+    "commit": "git-cz"
+  },
+  "private": true,
+  "workspaces": [
+    "packages/*",
+    "plugins/*"
+  ],
+  "config": {
+    "commitizen": {
+      "path": "./node_modules/cz-lerna-changelog"
+    }
+  },
+  "dependencies": {
+    "chalk": "^3.0.0",
+    "gradient-string": "^1.2.0",
+    "@arrplat/common": "^0.0.7"
+  },
+  "devDependencies": {
+    "@nuxt/typescript-build": "^0.3.4",
+    "@types/node": "^12.12.14",
+    "commitizen": "^4.0.3",
+    "cz-lerna-changelog": "^2.0.0",
+    "lerna": "^3.18.4",
+    "nodemon": "^1.19.4",
+    "rimraf": "^3.0.0",
+    "ts-node": "^8.5.0",
+    "tslint": "^5.20.1",
+    "typescript": "^3.7.2"
+  }
+}
