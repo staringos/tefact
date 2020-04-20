@@ -3688,7 +3688,7 @@ array-equal@^1.0.0:
   resolved "https://registry.npm.taobao.org/array-equal/download/array-equal-1.0.0.tgz#8c2a5ef2472fd9ea742b04c77a75093ba2757c93"
   integrity sha1-jCpe8kcv2ep0KwTHenUJO6J1fJM=
 
-array-find-index@^1.0.1, array-find-index@^1.0.2:
+array-find-index@^1.0.1:
   version "1.0.2"
   resolved "https://registry.npm.taobao.org/array-find-index/download/array-find-index-1.0.2.tgz#df010aa1287e164bbda6f9723b0a96a1ec4187a1"
   integrity sha1-3wEKoSh+Fku9pvlyOwqWoexBh6E=
@@ -11596,15 +11596,6 @@ minizlib@^1.2.1:
   dependencies:
     minipass "^2.9.0"
 
-mint-ui@^2.2.13:
-  version "2.2.13"
-  resolved "https://registry.npm.taobao.org/mint-ui/download/mint-ui-2.2.13.tgz#856a2cba9608c6ecf21f0e521ce89ed8ddfe33d3"
-  integrity sha1-hWosupYIxuzyHw5SHOie2N3+M9M=
-  dependencies:
-    array-find-index "^1.0.2"
-    raf.js "0.0.4"
-    vue-lazyload "^1.0.1"
-
 mississippi@^2.0.0:
   version "2.0.0"
   resolved "https://registry.npm.taobao.org/mississippi/download/mississippi-2.0.0.tgz#3442a508fafc28500486feea99409676e4ee5a6f"
@@ -14042,11 +14033,6 @@ quick-lru@^1.0.0:
   version "1.1.0"
   resolved "https://registry.npm.taobao.org/quick-lru/download/quick-lru-1.1.0.tgz#4360b17c61136ad38078397ff11416e186dcfbb8"
   integrity sha1-Q2CxfGETatOAeDl/8RQW4Ybc+7g=
-
-raf.js@0.0.4:
-  version "0.0.4"
-  resolved "https://registry.npm.taobao.org/raf.js/download/raf.js-0.0.4.tgz#f15af445d241b27fa7131a57450b67ef9c402fec"
-  integrity sha1-8Vr0RdJBsn+nExpXRQtn75xAL+w=
 
 raf@^3.4.1:
   version "3.4.1"
@@ -17124,11 +17110,6 @@ vue-jest@^4.0.0-0:
     extract-from-css "^0.4.4"
     source-map "^0.5.6"
     ts-jest "^23.10.5"
-
-vue-lazyload@^1.0.1:
-  version "1.3.3"
-  resolved "https://registry.npm.taobao.org/vue-lazyload/download/vue-lazyload-1.3.3.tgz#4df50a271bde9b74c3caf7a228d6e0af50d5682f"
-  integrity sha1-TfUKJxvem3TDyveiKNbgr1DVaC8=
 
 vue-loader@15.8.3, vue-loader@^15.8.3:
   version "15.8.3"

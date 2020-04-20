@@ -1,5 +1,6 @@
 import { Vue } from 'nuxt-property-decorator'
-import arrplat from '../../../.arrplat.json'
+import { Builder } from '@arrplat/core'
+import appConfig from '../../../arrplat.config.json'
 
 function interopDefault(promise) {
   return promise.then(m => m.default || m)
@@ -13,8 +14,8 @@ const GlobalComponents = {
 
 export default async function() {
   if (process.server) return
-
-  const plus = arrplat.plus.plus
+  const options = await Builder.build(appConfig)
+  const plus = options.plus.plus
   plus.map(plus => {
     const components = plus.globalComponents as any[]
     if (!components) return
