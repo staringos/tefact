@@ -1,3 +1,7 @@
+saas-api_venv
+tefact_venv
+logs
+
 *.py[cod]
 venv
 .qiniu_pythonsdk_hostscache.json

@@ -7,7 +7,14 @@ const script = [
   { src: 'https://res.wx.qq.com/connect/zh_CN/htmledition/js/wxLogin.js' }
 ]
 
+console.log('env:', process.env.NODE_ENV !== 'production')
+
 const config: Configuration = {
+  dev: (process.env.NODE_ENV !== 'production'),
+  server: {
+    port: 8800,
+    host: '0.0.0.0'
+  },
   mode: 'universal',
   /*
   ** Headers of the page
@@ -37,10 +44,11 @@ const config: Configuration = {
   },
 
   env: {
+    ARRPLAT_BASE_URL: 'http://saasapi.tefact.com/',
     // ARRPLAT_BASE_URL: 'http://arrplat.arrway.cn/api'
     // ARRPLAT_BASE_URL: 'http://arrplatapi.arrway.cn/api'
     // ARRPLAT_BASE_URL: 'http://localhost:5500'
-    ARRPLAT_BASE_URL: 'http://localhost:5500',
+    // ARRPLAT_BASE_URL: 'http://localhost:5500',
     BUCKET_NAME: 'arrplat'
   },
 

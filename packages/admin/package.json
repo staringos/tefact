@@ -10,7 +10,7 @@
     "debug": "nodemon --inspect node_modules/.bin/nuxt-ts",
     "build": "nuxt-ts build",
     "generate": "nuxt-ts generate",
-    "start": "nuxt-ts start",
+    "start": "cross-env NODE_ENV=production nuxt-ts start",
     "lint": "eslint --ext .ts,.js,.vue ."
   },
   "dependencies": {
@@ -32,6 +32,7 @@
   },
   "peerDependencies": {},
   "devDependencies": {
+    "cross-env": "^5.2.0",
     "@nuxt/typescript-build": "^0.5.4",
     "@nuxtjs/eslint-config-typescript": "^1.0.0",
     "@vue/test-utils": "^1.0.0-beta.27",
