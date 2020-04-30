@@ -2,12 +2,17 @@
 
 // main
 $mainColor: #3181DE;
+
+$secondColor: #a1bede;
+
 $borderColor: #e2e8f0;
 $borderSecondColor: #E2E2EA;
 
 
 $editor-main-color: #00b4ff;
 $editor-border-active-color: #00b4ff;
+
+$editor-node-border-color: $editor-border-active-color;
 
 
 :export{

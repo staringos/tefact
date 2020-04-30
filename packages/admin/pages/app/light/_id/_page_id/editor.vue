@@ -1,16 +1,11 @@
 <template>
   <div class="editor-wrapper">
     <div class="editor-container">
-      <div class="editor-toolbar">
-        <i class="el-icon-arrow-left"></i>
-        <div class="page-title">
-          {{page.title}}
-          <i class="el-icon-edit"></i>
+      <Toolbar :page="page" :editorSetting="editorSetting"></Toolbar>
+        <div class="editor-main">
+          <NodeList />
+          <Canvas />
         </div>
-      </div>
-      <div class="editor-main">
-        <Canvas />
-      </div>
     </div>
     <div class="editor-side-bar">
       <el-tabs type="border-card">
@@ -35,27 +30,6 @@
       display: flex;
       flex-direction: column;
 
-      .editor-toolbar {
-        display: flex;
-        align-items: center;
-
-        .page-title {
-          margin: 0 10px;
-          cursor: pointer;
-
-          &:hover {
-            color: $editor-main-color;
-          }
-        }
-      }
-
-      .editor-toolbar {
-        height: 32px;
-        padding: 10px;
-        background-color: white;
-        box-shadow: 0 2px 4px 0 rgba(0,0,0,.12), 0 0 6px 0 rgba(0,0,0,.04);
-      }
-
       .editor {
         flex: 1;
         overflow: auto;
@@ -66,9 +40,8 @@
         flex-grow: 1;
         display: flex;
         overflow: auto;
-        flex-direction: column;
+        flex-direction: row;
         padding: 20px 20px 20px 20px;
-
       }
     }
     .editor-side-bar {
@@ -87,14 +60,20 @@
 <script lang="ts">
   import { Vue, Component } from 'nuxt-property-decorator'
   import Canvas from '~/components/app/light/editor/Canvas.vue'
+  import Toolbar from '~/components/app/light/editor/Toolbar.vue'
+  import NodeList from '~/components/app/light/editor/NodeList.vue';
 
   @Component({
     layout: 'UserAdmin',
-    components: { Canvas }
+    components: {NodeList, Canvas, Toolbar }
   })
   export default class EditorPage extends Vue {
     page = {
       title: '这是一个新页面'
+    }
+
+    editorSetting = {
+      device: 'pc',
     }
   }
 </script>
