@@ -27,12 +27,14 @@
     "lodash": "^4.17.15",
     "nuxt": "^2.11.0",
     "nuxt-property-decorator": "^2.5.0",
+    "tiptap": "^1.27.1",
+    "tiptap-extensions": "^1.29.1",
+    "vue-draggable-resizable-gorkys": "^2.3.6",
     "vuex-module-decorators": "^0.11.0",
     "vuex-persistedstate": "^2.7.0"
   },
   "peerDependencies": {},
   "devDependencies": {
-    "cross-env": "^5.2.0",
     "@nuxt/typescript-build": "^0.5.4",
     "@nuxtjs/eslint-config-typescript": "^1.0.0",
     "@vue/test-utils": "^1.0.0-beta.27",

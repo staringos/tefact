@@ -4,7 +4,7 @@
       <Toolbar :page="page" :editorSetting="editorSetting"></Toolbar>
         <div class="editor-main">
           <NodeList />
-          <Canvas />
+          <Page />
         </div>
     </div>
     <div class="editor-side-bar">
@@ -59,13 +59,13 @@
 </style>
 <script lang="ts">
   import { Vue, Component } from 'nuxt-property-decorator'
-  import Canvas from '~/components/app/light/editor/Canvas.vue'
+  import Page from '~/components/app/light/editor/Page.vue'
   import Toolbar from '~/components/app/light/editor/Toolbar.vue'
   import NodeList from '~/components/app/light/editor/NodeList.vue';
 
   @Component({
     layout: 'UserAdmin',
-    components: {NodeList, Canvas, Toolbar }
+    components: {NodeList, Page, Toolbar }
   })
   export default class EditorPage extends Vue {
     page = {
