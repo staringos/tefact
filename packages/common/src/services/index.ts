@@ -5,6 +5,7 @@ import authGenerator from './auth'
 import entitiesGenerator from './entities'
 import platformGenerator from './platform'
 import educationGenerator from './education'
+import editorGenerator from './editor'
 
 const ServicesGenerator = (request) => {
   return {
@@ -15,6 +16,7 @@ const ServicesGenerator = (request) => {
     entities: entitiesGenerator(request),
     platform: platformGenerator(request),
     education: educationGenerator(request),
+    editor: editorGenerator(request),
   }
 }
 

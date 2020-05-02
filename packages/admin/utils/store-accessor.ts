@@ -7,6 +7,7 @@ import system from '../store/system'
 import entities from '../store/entities'
 import platform from '../store/platform'
 import education from '../store/education'
+import editor from '../store/editor'
 
 let systemStore: any = null
 let appStore: any = null
@@ -18,6 +19,7 @@ function initialiseStores(store: Store<any>): void {
   getModule(entities, store)
   getModule(platform, store)
   getModule(education, store)
+  getModule(editor, store)
   systemStore = getModule(system, store)
 }
 

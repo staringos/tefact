@@ -1,5 +1,5 @@
 from sqlalchemy import Column, Integer, \
-    ForeignKey, VARCHAR, Text, Boolean
+    ForeignKey, VARCHAR, Text, Boolean, JSON, BigInteger
 from sqlalchemy.dialects.mysql import TINYINT
 from sqlalchemy.orm import backref
 
@@ -57,6 +57,7 @@ class PageSection(db.Model):
         8: 'search_buttons',
         9: 'list',
         10: 'analysis',
+        11: 'editor'
     }
     __tablename__ = 'page_section'
     id = Column(VARCHAR(32), default=generate_uuid, primary_key=True)
@@ -67,7 +68,9 @@ class PageSection(db.Model):
     html_content = Column(Text, comment='页面内容')
     section_type = Column(TINYINT, comment='组件类型')
     has_add_btn = Column(Boolean, default=False, comment='是否显示添加按钮')
+    nodes = Column(JSON, comment='Page Section 中的所有节点')
     sort = Column(Integer)
+    create_time = Column(BigInteger, comment='创建时间')
 
     page = db.relationship(Page, backref=backref('page_section', order_by=sort))
     entity = db.relationship('Entity', backref='page_section')

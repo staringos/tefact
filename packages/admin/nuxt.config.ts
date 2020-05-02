@@ -36,19 +36,17 @@ const config: Configuration = {
   hooks: {
     build: {
       async before(builder) {
-        console.log('build before')
         options = await Builder.build(appConfig)
-        console.log('after options:', options)
       },
     },
   },
 
   env: {
-    ARRPLAT_BASE_URL: 'http://saasapi.tefact.com/',
+    // ARRPLAT_BASE_URL: 'http://saasapi.tefact.com/',
     // ARRPLAT_BASE_URL: 'http://arrplat.arrway.cn/api'
     // ARRPLAT_BASE_URL: 'http://arrplatapi.arrway.cn/api'
     // ARRPLAT_BASE_URL: 'http://localhost:5500'
-    // ARRPLAT_BASE_URL: 'http://localhost:5500',
+    ARRPLAT_BASE_URL: 'http://localhost:5500',
     BUCKET_NAME: 'arrplat'
   },
 

@@ -8,8 +8,109 @@ from flask_restful import Resource
 from .models import Application, ApplicationMenus
 from arrplat.common.utils import json_response, generate_uuid_len, valid_uuid, valid_phone, valid_boolean
 from arrplat.resources.application.schema import ApplicationSchema
-from arrplat.resources.page.models import Page
-from arrplat.resources.page.schema import PageSchema
+from arrplat.resources.page.models import Page, PageSection
+from arrplat.resources.page.schema import PageSchema, PageSectionSchema
+import time
+
+
+class PageSectionResource(Resource):
+    def delete(self, page_id, section_id):
+        section = db.session.query(Page).filter(Page.id == section_id).first()
+        if not section:
+            return json_response(message="找不到页面", status=404)
+
+        db.session.delete(section)
+        db.session.commit()
+        return json_response("删除成功!")
+
+
+class PageSectionListResource(Resource):
+    page_section_schema = PageSectionSchema(many=False)
+
+    @use_kwargs({
+        "title": fields.String(required=False),
+        "section_type": fields.String(required=True),
+        "nodes": fields.List(fields.Dict, required=False)
+    })
+    def post(self, page_id, **kwargs):
+        section = PageSection(
+            section_type=PageSection.string_to_data_type(kwargs.get('section_type')),
+            page_id=page_id,
+            nodes=kwargs.get('nodes', []),
+            create_time=time.time()
+        )
+
+        db.session.add(section)
+        db.session.commit()
+
+        data = self.page_section_schema.dump(section).data
+
+        return json_response(data=data, message="添加成功")
+
+
+class LightPageResource(Resource):
+    page_schema = PageSchema(many=False)
+
+    @use_kwargs({
+        "title": fields.String(required=True),
+        "type": fields.String(required=True),
+        "direction": fields.String(required=False),
+        "sections": fields.List(fields.Dict, required=False)
+    })
+    def put(self, **kwargs):
+        """页面修改
+          ---
+
+          tags:
+            - 页面
+          parameters:
+            - name: id
+              in: body
+              type: string
+              required: true
+        """
+        page = db.session.query(Page).filter(Page.id == id).first()
+
+        page.title = kwargs.get("title")
+        page.type = PageSection.string_to_data_type(kwargs.get("type"))
+        page.direction = kwargs.get("type")
+
+        sections = kwargs.get("sections")
+        if sections or len(sections) > 0:
+            for i, item in enumerate(sections):
+                old_section = db.session.query(PageSection).filter(PageSection.id == item.id).first()
+                if not old_section:
+                    continue
+                old_section.title = item.get("title")
+                old_section.entity_id = item.get("entity_id")
+                old_section.entity_params = item.get("entity_params")
+                old_section.section_type = PageSection.string_to_data_type(item.get("section_type"))
+                old_section.sort = i
+                old_section.nodes = item.get("nodes")
+
+                db.session.add(old_section)
+
+        db.session.add(page)
+        db.session.commit()
+
+        return json_response(message="修改成功")
+
+    def get(self, id):
+        """获取页面详情
+          ---
+          tags:
+            - 页面
+          parameters:
+            - name: id
+              in: body
+              type: string
+              required: true
+        """
+        page = db.session.query(Page).filter(Page.id == id).first()
+        if not page:
+            return json_response(message="找不到页面", status=404)
+
+        return json_response(data=self.page_schema.dump(page).data)
 
 
 class LightAppModifyResource(Resource):

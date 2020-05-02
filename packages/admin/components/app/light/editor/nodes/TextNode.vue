@@ -10,16 +10,14 @@
       spellcheck="false"
       :editor="editor"
       ref="editor"
-      class="editor"
+      class="text-node-editor"
     />
   </BaseNode>
 </template>
 <style lang="scss" scoped>
-  .text-node {
-    .editor {
-      width: 100%;
-      height: 100%;
-    }
+  /deep/ .text-node-editor, /deep/ .ProseMirror {
+    width: 100%;
+    height: 100%;
   }
 </style>
 <script lang="ts">

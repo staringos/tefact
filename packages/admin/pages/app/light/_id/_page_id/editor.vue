@@ -1,10 +1,10 @@
 <template>
-  <div class="editor-wrapper">
+  <div class="editor-wrapper" v-if="currentPage">
     <div class="editor-container">
       <Toolbar :page="page" :editorSetting="editorSetting"></Toolbar>
         <div class="editor-main">
           <NodeList />
-          <Page />
+          <Page :page="currentPage" :pageId="pageId" />
         </div>
     </div>
     <div class="editor-side-bar">
@@ -58,10 +58,12 @@
   }
 </style>
 <script lang="ts">
-  import { Vue, Component } from 'nuxt-property-decorator'
+  import { Vue, Component, namespace } from 'nuxt-property-decorator'
   import Page from '~/components/app/light/editor/Page.vue'
   import Toolbar from '~/components/app/light/editor/Toolbar.vue'
   import NodeList from '~/components/app/light/editor/NodeList.vue';
+
+  const editor = namespace('editor')
 
   @Component({
     layout: 'UserAdmin',
@@ -72,8 +74,22 @@
       title: '这是一个新页面'
     }
 
+    @editor.Action getPageDetails
+    @editor.Getter currentPage
+    pageId: string | null = null
+
     editorSetting = {
       device: 'pc',
+    }
+
+    init(pageId) {
+      this.getPageDetails(pageId)
+    }
+
+    async mounted() {
+      this.pageId = this.$route.params.page_id
+      await this.init(this.pageId)
+      console.log('this.currentPage:', this.currentPage)
     }
   }
 </script>

@@ -153,18 +153,19 @@ class PageSectionSchema(ma.ModelSchema):
             except Exception as e:
                 raise Exception('page—section中的entity_param不是字符串,%s' % str(e))
 
-        # entity_params
-        if hasattr(obj, 'entity_params'):
-            entity_params = str(obj.entity_params)
-            setattr(obj.entity, 'entity_params', entity_params)
+        if obj.entity:
+            if hasattr(obj, 'entity_params'):
+                entity_params = str(obj.entity_params)
+                setattr(obj.entity, 'entity_params', entity_params)
 
-        setattr(obj.entity, 'query_form_data', query_form_data)
-        setattr(obj.entity, 'page_section_type', obj.section_type)
+            setattr(obj.entity, 'query_form_data', query_form_data)
+            setattr(obj.entity, 'page_section_type', obj.section_type)
 
     class Meta:
         model = PageSection
         fields = (
-            'id', 'title', 'entity', 'html_content', 'section_type', 'page_section_to', 'has_add_btn', 'entity_params')
+            'id', 'title', 'entity', 'html_content', 'section_type', 'page_section_to',
+            'has_add_btn', 'entity_params', 'nodes')
 
 
 class PageSectionTabSchema(ma.ModelSchema):
@@ -197,6 +198,12 @@ class PageSchema(ma.ModelSchema):
                 for page_section in obj.page_section:
                     setattr(page_section, 'detail_params', temp_params)
 
+    class Meta:
+        model = Page
+        fields = ('id', 'title', 'type', 'direction', 'key', 'application_id', 'unique_id', 'page_section')
+
+
+class PageDetailsSchema(PageSchema):
     class Meta:
         model = Page
         fields = ('id', 'title', 'type', 'direction', 'key', 'application_id', 'unique_id', 'page_section')
