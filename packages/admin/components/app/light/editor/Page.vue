@@ -7,7 +7,7 @@
       v-for="(section, i) in page.page_section"
       :section="section"
       :pageId="pageId"
-      :active="active === section.id"
+      :active="currentPageSectionIdGetter === section.id"
       @onActiveChange="handleActiveChange(section.id)"
       :key="i"
       :index="i"
@@ -32,14 +32,14 @@
     }
   })
   export default class Page extends Vue {
-    active: string | null = null
-
     @Prop() pageId!: string
     @Prop() page!: PageModel
     @editor.Action addPageSection
+    @editor.Action choosePageSection
+    @editor.Getter currentPageSectionIdGetter
 
     handleActiveChange(active) {
-      this.active = active
+      this.choosePageSection(active)
     }
   }
 </script>

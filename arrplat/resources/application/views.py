@@ -53,8 +53,8 @@ class LightPageResource(Resource):
 
     @use_kwargs({
         "title": fields.String(required=False),
-        "type": fields.String(required=False),
-        "direction": fields.Number(required=False),
+        "type": fields.Number(required=False),
+        "direction": fields.String(required=False),
         "page_section": fields.List(fields.Dict, required=False)
     })
     def put(self, id, **kwargs):

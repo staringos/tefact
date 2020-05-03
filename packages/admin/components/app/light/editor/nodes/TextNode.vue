@@ -3,6 +3,7 @@
     v-bind="$attrs"
     v-on="$listeners"
     :node="node"
+    :sectionId="sectionId"
     class="text-node"
   >
     <editor-content
@@ -21,11 +22,14 @@
   }
 </style>
 <script lang="ts">
-  import { Vue, Component, Prop } from 'nuxt-property-decorator'
+  import { Vue, Component, Prop, namespace } from 'nuxt-property-decorator'
+  import _ from 'lodash'
   import { TextNodeModel } from '~/utils/entities/editor/node'
   import BaseNode from './BaseNode.vue'
   import { Editor, EditorContent } from "tiptap";
   import { Bold, Italic, Strike, Underline } from "tiptap-extensions";
+
+  const editor = namespace('editor')
 
   @Component({
     components: { BaseNode, EditorContent }
@@ -33,10 +37,13 @@
   export default class TextNode extends Vue {
     @Prop() node!: TextNodeModel
     @Prop() preview!: boolean
+    @Prop() sectionId!: string
     editor = null
 
+    @editor.Action modifyNode
+
     init () {
-      this.editor = new Editor({
+      const editor = new Editor({
         extensions: [
           new Bold(),
           new Italic(),
@@ -46,6 +53,18 @@
         editable: !this.preview,
         content: this.node.data.text
       });
+
+      // this.editor.on('update', this.handleUpdate)
+      editor.on('blur', this.handleUpdate)
+
+      this.editor = editor
+    }
+
+    handleUpdate() {
+      const newContent = this.editor.getHTML()
+      const node = _.cloneDeep(this.node)
+      node.data.text = newContent
+      this.modifyNode({ sectionId: this.sectionId, node })
     }
 
     mounted() {

@@ -10,7 +10,9 @@
   </div>
 </template>
 <style lang="scss">
-
+  .editor-node-list-wrapper {
+    position: fixed;
+  }
 </style>
 <script lang="ts">
   import { Vue, Component, namespace } from 'nuxt-property-decorator'

@@ -6,6 +6,7 @@
       v-for="(node, i) in section.nodes"
       :key="i"
       :node="node"
+      :sectionId="section.id"
       :is="NodeTypeToComponent[node.type]"
       @onRefLineChange="handleRefLineChange"
     ></component>
@@ -81,6 +82,7 @@
     }
 
     handleSectionClick() {
+      if (this.active) return
       this.$emit("onActiveChange")
     }
 

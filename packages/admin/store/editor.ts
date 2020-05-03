@@ -12,10 +12,14 @@ import _ from 'lodash'
 class EditorModule extends VuexModule {
   public page: PageModel | null = null
   public currentPageSectionId: string | null = null
-  public currentNodeId: string | null = null
+  public currentNodeId: string[] | null = null
 
   get currentPage () {
     return this.page
+  }
+
+  get currentPageSectionIdGetter() {
+    return this.currentPageSectionId
   }
 
   get currentPageSection () {
@@ -38,17 +42,19 @@ class EditorModule extends VuexModule {
     section[0].nodes.push(payload.node)
   }
   @Mutation public DELETE_NODE(payload) {
-    const section = this.page && this.page.page_section.filter(id => id === payload.sectionId)
+    const section = this.page && this.page.page_section.filter(cur => cur.id === payload.sectionId)
     if (!section || section.length < 1) return
 
     section[0].nodes = section[0].nodes.filter(node => node.id !== payload.nodeId)
   }
   @Mutation public MODIFY_NODE(payload) {
-    const section = this.page && this.page.page_section.filter(id => id === payload.sectionId)
+    const section = this.page && this.page.page_section.filter(cur => cur.id === payload.sectionId)
     if (!section || section.length < 1) return
 
-    section[0].nodes = section[0].nodes.filter(node => {
-      if (node.id === payload.nodeId) {
+    console.log('MUTATION:', payload)
+
+    section[0].nodes = section[0].nodes.map(node => {
+      if (node.id === payload.node.id) {
         return payload.node
       }
       return node
@@ -76,7 +82,8 @@ class EditorModule extends VuexModule {
     delete page.unique_id
     delete page.application_id
 
-    if (!page.type) page.type = 'editor'
+    if (!page.type) page.type = 1
+    if (!page.direction) page.direction = 'column'
     return await service.editor.savePageDetails(id, page)
   }
 
@@ -108,9 +115,11 @@ class EditorModule extends VuexModule {
     return { sectionId, nodeId }
   }
 
-  @Action({ rawError: true, commit: 'MODIFY_NODE' })
+  @Action({ rawError: true })
   public async modifyNode({ sectionId, node }) {
-    return { sectionId, node }
+    console.log("modifyNode node:", node)
+
+    this.context.commit('MODIFY_NODE', { sectionId, node })
   }
 }
 

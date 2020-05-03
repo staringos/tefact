@@ -25,6 +25,13 @@ class Page(db.Model):
     params = Column(VARCHAR(200), comment='页面参数列表 数据为[]')
 
     @classmethod
+    def format(cls, data):
+        direction = data.get('direction')
+        if direction:
+            data['direction'] = Page.direction_type_to_string(direction)
+
+
+    @classmethod
     def direction_type_to_string(cls, direction_type: int) -> str:
         assert direction_type in cls.direction_type_enum, '没有对应的direction类型'
         return cls.direction_type_enum[direction_type]

@@ -176,6 +176,10 @@ class PageSectionTabSchema(ma.ModelSchema):
 class PageSchema(ma.ModelSchema):
     page_section = fields.Nested(PageSectionSchema, many=True, exclude=('page',))
 
+    @post_dump
+    def format_type(self, data):
+        return Page.format(data)
+
     @pre_dump
     def set_condition(self, obj):
         if hasattr(obj, 'page_section'):

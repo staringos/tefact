@@ -13,7 +13,7 @@ export interface PageModel {
   key: string
   title: string
   direction: string
-  type: string
+  type: number
   unique_id: string
   application_id: string
   page_section: PageSectionModel[]
