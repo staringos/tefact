@@ -2,9 +2,9 @@
   <div class="editor-node-list-wrapper">
 
     <div class="editor-node-list">
-      <div class="node-item" v-for="(node, i) in nodeList" :key="i">
-      <i :class="`tefact-icon ${node.icon}`"></i>
-      <span>{{node.title}}</span>
+      <div class="node-item" v-for="(node, i) in nodeList" :key="i" @click="handleAddNode(node.nodeData)">
+        <i :class="`tefact-icon ${node.icon}`"></i>
+        <span>{{node.title}}</span>
       </div>
     </div>
   </div>
@@ -13,35 +13,21 @@
 
 </style>
 <script lang="ts">
-  import { Vue, Component } from 'nuxt-property-decorator'
+  import { Vue, Component, namespace } from 'nuxt-property-decorator'
+  import { NodeListConstants } from '~/utils/constants/Editor'
+  import _ from 'lodash'
+
+  const editor = namespace('editor')
 
   @Component
-  export default class AppItem extends Vue {
-    nodeList = [{
-        icon: 'tf-icon-Text',
-        type: 'text',
-        title: '文字'
-    }, {
-        icon: 'tf-icon-image',
-        type: 'image',
-        title: '图片'
-    }, {
-        icon: 'tf-icon-code',
-        type: 'html',
-        title: 'HTML'
-    }, {
-        icon: 'tf-icon-integral',
-        type: 'div',
-        title: '层'
-    }, {
-        icon: 'tf-icon-nav-list',
-        type: 'list',
-        title: '列表'
-    }, {
-        icon: 'tf-icon-mtbutton',
-        type: 'button',
-        title: '按钮'
-    }]
+  export default class NodeList extends Vue {
+    nodeList = NodeListConstants
+
+    @editor.Action addNode
+
+    handleAddNode(nodeData) {
+      this.addNode(_.cloneDeep(nodeData))
+    }
   }
 </script>
 <style lang="scss">

@@ -1,6 +1,7 @@
 import { BaseNodeModel } from "~/utils/entities/editor/node"
 
 export interface PageSectionModel {
+  id: string
   title?: string
   section_type: string
   page_id: string
@@ -8,8 +9,12 @@ export interface PageSectionModel {
 }
 
 export interface PageModel {
+  id: string
+  key: string
   title: string
   direction: string
   type: string
+  unique_id: string
+  application_id: string
   page_section: PageSectionModel[]
 }

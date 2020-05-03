@@ -6,6 +6,7 @@
     <PageSection
       v-for="(section, i) in page.page_section"
       :section="section"
+      :pageId="pageId"
       :active="active === section.id"
       @onActiveChange="handleActiveChange(section.id)"
       :key="i"

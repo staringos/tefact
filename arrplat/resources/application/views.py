@@ -52,12 +52,12 @@ class LightPageResource(Resource):
     page_schema = PageSchema(many=False)
 
     @use_kwargs({
-        "title": fields.String(required=True),
-        "type": fields.String(required=True),
-        "direction": fields.String(required=False),
-        "sections": fields.List(fields.Dict, required=False)
+        "title": fields.String(required=False),
+        "type": fields.String(required=False),
+        "direction": fields.Number(required=False),
+        "page_section": fields.List(fields.Dict, required=False)
     })
-    def put(self, **kwargs):
+    def put(self, id, **kwargs):
         """页面修改
           ---
 
@@ -73,12 +73,12 @@ class LightPageResource(Resource):
 
         page.title = kwargs.get("title")
         page.type = PageSection.string_to_data_type(kwargs.get("type"))
-        page.direction = kwargs.get("type")
+        page.direction = Page.string_to_direction_type(kwargs.get("direction", 1))
 
-        sections = kwargs.get("sections")
+        sections = kwargs.get("page_section")
         if sections or len(sections) > 0:
             for i, item in enumerate(sections):
-                old_section = db.session.query(PageSection).filter(PageSection.id == item.id).first()
+                old_section = db.session.query(PageSection).filter(PageSection.id == item.get("id")).first()
                 if not old_section:
                     continue
                 old_section.title = item.get("title")

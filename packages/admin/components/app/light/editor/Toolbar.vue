@@ -6,6 +6,14 @@
       <i class="el-icon-edit"></i>
     </div>
 
+    <div class="tool-list">
+      <el-button type="info" icon="el-icon-receiving" size="small" @click="handleSavePage">保存</el-button>
+      <el-button type="info" icon="el-icon-back" size="small">上一步</el-button>
+      <el-button type="info" icon="el-icon-right" size="small">下一步</el-button>
+      <el-button type="info" icon="el-icon-data-analysis" size="small">预览</el-button>
+      <el-button type="info" icon="el-icon-share" size="small">发布</el-button>
+    </div>
+
     <div class="right-button">
       <el-button-group>
         <el-button v-for="device in deviceList" :type="editorSetting.device === device.value ? 'primary' : 'default'" size="small" @click="handleSelectDevices(device)">
@@ -19,21 +27,42 @@
 
 </style>
 <script lang="ts">
-  import { Vue, Component, Prop } from 'nuxt-property-decorator'
+  import { Vue, Component, Prop, namespace } from 'nuxt-property-decorator'
+
+  const editor = namespace('editor')
 
   @Component
   export default class Toolbar extends Vue {
-      @Prop([Object]) page
-      @Prop([Object]) editorSetting
+    @Prop([Object]) page
+    @Prop([Object]) editorSetting
 
-      deviceList = [
-        { icon: 'tf-icon-pc', name: 'PC', value: 'pc' },
-        { icon: 'tf-icon-mobile-phone', name: 'h5', value: 'h5' },
-      ]
+    @editor.Action savePageDetails
 
-      handleSelectDevices(device) {
-        this.$emit('editorSettingChange', { ...this.editorSetting, device: device.value })
+    deviceList = [
+      { icon: 'tf-icon-pc', name: 'PC', value: 'pc' },
+      { icon: 'tf-icon-mobile-phone', name: 'h5', value: 'h5' },
+    ]
+
+    async handleSavePage() {
+      const res = await this.savePageDetails()
+      if (res.status === 200) {
+        return this.$message({
+          showClose: true,
+          message: '页面保存成功！',
+          type: 'success'
+        });
       }
+
+      this.$message({
+        showClose: true,
+        message: `页面保存失败：${res.data.message}`,
+        type: 'success'
+      });
+    }
+
+    handleSelectDevices(device) {
+      this.$emit('editorSettingChange', { ...this.editorSetting, device: device.value })
+    }
   }
 </script>
 <style lang="scss">
@@ -46,10 +75,25 @@
     .page-title {
       margin: 0 10px;
       cursor: pointer;
-      flex: 1;
 
       &:hover {
         color: $editor-main-color;
+      }
+    }
+
+    .tool-list {
+      flex: 1;
+      display: flex;
+      justify-content: center;
+
+      .el-button {
+        border: 0;
+        background: none;
+        color: $editor-text-color;
+
+        &:hover {
+          color: $editor-text-active-color;
+        }
       }
     }
 

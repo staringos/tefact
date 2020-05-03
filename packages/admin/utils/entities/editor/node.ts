@@ -2,14 +2,14 @@ export interface EditorNodeData {
 }
 
 export interface EditorNodeStyle {
-  borderColor: string
-  borderWidth: number[] | number // top right bottom left border width
-  borderStyle: string[] | string // top right bottom left border style
-  bgColor: string[] | string // top right bottom left border style
-  bgImageUrl: string
-  textColor: string
-  textSize: string
-  zIndex: number
+  borderColor?: string
+  borderWidth?: number[] | number // top right bottom left border width
+  borderStyle?: string[] | string // top right bottom left border style
+  bgColor?: string[] | string // top right bottom left border style
+  bgImageUrl?: string
+  textColor?: string
+  textSize?: string
+  zIndex?: number
 }
 
 export interface EditorNodeConfig {
@@ -34,7 +34,7 @@ export interface BaseNodeModel {
   config: EditorNodeConfig
   data: EditorNodeData
   type: NodeType
-  id: string
+  id?: string
 }
 
 export interface TextNodeData {

@@ -1,6 +1,6 @@
 <template>
   <div :class="`section ${active ? 'active' : ''}`" @click="handleSectionClick">
-    <AddButton :index="index"></AddButton>
+    <AddButton :index="index" :pageId="pageId" show></AddButton>
 
     <component
       v-for="(node, i) in section.nodes"
@@ -8,9 +8,7 @@
       :node="node"
       :is="NodeTypeToComponent[node.type]"
       @onRefLineChange="handleRefLineChange"
-    >
-
-    </component>
+    ></component>
 
     <!--辅助线-->
     <span class="ref-line v-line"
@@ -42,6 +40,14 @@
         display: flex;
       }
     }
+
+    /deep/ .add-button {
+      display: none;
+      position: absolute;
+      bottom: -25px;
+      left: 50%;
+      margin-left: -25px;
+    }
   }
 
 </style>
@@ -59,7 +65,8 @@
   })
   export default class AppItem extends Vue {
     @Prop() section
-    @Prop() index: number = 0
+    @Prop() index!: number
+    @Prop([String]) pageId!:string
     @Prop([Boolean]) active!: boolean
 
     NodeTypeToComponent = NodeTypeToComponent

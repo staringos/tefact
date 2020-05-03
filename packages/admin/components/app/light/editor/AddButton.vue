@@ -15,14 +15,11 @@
     border-radius: 50%;
     background-color: $editor-main-color;
     margin: 0 auto;
-    // position: absolute;
-    // bottom: -25px;
     justify-content: center;
     align-items: center;
     display: flex;
-    // left: 50%;
-    // margin-left: -25px;
     cursor: pointer;
+    z-index: 999;
 
     .el-icon-plus {
       color: white;
@@ -38,7 +35,7 @@
 
   @Component
   export default class AddButton extends Vue {
-    @Prop() index: number = 0
+    @Prop() index!: number
     @Prop() pageId!: string
     @Prop([Boolean]) show!: boolean
 

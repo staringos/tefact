@@ -4,8 +4,8 @@ export default (request) => {
       url: `/app/light/page/${id}`,
       method: 'get',
     }),
-    savePageDetails: (page) => request({
-      url: `/app/light/page/${page.id}`,
+    savePageDetails: (id, page) => request({
+      url: `/app/light/page/${id}`,
       method: 'put',
       data: page
     }),

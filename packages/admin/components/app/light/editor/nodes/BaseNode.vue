@@ -22,6 +22,7 @@
   .base-node {
     background: #fff;
     display: flex;
+    cursor: pointer;
 
     .node-container {
       flex: 1;
