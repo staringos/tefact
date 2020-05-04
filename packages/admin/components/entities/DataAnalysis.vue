@@ -5,18 +5,14 @@
   </div>
 </template>
 <script lang="ts">
-    import { Component, Vue, Prop } from 'nuxt-property-decorator'
-    import { EntityPageSection } from '@arrplat/common'
-    import List from './List.vue'
+  import { Component, Vue, Prop } from 'nuxt-property-decorator'
+  import { EntityPageSection } from '@arrplat/common'
+  import List from './List.vue'
 
-    @Component({
-        components: { List }
-    })
-    export default class PageSection extends Vue {
-        @Prop() section: EntityPageSection
-
-        async mounted() {
-            console.log('[mounted] page section:', this.section)
-        }
-    }
+  @Component({
+    components: { List }
+  })
+  export default class PageSection extends Vue {
+    @Prop() section: EntityPageSection
+  }
 </script>

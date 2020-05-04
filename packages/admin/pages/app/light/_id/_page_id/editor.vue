@@ -67,7 +67,7 @@
 
   @Component({
     layout: 'UserAdmin',
-    components: {NodeList, Page, Toolbar }
+    components: { NodeList, Page, Toolbar }
   })
   export default class EditorPage extends Vue {
     page = {
@@ -89,7 +89,6 @@
     async mounted() {
       this.pageId = this.$route.params.page_id
       await this.init(this.pageId)
-      console.log('this.currentPage:', this.currentPage)
     }
   }
 </script>

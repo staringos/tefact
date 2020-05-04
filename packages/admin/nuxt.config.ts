@@ -110,8 +110,6 @@ const config: Configuration = {
 
   router: {
     extendRoutes(routes, resolve) {
-      console.log('extendRoutes options:', options)
-
       if (!options || !options.plus) return
 
       options.plus.plus.map((p) => {

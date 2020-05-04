@@ -8,7 +8,9 @@
       :node="node"
       :sectionId="section.id"
       :is="NodeTypeToComponent[node.type]"
+      :active="currentNodesIdsGetter.indexOf(node.id) > -1"
       @onRefLineChange="handleRefLineChange"
+      @update:active="(active) => handleActiveUpdate(node.id, active)"
     ></component>
 
     <!--辅助线-->
@@ -53,11 +55,13 @@
 
 </style>
 <script lang="ts">
-  import { Vue, Component, Prop } from 'nuxt-property-decorator'
+  import { Vue, Component, Prop, namespace } from 'nuxt-property-decorator'
   import TextNode from './nodes/TextNode.vue'
-  import AddButton from "~/components/app/light/editor/AddButton.vue"
-
+  import AddButton from '~/components/app/light/editor/AddButton.vue'
+  import * as utils from '~/utils'
   import { NodeTypeToComponent } from '~/utils/constants/Editor'
+
+  const editor = namespace('editor')
 
   @Component({
     components: {
@@ -70,10 +74,23 @@
     @Prop([String]) pageId!:string
     @Prop([Boolean]) active!: boolean
 
+    @editor.Getter currentNodesIdsGetter
+    @editor.Action activeNode
+    @editor.Action multipleActiveNode
+
     NodeTypeToComponent = NodeTypeToComponent
 
     vLine = []
     hLine = []
+
+    handleActiveUpdate(id, active) {
+      if (utils.hasMetaKeyPass()) {
+        if (!active) return
+        return this.multipleActiveNode({ id, active })
+      }
+
+      this.activeNode({ id, active })
+    }
 
     handleRefLineChange(params) {
       const { vLine, hLine } = params
@@ -87,7 +104,6 @@
     }
 
     mounted() {
-      console.log("section:", this.section)
     }
   }
 </script>

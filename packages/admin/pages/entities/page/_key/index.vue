@@ -34,7 +34,6 @@ export default class Page extends Vue {
 
   @Watch('$route.params')
   onParamsChange() {
-    console.log('this.$route.params:', this.$route.params)
     this.refreshPage()
   }
 

@@ -46,7 +46,6 @@
     @Prop() entity: Entity
 
     async mounted() {
-      console.log('[mounted] page entity:', this.entity)
     }
   }
 </script>

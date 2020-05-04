@@ -3,6 +3,10 @@ import request from './request'
 
 export const service = ServiceGenerator(request)
 
+export const hasMetaKeyPass = () => {
+  return window && window.event && (window.event['ctrlKey'] || window.event['metaKey'])
+}
+
 // export const gotoAppIndex = (app, router) => {
 //   if (app.type === 'light')
 //     return router.push(`/light/${app.admin_route}`)

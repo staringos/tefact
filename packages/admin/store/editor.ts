@@ -12,14 +12,15 @@ import _ from 'lodash'
 class EditorModule extends VuexModule {
   public page: PageModel | null = null
   public currentPageSectionId: string | null = null
-  public currentNodeId: string[] | null = null
+  public currentNodeIds: string[] | null = []
 
-  get currentPage () {
-    return this.page
-  }
+  get currentPage() { return this.page }
+  get currentNodesIdsGetter() { return this.currentNodeIds }
+  get currentPageSectionIdGetter() { return this.currentPageSectionId }
 
-  get currentPageSectionIdGetter() {
-    return this.currentPageSectionId
+  get currentNode() {
+    if (this.currentNodeIds && this.currentNodeIds.length > 0) return this.currentNodeIds[0]
+    return null
   }
 
   get currentPageSection () {
@@ -35,6 +36,28 @@ class EditorModule extends VuexModule {
   @Mutation public CHOOSE_PAGE_SECTION(id: string) { this.currentPageSectionId = id }
   @Mutation public GET_PAGE_DETAILS(page: PageModel) { this.page = page }
   @Mutation public ADD_PAGE_SECTION(payload) { this.page && this.page.page_section.splice(payload.index + 1, 0, payload.data) }
+
+  @Mutation public ACTIVE_NODE(payload) {
+    if (payload.active) {
+      this.currentNodeIds = [payload.id]
+      return
+    }
+    this.currentNodeIds = []
+  }
+  @Mutation public MULTIPLE_ACTIVE_NODE(payload) {
+    if (!this.currentNodeIds) this.currentNodeIds = []
+    const has = this.currentNodeIds.indexOf(payload.id)
+    if (payload.active) {
+      if (has === -1) {
+        this.currentNodeIds.push(payload.id)
+      }
+      return
+    }
+
+    if (has !== -1) {
+      this.currentNodeIds.splice(has, 1)
+    }
+  }
   @Mutation public ADD_NODE(payload) {
     const section = this.page && this.page.page_section.filter(cur => cur.id === payload.sectionId)
     if (!section || section.length < 1) return
@@ -50,8 +73,6 @@ class EditorModule extends VuexModule {
   @Mutation public MODIFY_NODE(payload) {
     const section = this.page && this.page.page_section.filter(cur => cur.id === payload.sectionId)
     if (!section || section.length < 1) return
-
-    console.log('MUTATION:', payload)
 
     section[0].nodes = section[0].nodes.map(node => {
       if (node.id === payload.node.id) {
@@ -117,9 +138,17 @@ class EditorModule extends VuexModule {
 
   @Action({ rawError: true })
   public async modifyNode({ sectionId, node }) {
-    console.log("modifyNode node:", node)
-
     this.context.commit('MODIFY_NODE', { sectionId, node })
+  }
+
+  @Action({ rawError: true, commit: 'ACTIVE_NODE' })
+  public activeNode({ id, active }) {
+    return { id, active }
+  }
+
+  @Action({ rawError: true, commit: 'MULTIPLE_ACTIVE_NODE' })
+  public multipleActiveNode({ id, active }) {
+    return { id, active }
   }
 }
 

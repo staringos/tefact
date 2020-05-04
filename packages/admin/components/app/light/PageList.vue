@@ -129,7 +129,6 @@
     }
 
     mounted() {
-      console.log('this.PageDirection:', this.PageDirection)
     }
   }
 </script>

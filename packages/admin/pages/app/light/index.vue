@@ -100,9 +100,6 @@
       const params = this.$route.params
       const find = this.apps && this.apps.filter(app => app.key === params.key)
       this.currentApp = find ? find[0] : null
-
-
-      console.log('this.currentApp:', this.currentApp)
     }
 
     @Watch('appsGetter')
@@ -134,7 +131,6 @@
     }
 
     mounted() {
-      console.log('this.currentApp:', this.currentApp)
     }
   }
 </script>

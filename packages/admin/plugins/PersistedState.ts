@@ -22,7 +22,6 @@ const PersistedState: Plugin = ({ store, isHMR }) => {
       const state = JSON.parse(context)
       if (state.user.accessToken && state.user.accessToken.length > 0) {
         state.user = state.user.state()
-        console.log('state.user:', state.user)
         localStorage.removeItem(key)
       }
     } catch (e) {

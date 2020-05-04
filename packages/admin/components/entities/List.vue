@@ -82,7 +82,6 @@
     @app.Getter currentOrgIdGetter
 
     public handleSortChange(column, prop, order)  {
-      console.log('column:', column, 'prop:', prop, 'order:', order)
       this.baseQueryParams.sort = {
         "field_name": column.prop,
         "order": column.order === 'ascending' ? 'asc' : 'desc'
