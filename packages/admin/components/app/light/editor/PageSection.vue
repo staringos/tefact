@@ -1,5 +1,5 @@
 <template>
-  <div :class="`section ${active ? 'active' : ''}`" @click="handleSectionClick">
+  <div :class="`section ${active ? 'active' : ''}`" @click.stop="handleSectionClick">
     <AddButton :index="index" :pageId="pageId" show></AddButton>
 
     <component

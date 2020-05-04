@@ -24,6 +24,9 @@ class Page(db.Model):
     key = Column(VARCHAR(32), unique=True)
     params = Column(VARCHAR(200), comment='页面参数列表 数据为[]')
 
+    config = Column(JSON, comment='页面的展示样式配置', default={})
+
+
     @classmethod
     def format(cls, data):
         direction = data.get('direction')
@@ -75,7 +78,9 @@ class PageSection(db.Model):
     html_content = Column(Text, comment='页面内容')
     section_type = Column(TINYINT, comment='组件类型')
     has_add_btn = Column(Boolean, default=False, comment='是否显示添加按钮')
-    nodes = Column(JSON, comment='Page Section 中的所有节点')
+    nodes = Column(JSON, comment='Page Section 中的所有节点', default=[])
+    config = Column(JSON, comment='页面段落的展示样式配置', default={})
+
     sort = Column(Integer)
     create_time = Column(BigInteger, comment='创建时间')
 

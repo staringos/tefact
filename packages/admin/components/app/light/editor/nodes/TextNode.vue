@@ -38,7 +38,7 @@
     @Prop() node!: TextNodeModel
     @Prop() preview!: boolean
     @Prop() sectionId!: string
-    editor = null
+    editor: any = null
 
     @editor.Action modifyNode
 

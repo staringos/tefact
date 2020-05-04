@@ -36,6 +36,7 @@
     @Prop() page!: PageModel
     @editor.Action addPageSection
     @editor.Action choosePageSection
+    @editor.Action resetActive
     @editor.Getter currentPageSectionIdGetter
 
     handleActiveChange(active) {

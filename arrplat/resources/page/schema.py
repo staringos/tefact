@@ -165,7 +165,7 @@ class PageSectionSchema(ma.ModelSchema):
         model = PageSection
         fields = (
             'id', 'title', 'entity', 'html_content', 'section_type', 'page_section_to',
-            'has_add_btn', 'entity_params', 'nodes')
+            'has_add_btn', 'entity_params', 'nodes', 'config')
 
 
 class PageSectionTabSchema(ma.ModelSchema):
@@ -204,7 +204,7 @@ class PageSchema(ma.ModelSchema):
 
     class Meta:
         model = Page
-        fields = ('id', 'title', 'type', 'direction', 'key', 'application_id', 'unique_id', 'page_section')
+        fields = ('id', 'title', 'type', 'direction', 'key', 'application_id', 'unique_id', 'page_section', 'config')
 
 
 class PageDetailsSchema(PageSchema):
