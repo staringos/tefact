@@ -115,6 +115,8 @@ class EditorModule extends VuexModule {
   @Mutation public MODIFY_NODE(payload) {
     if (!payload.sectionId && this.page) {
       const res = findNodeByNodeId(this.page.page_section, payload.node.id, true)
+
+      console.log('res:', res, payload.node)
       if (res) Vue.set(res.nodes, res.index, payload.node)
       return
     }

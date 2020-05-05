@@ -1,15 +1,17 @@
+
 export interface EditorNodeData {
+  data?: any
 }
 
 export interface EditorNodeStyle {
-  borderColor?: string
-  borderWidth?: number[] | number // top right bottom left border width
-  borderStyle?: string[] | string // top right bottom left border style
-  bgColor?: string[] | string // top right bottom left border style
-  bgImageUrl?: string
-  textColor?: string
-  textSize?: string
-  zIndex?: number
+  'border-color'?: string
+  'border-width'?: number[] | number // top right bottom left border width
+  'border-style'?: string[] | string // top right bottom left border style
+  'background-color'?: string[] | string // top right bottom left border style
+  'background-image'?: string
+  'text-color'?: string
+  'text-size'?: string
+  'z-index'?: number
 }
 
 export interface EditorNodeConfig {
@@ -37,11 +39,11 @@ export interface BaseNodeModel {
   id?: string
 }
 
-export interface TextNodeData {
+export interface TextNodeData extends EditorNodeData {
   text: string
 }
 
-export interface ImageNodeData {
+export interface ImageNodeData extends EditorNodeData {
   url: string
 }
 

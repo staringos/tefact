@@ -1,5 +1,12 @@
 import { TextNodeModel } from '~/utils/entities/editor/node'
 
+export const BorderStyle = [
+  { value: 'solid', label: '直线' },
+  { value: 'dotted', label: '短虚线' },
+  { value: 'dashed', label: '长虚线' },
+  { value: 'double', label: '双层' },
+]
+
 export const NodeResoluConfig = {
   text: {
     title: '文字元素配置',
@@ -52,15 +59,21 @@ export const NodeTypeToComponent = {
   html: "HtmlNode",
 }
 
+export const BaseNodeStyle = {
+  'border-width': 0,
+  'font-size': 12,
+  'font-color': '#333',
+}
+
 export const NodeDefaultData = {
   page: {
     config: {
-      style: {},
+      style: { ...BaseNodeStyle },
     },
   },
   section: {
     config: {
-      style: {},
+      style: { ...BaseNodeStyle },
     },
   },
   text: {
@@ -68,9 +81,9 @@ export const NodeDefaultData = {
     config: {
       x: 30,
       y: 30,
-      w: 100,
+      w: 500,
       h: 80,
-      style: {},
+      style: { ...BaseNodeStyle },
     },
     data: {
       text: '请输入文字',

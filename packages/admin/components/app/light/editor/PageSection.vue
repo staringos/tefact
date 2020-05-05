@@ -4,7 +4,7 @@
 
     <component
       v-for="(node, i) in section.nodes"
-      :key="i"
+      :key="node.id"
       :node="node"
       :sectionId="section.id"
       :is="NodeTypeToComponent[node.type]"

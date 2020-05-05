@@ -2,12 +2,12 @@
   <BaseResolu title="位置大小" v-bind="$attrs">
     <div class="resolu-container" v-if="tmpNode">
       <div class="resolu-row">
-        <span>位置:</span>
+        <div class="resolu-label">位置</div>
         <input type="number" class="resolu-input" v-model.number="tmpNode.config.x" @blur="handleSave" />
         <input type="number" class="resolu-input" v-model.number="tmpNode.config.y" @blur="handleSave" />
       </div>
       <div class="resolu-row">
-        <span>大小:</span>
+        <div class="resolu-label">大小</div>
         <input type="number" class="resolu-input" v-model.number="tmpNode.config.w" @blur="handleSave" />
         <input type="number" class="resolu-input" v-model.number="tmpNode.config.h" @blur="handleSave" />
       </div>
@@ -15,30 +15,7 @@
   </BaseResolu>
 </template>
 <style lang="scss" scoped>
-  @import "../../../../../assets/styles/variables";
-
-  .resolu-container {
-    height: 80px;
-    display: flex;
-    flex-direction: column;
-
-    .resolu-row {
-      margin-bottom: 10px;
-    }
-  }
-
-  .resolu-input {
-    background: $gray-02;
-    border: 0;
-    height: 30px;
-    padding-left: 10px;
-
-    &:focus {
-      outline-offset: 0;
-      outline: none;
-      border: 0;
-    }
-  }
+  @import "./resolu";
 </style>
 <script lang="ts">
   import { Vue, Component, Prop, Watch, namespace } from "nuxt-property-decorator";
@@ -53,26 +30,8 @@
     components: { BaseResolu },
     mixins: [ ResoluMixin ]
   })
-  export default class PositionResolu extends Vue {
-    tmpNode: BaseNodeModel | null = null
-
+  export default class PositionResolu extends ResoluBase {
     @Prop() sectionId
-    @Prop() nodeType
-    @editor.Action modifyNode
-
-    // @Watch('tmpNode.config', { immediate: true, deep: true })
-    handleSave() {
-      console.log('this.nodeType:', this.nodeType)
-      if (this.nodeType === 'page') {
-        return
-      }
-
-      if (this.nodeType === 'section') {
-        return
-      }
-
-      this.modifyNode({ sectionId: null, node: this.tmpNode })
-    }
 
     mounted() {
       console.log("tmpNode:", this.tmpNode)

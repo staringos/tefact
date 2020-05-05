@@ -1,6 +1,7 @@
 <template>
   <vue-draggable-resizable
     class="base-node"
+    :style="nodeBaseStyle"
     :w="node.config.w"
     :h="node.config.h"
     :x="node.config.x"
@@ -57,6 +58,24 @@
     @Prop() active!: string
 
     @editor.Action modifyNode
+
+    get nodeBaseStyle() {
+      const style = this.node.config.style
+      const res = {}
+
+      for (let key in style) {
+        if (style.hasOwnProperty(key)) {
+          if (key.indexOf('-width') !== -1 || key.indexOf('-size') !== -1) {
+            res[key] = `${style[key]}px`
+            continue
+          }
+
+          res[key] = style[key]
+        }
+      }
+
+      return res
+    }
 
     // 辅助线回调事件
     getRefLineParams (params) {
