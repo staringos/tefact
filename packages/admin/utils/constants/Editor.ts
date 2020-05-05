@@ -1,4 +1,4 @@
-import { TextNodeModel } from '~/utils/entities/editor/node'
+import { ImageNodeModel, TextNodeModel } from '~/utils/entities/editor/node';
 
 export const BorderStyle = [
   { value: 'solid', label: '直线' },
@@ -9,6 +9,24 @@ export const BorderStyle = [
 
 export const NodeResoluConfig = {
   text: {
+    title: '文字元素配置',
+    hasTab: true,
+    tabs: [
+      {
+        title: '基本信息',
+        components: [
+          { type: 'PositionResolu', params: {} },
+          { type: 'BackgroundResolu', params: {} },
+          { type: 'BorderResolu', params: {} },
+          { type: 'TextResolu', params: {} },
+        ],
+      }, {
+        title: '数据展示',
+        components: [],
+      },
+    ],
+  },
+  image: {
     title: '文字元素配置',
     hasTab: true,
     tabs: [
@@ -81,7 +99,7 @@ export const NodeDefaultData = {
     config: {
       x: 30,
       y: 30,
-      w: 500,
+      w: 120,
       h: 80,
       style: { ...BaseNodeStyle },
     },
@@ -89,6 +107,20 @@ export const NodeDefaultData = {
       text: '请输入文字',
     },
   } as TextNodeModel,
+  image: {
+    type: 'image',
+    config: {
+      x: 30,
+      y: 30,
+      w: 100,
+      h: 100,
+      style: { ...BaseNodeStyle },
+    },
+    data: {
+      url: null,
+      title: '',
+    },
+  } as ImageNodeModel,
 }
 
 export const NodeListConstants = [{
@@ -100,6 +132,7 @@ export const NodeListConstants = [{
   icon: 'tf-icon-image',
   type: 'image',
   title: '图片',
+  nodeData: NodeDefaultData.image,
 }, {
   icon: 'tf-icon-code',
   type: 'html',

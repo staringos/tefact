@@ -3,7 +3,7 @@ import { BaseNodeModel } from '~/utils/entities/editor/node';
 const editor = namespace('editor')
 
 @Component
-export default class ResoluBase extends Vue {
+export default class ResoluClass extends Vue {
   @Prop() public nodeType
   @editor.Action public modifyNode
 

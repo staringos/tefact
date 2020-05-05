@@ -35,8 +35,15 @@
     display: flex;
     cursor: pointer;
 
+    /deep/ .handle {
+      z-index: 999;
+    }
+
     .node-container {
       flex: 1;
+      width: 100%;
+      height: 100%;
+      overflow: hidden;
     }
   }
 </style>

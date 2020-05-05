@@ -44,7 +44,8 @@ export interface TextNodeData extends EditorNodeData {
 }
 
 export interface ImageNodeData extends EditorNodeData {
-  url: string
+  url: string | null
+  title?: string
 }
 
 export interface TextNodeModel extends BaseNodeModel {
