@@ -1,4 +1,4 @@
-import { ImageNodeModel, TextNodeModel } from '~/utils/entities/editor/node';
+import { ImageNodeModel, TextNodeModel, TableNodeModel } from '~/utils/entities/editor/node';
 
 export const BorderStyle = [
   { value: 'solid', label: '直线' },
@@ -121,6 +121,20 @@ export const NodeDefaultData = {
       title: '',
     },
   } as ImageNodeModel,
+  table: {
+    type: 'table',
+    config: {
+      x: 30,
+      y: 30,
+      w: 100,
+      h: 100,
+      style: { ...BaseNodeStyle },
+    },
+    data: {
+      url: null,
+      title: '',
+    },
+  } as TableNodeModel,
 }
 
 export const NodeListConstants = [{
@@ -133,6 +147,11 @@ export const NodeListConstants = [{
   type: 'image',
   title: '图片',
   nodeData: NodeDefaultData.image,
+}, {
+  icon: 'tf-icon-iconfonticonbiaoge',
+  type: 'table',
+  title: '数据表',
+  nodeData: NodeDefaultData.table,
 }, {
   icon: 'tf-icon-code',
   type: 'html',

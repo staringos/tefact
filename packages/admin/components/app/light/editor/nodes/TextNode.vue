@@ -35,6 +35,7 @@
 <script lang="ts">
   import { Vue, Component, Prop, namespace } from 'nuxt-property-decorator'
   import _ from 'lodash'
+  import NodeClass from './NodeClass'
   import { TextNodeModel } from '~/utils/entities/editor/node'
   import BaseNode from './BaseNode.vue'
   import { Editor, EditorContent } from "tiptap";
@@ -45,7 +46,7 @@
   @Component({
     components: { BaseNode, EditorContent }
   })
-  export default class TextNode extends Vue {
+  export default class TextNode extends NodeClass {
     @Prop() node!: TextNodeModel
     @Prop() preview!: boolean
     @Prop() sectionId!: string

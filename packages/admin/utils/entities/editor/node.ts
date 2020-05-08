@@ -48,6 +48,48 @@ export interface ImageNodeData extends EditorNodeData {
   title?: string
 }
 
+export interface SearchCondition {
+  field: string
+  operation: string
+  value: string | string[] | number | number[]
+}
+
+export interface OrderCondition {
+  field: string
+  type: 'asc' | 'desc'
+}
+
+export interface PageCondition {
+  pageNumber: number
+  total: number
+  pageSize: number
+}
+
+export interface DataField {
+  key: string
+}
+
+export interface DataTable {
+  type: 'table' | 'view'
+  fields: DataField[]
+}
+
+export interface DataSource {
+  type: 'mysql' | 'csv' | 'excel'
+  url: string
+  username?: string
+  password?: string
+  tables: DataTable[]
+}
+
+export interface TableNodeData extends EditorNodeData {
+  searchCondition?: SearchCondition[]
+  orderCondition?: OrderCondition[]
+  pageCondition?: PageCondition
+  dataSource?: DataSource
+  title?: string
+}
+
 export interface TextNodeModel extends BaseNodeModel {
   data: TextNodeData
 }
@@ -58,4 +100,8 @@ export interface ImageNodeModel extends BaseNodeModel {
 
 export interface HTMLCodeNodeModel extends BaseNodeModel {
   data: ImageNodeData
+}
+
+export interface TableNodeModel extends BaseNodeModel {
+  data: TableNodeData
 }
