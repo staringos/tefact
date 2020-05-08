@@ -131,6 +131,19 @@ class EditorModule extends VuexModule {
     })
   }
 
+  @Mutation
+  public REMOVE_ACTIVE_NODES() {
+    const currentNodeIds = this.currentNodeIds
+    if (!currentNodeIds || currentNodeIds.length < 0) return
+
+    const section = this.page && this.page.page_section.filter(cur => cur.id === this.currentPageSectionId)
+    if (!section || section.length < 1) return
+
+    Vue.set(section[0], 'nodes', section[0].nodes.filter(node => {
+      return currentNodeIds.indexOf(node.id as string) === -1
+    }))
+  }
+
   @Action({ rawError: true, commit: 'CHOOSE_PAGE_SECTION' })
   public async choosePageSection(id) {
     return id
@@ -202,6 +215,9 @@ class EditorModule extends VuexModule {
   public resetActive() { return }
   @Action({ commit: 'RESET_NODE' })
   public resetNodes() { return }
+
+  @Action({ commit: 'REMOVE_ACTIVE_NODES' })
+  public removeActiveNodes() { return }
 }
 
 export default EditorModule

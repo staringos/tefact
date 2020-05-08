@@ -23,6 +23,7 @@
     @dragging="handleDragging"
     @dragstop="handleDragStop"
     @resizestop="handleResize"
+    @keydown="handleKeydown"
   >
     <div class="node-container">
       <slot></slot>
@@ -82,6 +83,10 @@
       }
 
       return res
+    }
+
+    handleKeydown(e) {
+      console.log('handleKeydown e:', e)
     }
 
     // 辅助线回调事件

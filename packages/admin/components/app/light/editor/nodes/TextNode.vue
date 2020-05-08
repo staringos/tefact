@@ -13,12 +13,23 @@
       ref="editor"
       class="text-node-editor"
     />
+    <div class="mask" v-if="!editing" @dblclick="handleEditing"></div>
   </BaseNode>
 </template>
 <style lang="scss" scoped>
   /deep/ .text-node-editor, /deep/ .ProseMirror {
     width: 100%;
     height: 100%;
+  }
+
+  .text-node {
+    .mask {
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+    }
   }
 </style>
 <script lang="ts">
@@ -38,7 +49,9 @@
     @Prop() node!: TextNodeModel
     @Prop() preview!: boolean
     @Prop() sectionId!: string
+
     editor: any = null
+    editing: boolean = false
 
     @editor.Action modifyNode
 
@@ -60,11 +73,18 @@
       this.editor = editor
     }
 
+    handleEditing() {
+      this.editing = true
+      this.editor.focus()
+    }
+
     handleUpdate() {
       const newContent = this.editor.getHTML()
       const node = _.cloneDeep(this.node)
       node.data.text = newContent
       this.modifyNode({ sectionId: this.sectionId, node })
+
+      this.editing = false
     }
 
     mounted() {

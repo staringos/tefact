@@ -37,10 +37,28 @@
     @editor.Action addPageSection
     @editor.Action choosePageSection
     @editor.Action resetActive
+    @editor.Action removeActiveNodes
     @editor.Getter currentPageSectionIdGetter
 
     handleActiveChange(active) {
       this.choosePageSection(active)
+    }
+
+    handleKeyDown(e) {
+      console.log('e.key:', e)
+
+      switch(e.key) {
+        case 'Backspace':
+          this.removeActiveNodes()
+      }
+    }
+
+    mounted() {
+      window.addEventListener('keydown', this.handleKeyDown)
+    }
+
+    beforeDestroy() {
+      window.removeEventListener('keydown', this.handleKeyDown)
     }
   }
 </script>
