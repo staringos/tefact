@@ -1,5 +1,9 @@
 export default (request) => {
   return {
+    getEntitiesByDataSourceId: (dataSourceId) => request({
+      url: `/page/data-source/${dataSourceId}`,
+      method: 'get',
+    }),
     addDataSource: (data) => request({
       url: `/page/data-source`,
       method: 'post',

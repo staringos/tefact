@@ -88,6 +88,8 @@ export interface TableNodeData extends EditorNodeData {
   pageCondition?: PageCondition
   dataSource?: DataSource
   title?: string
+  dataSourceId?: string | null
+  entityId?: string | null
 }
 
 export interface TextNodeModel extends BaseNodeModel {

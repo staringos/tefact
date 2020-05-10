@@ -91,6 +91,11 @@ class AppModule extends VuexModule {
   public async toggleModifyDialog({ status, data }) {
     return { status, data }
   }
+
+  @Action({ rawError: true })
+  public getEntitiesByDataSourceId(dataSourceId) {
+    return service.entities.getEntitiesByDataSourceId(dataSourceId)
+  }
 }
 
 export default AppModule

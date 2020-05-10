@@ -15,7 +15,9 @@
       :data="currentEntity.entity_data"
       border
       style="flex: 1;"
-      @sort-change="handleSortChange">
+      @sort-change="handleSortChange"
+      v-loading="loading"
+    >
       <el-table-column
         v-for="(field, i) in currentEntity.entity_fields"
         v-if="field.exists_type.indexOf('list') !== -1"
@@ -66,7 +68,7 @@
   }
 </style>
 <script lang="ts">
-  import { Component, Vue, namespace, Prop } from 'nuxt-property-decorator'
+  import { Component, Vue, namespace, Prop, Watch } from 'nuxt-property-decorator'
   import { Entity, EntityPageSection } from '@arrplat/common'
   import DataDisplay from '~/components/entities/DataDisplay.vue'
   import EntityModifier from '~/components/entities/EntityModifier.vue'
@@ -81,6 +83,8 @@
   })
   export default class List extends Vue {
     tmpEntity: Entity | null = null
+    loading: boolean = false
+
     @Prop() entity: Entity
     @Prop() section: EntityPageSection
     @Prop() params: any
@@ -159,15 +163,22 @@
       return {}
     }
 
+    @Watch("entityId")
+    entityIdChange() {
+      if (this.entityId) this.init()
+    }
+
     public async init() {
       if (this.entity) return
-
+      this.loading = true
       const res = await this.getEntityData({
         id: this.entityId,
         search_params: this.searchParams,
         page_params: this.pageParams,
         order_params: this.orderParams
       });
+      this.loading = false
+
       this.tmpEntity = res.data.data;
       console.log('tmpEntity:', this.tmpEntity)
     }

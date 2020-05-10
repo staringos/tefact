@@ -118,9 +118,9 @@ class DataSourceEntityResource(Resource):
             return json_response(message="找不到对应的数据源", status=404)
 
         entities = db.session.query(Entity) \
-            .join(Page, and_(Entity.data_source_id == id))
-        data = self.data_source_schema(data_source).data
-        data.entities = entities
+            .join(Page, and_(Entity.data_source_id == id)).all()
+        data = self.data_source_schema.dump(data_source).data
+        data["entities"] = self.entity_simple_schema.dump(entities).data
 
         return json_response(data=data)
 

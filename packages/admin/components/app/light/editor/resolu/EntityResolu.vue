@@ -1,7 +1,12 @@
 <template>
-  <el-form class="entity-resolu" ref="form" :model="form" label-width="80px">
+  <el-form class="entity-resolu" ref="form" :model="form" label-width="80px" v-if="tmpNode">
     <el-form-item label="数据源">
-      <el-select size="mini" v-model="node.data.dataSourceId" placeholder="请选择">
+      <el-select
+        size="mini"
+        v-model="tmpNode.data.dataSourceId"
+        placeholder="请选择"
+        @change="handleDataChange"
+      >
         <el-option
           v-for="item in options"
           :key="item.id"
@@ -11,13 +16,18 @@
       </el-select>
       <el-button size="mini" icon="el-icon-folder-add" @click="handleOpenDataSource">添加数据源</el-button>
     </el-form-item>
-    <el-form-item label="数据表" v-if="node.data.entityId">
-      <el-select size="mini" v-model="node.data.entityId" placeholder="请选择">
+    <el-form-item label="数据表" v-if="tmpNode.data.dataSourceId">
+      <el-select
+        size="mini"
+        v-model="tmpNode.data.entityId"
+        placeholder="请选择"
+        @change="handleDataChange"
+      >
         <el-option
-          v-for="item in options"
-          :key="item.value"
-          :label="item.label"
-          :value="item.value">
+          v-for="item in entities"
+          :key="item.id"
+          :label="item.key"
+          :value="item.id">
         </el-option>
       </el-select>
     </el-form-item>
@@ -57,7 +67,7 @@
         </el-form-item>
         <el-form-item>
           <el-button type="primary" @click="handleAddDataSource">立即创建</el-button>
-          <el-button>取消</el-button>
+          <el-button @click="handleCloseDataSource">取消</el-button>
         </el-form-item>
       </el-form>
     </el-dialog>
@@ -77,11 +87,12 @@
   }
 </style>
 <script lang="ts">
-  import { Vue, Component, namespace } from "nuxt-property-decorator";
+  import { Vue, Watch, Component, namespace } from "nuxt-property-decorator";
   import BaseResolu from '~/components/app/light/editor/resolu/BaseResolu.vue'
   import ResoluMixin from '~/components/app/light/editor/resolu/ResoluMixin'
   import ResoluBase from '~/components/app/light/editor/resolu/ResoluClass'
   import * as utils from '~/utils'
+  import { TableNodeModel } from "~/utils/entities/editor/node";
 
   const entities = namespace('entities')
   const editor = namespace('editor')
@@ -92,12 +103,35 @@
   })
   export default class EntityResolu extends ResoluBase {
     options = []
+    entities = []
     form = {}
     dataSourceDialog = false
 
+    public tmpNode: TableNodeModel | null = null
+
+
     @entities.Action getDataSource
     @entities.Action addDataSource
+    @entities.Action getEntitiesByDataSourceId
     @editor.Getter currentPage
+
+    handleDataChange(v) {
+      if (!this.tmpNode || !this.tmpNode.data) return
+
+      this.handleSave()
+    }
+
+    @Watch('tmpNode.data.dataSourceId')
+    dataSourceIdChange() {
+      this.getEntities()
+    }
+
+    async getEntities() {
+      if (!this.tmpNode) return
+      const res = await this.getEntitiesByDataSourceId(this.tmpNode.data.dataSourceId)
+      console.log('res:', res)
+      this.entities = res.data.data.entities
+    }
 
     async handleOpenDataSource() {
       this.dataSourceDialog = true
@@ -123,20 +157,24 @@
 
       if (res.status === 200) {
         this.handleCloseDataSource()
-        return this.init()
+        return this.initData()
       }
 
       this.$message({ message: '操作失败', type: 'error' })
 
     }
 
-    async init() {
+    async initData() {
       const res = await this.getDataSource(this.currentPage.application_id)
       this.options = res.data.data
+
+      if (this.tmpNode && this.tmpNode.data.dataSourceId) {
+        this.getEntities()
+      }
     }
 
     async mounted() {
-      this.init()
+      this.initData()
     }
   }
 </script>
