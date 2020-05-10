@@ -1,6 +1,7 @@
 <template>
   <vue-draggable-resizable
-    class="base-node"
+    :class="`base-node ${preview ? '' : 'not-preview'}`"
+    classNameActive="base-node-active"
     :style="nodeBaseStyle"
     :w="node.config.w"
     :h="node.config.h"
@@ -10,7 +11,7 @@
     :debug="false"
     :min-width="50"
     :min-height="50"
-    :isConflictCheck="true"
+    :isConflictCheck="false"
     :snap="true"
     :snapTolerance="10"
     :draggable="!preview"
@@ -31,10 +32,24 @@
   </vue-draggable-resizable>
 </template>
 <style lang="scss">
+  @import "../../../../../assets/styles/variables";
+
   .base-node {
     background: #fff;
     display: flex;
     cursor: pointer;
+
+    &.not-preview {
+      &.base-node-active {
+        border-width: 1px !important;
+        border: 1px solid $editor-border-focus-color;
+      }
+
+      &:hover {
+        border-width: 1px !important;
+        border: 1px solid $editor-border-active-color;
+      }
+    }
 
     /deep/ .handle {
       z-index: 999;
@@ -42,6 +57,7 @@
 
     .node-container {
       flex: 1;
+      display: flex;
       width: 100%;
       height: 100%;
       overflow: hidden;

@@ -3,6 +3,10 @@ import request from './request'
 
 export const service = ServiceGenerator(request)
 
+export const generateMysqlConnectUrl = ({ address, port, dbName, username, password }) => {
+  return `jdbc:mysql://${address}:${port}/${dbName}?user=${username}&password=${password}'`
+}
+
 export const hasMetaKeyPass = () => {
   return window && window.event && (window.event['ctrlKey'] || window.event['metaKey'])
 }

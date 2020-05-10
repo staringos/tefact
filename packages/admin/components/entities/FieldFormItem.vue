@@ -39,13 +39,12 @@
   import { EntityField, Entity } from '@arrplat/common'
   import { deepCopy } from '~/utils'
   import Editor from '@tinymce/tinymce-vue'
-  import config from '../../nuxt.config'
   import { auth } from '@arrplat/utils'
 
   const entities = namespace('entities')
   const app = namespace('app')
 
-  const imageUploadUrl = (config as any).env.ARRPLAT_BASE_URL + '/core/upload-files/arrplat'
+  const imageUploadUrl = process.env.ARRPLAT_BASE_URL + '/core/upload-files/arrplat'
 
   @Component({
     components: { Editor }

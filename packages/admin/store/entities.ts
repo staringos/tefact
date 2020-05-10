@@ -37,6 +37,21 @@ class AppModule extends VuexModule {
   get modifyDataGetter() { return this.modifyData }
   get modifyDialogGetter() { return this.modifyDialog }
 
+  @Action({ rawError: true })
+  public addDataSource(data) {
+    return service.entities.addDataSource(data)
+  }
+
+  @Action({ rawError: true })
+  public getDataSource(appId) {
+    return service.app.getDataSource(appId)
+  }
+
+  @Action({ rawError: true })
+  public getEntityData({ id, searchParams, pageParams, orderParams }) {
+    return service.entities.getEntityData({ id, searchParams, pageParams, orderParams })
+  }
+
   @Action
   public getEntityConfig(key) {
     return service.entities.getEntityConfig(key)

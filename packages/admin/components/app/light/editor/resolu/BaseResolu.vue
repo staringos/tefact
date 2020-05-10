@@ -9,9 +9,17 @@
   .base-resolu {
     display: flex;
 
+    /deep/ .el-tabs__content {
+      padding-top: 0;
+
+      /deep/ .el-collapse {
+        border-top: 0;
+      }
+    }
+
     .resolu-title {
       background: $gray-01;
-      height: 43px;
+      min-height: 30px;
       line-height: 43px;
       padding-left: 27px;
     }

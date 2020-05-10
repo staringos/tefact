@@ -58,6 +58,7 @@
   import { Vue, Component, Prop, namespace } from 'nuxt-property-decorator'
   import TextNode from './nodes/TextNode.vue'
   import ImageNode from './nodes/ImageNode.vue'
+  import TableNode from './nodes/TableNode.vue'
   import AddButton from '~/components/app/light/editor/AddButton.vue'
   import * as utils from '~/utils'
   import { NodeTypeToComponent } from '~/utils/constants/Editor'
@@ -66,7 +67,7 @@
 
   @Component({
     components: {
-      TextNode, ImageNode, AddButton
+      TextNode, ImageNode, AddButton, TableNode
     }
   })
   export default class AppItem extends Vue {

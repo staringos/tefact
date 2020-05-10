@@ -1,24 +1,37 @@
 <template>
-  <div>
+  <div v-if="currentEntity" class="list-wrapper">
     <div class="list-header clearfix">
       <EntityButton type="add" :section="section" />
-      <EntityModifier :baseQueryParams="baseQueryParams" :entityParams="entityParams" :entityObj="section.entity" :entityParamsStr="section.entity_params" :sectionId="section.id" />
+      <EntityModifier
+        :baseQueryParams="baseQueryParams"
+        :entityParams="currentEntityParams"
+        :entityObj="currentEntity"
+        :entityParamsStr="currentEntityParams"
+        :sectionId="section ? section.id : null"
+      />
     </div>
     <Search :section="section" v-if="hasSearch" :onSearch="handleSearch" :value="baseQueryParams.searchCondition ? baseQueryParams.searchCondition.value : {}" />
     <el-table
-      :data="entity.entity_data"
+      :data="currentEntity.entity_data"
       border
-      style="width: 100%;"
+      style="flex: 1;"
       @sort-change="handleSortChange">
       <el-table-column
-        v-for="(field, i) in entity.entity_fields"
+        v-for="(field, i) in currentEntity.entity_fields"
         v-if="field.exists_type.indexOf('list') !== -1"
         :key="i"
         :prop="field.key"
         :sortable="field.has_sort && 'custom'"
         :label="field.name">
         <template slot-scope="scope">
-          <DataDisplay :refreshTable="refreshTable" :field="field" :data="scope.row" :baseQueryParams="baseQueryParams" :entityParams="entityParams" :section="section" />
+          <DataDisplay
+            :refreshTable="refreshTable"
+            :field="field"
+            :data="scope.row"
+            :baseQueryParams="baseQueryParams"
+            :entityParams="entityParams"
+            :section="section"
+          />
         </template>
       </el-table-column>
     </el-table>
@@ -27,16 +40,23 @@
       layout="prev, pager, next"
       @current-change="handlePageChanged"
       :page-size="baseQueryParams.page.size"
-      v-if="entity.page"
-      :total="entity.page.total_count">
+      v-if="currentEntity.page"
+      :total="currentEntity.page.total_count">
     </el-pagination>
   </div>
 </template>
 <style lang="scss">
-  .list-header {
-    .entity-modifier {
-      float: right;
-      margin-bottom: 20px
+  .list-wrapper {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+    width: 100%;
+
+    .list-header {
+      .entity-modifier {
+        float: right;
+        margin-bottom: 20px
+      }
     }
   }
 </style>
@@ -60,13 +80,32 @@
     components: { DataDisplay, EntityModifier, EntityButton, Search }
   })
   export default class List extends Vue {
+    tmpEntity: Entity | null = null
     @Prop() entity: Entity
     @Prop() section: EntityPageSection
     @Prop() params: any
     @Prop() entityParams: any
 
+    @Prop() entityId!: string | null
+    @Prop() searchCondition!: string | null
+    @Prop() orderCondition!: string | null
+
+    @entities.Action getEntityData
+
+    get currentEntityParams() {
+      if (this.section) return this.section.entityParams
+      return this.entityParams
+    }
+
+    get currentEntity() {
+      console.log('[currentEntity] this.tmpEntity:', this.tmpEntity, this.entity)
+      if (this.entity) return this.entity
+      return this.tmpEntity
+    }
+
     get hasSearch() {
-      return this.entity.entity_fields.filter(item => item.has_search).length > 0
+      if (!this.currentEntity) return false
+      return this.currentEntity.entity_fields.filter(item => item.has_search).length > 0
     }
 
     baseQueryParams = {
@@ -97,15 +136,44 @@
 
     public refreshTable() {
       this.querySectionData({
-          ...this.baseQueryParams,
-          pageSectionId: this.section.id,
-          orgId: this.currentOrgIdGetter
+        ...this.baseQueryParams,
+        pageSectionId: this.section.id,
+        orgId: this.currentOrgIdGetter
       })
     }
 
     public handlePageChanged(page) {
       this.baseQueryParams.page.page = page
       this.refreshTable()
+    }
+
+    get searchParams() {
+      return {}
+    }
+
+    get pageParams() {
+      return {}
+    }
+
+    get orderParams() {
+      return {}
+    }
+
+    public async init() {
+      if (this.entity) return
+
+      const res = await this.getEntityData({
+        id: this.entityId,
+        search_params: this.searchParams,
+        page_params: this.pageParams,
+        order_params: this.orderParams
+      });
+      this.tmpEntity = res.data.data;
+      console.log('tmpEntity:', this.tmpEntity)
+    }
+
+    public mounted() {
+      this.init()
     }
   }
 </script>

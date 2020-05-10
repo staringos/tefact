@@ -102,11 +102,35 @@ class PageSection(db.Model):
                 return k
 
 
+class DataSource(db.Model):
+    type_enum = {
+        1: 'mysql',
+        2: 'excel',
+        3: 'csv'
+    }
+    __tablename__ = 'data_source'
+    id = Column(VARCHAR(32), default=generate_uuid, primary_key=True)
+    application_id = Column(VARCHAR(32), ForeignKey('application.id', ondelete='CASCADE'), comment='应用页面ID')
+    type = Column(TINYINT, comment='数据类型')
+    name = Column(VARCHAR(50), comment='数据源名称')
+    connect_url = Column(VARCHAR(500), comment='数据源链接信息')
+    file_url = Column(VARCHAR(500), comment='如果数据源为文件，则是文件的储存地址')
+    username = Column(VARCHAR(50), comment='数据源用户名')
+    password = Column(VARCHAR(50), comment='数据源密码')
+
+    @classmethod
+    def string_to_type(cls, data_string: str) -> int:
+        for k, v in cls.type_enum.items():
+            if data_string == v:
+                return k
+
+
 class Entity(db.Model):
     data_type_enum = {
         1: 'db_table',  # 从sql字段的表中查询
         2: 'analysis',  #
-        3: 'sql'  # 使用sql字段的SQL进行查询
+        3: 'sql',  # 使用sql字段的SQL进行查询
+        4: 'view'  # 视图
     }
     __tablename__ = 'entity'
     id = Column(VARCHAR(32), default=generate_uuid, primary_key=True)
@@ -116,6 +140,7 @@ class Entity(db.Model):
     data_type = Column(TINYINT, comment='数据类型')
     key = Column(VARCHAR(32), unique=True)
     has_connect_org = Column(Boolean, default=True,  comment='是否通过 org_id 与 组织体系链接')
+    data_source_id = Column(VARCHAR(32), comment='数据源ID')
 
     @classmethod
     def data_type_to_string(cls, data_type: int) -> str:

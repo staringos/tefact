@@ -59,6 +59,7 @@ export const NodeResoluConfig = {
   },
   section: {
     title: '页面配置',
+    hasTab: true,
     tabs: [
       {
         title: '基本信息',
@@ -69,12 +70,32 @@ export const NodeResoluConfig = {
       },
     ],
   },
+  table: {
+    title: '数据表配置',
+    hasTab: true,
+    tabs: [
+      {
+        title: '基本信息',
+        components: [
+          { type: 'BackgroundResolu', params: {} },
+          { type: 'BorderResolu', params: {} },
+        ],
+      },
+      {
+        title: '数据',
+        components: [
+          { type: 'EntityResolu', params: {} },
+        ],
+      },
+    ],
+  },
 }
 
 export const NodeTypeToComponent = {
   text: "TextNode",
   image: "ImageNode",
   html: "HtmlNode",
+  table: "TableNode",
 }
 
 export const BaseNodeStyle = {
@@ -126,18 +147,21 @@ export const NodeDefaultData = {
     config: {
       x: 30,
       y: 30,
-      w: 100,
-      h: 100,
+      w: 500,
+      h: 150,
       style: { ...BaseNodeStyle },
     },
     data: {
+      dataSourceId: null,
+      entityId: null,
       url: null,
       title: '',
     },
   } as TableNodeModel,
 }
 
-export const NodeListConstants = [{
+export const NodeListConstants = [
+  {
   icon: 'tf-icon-Text',
   type: 'text',
   title: '文字',

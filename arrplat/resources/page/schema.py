@@ -6,9 +6,22 @@ from marshmallow import fields, post_dump, pre_dump
 
 from .services import entity_data_search, entity_data_pagination, entity_data_sort, \
     entity_data_execute, entity_data_connect_org, entity_init_sql, entity_data_params
-from arrplat.resources.page.models import Page, PageSection, PageSectionTab, Entity, EntityField
+from arrplat.resources.page.models import Page, PageSection, PageSectionTab, Entity, EntityField, DataSource
 from arrplat.config import DEFAULT_PAGE, DEFAULT_PAGE_SIZE
 from extensions import ma, db
+
+
+class DataSourceSchema(ma.ModelSchema):
+
+    class Meta:
+        model = DataSource
+
+
+class EntitySimpleSchema(ma.ModelSchema):
+
+    class Meta:
+        model = Entity
+        exclude = ('page_section',)
 
 
 class EntityFieldSchema(ma.ModelSchema):
@@ -29,6 +42,7 @@ class EntitySchema(ma.ModelSchema):
 
     def __init__(self, search_condition=None, is_all=False, *args, **kwargs):
         super(EntitySchema, self).__init__(*args, **kwargs)
+        print("did it inited")
         self.search_condition = search_condition
         self.is_all = is_all
         self.sql_params = dict()
@@ -47,11 +61,16 @@ class EntitySchema(ma.ModelSchema):
 
     @pre_dump
     def format_sql(self, obj):
+        print("format_sql")
+
         self.query_form_data = obj.query_form_data if hasattr(obj, 'query_form_data') else dict()
         search_params = self.query_form_data.get('search_condition')
         detail_params = self.query_form_data.get('detail_condition')
-        self.page_section_type = obj.page_section_type
-        self.entity_params = obj.entity_params
+        if hasattr(obj, 'page_section_type'):
+            self.page_section_type = obj.page_section_type
+
+        if hasattr(obj, 'entity_params'):
+            self.entity_params = obj.entity_params
 
         # 跳过data_type为analysis的
         if obj.data_type == 2 or not obj.table_name:

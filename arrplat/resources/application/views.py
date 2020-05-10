@@ -8,13 +8,47 @@ from flask_restful import Resource
 from .models import Application, ApplicationMenus
 from arrplat.common.utils import json_response, generate_uuid_len, valid_uuid, valid_phone, valid_boolean
 from arrplat.resources.application.schema import ApplicationSchema
-from arrplat.resources.page.models import Page, PageSection
-from arrplat.resources.page.schema import PageSchema, PageSectionSchema
+from arrplat.resources.page.models import Page, PageSection, DataSource
+from arrplat.resources.page.schema import DataSourceSchema, PageSchema, PageSectionSchema
 import time
+
+
+class DataSourceListResource(Resource):
+    data_source_schema = DataSourceSchema(many=True)
+
+    def get(self, app_id):
+        """查询轻应用数据源
+          ---
+
+          tags:
+            - 轻应用
+          parameters:
+            - name: id
+              in: body
+              type: string
+              required: true
+        """
+        data_source = db.session.query(DataSource).filter(DataSource.application_id == app_id)
+        if not data_source:
+            return json_response(message="找不到数据源", status=404)
+
+        data = self.data_source_schema.dump(data_source).data
+        return json_response(data)
 
 
 class PageSectionResource(Resource):
     def delete(self, page_id, section_id):
+        """页面段落删除
+          ---
+
+          tags:
+            - 轻应用
+          parameters:
+            - name: id
+              in: body
+              type: string
+              required: true
+        """
         section = db.session.query(Page).filter(Page.id == section_id).first()
         if not section:
             return json_response(message="找不到页面", status=404)
@@ -33,6 +67,17 @@ class PageSectionListResource(Resource):
         "nodes": fields.List(fields.Dict, required=False)
     })
     def post(self, page_id, **kwargs):
+        """页面段落修改
+          ---
+
+          tags:
+            - 轻应用
+          parameters:
+            - name: page_id
+              in: body
+              type: string
+              required: true
+        """
         section = PageSection(
             section_type=PageSection.string_to_data_type(kwargs.get('section_type')),
             page_id=page_id,
@@ -62,7 +107,7 @@ class LightPageResource(Resource):
           ---
 
           tags:
-            - 页面
+            - 轻应用
           parameters:
             - name: id
               in: body

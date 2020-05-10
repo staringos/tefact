@@ -9,8 +9,9 @@ from arrplat.common.auth_jwt_utils import user_required
 from extensions import db
 from arrplat.config import DEFAULT_PAGE, DEFAULT_PAGE_SIZE
 from arrplat.common.utils import json_response, valid_uuid, valid_not_blank, generate_uuid
-from arrplat.resources.page.schema import PageSchema, PageSectionSchema, EntityOptionSchema, EntityFieldsSchema
-from arrplat.resources.page.models import Page, PageSection, Entity, EntityField
+from arrplat.resources.page.schema import PageSchema, PageSectionSchema, \
+    EntityOptionSchema, EntityFieldsSchema, EntitySchema, DataSourceSchema, EntitySimpleSchema
+from arrplat.resources.page.models import Page, PageSection, Entity, EntityField, DataSource
 
 
 class QueryPageSchema(Schema):
@@ -26,6 +27,102 @@ class QuerySearchFieldConditionSchema(Schema):
 class QuerySortSchema(Schema):
     field_name = fields.String(required=False)
     order = fields.String(required=False, default='asc')
+
+
+class DataSourceResource(Resource):
+    @user_required
+    @use_kwargs({
+        "application_id": fields.String(required=True),
+        "name": fields.String(required=True),
+        "type": fields.String(required=True),
+        "connect_url": fields.String(required=False),
+        "file_url": fields.String(required=False),
+        "username": fields.String(required=False),
+        "password": fields.String(required=False),
+    })
+    def post(self, **kwargs):
+        """添加数据源
+          ---
+          tags:
+            - 数据源
+          parameters:
+            - name: application_id
+              in: data
+              type: string
+              required: true
+              description: 应用ID
+            - name: name
+              in: data
+              type: string
+              required: true
+              description: 数据源名称
+            - name: type
+              in: data
+              type: string
+              required: true
+              description: 数据源类型
+            - name: application_id
+              in: data
+              type: string
+              required: true
+              description: 应用ID
+            - name: connect_url
+              in: data
+              type: string
+              required: true
+              description: 数据源连接URL
+            - name: username
+              in: data
+              type: string
+              required: true
+              description: 数据源用户名
+            - name: password
+              in: data
+              type: string
+              required: true
+              description: 数据源密码
+          - name: file_url
+              in: data
+              type: string
+              required: true
+              description: 数据源文件路径
+          responses:
+            status:
+              description:
+        """
+        data_source = DataSource(
+            application_id=kwargs.get("application_id"),
+            name=kwargs.get("name"),
+            type=DataSource.string_to_type(kwargs.get("type")),
+            connect_url=kwargs.get("connect_url"),
+            file_url=kwargs.get("file_url"),
+            username=kwargs.get("username"),
+            password=kwargs.get("password"),
+        )
+        db.session.add(data_source)
+        db.session.commit()
+        return json_response("添加成功")
+
+
+class DataSourceEntityResource(Resource):
+    data_source_schema = DataSourceSchema(many=False)
+    entity_simple_schema = EntitySimpleSchema(many=True)
+
+    @user_required
+    def get(self, id):
+        data_source = db.session.query(DataSource) \
+            .join(Page, and_(DataSource.id == id)) \
+            .first()
+
+        if not data_source:
+            return json_response(message="找不到对应的数据源", status=404)
+
+        entities = db.session.query(Entity) \
+            .join(Page, and_(Entity.data_source_id == id))
+        data = self.data_source_schema(data_source).data
+        data.entities = entities
+
+        return json_response(data=data)
 
 
 class PageResource(Resource):
@@ -544,4 +641,50 @@ class EntityResource(Resource):
         except Exception as e:
             _ = e
             return json_response(message=str(e), status=403)
+        return json_response(data=data)
+
+
+class EntityDataResource(Resource):
+    @user_required
+    @use_kwargs({
+        'search_params': fields.List(fields.Dict()),
+        'page_params': fields.List(fields.Dict()),
+        'order_params': fields.List(fields.Dict())
+    })
+    def post(self, id, **kwargs):
+        """修改业数据回显选项列表
+          ---
+          tags:
+            - page页面数据
+          parameters:
+            - name: search_params
+              in: data
+              type: List
+              required: false
+              description: 列表搜索条件
+            - name: page_params
+              in: data
+              type: List
+              required: false
+              description: 分页条件
+            - name: order_params
+              in: data
+              type: List
+              required: false
+              description: 排序条件
+          responses:
+            200:
+              description:  成功
+              examples:
+                response: {"data": {"entity_data": [], "entity_fields": []}}
+        """
+        entity = Entity.query.filter(Entity.id == id).first()
+        if not entity:
+            return json_response(message="未找到对应的entity", status=404)
+        # try:
+        entity_schema = EntitySchema()
+        data = entity_schema.dump(entity).data
+        # except Exception as e:
+        #     _ = e
+        #     return json_response(message=str(e), status=403)
         return json_response(data=data)

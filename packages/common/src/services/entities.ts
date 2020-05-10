@@ -1,5 +1,17 @@
 export default (request) => {
   return {
+    addDataSource: (data) => request({
+      url: `/page/data-source`,
+      method: 'post',
+      data,
+    }),
+    getEntityData: ({ id, searchParams, pageParams, orderParams }) => request({
+      url: `/page/entity/data/${id}`,
+      method: 'post',
+      data: {
+        search_params: searchParams, page_params: pageParams, order_params: orderParams,
+      },
+    }),
     getEntityConfig: (key) => request({
       url: `/page/entity/${key}`,
       method: 'get',

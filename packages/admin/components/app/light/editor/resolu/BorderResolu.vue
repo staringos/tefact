@@ -28,9 +28,9 @@
 <script lang="ts">
   import { Vue, Component } from "nuxt-property-decorator";
   import BaseResolu from '~/components/app/light/editor/resolu/BaseResolu.vue'
-  import { BorderStyle } from "~/utils/constants/Editor";
+  import { BorderStyle } from '~/utils/constants/Editor'
   import ResoluMixin from '~/components/app/light/editor/resolu/ResoluMixin'
-  import ResoluBase from "~/components/app/light/editor/resolu/ResoluClass";
+  import ResoluBase from '~/components/app/light/editor/resolu/ResoluClass'
 
   @Component({
     components: { BaseResolu },

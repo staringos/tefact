@@ -3,28 +3,34 @@
     v-bind="$attrs"
     v-on="$listeners"
     :node="node"
-    :sectionId="sectionId"
     class="table-node"
   >
-    <List :section="section" :entityParams="entityParams" :entity="section.entity"></List>
+    <List :entityId="entityId" :section="conditions" :entityParams="entityParams" :entity="section.entity"></List>
   </BaseNode>
 </template>
 <style lang="scss">
-
+  .table-node {
+    display: flex;
+  }
 </style>
 <script lang="ts">
   import { Vue, Component } from "nuxt-property-decorator";
-  import List from '~/components/entities/List.vue'
+  import List from '../../../../../components/entities/List.vue'
   import NodeClass from '~/components/app/light/editor/nodes/NodeClass'
   import BaseNode from './BaseNode.vue'
 
   @Component({
     components: {
-      List, BaseNode
+      List,
+      BaseNode
     }
   })
   export default class TableNode extends NodeClass {
     section = {}
     entityParams = {}
+
+    conditions = {}
+
+    entityId = '3b4b2ebc58294149b717dacd912c4dab'
   }
 </script>

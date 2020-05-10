@@ -47,7 +47,7 @@ const config: Configuration = {
     // ARRPLAT_BASE_URL: 'http://arrplatapi.arrway.cn/api'
     // ARRPLAT_BASE_URL: 'http://localhost:5500'
     ARRPLAT_BASE_URL: 'http://localhost:5500',
-    BUCKET_NAME: 'arrplat'
+    BUCKET_NAME: 'arrplat',
   },
 
   /*
