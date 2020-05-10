@@ -126,9 +126,7 @@
     }
 
     handleToUpdate(e) {
-      console.log('ok submit');
       this.$emit('click', e);
-      // (this.$refs.uploader as any).submit()
     }
 
     handleUpdate(e) {

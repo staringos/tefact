@@ -93,7 +93,6 @@
     }
 
     get config() {
-      console.log('this.nodeType:', this.nodeType, this.NodeResoluConfig[this.nodeType])
       return this.NodeResoluConfig[this.nodeType]
     }
   }

@@ -33,8 +33,6 @@
   export default class PositionResolu extends ResoluBase {
     @Prop() sectionId
 
-    mounted() {
-      console.log("tmpNode:", this.tmpNode)
-    }
+    mounted() {}
   }
 </script>

@@ -129,7 +129,6 @@
     async getEntities() {
       if (!this.tmpNode) return
       const res = await this.getEntitiesByDataSourceId(this.tmpNode.data.dataSourceId)
-      console.log('res:', res)
       this.entities = res.data.data.entities
     }
 
@@ -150,8 +149,6 @@
       delete data.address
       delete data.port
       delete data.dbName
-
-      console.log('[handleAddDataSource] data:', data)
 
       const res = await this.addDataSource(data)
 

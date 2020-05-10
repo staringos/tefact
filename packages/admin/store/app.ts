@@ -33,7 +33,7 @@ class AppModule extends VuexModule {
   get currentOrg() {
     if (this.currentOrgId) {
       if (!this.orgs) return null
-      console.log('currentOrg:', this.orgs)
+
       const res = this.orgs.filter(org => org.id === this.currentOrgId)
       return res.length > 0 ? res[0] : this.orgs[0]
     }

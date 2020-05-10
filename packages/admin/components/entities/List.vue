@@ -102,7 +102,6 @@
     }
 
     get currentEntity() {
-      console.log('[currentEntity] this.tmpEntity:', this.tmpEntity, this.entity)
       if (this.entity) return this.entity
       return this.tmpEntity
     }
@@ -180,7 +179,6 @@
       this.loading = false
 
       this.tmpEntity = res.data.data;
-      console.log('tmpEntity:', this.tmpEntity)
     }
 
     public mounted() {
