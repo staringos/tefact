@@ -100,7 +100,7 @@ def entity_data_execute(self, data):
         data['page'] = calculate_page(total_count=total_count, page=page, page_size=size)
 
     # detail
-    elif self.page_section_type == 3:
+    if self.page_section_type == 3:
         split_different_field(self, data.get('entity_fields', list()))
         self.query_sql = self.query_sql.replace('*', ', '.join(self.entity_field_list))
         entity_row_proxy = db.session.execute(self.query_sql, self.sql_params).fetchone()

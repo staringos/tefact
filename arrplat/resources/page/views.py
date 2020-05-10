@@ -647,6 +647,7 @@ class EntityResource(Resource):
 class EntityDataResource(Resource):
     @user_required
     @use_kwargs({
+        'type': fields.Number(),
         'search_params': fields.List(fields.Dict()),
         'page_params': fields.List(fields.Dict()),
         'order_params': fields.List(fields.Dict())
@@ -682,7 +683,7 @@ class EntityDataResource(Resource):
         if not entity:
             return json_response(message="未找到对应的entity", status=404)
         # try:
-        entity_schema = EntitySchema()
+        entity_schema = EntitySchema(data_type=kwargs.get("data_type", 9))
         data = entity_schema.dump(entity).data
         # except Exception as e:
         #     _ = e

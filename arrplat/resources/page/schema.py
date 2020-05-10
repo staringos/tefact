@@ -40,9 +40,8 @@ class EntitySchema(ma.ModelSchema):
 
     button_sql = 'SELECT DISTINCT b.* FROM  button b JOIN entity_field_button efb ON b.id=efb.button_id AND efb.entity_field_id in :entity_field_id JOIN entity_field ef ON efb.entity_field_id=ef.id;'
 
-    def __init__(self, search_condition=None, is_all=False, *args, **kwargs):
+    def __init__(self, search_condition=None, is_all=False, data_type=9, *args, **kwargs):
         super(EntitySchema, self).__init__(*args, **kwargs)
-        print("did it inited")
         self.search_condition = search_condition
         self.is_all = is_all
         self.sql_params = dict()
@@ -52,7 +51,7 @@ class EntitySchema(ma.ModelSchema):
         self.query_one = False
         self.query_form_data = dict()
         self.is_analysis = False
-        self.page_section_type = 0
+        self.page_section_type = data_type
 
         self.entity_field_list = list()
         self.button_entity_field_list = list()
@@ -81,9 +80,8 @@ class EntitySchema(ma.ModelSchema):
 
         search_params = entity_data_connect_org(search_params, obj.table_name, obj.has_connect_org)
 
-        print('entity:key:', obj.key)
-
         self.query_sql = entity_init_sql(obj.query_sql, obj.table_name)
+
         self.query_sql = entity_data_search(self, self.query_sql, search_params, detail_params, obj.table_name)
         # entity_params
         self.query_sql = entity_data_params(self, self.query_sql, obj.table_name)

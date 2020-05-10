@@ -168,7 +168,8 @@
     }
 
     public async init() {
-      if (this.entity) return
+      if (this.entity || !this.entityId) return
+
       this.loading = true
       const res = await this.getEntityData({
         id: this.entityId,
