@@ -34,7 +34,5 @@
     entityParams = {}
     conditions = {}
     entityId = '3b4b2ebc58294149b717dacd912c4dab'
-
-    @Prop() public node!: TableNodeData
   }
 </script>
