@@ -1,6 +1,6 @@
 <template>
   <div class="editor-toolbar">
-    <i class="el-icon-arrow-left"></i>
+    <i class="el-icon-arrow-left" @click="$router.back()"></i>
     <div class="page-title">
       {{page.title}}
       <i class="el-icon-edit"></i>
@@ -71,6 +71,14 @@
   .editor-toolbar {
     display: flex;
     align-items: center;
+
+    .el-icon-arrow-left {
+      cursor: pointer;
+
+      &:hover {
+        color: $editor-main-color;
+      }
+    }
 
     .page-title {
       margin: 0 10px;
