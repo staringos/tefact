@@ -11,7 +11,7 @@ import requests
 from arrplat.config import config
 import base64
 from Crypto.Cipher import AES
-
+from flask import jsonify
 
 def generate_uuid_len(length):
     return str(uuid.uuid4()).replace("-", "")[0:length]
@@ -120,7 +120,7 @@ def json_response(data: list or dict or None = None, page=None, message=None, st
         422: '422 Unprocessable Entity',
         500: '500 Internal Server Error',
     }
-    res = make_response(JsonResponse(data, page, message).__dict__)
+    res = jsonify(JsonResponse(data, page, message).__dict__)
     res.status = status_dict[status]
     return res
 

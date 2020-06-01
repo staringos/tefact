@@ -103,10 +103,11 @@ class VerifyCodeResource(Resource):
         valid_code_base64_string = base64.b64encode(valid_code_bytes).decode()
         unique_string = generate_uuid()
         redis_0.set("verify_code:" + unique_string, valid_code_string, ex=Conf.get("VERIFY_CODE_EXPIRE", 180))
-        return json_response({
+
+        return json_response(data={
             "verify_code_image": valid_code_base64_string,
             "uuid": unique_string
-        })
+        }, message="成功")
 
 
 class PasswordLoginResource(Resource):

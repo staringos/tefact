@@ -1,6 +1,6 @@
 <template>
   <el-menu :default-active="activeIndex" router class="header-bar" mode="horizontal">
-    <Logo />
+    <Logo :title="title" />
     <div class="header-bar-main">
       <el-menu-item :index="`/plugins/${orgApps && orgApps[0] ? orgApps[0].admin_route : '' }`">工作台</el-menu-item>
       <el-menu-item index="/admin">桌面</el-menu-item>
@@ -19,7 +19,7 @@
 <script lang="ts">
   import Logo from './Logo.vue'
   import CreateOrgDialog from '../../organization/CreateOrgDialog.vue'
-  import { Component, Vue, namespace } from 'nuxt-property-decorator'
+  import { Component, Vue, namespace, Prop } from 'nuxt-property-decorator'
   import HeaderProfile from '~/components/layout/HeaderProfile.vue'
   import Toolbar from '~/components/layout/Toolbar.vue'
   import UserDetailDialog from '~/components/user/UserDetailDialog.vue'
@@ -31,7 +31,7 @@
 
   @Component({
     components: {
-        BasicModifyDialog,
+      BasicModifyDialog,
       UserDetailDialog,
       Toolbar,
       HeaderProfile,
@@ -46,6 +46,7 @@
     activeIndex = '0'
 
     @app.Getter orgApps
+    @Prop(String) title!: string | null
   }
 </script>
 <style lang="scss">

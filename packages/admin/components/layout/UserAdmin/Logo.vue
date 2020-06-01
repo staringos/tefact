@@ -1,7 +1,7 @@
 <template>
   <div class="title-wrapper">
     <LogoImage />
-    <h3 class="title">Arrplat</h3>
+    <h3 class="title">{{title || "Tefact"}}</h3>
   </div>
 </template>
 <style lang="scss" scoped>
@@ -27,13 +27,13 @@
   }
 </style>
 <script lang="ts">
-  import { Component, namespace, Vue } from 'nuxt-property-decorator'
+  import { Component, Vue, Prop } from 'nuxt-property-decorator'
   import LogoImage from '../LogoImage.vue'
 
   @Component({
     components: { LogoImage }
   })
   export default class Logo extends Vue {
-
+    @Prop(String) title!: String | null
   }
 </script>
