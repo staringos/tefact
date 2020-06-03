@@ -1,6 +1,6 @@
 <template>
   <div class="app-details-page" v-if="app">
-    <AppDetailsMenu />
+    <AppDetailsMenu :app="app" />
     <div class="app-attributes">
       <ArrPanel v-if="app.menus" border>
         <MenuList @refresh="handleRefresh" :appId="app.id" :menus="app.menus" :pages="app.pages" :onChange="(value) => handleDataChanged('menus', value)" />
@@ -36,7 +36,7 @@
   const app = namespace('app')
 
   @Component({
-    layout: 'UserAdmin',
+    layout: 'AppEditor',
     components: {
       AppDetailsMenu,
       AppDetails, MenuList, PageList

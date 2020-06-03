@@ -36,7 +36,7 @@
   const app = namespace('app')
 
   @Component({
-    layout: 'UserAdmin',
+    layout: 'AppEditor',
     components: {
       AppDetailsMenu,
       AppDetails, MenuList, PageList

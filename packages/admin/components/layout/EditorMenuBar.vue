@@ -5,7 +5,7 @@
     </div>
     <div class="menu-list">
       <el-tooltip class="item" effect="dark" :content="menu.title" placement="right" v-for="(menu, i) in menus" :key="i">
-        <a href="javascript:void(0);" @click="handleMenuClick(menu)">
+        <a :class="`menu-item ${active === menu.id ? 'active' : ''}`" href="javascript:void(0);" @click="handleMenuClick(menu)">
           <div :class="`editor-menu-btn ${currentMenu && currentMenu === menu.route ? ' active' : ''}`">
             <i :class="`tefact-icon ${menu.icon}`"></i>
             <span class="menu-btn-title">{{menu.title}}</span>
@@ -53,6 +53,17 @@
       flex-direction: column;
       flex-grow: 1;
 
+      .menu-item {
+        text-decoration: none;
+
+        &.active, &:hover {
+          .editor-menu-btn {
+            box-sizing: border-box;
+            border-left: 4px solid white;
+          }
+        }
+      }
+
       .editor-menu-btn {
         width: 70px;
         height: 70px;
@@ -72,10 +83,6 @@
         .menu-btn-title {
           font-size: 12px;
           color: white;
-        }
-
-        &.active, &:hover {
-          border-left: 3px solid white;
         }
       }
 
@@ -117,19 +124,37 @@
     @system.Action togglePluginMenu
 
     currentMenu = "/"
-
     menus = [
-      { icon: "tf-icon-all", title: "基本信息", route: "/" },
-      { icon: "tf-icon-integral", title: "菜单页面", route: "/menu-page" },
-      { icon: "tf-icon-packing-labeling", title: "数据源", route: "/data-source" },
-      { icon: "tf-icon-conditions", title: "应用设置", route: "/setting" }
+      { id: "home", icon: "tf-icon-all", title: "基本信息", route: "/app/light/${id}/" },
+      { id: "menu-page", icon: "tf-icon-integral", title: "菜单页面", route: "/app/light/${id}/menu-page" },
+      { id: "data-source", icon: "tf-icon-packing-labeling", title: "数据源", route: "/app/light/${id}/data-source" },
+      { id: "setting", icon: "tf-icon-conditions", title: "应用设置", route: "/app/light/${id}/setting" }
     ]
 
     handleMenuClick(menu) {
+      this.$router.push(menu.route.replace("${id}", this.$route.params.id))
     }
 
     handleToggleMenu() {
       this.togglePluginMenu()
+    }
+
+    get active() {
+      const route = this.$route.path
+
+      if (route.indexOf("menu-page") > -1) {
+        return "menu-page"
+      }
+
+      if (route.indexOf("data-source") > -1) {
+        return "data-source"
+      }
+
+      if (route.indexOf("setting") > -1) {
+        return "setting"
+      }
+
+      return "home"
     }
   }
 </script>
