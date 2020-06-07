@@ -1,11 +1,11 @@
 <template>
   <div class="app-details-page" v-if="app">
-    <AppDetailsMenu :app="app" />
+<!--    <AppDetailsMenu :app="app" />-->
     <div class="app-attributes">
       <ArrPanel v-if="app.menus" border>
         <MenuList @refresh="handleRefresh" :appId="app.id" :menus="app.menus" :pages="app.pages" :onChange="(value) => handleDataChanged('menus', value)" />
       </ArrPanel>
-      <ArrPanel v-if="app.pages" border>
+      <ArrPanel v-if="app" border>
         <PageList @refresh="handleRefresh" :appId="app.id" :pages="app.pages" :entities="app.entities" :onChange="(value) => handleDataChanged('pages', value)" />
       </ArrPanel>
     </div>
@@ -59,10 +59,12 @@
     async refresh() {
       this.id = this.$route.params.id
       const res = await this.getAppDetails(this.id)
+      console.log("refresh res:", res);
       this.app = res.data.data
     }
 
     async mounted() {
+      console.log("mmmmmounted");
       this.refresh()
     }
   }

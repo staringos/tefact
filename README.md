@@ -1,6 +1,10 @@
-# Tefact
+# Tefact 低代码平台
 
-企业级多应用管理解决方案. All in one platform. Multi-Application solution for enterprise.
+Tefact 低代码平台 让你通过无需任何代码即可生成简单CRUD后台 Build your admin panel without code!
+
+![Arrplat Overview](./docs/images/editor.png)
+
+[点击查看DEMO](http://saas.tefact.com)
 
 ![Arrplat Overview](./docs/images/home-page.png)
 

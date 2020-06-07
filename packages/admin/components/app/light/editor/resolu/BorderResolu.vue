@@ -1,7 +1,7 @@
 <template>
   <BaseResolu title="边框设置" v-bind="$attrs">
     <div class="resolu-container">
-      <div class="resolu-row" v-if="tmpNode">
+      <div class="resolu-row" v-if="tmpNode && tmpNode.config">
         <div class="resolu-label">边框</div>
         <el-color-picker v-model="tmpNode.config.style['border-color']" @change="handleSave" show-alpha  size="small"></el-color-picker>
         <el-select class="resolu-form-item" v-model="tmpNode.config.style['border-style']" placeholder="边框样式" size="small" @change="handleSave">

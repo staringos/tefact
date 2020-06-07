@@ -132,10 +132,14 @@
     ]
 
     handleMenuClick(menu) {
-      this.$router.push(menu.route.replace("${id}", this.$route.params.id))
+      this.$router.push(menu.route.replace("${id}", this.id))
     }
 
-    handleToggleMenu() {
+    get id () {
+      return this.$route.params.id;
+    }
+
+   handleToggleMenu() {
       this.togglePluginMenu()
     }
 
