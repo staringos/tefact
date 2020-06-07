@@ -59,12 +59,10 @@
     async refresh() {
       this.id = this.$route.params.id
       const res = await this.getAppDetails(this.id)
-      console.log("refresh res:", res);
       this.app = res.data.data
     }
 
     async mounted() {
-      console.log("mmmmmounted");
       this.refresh()
     }
   }
