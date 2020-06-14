@@ -42,7 +42,7 @@ Tefact 低代码平台 让你通过无需任何代码即可生成简单CRUD后�
 
 Copy `config.example.py` as `config.py` and change database and redis configuration in it.
 
-### Run In Docker
+### Docker启动 Run In Docker
 
 Build Docker Image
 
@@ -56,32 +56,21 @@ Run it
 docker run -it -p 5000:5000 --name arrplat-run -d Tefact
 ```
 
-## Run Manually
+### 手动启动 Run Manually
 
 **!! NodeJS = 12.2.0 !!**
 
 Install Dependencies
 
 ```
+cd admin
 yarn
-```
-
-Related Dependencies
-
-```
-yarn run build:start
-lerna bootstrap
-```
-
-Init Plugin Config
-
-```bash
-./bin/startup.sh
 ```
 
 Install server requirements
 
 ```
+cd ../
 pip install -r requirements.txt
 ```
 
@@ -97,9 +86,9 @@ Start admin panel
 yarn run dev
 ```
 
-goto your bower: http://localhost:3000/
+goto your bower: http://localhost:8800/
 
-## Init Database (If a new server)
+## 初始化数据库 Init Database (If a new server)
 
 Generate an initial migration:
 
@@ -124,7 +113,3 @@ Init product structure data
 ```bash
 python manage.py init-data
 ```
-
-## Folder
-
-![](./docs/images/folder.png)
