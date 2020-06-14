@@ -2,6 +2,6 @@
   "name": "Arrplat",
   "description": "The best open source PaaS library",
   "plus": {
-    "plus": [ "arrplat-book", "arrplat-meeting", "arrplat-guitar", "arrplat-crm", "arrplat-name-card", "arrplat-organization", "arrplat-k8s", "arrplat-education", "arrplat-platform" ]
+    "plus": [ "arrplat-organization" ]
   }
 }

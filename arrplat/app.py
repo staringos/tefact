@@ -10,6 +10,7 @@ from .resources.user.urls import blueprint as user_blueprint
 from .resources.auth.urls import blueprint as auth_blueprint
 from .resources.application.urls import blueprint as app_blueprint
 from .resources.page.urls import blueprint as page_blueprint
+from .resources.organization.urls import blueprint as org_blueprint
 from arrplat.config import config
 from .common.utils import DecimalEncoder
 
@@ -20,7 +21,7 @@ def create_app():
     flask_app = Flask(__name__)
     flask_app.config = dict(flask_app.config, **config.get('system'))
     CORS(flask_app, supports_credentials=True)
-    setup_plugins.install_blueprint(flask_app)
+#     setup_plugins.install_blueprint(flask_app)
     configure_extensions(flask_app)
     register_blueprints(flask_app)
 
@@ -42,6 +43,7 @@ def register_blueprints(flask_app):
     flask_app.register_blueprint(core_blueprint, url_prefix='/core')
     flask_app.register_blueprint(app_blueprint, url_prefix='/app')
     flask_app.register_blueprint(page_blueprint, url_prefix='/page')
+    flask_app.register_blueprint(org_blueprint, url_prefix='/org')
 
 
 config_name = os.environ.get('API_CONFIG', 'development')
