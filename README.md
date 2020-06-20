@@ -2,20 +2,21 @@
   <img src="./admin/assets/images/logo-banner.png">
 </div>
 
-<div align="center">
+# Tefact 低代码平台
+
 [![license](https://img.shields.io/badge/license-MIT-brightgreen.svg?style=flat)](https://github.com/Tefact/tefact-saas)
 [![Release Version](https://img.shields.io/badge/release-0.0.1-red.svg)](https://github.com/Tefact/tefact-saas/releases)
 [![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg)](https://github.com/Tefact/tefact-saas/pulls)
-</div>
+
 
 让你通过无需任何代码即可生成简单CRUD后台，方便的管理您的应用、页面、数据源、工作流 
 Build your admin panel without code!
 
-![Arrplat Overview](./docs/images/editor.png)
+![Tefact Overview](./docs/images/editor.png)
 
 [点击查看DEMO](http://saas.tefact.com)
 
-![Arrplat Overview](./docs/images/home-page.png)
+![Tefact Overview](./docs/images/home-page.png)
 
 #### 自定义丰富的企业应用
 
@@ -27,7 +28,7 @@ Build your admin panel without code!
 
 ## Tech Stack
 
-![Arrplat Overview](./docs/images/overview.png)
+![Tefact Overview](./docs/images/overview.png)
 
 #### Front End
 
@@ -56,13 +57,13 @@ Copy `config.example.py` as `config.py` and change database and redis configurat
 Build Docker Image
 
 ```shell script
-docker build -t arrplat .
+docker build -t tefact .
 ```
 
 Run it
 
 ```shell script
-docker run -it -p 5000:5000 --name arrplat-run -d Tefact
+docker run -it -p 5000:5000 --name terfact-run -d Tefact
 ```
 
 ### 手动启动 Run Manually
