@@ -64,7 +64,9 @@ Install Dependencies
 
 ```
 cd admin
-yarn
+RUN npm config set unsafe-perm true
+npm install
+npm run generate
 ```
 
 Install server requirements
