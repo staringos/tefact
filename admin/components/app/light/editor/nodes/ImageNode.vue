@@ -103,14 +103,12 @@
   import _ from 'lodash'
   import { ImageNodeModel } from '~/utils/entities/editor/node'
   import BaseNode from './BaseNode.vue'
-  import { Editor, EditorContent } from "tiptap";
-  import { Bold, Italic, Strike, Underline } from "tiptap-extensions";
 
   const editor = namespace('editor')
   const system = namespace('system')
 
   @Component({
-    components: { BaseNode, EditorContent }
+    components: { BaseNode }
   })
   export default class ImageNode extends Vue {
     @Prop() node!: ImageNodeModel

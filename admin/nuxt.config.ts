@@ -1,4 +1,5 @@
 import { Configuration } from '@nuxt/types'
+import LodashModuleReplacementPlugin from 'lodash-webpack-plugin'
 let options = {} as any
 
 const script = [
@@ -77,8 +78,21 @@ const config: Configuration = {
   */
   build: {
     transpile: [
-      'vuex-module-decorators'
+      'vuex-module-decorators', /^element-ui/
     ],
+    plugins: [
+      new LodashModuleReplacementPlugin()
+    ],
+    babel: {
+      plugins: [
+        ["component",
+          {
+            "libraryName": "element-ui",
+            "styleLibraryName": "theme-chalk"
+          }
+        ]
+      ],
+    },
     /*
     ** You can extend webpack config here
     */
