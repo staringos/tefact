@@ -14,7 +14,7 @@ from extensions import db
 
 class SetupPlugins(object):
     def __init__(self):
-        self.plugins_config_file = '.arrplat.json'
+        self.plugins_config_file = 'arrplat.config.json'
         self.base_path = basedir
         self.plugins_path = self.plugins_info()['plus_base_path']
         # self.source_venv = os.system(f'source {basedir}/venv/bin/activate')
@@ -80,7 +80,7 @@ class SetupPlugins(object):
         name = file['name']
         description = file['description']
         plus = file['plus']['plus']
-        plus_base_path = file['plus']['plusDir']
+        plus_base_path = file['plus'].get('plusDir')
 
         context = {
             'name': name,
@@ -98,7 +98,7 @@ class ApplicationData(Command):
 
     def __init__(self, *args, **kwargs):
         super(Command, self).__init__(*args, **kwargs)
-        self.config_name = '.arrplat.json'
+        self.config_name = 'arrplat.config.json'
         self.config_file_path = ''
         self.config = self.serialized_file(self.config_name)
         self.plus = self.get_plus(self.config)
@@ -118,7 +118,7 @@ class ApplicationData(Command):
         :param file_path:
         :return:
         """
-        print('开始解析文件')
+        print('开始解析文件:', file_path)
         is_file = os.path.isfile(file_path)
         assert is_file, '插件的配置文件路径有误,读取路径{}'.format(file_path)
         with open(file_path, mode='r', encoding='utf-8') as f:

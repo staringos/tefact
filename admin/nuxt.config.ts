@@ -6,9 +6,11 @@ const script = [
   { src: 'https://res.wx.qq.com/connect/zh_CN/htmledition/js/wxLogin.js' }
 ]
 
+const isDev = process.env.NODE_ENV !== 'production'
+
 // @ts-ignore
 const config: Configuration = {
-  dev: (process.env.NODE_ENV !== 'production'),
+  dev: isDev,
   server: {
     port: 8800,
     host: '0.0.0.0'
@@ -35,7 +37,7 @@ const config: Configuration = {
     // ARRPLAT_BASE_URL: 'http://arrplat.arrway.cn/api'
     // ARRPLAT_BASE_URL: 'http://arrplatapi.arrway.cn/api'
     // ARRPLAT_BASE_URL: 'http://localhost:5500'
-    ARRPLAT_BASE_URL: 'http://localhost:5500',
+    ARRPLAT_BASE_URL: isDev ? 'http://localhost:5500' : 'http://saasapi.tefact.com/',
     BUCKET_NAME: 'arrplat',
   },
 
