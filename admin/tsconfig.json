@@ -29,6 +29,9 @@
       ],
       "@/*": [
         "./*"
+      ],
+      "lodash/*": [
+        "node_modules/@types/lodash-es/*"
       ]
     },
     "types": [
