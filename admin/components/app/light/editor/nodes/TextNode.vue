@@ -39,7 +39,7 @@
   import { TextNodeModel } from '~/utils/entities/editor/node'
   import BaseNode from './BaseNode.vue'
   import { Editor, EditorContent } from "tiptap";
-  import { Bold, Italic, Strike, Underline } from "tiptap-extensions";
+  // import { Bold, Italic, Strike, Underline } from "tiptap-extensions";
 
   const editor = namespace('editor')
 
@@ -59,10 +59,10 @@
     init () {
       const editor = new Editor({
         extensions: [
-          new Bold(),
-          new Italic(),
-          new Strike(),
-          new Underline()
+          // new Bold(),
+          // new Italic(),
+          // new Strike(),
+          // new Underline()
         ],
         editable: !this.preview,
         content: this.node.data.text

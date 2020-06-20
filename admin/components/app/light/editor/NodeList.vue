@@ -17,7 +17,7 @@
 <script lang="ts">
   import { Vue, Component, namespace } from 'nuxt-property-decorator'
   import { NodeListConstants } from '~/utils/constants/Editor'
-  import _ from 'lodash'
+  import cloneDeep from 'lodash/clonedeep'
 
   const editor = namespace('editor')
 
@@ -28,7 +28,7 @@
     @editor.Action addNode
 
     handleAddNode(nodeData) {
-      this.addNode(_.cloneDeep(nodeData))
+      this.addNode(cloneDeep(nodeData))
     }
   }
 </script>
