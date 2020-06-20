@@ -31,7 +31,7 @@
         "./*"
       ],
       "lodash/*": [
-        "node_modules/@types/lodash-es/*"
+        "node_modules/@types/lodash/*"
       ]
     },
     "types": [
