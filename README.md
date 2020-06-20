@@ -1,6 +1,13 @@
-# Tefact 低代码平台
+<div align="center">
+  <img src="./admin/assets/images/logo-banner.png">
+</div>
 
-Tefact 低代码平台 让你通过无需任何代码即可生成简单CRUD后台 Build your admin panel without code!
+[![license](https://img.shields.io/badge/license-MIT-brightgreen.svg?style=flat)](https://github.com/Tefact/tefact-saas)
+[![Release Version](https://img.shields.io/badge/release-0.0.1-red.svg)](https://github.com/Tefact/tefact-saas/releases)
+[![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg)](https://github.com/Tefact/tefact-saas/pulls)
+
+让你通过无需任何代码即可生成简单CRUD后台，方便的管理您的应用、页面、数据源、工作流 
+Build your admin panel without code!
 
 ![Arrplat Overview](./docs/images/editor.png)
 
