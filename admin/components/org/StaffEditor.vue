@@ -57,7 +57,7 @@
 <script lang="ts">
   import { Component, Vue, namespace, Prop, Watch, Emit } from 'nuxt-property-decorator'
   import { StaffParams, DefaultStaff } from '~/services/common'
-  import _ from 'lodash'
+  import { cloneDeep } from 'lodash-es'
 
   const org = namespace('org')
   const app = namespace('app')
@@ -92,7 +92,7 @@
 
     @Watch('staff')
     onStaffChange() {
-      const entity = _.cloneDeep(this.staff)
+      const entity = cloneDeep(this.staff)
       entity.phone = entity.user.phone
 
       if (entity.org_department && entity.org_department.length > 0)

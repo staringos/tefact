@@ -1,8 +1,11 @@
 <template>
   <div class="app-details-page" v-if="app">
-    <AppDetailsMenu :app="app"/>
     <ArrPanel class="app-details-container" v-if="app" border>
-      <AppDetails :app="app" :onChange="(value) => handleDataChanged(null, value)" />
+      <AppDetails :app="app" @change="handleDataChanged" />
+    </ArrPanel>
+
+    <ArrPanel class="app-number-container" v-if="app" border>
+      <AppNumbers />
     </ArrPanel>
   </div>
 </template>
@@ -10,10 +13,15 @@
 .app-details-page {
   display: flex;
   flex-direction: row;
-  height: 100%;
   flex: 1;
+  height: 230px;
 
   .app-details-container {
+    flex: 1;
+    padding-left: 50px;
+  }
+
+  .app-number-container {
     flex: 1;
   }
 
@@ -33,6 +41,7 @@
   import MenuList from "~/components/app/light/MenuList.vue";
   import PageList from "~/components/app/light/PageList.vue";
   import AppDetailsMenu from '~/components/app/light/AppDetailsMenu.vue';
+  import AppNumbers from '~/components/app/light/AppNumbers.vue';
 
   const app = namespace('app')
 
@@ -41,7 +50,10 @@
     mixins: [ AppDetailsMixin ],
     components: {
       AppDetailsMenu,
-      AppDetails, MenuList, PageList
+      AppDetails,
+      MenuList,
+      PageList,
+      AppNumbers
     }
   })
   export default class AppItem extends Vue {
@@ -55,7 +67,7 @@
     }
 
     handleDataChanged() {
-
+      this.refresh()
     }
 
     async refresh() {

@@ -50,6 +50,14 @@ class AppModule extends VuexModule {
     return current
   }
 
+  @Action({ rawError: true })
+  public async modifyApp({ id, app }) {
+    const res = await service.app.modifyApp(id, app)
+    if (res.status === 200) {
+      this.getAllAppsInOrg(this.currentOrgId)
+    }
+  }
+
   @Action({ commit: 'GET_APPS', rawError: true })
   public async removeLightApp(appId) {
     const res = await service.app.removeLightApp(appId)

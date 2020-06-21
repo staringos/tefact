@@ -80,7 +80,7 @@ const config: Configuration = {
   */
   build: {
     transpile: [
-      'vuex-module-decorators', /^element-ui/
+      'vuex-module-decorators', /^element-ui/, 'lodash-es'
     ],
     plugins: [
       new LodashModuleReplacementPlugin()

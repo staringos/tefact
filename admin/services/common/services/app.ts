@@ -43,6 +43,11 @@ export default (request) => {
       url: `/org/${orgId}/app/${appId}`,
       method: 'post',
     }),
+    modifyApp: (appId, app) => request({
+      url: `/app/light/${appId}`,
+      method: 'put',
+      data: app
+    }),
     removeApp: (appId, orgId) => request({
       url: `/org/${orgId}/app/${appId}`,
       method: 'delete',

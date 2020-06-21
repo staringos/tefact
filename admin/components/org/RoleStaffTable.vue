@@ -39,7 +39,6 @@
   import StaffTable from './StaffTable.vue'
   import SaveButton from './SaveButton.vue'
   import { Confirm } from '~/components/ui'
-  import _ from 'lodash'
 
   const org = namespace('org')
   const app = namespace('app')

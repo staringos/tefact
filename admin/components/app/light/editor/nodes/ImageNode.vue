@@ -100,7 +100,7 @@
 </style>
 <script lang="ts">
   import { Vue, Component, Prop, namespace } from 'nuxt-property-decorator'
-  import _ from 'lodash'
+  import { cloneDeep } from 'lodash-es'
   import { ImageNodeModel } from '~/utils/entities/editor/node'
   import BaseNode from './BaseNode.vue'
 
@@ -128,7 +128,7 @@
     }
 
     handleUpdate(e) {
-      const node = _.cloneDeep(this.node)
+      const node = cloneDeep(this.node)
       node.data.url = 'http://' + e[0]
       this.modifyNode({ sectionId: this.sectionId, node })
     }

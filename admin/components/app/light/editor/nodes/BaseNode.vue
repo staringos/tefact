@@ -67,7 +67,7 @@
 <script lang="ts">
   import { Vue, Component, Prop, namespace } from 'nuxt-property-decorator'
   import VueDraggableResizable from 'vue-draggable-resizable-gorkys'
-  import _ from 'lodash'
+  import { cloneDeep } from 'lodash-es'
   import { BaseNodeModel } from '~/utils/entities/editor/node'
 
   const editor = namespace('editor')
@@ -114,7 +114,7 @@
       const config = this.node.config
       if (config.x === x && config.y === y && config.w === w && config.h === h) return
 
-      const node = _.cloneDeep(this.node)
+      const node = cloneDeep(this.node)
       node.config = { ...this.node.config, x, y, w, h }
 
       this.modifyNode({ sectionId: this.sectionId, node })
@@ -124,7 +124,7 @@
       const config = this.node.config
       if (config.x === x && config.y === y) return
 
-      const node = _.cloneDeep(this.node)
+      const node = cloneDeep(this.node)
       node.config = { ...this.node.config, x, y }
       this.modifyNode({ sectionId: this.sectionId, node })
     }

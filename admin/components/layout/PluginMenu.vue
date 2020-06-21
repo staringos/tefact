@@ -80,7 +80,6 @@
     .plugin-menu-content {
       width: 100%;
       flex: 1;
-      max-height: 1;
       overflow: auto;
 
       .menu-icon {
@@ -92,14 +91,14 @@
 </style>
 <script>
   import { Component, Vue, namespace } from 'nuxt-property-decorator'
-  import _ from 'lodash'
+  import { cloneDeep } from 'lodash-es'
 
   const app = namespace('app')
   const system = namespace('system')
 
   @Component({})
   export default class PluginMenu extends Vue {
-    lodash = _
+    lodash = { cloneDeep }
 
     @app.Getter currentApp
     @system.Getter showPluginMenuGetter

@@ -1,12 +1,12 @@
 <template>
   <div>
-    <ArrTitle bordered>应用基本信息
-      <el-button size="small" icon="el-icon-edit" @click="handleDialogOpen" circle />
-    </ArrTitle>
     <div class="app-base-details">
       <div class="title-part">
         <el-avatar :size="100" :src="app.icon" />
-        <h3>{{app.title}}</h3>
+        <h3>
+          {{app.title}}
+          <el-button type="text" size="small" icon="el-icon-edit" @click="handleDialogOpen" />
+        </h3>
       </div>
       <div class="flex2">
         <AttributeList :attributes="attributes" />
@@ -19,23 +19,14 @@
         :close-on-press-escape="false"
         width="30%">
         <el-form label-width="80px" :model="form">
-          <el-form-item label="应用ICON">
-            <el-input v-model="form.icon"></el-input>
-          </el-form-item>
           <el-form-item label="应用包名">
-            <el-input v-model="form.name"></el-input>
+            <el-input v-model="form.name" disabled></el-input>
           </el-form-item>
-          <el-form-item label="应用中文名">
+          <el-form-item label="应用标题">
             <el-input v-model="form.title"></el-input>
           </el-form-item>
           <el-form-item label="描述">
             <el-input v-model="form.description"></el-input>
-          </el-form-item>
-          <el-form-item label="后台路由">
-            <el-input v-model="form.apiRoute"></el-input>
-          </el-form-item>
-          <el-form-item label="接口路由">
-            <el-input v-model="form.adminRoute"></el-input>
           </el-form-item>
           <el-form-item label="排序">
             <el-input v-model="form.sort"></el-input>
@@ -52,26 +43,44 @@
     </div>
   </div>
 </template>
-<style lang="scss">
+<style lang="scss" scoped>
+  .app-base-details {
+    display: flex;
 
+    .title-part {
+      margin-right: 50px;
+      justify-content: center;
+      display: flex;
+      flex-direction: column;
+
+      h3 {
+        margin-top: 10px;
+      }
+    }
+  }
 </style>
 <script lang="ts">
-  import { Vue, Component, Prop } from 'nuxt-property-decorator'
+  import { Vue, Component, Prop, Watch, namespace, Emit } from 'nuxt-property-decorator'
+  import { cloneDeep } from "lodash-es"
+
+  const app = namespace("app")
 
   @Component
   export default class AppDetails extends Vue {
     @Prop() app
     @Prop() onChange
+    @app.Action modifyApp
 
     dialogVisible = false
     form = {} as any
 
-    public handleSave() {
-      this.onChange(this.form)
+    @Emit('change')
+    public async handleSave() {
+      await this.modifyApp({ id: this.app.id, app: this.form })
       this.dialogVisible = false
     }
 
-    public handleDialogOpen() {
+    public async handleDialogOpen() {
       this.dialogVisible = true
     }
 
@@ -84,8 +93,25 @@
         { key: '接口路由', value: this.app.apiRoute }]
     }
 
+    public init() {
+      if (!this.app) return
+
+      this.form = {
+        name: this.app.name,
+        title: this.app.title,
+        description: this.app.description,
+        key: this.app.key,
+        icon: this.app.icon
+      }
+    }
+
+    @Watch('app')
+    public handleAppChange() {
+      this.init()
+    }
+
     mounted() {
-      this.form = { ...this.app }
+      this.init()
     }
   }
 </script>
