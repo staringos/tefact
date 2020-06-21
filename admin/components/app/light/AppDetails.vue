@@ -2,7 +2,14 @@
   <div>
     <div class="app-base-details">
       <div class="title-part">
-        <el-avatar :size="100" :src="app.icon" />
+        <AvatarUploader
+          :size="100"
+          :link="app.icon"
+          :actionUrl="uploadUrl"
+          @onChange="handleAvatarChanged"
+        ></AvatarUploader>
+
+<!--        <el-avatar :size="100" :src="app.icon" />-->
         <h3>
           {{app.title}}
           <el-button type="text" size="small" icon="el-icon-edit" @click="handleDialogOpen" />
@@ -64,12 +71,14 @@
   import { cloneDeep } from "lodash-es"
 
   const app = namespace("app")
+  const system = namespace("system")
 
   @Component
   export default class AppDetails extends Vue {
     @Prop() app
     @Prop() onChange
     @app.Action modifyApp
+    @system.Getter uploadUrl
 
     dialogVisible = false
     form = {} as any
@@ -78,6 +87,11 @@
     public async handleSave() {
       await this.modifyApp({ id: this.app.id, app: this.form })
       this.dialogVisible = false
+    }
+
+    public async handleAvatarChanged(icon) {
+      this.form.icon = icon;
+      this.handleSave();
     }
 
     public async handleDialogOpen() {
