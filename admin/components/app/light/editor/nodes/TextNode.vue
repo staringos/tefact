@@ -34,7 +34,7 @@
 </style>
 <script lang="ts">
   import { Vue, Component, Prop, namespace } from 'nuxt-property-decorator'
-  import _ from 'lodash'
+  import { cloneDeep } from 'lodash-es'
   import NodeClass from './NodeClass'
   import { TextNodeModel } from '~/utils/entities/editor/node'
   import BaseNode from './BaseNode.vue'
@@ -81,7 +81,7 @@
 
     handleUpdate() {
       const newContent = this.editor.getHTML()
-      const node = _.cloneDeep(this.node)
+      const node = cloneDeep(this.node)
       node.data.text = newContent
       this.modifyNode({ sectionId: this.sectionId, node })
 

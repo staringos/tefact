@@ -16,7 +16,7 @@
 
     <div class="right-button">
       <el-button-group>
-        <el-button v-for="device in deviceList" :type="editorSetting.device === device.value ? 'primary' : 'default'" size="small" @click="handleSelectDevices(device)">
+        <el-button v-for="(device, i) in deviceList" :key="i" :type="editorSetting.device === device.value ? 'primary' : 'default'" size="small" @click="handleSelectDevices(device)">
           <i :class="`tefact-icon ${device.icon}`"></i>
         </el-button>
       </el-button-group>
