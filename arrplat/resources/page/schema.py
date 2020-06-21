@@ -73,7 +73,6 @@ class EntitySchema(ma.ModelSchema):
 
         # 跳过data_type为analysis的
         if obj.data_type == 2 or not obj.table_name:
-            print(obj.key, 'obj.data_type == 2 or not obj.table_name')
             # 如果这里不设置query_sql, 之后execute_query_sql方法会判断跳过, 需要设置is_analysis = True
             self.is_analysis = True
             return

@@ -154,7 +154,6 @@ def sql_tuple_to_dict(data: list) -> list:
 
 # 执行sql获取数据返回
 def sql_execute_commit(sql: str):
-    print(sql)
     res = db.session.execute(sql)
     data = res.fetchall()
     data_list = sql_tuple_to_dict(data)
