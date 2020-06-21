@@ -38,7 +38,6 @@ def loop_sql_entity_field(self, item):
         for param in sql_params:
             value = item[param] if item.get(param) else ''
             if not value:
-                print(param, 'not value')
                 value_flag = False
                 break
             query_sql = query_sql.replace('${%s}' % param, '"%s"' % value)

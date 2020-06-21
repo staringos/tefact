@@ -781,7 +781,7 @@ class OrgCreateStaffResource(Resource):
         db.session.add(message_obj)
         s = send_sms(generate_uuid(), phone, "锐途云", "SMS_181866455",
                      {'name': f'{current_user_obj.nickname}', 'org': f'{org_obj.name}'})
-        print(s)
+
         try:
             db.session.commit()
             return json_response(None, message='加入成功，将以短信形式通知该员工', status=200)
@@ -1332,9 +1332,6 @@ class OrgApplicationResource(Resource):
             # return json_response(res)
         else:
             # 查询出该组织下的所有app
-            print('platform:')
-            print(platform)
-
             org_app_obj = Application.query.join(OrgApplication) \
                 .filter(OrgApplication.organization_id == org_id) \
                 .join(ApplicationMenus, isouter=True) \
@@ -1352,14 +1349,12 @@ class OrgApplicationResource(Resource):
 
             # 先把父节点拿出来
             parent_menus = [x for x in menus if x.get('parent_id', '0') == '0']
-            # print(parent_menus)
 
             # 补充子节点
             for m in parent_menus:
                 m['children'] = []
                 # 必须用倒序遍历, 否则remove会漏数据
                 for n in menus[::-1]:
-                    # print(n)
                     if n['parent_id'] == m['id']:
                         # 因为倒序遍历, 要用insert保证顺序, 否则用append
                         m['children'].insert(0, n)

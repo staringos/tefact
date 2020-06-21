@@ -188,9 +188,47 @@ class LightAppModifyResource(Resource):
         return json_response(res)
 
     @use_kwargs({
+        "name": fields.String(required=False),
+        "title": fields.String(required=True),
+        "description": fields.String(required=False),
+        "icon": fields.String(required=False),
+        "key": fields.String(required=False)
+    })
+    def put(self, id, **kwargs):
+        """应用基本信息修改
+          ---
+
+          tags:
+            - 轻应用
+          parameters:
+            - name: id
+              in: body
+              type: string
+              required: true
+        """
+        if not kwargs or not kwargs.get("title"):
+            return json_response(message="参数错误", status=400)
+
+        app = db.session.query(Application).filter(Application.id == id).first()
+
+        if not app:
+            return json_response(message=f"未找到应用", status=404)
+
+        app.name = kwargs.get("name")
+        app.title = kwargs.get("title")
+        app.key = kwargs.get("key")
+        app.description = kwargs.get("description")
+        app.icon = kwargs.get("icon")
+
+        db.session.add(app)
+        db.session.commit()
+
+        return json_response(message="修改成功")
+
+    @use_kwargs({
     })
     def delete(self, id):
-        """创建轻应用
+        """删除轻应用
           ---
           tags:
             - 轻应用

@@ -41,8 +41,6 @@ class VerifyCodeImg:
         image = Image.new("RGB", (self.width, self.height), self.get_random_color())
         draw = ImageDraw.Draw(image)
         font = ImageFont.load_default()
-        print('font:')
-        print(FONT_PATH)
         font = ImageFont.truetype(FONT_PATH, size=self.font_size)
 
         temp = []
