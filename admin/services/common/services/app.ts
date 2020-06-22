@@ -14,6 +14,15 @@ export default (request) => {
       method: 'post',
       data,
     }),
+    deleteMenu: (id) => request({
+      url: `/app/light/menu/${id}`,
+      method: 'delete'
+    }),
+    modifyMenu: (id, data) => request({
+      url: `/app/light/menu/${id}`,
+      method: 'put',
+      data
+    }),
     getAppDetails: (appId) => request({
       url: `/app/light/${appId}`,
       method: 'get',

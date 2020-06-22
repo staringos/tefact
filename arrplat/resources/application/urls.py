@@ -1,7 +1,8 @@
 from flask import Blueprint
 from flask_restful import Api
 from .views import LightAppResource, LightAppModifyResource, \
-    LightAppMenu, LightAppPage, LightPageResource, PageSectionResource, PageSectionListResource, DataSourceListResource
+    LightAppMenu, LightAppPage, LightPageResource, PageSectionResource, PageSectionListResource, \
+    DataSourceListResource, LightAppModifyMenu
 
 blueprint = Blueprint('app', __name__)
 api = Api(blueprint)
@@ -10,6 +11,7 @@ api.add_resource(LightAppResource, '/light')
 api.add_resource(LightAppModifyResource, '/light/<string:id>')
 
 api.add_resource(LightAppMenu, '/light/menu')
+api.add_resource(LightAppModifyMenu, '/light/menu/<string:id>')
 api.add_resource(LightAppPage, '/light/page')
 
 api.add_resource(LightPageResource, '/light/page/<string:id>')
