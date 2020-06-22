@@ -370,18 +370,18 @@ class LightAppPage(Resource):
 
 class LightAppMenu(Resource):
     @use_kwargs({
-        "app_id": fields.String(required=True),
         "name": fields.String(required=True),
         "application_id": fields.String(required=True),
+        "type": fields.String(required=True),
         "icon": fields.String(required=False),
         "link": fields.String(required=False),
-        "type": fields.String(required=True),
         "page_key": fields.String(required=False),
         "parent_id": fields.String(required=False),
         "page_id": fields.String(required=False),
     })
     def post(self, **kwargs):
-        app_id = kwargs.get('app_id')
+        print("menu post")
+        app_id = kwargs.get('application_id')
         app = db.session.query(Application).filter(Application.id == app_id).first()
 
         if not app:
@@ -399,10 +399,10 @@ class LightAppMenu(Resource):
         """
         menu = ApplicationMenus(
             name=kwargs.get('name'),
-            application_id=kwargs.get('application_id'),
+            application_id=app_id,
             icon=kwargs.get('icon'),
             link=kwargs.get('link'),
-            type=ApplicationMenus.page_type_enum[kwargs.get('type')],
+            type=ApplicationMenus.string_to_page_type(kwargs.get('type')),
             page_key=kwargs.get('page_key'),
             platform=kwargs.get('platform'),
             sort=kwargs.get('sort'),
@@ -415,3 +415,67 @@ class LightAppMenu(Resource):
         return json_response(message="添加成功", data={
             "id": menu.id
         })
+
+
+class LightAppModifyMenu(Resource):
+    @use_kwargs({
+        "name": fields.String(required=False),
+        "title": fields.String(required=True),
+        "description": fields.String(required=False),
+        "icon": fields.String(required=False),
+        "key": fields.String(required=False)
+    })
+    def put(self, id, **kwargs):
+        """菜单修改
+          ---
+
+          tags:
+            - 轻应用
+          parameters:
+            - name: id
+              in: body
+              type: string
+              required: true
+        """
+        if not kwargs or not kwargs.get("title"):
+            return json_response(message="参数错误", status=400)
+
+        menu = db.session.query(ApplicationMenus).filter(ApplicationMenus.id == id).first()
+
+        if not menu:
+            return json_response(message=f"未找到菜单", status=404)
+
+        menu.name = kwargs.get("name")
+        menu.icon = kwargs.get("icon")
+        menu.link = kwargs.get("link")
+        menu.type = ApplicationMenus.page_type_enum[kwargs.get('type')]
+        menu.page_key = kwargs.get("page_key")
+        menu.sort = kwargs.get("sort")
+
+        db.session.add(menu)
+        db.session.commit()
+
+        return json_response(message="修改成功")
+
+    @use_kwargs({
+    })
+    def delete(self, id):
+        """菜单删除
+          ---
+          tags:
+            - 轻应用
+          parameters:
+            - name: title
+              in: body
+              type: string
+              required: true
+        """
+        menu = db.session.query(ApplicationMenus) \
+            .filter(ApplicationMenus.id == id).first()
+
+        if not menu:
+            return json_response(message="找不到菜单", status=404)
+
+        db.session.delete(menu)
+        db.session.commit()
+        return json_response(message="删除成功")

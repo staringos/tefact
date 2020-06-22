@@ -9,8 +9,8 @@
       row-key="id"
       border
       :tree-props="{children: 'children', hasChildren: 'hasChildren'}">
-      <el-table-column prop="date" label="子菜单" width="150"></el-table-column>
-      <el-table-column prop="name" label="姓名" sortable width="180">
+      <el-table-column prop="date" label="子菜单" width="80"></el-table-column>
+      <el-table-column prop="name" label="姓名" sortable>
         <template slot-scope="scope">
           <el-avatar :src="scope.row.icon" v-if="scope.row.icon && scope.row.icon.indexOf('http') !== -1" />
           <i :class="scope.row.icon" v-if="scope.row.icon && scope.row.icon.indexOf('http') === -1" />
@@ -20,8 +20,7 @@
       <el-table-column prop="link" label="链接"></el-table-column>
       <el-table-column prop="page_key" label="页面"></el-table-column>
       <el-table-column prop="type" label="菜单类型"></el-table-column>
-<!--      <el-table-column prop="sort" label="排序"></el-table-column>-->
-      <el-table-column prop="sort" label="操作">
+      <el-table-column prop="sort" label="操作" width="180">
         <template slot-scope="scope">
           <el-button-group>
             <el-button type="default" size="small" round @click="switchSort(scope.row, 1)" icon="el-icon-top"></el-button>
@@ -33,8 +32,6 @@
           </el-button-group>
 
           <el-button type="default" size="small" @click="handleDialogOpen(scope.row)" round>添加子菜单</el-button>
-<!--          <el-button type="default" size="small" round @click="handleEdit(scope.row)">编辑</el-button>-->
-<!--          <el-button type="danger" size="small" round @click="handleDelete(scope.row)">删除</el-button>-->
         </template>
       </el-table-column>
     </el-table>
@@ -71,7 +68,6 @@
           </el-select>
         </el-form-item>
         <el-form-item label="关联页面">
-<!--          <el-input v-model="form.page_key"></el-input>-->
           <el-select v-model="form.page_key">
             <el-option
               v-for="(page, i) in pages"
@@ -95,15 +91,23 @@
   }
 </style>
 <script lang="ts">
-  import { Vue, Component, Prop } from 'nuxt-property-decorator'
+  import { Vue, Component, Prop, namespace } from 'nuxt-property-decorator'
   import { Constants } from '~/services/common'
   import { reorder, loopModify, loopChildren } from '~/utils/light'
+  import { cloneDeep } from "lodash-es";
+
+  const app = namespace('app')
 
   @Component
   export default class MenuList extends Vue {
     @Prop() menus
     @Prop() pages
+    @Prop() appId
     @Prop() onChange
+    @app.Action addMenu
+    @app.Action deleteMenu
+    @app.Action modifyMenu
+
     dialogVisible = false
     form = { ...Constants.entities.DefaultMenu }
     isEdit = false
@@ -113,10 +117,6 @@
     public async switchSort(data, flag) {
       await loopModify(this.menus, data, null, 'reorder', flag)
     }
-
-    // public handleClearSort() {
-    //   delete this.form.sort
-    // }
 
     public async handleDelete(data) {
       const res = await loopModify(this.menus, data)
@@ -131,23 +131,19 @@
     }
 
     public handleEdit(data) {
-      this.form = data.menu
+      this.form = cloneDeep(data.menu)
       this.dialogVisible = true
       this.isEdit = true
     }
 
     public async handleSave() {
       if (!this.isEdit && !this.parentMenu) {
-        this.menus.push(this.form)
+        this.form.application_id = this.appId
+        await this.addMenu(this.form)
       } else {
-        if (!this.isEdit)
-          await loopModify(this.menus, this.parentMenu, this.form, 'add')
-
-        if (this.isEdit)
-          await loopModify(this.menus, this.parentMenu, this.form, 'modify')
+        await this.modifyMenu(this.form.id, this.form)
       }
 
-      this.onChange([ ...this.menus ])
       this.handleCancel()
     }
 
