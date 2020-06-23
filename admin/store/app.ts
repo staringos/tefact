@@ -161,11 +161,13 @@ class AppModule extends VuexModule {
     return service.app.addMenu(data)
   }
 
+  @Action({ rawError: true })
   public deleteMenu(id) {
     return service.app.deleteMenu(id)
   }
 
-  public modifyMenu(id, data) {
+  @Action({ rawError: true })
+  public modifyMenu({ id, data }) {
     return service.app.modifyMenu(id, data)
   }
 

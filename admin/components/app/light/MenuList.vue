@@ -47,10 +47,6 @@
         <el-form-item label="菜单名">
           <el-input v-model="form.name"></el-input>
         </el-form-item>
-<!--        <el-form-item label="排序">-->
-<!--          <el-input v-model="form.sort"></el-input>-->
-<!--          <el-button type="danger" size="tiny" @click="handleClearSort">清除</el-button>-->
-<!--        </el-form-item>-->
         <el-form-item label="ICON">
           <el-input v-model="form.icon"></el-input>
         </el-form-item>
@@ -78,7 +74,7 @@
           </el-select>
         </el-form-item>
       </el-form>
-      <span slot="footer" class="dialog-footer" v-if="!isEdit">
+      <span slot="footer" class="dialog-footer">
         <el-button @click="dialogVisible = false">取 消</el-button>
         <el-button type="primary" @click="handleSave()">确 定</el-button>
       </span>
@@ -119,8 +115,15 @@
     }
 
     public async handleDelete(data) {
-      const res = await loopModify(this.menus, data)
-      this.onChange(res)
+      const res = await this.deleteMenu(data.id)
+
+      if (res.status === 200) {
+        this.$emit('refresh')
+        this.$message({ message: '操作成功', type: 'success' })
+        return this.handleCancel()
+      }
+
+      this.$message({ message: '操作失败，请重试', type: 'error' })
     }
 
     public handleCancel() {
@@ -137,14 +140,25 @@
     }
 
     public async handleSave() {
+      let res = null as any
       if (!this.isEdit && !this.parentMenu) {
         this.form.application_id = this.appId
-        await this.addMenu(this.form)
+        res = await this.addMenu(this.form)
       } else {
-        await this.modifyMenu(this.form.id, this.form)
+        const data = { ...this.form } as any
+        delete data.id
+        delete data.parent_id
+        delete data.sort
+        res = await this.modifyMenu({ id: this.form.id, data })
       }
 
-      this.handleCancel()
+      if (res.status === 200) {
+        this.$emit('refresh')
+        this.$message({ message: '操作成功', type: 'success' })
+        return this.handleCancel()
+      }
+
+      this.$message({ message: '操作失败，请重试', type: 'error' })
     }
 
     public handleDialogOpen(parent = null) {

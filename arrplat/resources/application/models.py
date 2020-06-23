@@ -71,7 +71,7 @@ class ApplicationMenus(db.Model):
     type = Column(TINYINT, default=1, comment='页面类型 .. 1:customer 2:page')
     page_key = Column(VARCHAR(32))
     unique_id = Column(VARCHAR(32), default=generate_uuid)
-    platform = Column(VARCHAR(32), default='PC', comment='菜单所属平台，.. => pc,mobile')
+    platform = Column(VARCHAR(32), default='pc', comment='菜单所属平台，.. => pc,mobile')
     sort = Column(Integer, default=0, comment='排序')
     parent_id = Column(VARCHAR(32), default='0', comment='父id')
     page_id = Column(VARCHAR(32), ForeignKey('page.id'), comment='页面id')

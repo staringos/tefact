@@ -77,18 +77,14 @@ export const loopModify = async (menus, target, newValue: any = null , type = 'd
   return menus
 }
 
-let eid = 1
-
 export const loopChildren = (menus) => {
   const res = [] as any
   for (let i = 0; i < menus.length; i++) {
     const hasChildren = menus[i].children && menus[i].children.length > 0
-    eid = eid + 1
 
     res.push({
       ...menus[i],
       menu: menus[i],
-      id: eid,
       children: hasChildren ? loopChildren(menus[i].children) : []
     })
   }
