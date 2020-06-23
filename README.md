@@ -15,6 +15,8 @@ Build your admin panel without code!
 ![Tefact Overview](./docs/images/editor.png)
 
 [点击查看DEMO](http://saas.tefact.com)
+用户名: 18310734267
+密码: 123456
 
 ![Tefact Overview](./docs/images/home-page.png)
 
