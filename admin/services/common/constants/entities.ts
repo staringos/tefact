@@ -7,6 +7,7 @@ const MenuType = [{
 }]
 
 const DefaultMenu = {
+  id: null,
   application_id: null,
   name: '',
   link: '',

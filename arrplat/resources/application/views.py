@@ -404,10 +404,10 @@ class LightAppMenu(Resource):
             link=kwargs.get('link'),
             type=ApplicationMenus.string_to_page_type(kwargs.get('type')),
             page_key=kwargs.get('page_key'),
-            platform=kwargs.get('platform'),
+            platform=kwargs.get('platform', 'pc, mobile'),
             sort=kwargs.get('sort'),
             parent_id=kwargs.get('parent_id'),
-            page_id=kwargs.get('page_id'),
+            page_id=kwargs.get('page_id')
         )
         db.session.add(menu)
         db.session.commit()
@@ -419,11 +419,12 @@ class LightAppMenu(Resource):
 
 class LightAppModifyMenu(Resource):
     @use_kwargs({
-        "name": fields.String(required=False),
-        "title": fields.String(required=True),
-        "description": fields.String(required=False),
+        "name": fields.String(required=True),
         "icon": fields.String(required=False),
-        "key": fields.String(required=False)
+        "line": fields.String(required=False),
+        "type": fields.Number(required=False),
+        "page_key": fields.String(required=False),
+        "sort": fields.Number(required=False)
     })
     def put(self, id, **kwargs):
         """菜单修改
@@ -437,7 +438,7 @@ class LightAppModifyMenu(Resource):
               type: string
               required: true
         """
-        if not kwargs or not kwargs.get("title"):
+        if not kwargs or not kwargs.get("name"):
             return json_response(message="参数错误", status=400)
 
         menu = db.session.query(ApplicationMenus).filter(ApplicationMenus.id == id).first()
@@ -448,7 +449,7 @@ class LightAppModifyMenu(Resource):
         menu.name = kwargs.get("name")
         menu.icon = kwargs.get("icon")
         menu.link = kwargs.get("link")
-        menu.type = ApplicationMenus.page_type_enum[kwargs.get('type')]
+        menu.type = ApplicationMenus.string_to_page_type(kwargs.get('type'))
         menu.page_key = kwargs.get("page_key")
         menu.sort = kwargs.get("sort")
 
