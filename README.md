@@ -127,3 +127,11 @@ Init product structure data
 ```bash
 python manage.py init-data
 ```
+
+## Contributing
+
+[CONTRIBUTING](./CONTRIBUTING.md)
+
+欢迎 Star! 欢迎 PR!
+
+![](./docs/images/good.jpeg)
