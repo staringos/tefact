@@ -1,6 +1,5 @@
 # Contribute to Tefact
 
-
 ## Admin Panel
 
 ### File Template
