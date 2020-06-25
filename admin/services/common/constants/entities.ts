@@ -12,6 +12,7 @@ const DefaultMenu = {
   name: '',
   link: '',
   type: 'customer',
+  sort: 0,
   page_key: '',
 }
 

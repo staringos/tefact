@@ -405,7 +405,7 @@ class LightAppMenu(Resource):
             type=ApplicationMenus.string_to_page_type(kwargs.get('type')),
             page_key=kwargs.get('page_key'),
             platform=kwargs.get('platform', 'pc, mobile'),
-            sort=kwargs.get('sort'),
+            sort=kwargs.get('sort', 0),
             parent_id=kwargs.get('parent_id'),
             page_id=kwargs.get('page_id')
         )
@@ -451,7 +451,7 @@ class LightAppModifyMenu(Resource):
         menu.link = kwargs.get("link")
         menu.type = ApplicationMenus.string_to_page_type(kwargs.get('type'))
         menu.page_key = kwargs.get("page_key")
-        menu.sort = kwargs.get("sort")
+        menu.sort = kwargs.get("sort", 1)
 
         db.session.add(menu)
         db.session.commit()

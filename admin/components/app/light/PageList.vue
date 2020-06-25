@@ -23,7 +23,8 @@
       </el-table-column>
       <el-table-column
         prop="sort"
-        label="操作">
+        label="操作"
+        width="180">
         <template slot-scope="scope">
           <el-button type="default" size="small" round @click="handleEdit(scope.row)">编辑</el-button>
           <el-button type="danger" size="small" round @click="handleDelete(scope.row)">删除</el-button>
@@ -39,9 +40,6 @@
       :close-on-press-escape="false"
       width="30%">
       <el-form label-width="80px" :model="form">
-<!--        <el-form-item label="页面KEY">-->
-<!--          <el-input v-model="form.key"></el-input>-->
-<!--        </el-form-item>-->
         <el-form-item label="标题">
           <el-input v-model="form.title"></el-input>
         </el-form-item>
@@ -89,7 +87,6 @@
     @app.Action addPage
 
     handleRowClick(row) {
-      // console.log('[handleRowClick] row:', row)
       this.$router.push(`/app/light/${this.appId}/${row.id}/editor`)
     }
 
@@ -123,9 +120,8 @@
         if (page === item) currentIndex = i
       })
 
-      if (currentIndex !== -1) {
+      if (currentIndex !== -1)
         this.pages.splice(currentIndex, 1)
-      }
     }
 
     mounted() {
