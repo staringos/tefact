@@ -10,7 +10,7 @@ class ApplicationMenusSchema(ma.ModelSchema):
 
     class Meta:
         model = ApplicationMenus
-        fields = ('id', 'name', 'icon', 'link', 'sort', 'parent_id', 'page_key', 'type')
+        fields = ('id', 'name', 'icon', 'link', 'sort', 'parent_id', 'page_key', 'page_id', 'type')
 
     @post_dump
     def default_string(self, data):

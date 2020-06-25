@@ -1,8 +1,8 @@
 const MenuType = [{
-  key: 'customer',
+  key: 1,
   value: '自定义（链接 字段必填）',
 }, {
-  key: 'page',
+  key: 2,
   value: '配置页面（关联页面 字段必填）',
 }]
 
@@ -11,7 +11,7 @@ const DefaultMenu = {
   application_id: null,
   name: '',
   link: '',
-  type: 'customer',
+  type: 1,
   sort: 0,
   page_key: '',
 }

@@ -49,7 +49,7 @@ class PageSectionResource(Resource):
               type: string
               required: true
         """
-        section = db.session.query(Page).filter(Page.id == section_id).first()
+        section = db.session.query(PageSection).filter(PageSection.id == section_id).first()
         if not section:
             return json_response(message="找不到页面", status=404)
 
@@ -96,6 +96,26 @@ class PageSectionListResource(Resource):
 class LightPageResource(Resource):
     page_schema = PageSchema(many=False)
 
+    def delete(self, id):
+        """页面删除
+          ---
+
+          tags:
+            - 轻应用
+          parameters:
+            - name: id
+              in: body
+              type: string
+              required: true
+        """
+        page = db.session.query(Page).filter(Page.id == id).first()
+        if not page:
+            return json_response(message="找不到页面", status=404)
+
+        db.session.delete(page)
+        db.session.commit()
+        return json_response("删除成功!")
+
     @use_kwargs({
         "title": fields.String(required=False),
         "type": fields.Number(required=False),
@@ -129,7 +149,7 @@ class LightPageResource(Resource):
                 old_section.title = item.get("title")
                 old_section.entity_id = item.get("entity_id")
                 old_section.entity_params = item.get("entity_params")
-                old_section.section_type = PageSection.string_to_data_type(item.get("section_type"))
+                old_section.section_type = item.get("section_type", None)
                 old_section.sort = i
                 old_section.nodes = item.get("nodes")
 
@@ -403,10 +423,10 @@ class LightAppMenu(Resource):
             icon=kwargs.get('icon'),
             link=kwargs.get('link'),
             type=ApplicationMenus.string_to_page_type(kwargs.get('type')),
-            page_key=kwargs.get('page_key'),
             platform=kwargs.get('platform', 'pc, mobile'),
             sort=kwargs.get('sort', 0),
             parent_id=kwargs.get('parent_id'),
+            page_key=kwargs.get('page_key'),
             page_id=kwargs.get('page_id')
         )
         db.session.add(menu)
@@ -424,6 +444,7 @@ class LightAppModifyMenu(Resource):
         "line": fields.String(required=False),
         "type": fields.Number(required=False),
         "page_key": fields.String(required=False),
+        "page_id": fields.String(required=False),
         "sort": fields.Number(required=False)
     })
     def put(self, id, **kwargs):
@@ -449,8 +470,9 @@ class LightAppModifyMenu(Resource):
         menu.name = kwargs.get("name")
         menu.icon = kwargs.get("icon")
         menu.link = kwargs.get("link")
-        menu.type = ApplicationMenus.string_to_page_type(kwargs.get('type'))
+        menu.type = kwargs.get('type', None)
         menu.page_key = kwargs.get("page_key")
+        menu.page_id = kwargs.get("page_id")
         menu.sort = kwargs.get("sort", 1)
 
         db.session.add(menu)
