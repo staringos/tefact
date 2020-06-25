@@ -5,6 +5,7 @@
       <h3 v-if="currentApp">
         {{currentApp.title}}
       </h3>
+      <el-button type="text" icon="el-icon-edit" @click="handleToAppEditor" circle></el-button>
     </div>
     <div class="plugin-menu-wrapper">
       <el-menu
@@ -103,12 +104,16 @@
     @app.Getter currentApp
     @system.Getter showPluginMenuGetter
 
+    handleToAppEditor() {
+      this.$router.push(`/app/light/${this.currentApp.id}`)
+    }
+
     getPath (menu) {
-      if (!menu.link || menu.link.length < 1) {
-        if (menu.type === 2 && menu.page_key) {
-          return `/entities/page/${menu.page_key}`
-        }
+      console.log("menu:", menu);
+      if (menu.type === 2 && menu.page_id) {
+        return `/app/light/page/${menu.page_id}`
       }
+
       return _.startsWith(menu.link, 'http') || menu.link.startsWith('/') ? menu.link : `/plugins/${this.currentApp.admin_route}/${menu.link}`
     }
   }

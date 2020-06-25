@@ -9,9 +9,8 @@
           @onChange="handleAvatarChanged"
         ></AvatarUploader>
 
-<!--        <el-avatar :size="100" :src="app.icon" />-->
         <h3>
-          {{app.title}}
+          <a :href="`/light/${app.admin_route}`" class="app-title">{{app.title}}</a>
           <el-button type="text" size="small" icon="el-icon-edit" @click="handleDialogOpen" />
         </h3>
       </div>
@@ -51,6 +50,8 @@
   </div>
 </template>
 <style lang="scss" scoped>
+  @import "../../../assets/styles/variables";
+
   .app-base-details {
     display: flex;
 
@@ -62,6 +63,11 @@
 
       h3 {
         margin-top: 10px;
+
+        .app-title {
+          color: $mainColor;
+          text-decoration: none;
+        }
       }
     }
   }

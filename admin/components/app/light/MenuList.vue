@@ -50,7 +50,7 @@
         <el-form-item label="ICON">
           <el-input v-model="form.icon"></el-input>
         </el-form-item>
-        <el-form-item label="链接">
+        <el-form-item label="链接" v-if="form.type === 1">
           <el-input v-model="form.link"></el-input>
         </el-form-item>
         <el-form-item label="类型">
@@ -63,13 +63,13 @@
             </el-option>
           </el-select>
         </el-form-item>
-        <el-form-item label="关联页面">
-          <el-select v-model="form.page_key">
+        <el-form-item label="关联页面" v-if="form.type === 2">
+          <el-select v-model="form.page_id">
             <el-option
               v-for="(page, i) in pages"
-              :key="page.key"
+              :key="page.id"
               :label="page.title"
-              :value="page.key">
+              :value="page.id">
             </el-option>
           </el-select>
         </el-form-item>
@@ -134,7 +134,10 @@
     }
 
     public handleEdit(data) {
-      this.form = cloneDeep(data.menu)
+      const form = cloneDeep(data)
+      delete form.children
+
+      this.form = form
       this.dialogVisible = true
       this.isEdit = true
     }
