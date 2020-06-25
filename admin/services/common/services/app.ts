@@ -4,6 +4,10 @@ export default (request) => {
       url: `/app/light/${appId}/data-source`,
       method: 'get',
     }),
+    deletePage: id => request({
+      url: `/app/light/page/${id}`,
+      method: 'delete'
+    }),
     addPage: (data) => request({
       url: `/app/light/page`,
       method: 'post',
