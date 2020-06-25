@@ -103,6 +103,7 @@
   import { cloneDeep } from 'lodash-es'
   import { ImageNodeModel } from '~/utils/entities/editor/node'
   import BaseNode from './BaseNode.vue'
+  import NodeClass from "~/components/app/light/editor/nodes/NodeClass";
 
   const editor = namespace('editor')
   const system = namespace('system')
@@ -110,10 +111,7 @@
   @Component({
     components: { BaseNode }
   })
-  export default class ImageNode extends Vue {
-    @Prop() node!: ImageNodeModel
-    @Prop() preview!: boolean
-    @Prop() sectionId!: string
+  export default class ImageNode extends NodeClass {
     editor: any = null
 
     @system.Getter uploadUrl
@@ -131,9 +129,6 @@
       const node = cloneDeep(this.node)
       node.data.url = 'http://' + e[0]
       this.modifyNode({ sectionId: this.sectionId, node })
-    }
-
-    mounted() {
     }
   }
 </script>
