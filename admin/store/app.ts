@@ -3,6 +3,7 @@ import { systemStore } from '~/utils/store-accessor'
 import { DIALOG_NAME } from './system'
 import { OrgConfig, Application } from '~/services/common'
 import { service } from '~/utils'
+import _ from "lodash/index"
 
 @Module({
   name: 'app',
@@ -174,6 +175,26 @@ class AppModule extends VuexModule {
   @Action({ rawError: true })
   public addPage(data) {
     return service.app.addPage(data)
+  }
+
+  @Action({ rawError: true })
+  public async modifyPage(pageObj) {
+    const page = _.cloneDeep(pageObj)
+    if (!page) return
+    const id = page.id
+    delete page.id
+    delete page.key
+    delete page.unique_id
+    delete page.application_id
+
+    if (!page.type) page.type = 1
+    if (!page.direction) page.direction = 'column'
+    return await service.editor.savePageDetails(id, page)
+  }
+
+  @Action({ rawError: true })
+  public async deletePage(pageId) {
+    return await service.app.deletePage(pageId)
   }
 }
 
