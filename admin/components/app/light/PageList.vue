@@ -23,10 +23,11 @@
       </el-table-column>
       <el-table-column
         prop="sort"
-        label="操作">
+        label="操作"
+        width="180">
         <template slot-scope="scope">
-          <el-button type="default" size="small" round @click="handleEdit(scope.row)">编辑</el-button>
-          <el-button type="danger" size="small" round @click="handleDelete(scope.row)">删除</el-button>
+          <el-button type="default" size="small" round @click.stop="handleEdit(scope.row)">编辑</el-button>
+          <el-button type="danger" size="small" round @click.stop="handleDelete(scope.row)">删除</el-button>
         </template>
       </el-table-column>
     </el-table>
@@ -39,9 +40,6 @@
       :close-on-press-escape="false"
       width="30%">
       <el-form label-width="80px" :model="form">
-<!--        <el-form-item label="页面KEY">-->
-<!--          <el-input v-model="form.key"></el-input>-->
-<!--        </el-form-item>-->
         <el-form-item label="标题">
           <el-input v-model="form.title"></el-input>
         </el-form-item>
@@ -57,6 +55,7 @@
         </el-form-item>
       </el-form>
       <span slot="footer" class="dialog-footer">
+        <el-button v-if="isEdit" type="warning" @click="handleRowClick({ id: form.id })">编辑器</el-button>
         <el-button @click="dialogVisible = false">取 消</el-button>
         <el-button type="primary" @click="handleSave()">确 定</el-button>
       </span>
@@ -69,6 +68,7 @@
 <script lang="ts">
   import { Vue, Component, Prop, namespace, Emit } from 'nuxt-property-decorator'
   import PageSectionList from './PageSectionList.vue'
+  import { Confirm } from '~/components/ui'
   import { Constants } from '~/services/common'
 
   const app = namespace('app')
@@ -87,9 +87,10 @@
     PageDirection = Constants.entities.PageDirection
 
     @app.Action addPage
+    @app.Action modifyPage
+    @app.Action deletePage
 
     handleRowClick(row) {
-      // console.log('[handleRowClick] row:', row)
       this.$router.push(`/app/light/${this.appId}/${row.id}/editor`)
     }
 
@@ -98,8 +99,18 @@
       const data = { ...this.form }
       delete data.sections
       data.app_id = this.appId
-      const res = await this.addPage(data)
-      this.handleCancel()
+
+      let res
+      if (this.isEdit) res = await this.modifyPage(data)
+      else res = await this.addPage(data)
+
+      if (res.status === 200) {
+        this.$emit('refresh')
+        this.$message({ message: '操作成功', type: 'success' })
+        return this.handleCancel()
+      }
+
+      this.$message({ message: '操作失败，请重试', type: 'error' })
     }
 
     handleCancel() {
@@ -117,15 +128,12 @@
       this.dialogVisible = true
     }
 
-    handleDelete(item) {
-      let currentIndex = -1
-      this.pages.forEach((page, i) => {
-        if (page === item) currentIndex = i
-      })
-
-      if (currentIndex !== -1) {
-        this.pages.splice(currentIndex, 1)
-      }
+    async handleDelete(item) {
+      Confirm.deleteConfirm(this, '页面', () => this.deletePage(item.id))
+        .then(() => {
+          this.$emit('refresh')
+          this.handleCancel()
+        })
     }
 
     mounted() {

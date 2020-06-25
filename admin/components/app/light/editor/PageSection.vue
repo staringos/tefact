@@ -1,6 +1,6 @@
 <template>
-  <div :class="`section ${active ? 'active' : ''}`" @click.stop="handleSectionClick">
-    <AddButton :index="index" :pageId="pageId" show></AddButton>
+  <div :class="`section ${!preview ? 'hover-style' : ''}${active && !preview ? 'active' : ''}`" @click.stop="handleSectionClick">
+    <AddButton v-if="!preview" :index="index" :pageId="pageId" show></AddButton>
 
     <component
       v-for="(node, i) in section.nodes"
@@ -8,6 +8,7 @@
       :node="node"
       :sectionId="section.id"
       :is="NodeTypeToComponent[node.type]"
+      :preview="preview"
       :active="currentNodesIdsGetter.indexOf(node.id) > -1"
       @onRefLineChange="handleRefLineChange"
       @update:active="(active) => handleActiveUpdate(node.id, active)"
@@ -16,11 +17,11 @@
     <!--辅助线-->
     <span class="ref-line v-line"
           v-for="item in vLine"
-          v-show="item.display"
+          v-show="item.display && !preview"
           :style="{ left: item.position, top: item.origin, height: item.lineLength}"></span>
     <span class="ref-line h-line"
           v-for="item in hLine"
-          v-show="item.display"
+          v-show="item.display && !preview"
           :style="{ top: item.position, left: item.origin, width: item.lineLength}"></span>
     <!--辅助线END-->
   </div>
@@ -38,7 +39,7 @@
       border: 1px solid $editor-border-active-color;
     }
 
-    &:hover {
+    &.hover-style:hover {
       /deep/ .add-button {
         display: flex;
       }
@@ -70,8 +71,9 @@
       TextNode, ImageNode, AddButton, TableNode
     }
   })
-  export default class AppItem extends Vue {
+  export default class PageSection extends Vue {
     @Prop() section
+    @Prop(Boolean) preview!: boolean
     @Prop() index!: number
     @Prop([String]) pageId!:string
     @Prop([Boolean]) active!: boolean
