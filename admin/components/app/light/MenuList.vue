@@ -9,7 +9,7 @@
       row-key="id"
       border
       :tree-props="{children: 'children', hasChildren: 'hasChildren'}">
-      <el-table-column prop="date" label="子菜单" width="80"></el-table-column>
+      <el-table-column prop="date" label="" width="50"></el-table-column>
       <el-table-column prop="name" label="姓名" sortable>
         <template slot-scope="scope">
           <el-avatar :src="scope.row.icon" v-if="scope.row.icon && scope.row.icon.indexOf('http') !== -1" />
@@ -50,7 +50,7 @@
         <el-form-item label="ICON">
           <el-input v-model="form.icon"></el-input>
         </el-form-item>
-        <el-form-item label="链接">
+        <el-form-item label="链接" v-if="form.type === 1">
           <el-input v-model="form.link"></el-input>
         </el-form-item>
         <el-form-item label="类型">
@@ -63,13 +63,13 @@
             </el-option>
           </el-select>
         </el-form-item>
-        <el-form-item label="关联页面">
-          <el-select v-model="form.page_key">
+        <el-form-item label="关联页面" v-if="form.type === 2">
+          <el-select v-model="form.page_id">
             <el-option
               v-for="(page, i) in pages"
-              :key="page.key"
+              :key="page.id"
               :label="page.title"
-              :value="page.key">
+              :value="page.id">
             </el-option>
           </el-select>
         </el-form-item>
@@ -89,7 +89,7 @@
 <script lang="ts">
   import { Vue, Component, Prop, namespace } from 'nuxt-property-decorator'
   import { Constants } from '~/services/common'
-  import { reorder, loopModify, loopChildren } from '~/utils/light'
+  import { reorder, loopModify, loopMenu } from '~/utils/light'
   import { cloneDeep } from "lodash-es";
 
   const app = namespace('app')
@@ -107,7 +107,7 @@
     dialogVisible = false
     form = { ...Constants.entities.DefaultMenu }
     isEdit = false
-    parentMenu = null
+    parentMenu = null as any
     MenuType = Constants.entities.MenuType
 
     public async switchSort(data, flag) {
@@ -134,21 +134,28 @@
     }
 
     public handleEdit(data) {
-      this.form = cloneDeep(data.menu)
+      const form = cloneDeep(data)
+      delete form.children
+
+      this.form = form
       this.dialogVisible = true
       this.isEdit = true
     }
 
     public async handleSave() {
       let res = null as any
-      if (!this.isEdit && !this.parentMenu) {
-        this.form.application_id = this.appId
-        res = await this.addMenu(this.form)
+      if (!this.isEdit) {
+        const data = this.form as any
+        data.application_id = this.appId
+        if (this.parentMenu)
+          data.parent_id = this.parentMenu.id
+
+        res = await this.addMenu(data)
       } else {
         const data = { ...this.form } as any
         delete data.id
-        delete data.parent_id
         delete data.sort
+        delete data.parent_id
         res = await this.modifyMenu({ id: this.form.id, data })
       }
 
@@ -167,7 +174,7 @@
     }
 
     get treeMenus() {
-      return loopChildren(this.menus)
+      return loopMenu(this.menus)
     }
   }
 </script>

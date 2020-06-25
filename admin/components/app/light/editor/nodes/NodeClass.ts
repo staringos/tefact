@@ -1,9 +1,9 @@
 import { Vue, Component, Prop } from 'nuxt-property-decorator';
-import { BaseNodeModel } from '~/utils/entities/editor/node'
+import { BaseNodeModel, ImageNodeModel, TableNodeModel, TextNodeModel } from '~/utils/entities/editor/node'
 
 @Component
 export default class NodeClass extends Vue {
   @Prop() public sectionId!: string
-  @Prop() public node!: BaseNodeModel
+  @Prop() public node!: BaseNodeModel | TextNodeModel | ImageNodeModel | TableNodeModel
   @Prop() public preview!: boolean
 }

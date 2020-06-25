@@ -2,10 +2,10 @@
   <div class="editor-wrapper" v-if="currentPage">
     <div class="editor-container">
       <Toolbar :page="page" :editorSetting="editorSetting"></Toolbar>
-        <div class="editor-main" @click="handleResetActive">
-          <NodeList />
-          <Page :page="currentPage" :pageId="pageId" />
-        </div>
+      <div class="editor-main" @click="handleResetActive">
+        <NodeList />
+        <Page :page="currentPage" :pageId="pageId" />
+      </div>
     </div>
     <Sidebar />
   </div>

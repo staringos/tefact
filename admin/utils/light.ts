@@ -1,4 +1,5 @@
 import { Vue } from 'nuxt-property-decorator'
+import { cloneDeep } from "lodash-es"
 
 export const reorder = (list, i, position) => {
   if (position === 1 && i > 0) {
@@ -89,4 +90,27 @@ export const loopChildren = (menus) => {
     })
   }
   return res
+}
+
+export const loopMenu = (menus) => {
+  const flat = cloneDeep(menus)
+  const root = [] as any
+  flat.map(menu => {
+    if (!menu.parent_id || menu.parent_id === "0") {
+      if (!menu.children) menu.children = []
+      root.push(menu)
+      return
+    }
+
+    const parent = flat.filter(pre => pre.id === menu.parent_id)
+
+    if (parent && parent.length > 0) {
+      if (parent[0].children)
+        parent[0].children.push(menu)
+      else
+        parent[0].children = [menu]
+    }
+  })
+
+  return root;
 }

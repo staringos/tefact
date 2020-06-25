@@ -7,7 +7,7 @@
     :h="node.config.h"
     :x="node.config.x"
     :y="node.config.y"
-    :parent="true"
+    :parent="false"
     :debug="false"
     :min-width="50"
     :min-height="50"
