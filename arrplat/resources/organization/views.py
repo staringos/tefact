@@ -1345,7 +1345,7 @@ class OrgApplicationResource(Resource):
         for org_app in res:
             menus = org_app.get('menus', [])
             # 按照sort排序
-            menus.sort(key=lambda x: x['sort'], reverse=False)
+            menus.sort(key=lambda x: x['sort'] or 0, reverse=False)
 
             # 先把父节点拿出来
             parent_menus = [x for x in menus if x.get('parent_id', '0') == '0']
