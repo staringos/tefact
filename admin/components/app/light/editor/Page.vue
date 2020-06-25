@@ -5,12 +5,13 @@
     </div>
     <PageSection
       v-for="(section, i) in page.page_section"
-      :section="section"
-      :pageId="pageId"
-      :active="currentPageSectionIdGetter === section.id"
-      @onActiveChange="handleActiveChange(section.id)"
       :key="i"
       :index="i"
+      :section="section"
+      :pageId="pageId"
+      :preview="preview"
+      :active="currentPageSectionIdGetter === section.id"
+      @onActiveChange="handleActiveChange(section.id)"
     ></PageSection>
   </div>
 </template>
@@ -34,6 +35,8 @@
   export default class Page extends Vue {
     @Prop() pageId!: string
     @Prop() page!: PageModel
+    @Prop(Boolean) preview!: Boolean
+
     @editor.Action addPageSection
     @editor.Action choosePageSection
     @editor.Action resetActive
@@ -45,8 +48,6 @@
     }
 
     handleKeyDown(e) {
-      console.log('e.key:', e)
-
       switch(e.key) {
         case 'Backspace':
           this.removeActiveNodes()

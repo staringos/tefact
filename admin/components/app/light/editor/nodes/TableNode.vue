@@ -3,6 +3,7 @@
     v-bind="$attrs"
     v-on="$listeners"
     :node="node"
+    :preview="preview"
     class="table-node"
   >
     <List :entityId="node.data.entityId" :section="conditions" :entityParams="entityParams" :entity="section.entity"></List>
@@ -17,11 +18,10 @@
   }
 </style>
 <script lang="ts">
-  import { Vue, Component, Prop } from 'nuxt-property-decorator'
+  import { Component } from 'nuxt-property-decorator'
   import List from '../../../../../components/entities/List.vue'
   import NodeClass from '~/components/app/light/editor/nodes/NodeClass'
   import BaseNode from './BaseNode.vue'
-  import { TableNodeData } from '~/utils/entities/editor/node'
 
   @Component({
     components: {
