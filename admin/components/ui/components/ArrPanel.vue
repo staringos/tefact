@@ -1,5 +1,5 @@
 <template>
-  <div :class="`panel ${border && 'panel-bordered'} ${header && `panel-headed`}`">
+  <div :class="`panel ${border && 'panel-bordered'} ${header && `panel-headed`} ${className ? className : ''}`">
     <div class="panel-title" v-if="title">
       {{title}}
       <el-button class="create-btn" v-if="headerButton" :icon="headerButton" @click="handleHeaderButtonClick" circle size="mini"></el-button>
@@ -14,7 +14,6 @@
 
   .panel {
     background-color: #fff;
-    /*border-radius: 5px;*/
     flex: 1;
     display: flex;
     flex-direction: column;
@@ -75,6 +74,7 @@
     @Prop([Boolean]) noPadding
     @Prop([Boolean]) border
     @Prop([String]) headerButton
+    @Prop([String]) className
 
     handleHeaderButtonClick() {
       (this as any).$emit('on-header-button-click')
