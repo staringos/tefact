@@ -1,0 +1,13 @@
+package "DataSource" #DDD {
+  class DataSource {
+    id: String
+  }
+
+  class DBStorage {
+
+  }
+
+  class FileStorage {
+
+  }
+}
