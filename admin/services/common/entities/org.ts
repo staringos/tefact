@@ -70,7 +70,7 @@ export interface Role {
   id: string
 }
 
-export const DefaultRole:Role = {
+export const DefaultRole: Role = {
   name: '',
   id: ''
 }

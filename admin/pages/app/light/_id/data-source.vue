@@ -1,52 +1,109 @@
 <template>
-  <div class="app-details-page" v-if="app">
-    <AppDetailsMenu :app="app" />
-    <div class="app-attributes">
-      <ArrPanel v-if="app.menus" border>
-        <MenuList @refresh="handleRefresh" :appId="app.id" :menus="app.menus" :pages="app.pages" :onChange="(value) => handleDataChanged('menus', value)" />
-      </ArrPanel>
-      <ArrPanel v-if="app.pages" border>
-        <PageList @refresh="handleRefresh" :appId="app.id" :pages="app.pages" :entities="app.entities" :onChange="(value) => handleDataChanged('pages', value)" />
-      </ArrPanel>
+  <div class="data-source-editor">
+    <div class="data-source-tabs">
+      <DataSourceTab />
+      <DataBaseTab />
+      <DataTableTab />
+    </div>
+    <div class="entity-editor">
+      <div class="entity-editor-area">
+
+      </div>
+      <div class="entity-data">
+        <el-table
+          :data="tableData"
+          height="250"
+          border
+          style="width: 100%">
+          <el-table-column
+            prop="date"
+            label="日期"
+            width="180">
+          </el-table-column>
+          <el-table-column
+            prop="name"
+            label="姓名"
+            width="180">
+          </el-table-column>
+          <el-table-column
+            prop="address"
+            label="地址">
+          </el-table-column>
+        </el-table>
+      </div>
     </div>
   </div>
 </template>
 <style lang="scss" scoped>
-  .app-details-page {
+  .data-source-editor {
     display: flex;
     flex-direction: row;
-    height: 100%;
+    flex: 1;
 
-    .app-menu {
+    .data-source-tabs {
+      display: flex;
       flex-direction: column;
+      width: 230px;
     }
 
-    .app-attributes {
-      display: flex;
+    .entity-editor {
+      flex: 1;
     }
   }
 </style>
 <script lang="ts">
   import { Vue, Component, namespace } from 'nuxt-property-decorator'
-  import AppDetails from "~/components/app/light/AppDetails.vue";
-  import MenuList from "~/components/app/light/MenuList.vue";
-  import PageList from "~/components/app/light/PageList.vue";
-  import AppDetailsMenu from '~/components/app/light/AppDetailsMenu.vue';
+  import DataSourceTab from "~/components/app/light/datasource/DataSourceTab.vue"
+  import DataBaseTab from "~/components/app/light/datasource/DataBaseTab.vue"
+  import DataTableTab from "~/components/app/light/datasource/DataTableTab.vue"
 
   const app = namespace('app')
 
   @Component({
     layout: 'AppEditor',
     components: {
-      AppDetailsMenu,
-      AppDetails, MenuList, PageList
+      DataTableTab,
+      DataBaseTab,
+      DataSourceTab,
     }
   })
-  export default class AppDataSource extends Vue {
+  export default class DataSourceEditor extends Vue {
     id = ''
-    app = {}
+    tableData: Object[] = [{
+      date: '2016-05-03',
+      name: '王小虎',
+      address: '上海市普陀区金沙江路 1518 弄'
+    }, {
+      date: '2016-05-02',
+      name: '王小虎',
+      address: '上海市普陀区金沙江路 1518 弄'
+    }, {
+      date: '2016-05-04',
+      name: '王小虎',
+      address: '上海市普陀区金沙江路 1518 弄'
+    }, {
+      date: '2016-05-01',
+      name: '王小虎',
+      address: '上海市普陀区金沙江路 1518 弄'
+    }, {
+      date: '2016-05-08',
+      name: '王小虎',
+      address: '上海市普陀区金沙江路 1518 弄'
+    }, {
+      date: '2016-05-06',
+      name: '王小虎',
+      address: '上海市普陀区金沙江路 1518 弄'
+    }, {
+      date: '2016-05-07',
+      name: '王小虎',
+      address: '上海市普陀区金沙江路 1518 弄'
+    }]
 
     @app.Action getAppDetails
+
+    handleClick() {
+
+    }
 
     handleRefresh() {
       this.refresh()
@@ -57,9 +114,6 @@
     }
 
     async refresh() {
-      this.id = this.$route.params.id
-      const res = await this.getAppDetails(this.id)
-      this.app = res.data.data
     }
 
     async mounted() {
