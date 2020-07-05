@@ -126,8 +126,8 @@
     }
 
     handleUpdate(e) {
-      const node = cloneDeep(this.node)
-      node.data.url = 'http://' + e[0]
+      const node = cloneDeep(this.node);
+      (node.data as any).url = 'http://' + e[0]
       this.modifyNode({ sectionId: this.sectionId, node })
     }
   }
