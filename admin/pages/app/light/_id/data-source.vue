@@ -6,31 +6,8 @@
       <DataTableTab />
     </div>
     <div class="entity-editor">
-      <div class="entity-editor-area">
-
-      </div>
-      <div class="entity-data">
-        <el-table
-          :data="tableData"
-          height="250"
-          border
-          style="width: 100%">
-          <el-table-column
-            prop="date"
-            label="日期"
-            width="180">
-          </el-table-column>
-          <el-table-column
-            prop="name"
-            label="姓名"
-            width="180">
-          </el-table-column>
-          <el-table-column
-            prop="address"
-            label="地址">
-          </el-table-column>
-        </el-table>
-      </div>
+      <EntityEditor />
+      <EntityPreview />
     </div>
   </div>
 </template>
@@ -48,6 +25,8 @@
 
     .entity-editor {
       flex: 1;
+      flex-direction: column;
+      display: flex;
     }
   }
 </style>
@@ -56,12 +35,16 @@
   import DataSourceTab from "~/components/app/light/datasource/DataSourceTab.vue"
   import DataBaseTab from "~/components/app/light/datasource/DataBaseTab.vue"
   import DataTableTab from "~/components/app/light/datasource/DataTableTab.vue"
+  import EntityPreview from "~/components/app/light/datasource/EntityPreview.vue"
+  import EntityEditor from "~/components/app/light/datasource/EntityEditor.vue"
 
   const app = namespace('app')
 
   @Component({
     layout: 'AppEditor',
     components: {
+      EntityEditor,
+      EntityPreview,
       DataTableTab,
       DataBaseTab,
       DataSourceTab,
