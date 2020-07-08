@@ -14,7 +14,7 @@
             <h1 class="title" v-if="loginType === 'login'">验证码登录</h1>
             <h1 class="title" v-else-if="loginType === 'Wechat'">微信登录</h1>
             <h1 class="title" v-else>密码登录</h1>
-            <h2 class="description">企业互联网营销云</h2>
+            <h2 class="description">Build System Without Code</h2>
             <div v-if="loginType === 'login'" style="width: 60%;margin: 0 auto">
               <PhoneLogin />
             </div>
@@ -23,8 +23,8 @@
               <PasswordLogin />
             </div>
             <p class="login-type">
-              <span style="float:left;" @click="handleChangeLoginType">{{ loginType === 'login' ? '微信登录' : '验证码登录' }}</span>
-              <span style="float: right">{{ loginType !== 'password' ? '密码登录' : '验证码登录'}}</span>
+              <span style="float:left;" @click="handleChangeLoginType">{{ loginType === 'login' ? '密码登录' : '验证码登录' }}</span>
+              <span style="float: right" @click="handleRegister">免费注册</span>
             </p>
           </el-col>
         </el-row>
@@ -147,6 +147,11 @@
         this.requestWechatQRCode()
       }
     }
+
+    public handleRegister() {
+      this.$router.push("/register")
+    }
+
     public requestWechatQRCode () {
         const ba64Css = 'LmltcG93ZXJCb3ggLnFyY29kZSB7d2lkdGg6IDE4MHB4O21hcmlnbi10b3A6LThweH0KLmltcG93ZXJCb3ggLnRpdGxlIHtkaXNwbGF5OiBub25lO30KLmltcG93ZXJCb3ggLmluZm8ge2Rpc3BsYXk6IG5vbmU7fQ=='
         const appid = 'wxa692729034d99a33'
