@@ -14,7 +14,7 @@
         <img @click="refreshCode" :src="verifyImageUrl" class="verify-image"/>
       </el-col>
     </el-form-item>
-    <el-button type="primary" @click="handleLogin('ruleForm')" class="login-btn">登录</el-button>
+    <el-button type="primary" @click="handleLogin('ruleForm')" class="login-btn">登 录</el-button>
   </el-form>
 </template>
 <script lang="ts">
@@ -71,5 +71,11 @@
   .verify-image {
     width: 80px;
     height: 40px;
+  }
+
+  .login-btn {
+    width: 100%;
+    margin: 0 auto;
+    border-radius: 15px;
   }
 </style>
