@@ -191,6 +191,6 @@ lerna-debug.log
 npm-debug.log
 packages/*/lib
 .arrplat.json
-arrplat/config.py
+/arrplat/config.py
 
 pid.txt
