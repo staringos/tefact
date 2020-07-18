@@ -21,8 +21,8 @@
 </style>
 <script lang="ts">
   import { Vue, Component, namespace, Watch } from 'nuxt-property-decorator'
-  import { LightAppParams, UserParams } from '~/services/common'
   import { DIALOG_NAME } from '~/store/system'
+  import { omitBy, isNull } from 'lodash-es'
 
   const system = namespace('system')
   const app = namespace('app')
@@ -67,7 +67,7 @@
         (this.$refs['form'] as HTMLFormElement).validate(async (valid) => valid ? resolve() : reject({}))
       )
 
-      const res = await this.lightAppAdd(this.form)
+      const res = await this.lightAppAdd(omitBy(this.form, isNull))
       this.setDialogVisible({ key: this.DialogKey, visible: false })
       this.form = { ...initForm }
       this.$router.push(`/app/light/${res.data.data.id}`)

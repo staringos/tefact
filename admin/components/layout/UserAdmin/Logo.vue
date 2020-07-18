@@ -1,7 +1,7 @@
 <template>
   <div class="title-wrapper">
     <LogoImage />
-    <h3 class="title">{{title || "Tefact"}}</h3>
+    <h3 class="title">{{title || "TEFACT"}}</h3>
   </div>
 </template>
 <style lang="scss" scoped>
@@ -18,7 +18,7 @@
 
     .title {
       font-size: 20px;
-      color: #323233;
+      color: white;
       font-weight: 700;
       margin-left: 20px;
       padding-left: 20px;

@@ -1,5 +1,11 @@
 import { BasePage } from '../base'
 
+export interface RegisterParams {
+  username: string
+  password: string
+  phone: number
+}
+
 export interface UserParams {
   nickname: string
   signature: string

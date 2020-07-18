@@ -14,6 +14,7 @@ class User(db.Model):
     id = Column(VARCHAR(32), default=generate_uuid, primary_key=True)
     phone = Column(VARCHAR(20), nullable=True)
     password = Column(VARCHAR(128))
+    username = Column(VARCHAR(128), unique=True)
     salt = Column(VARCHAR(32), comment="密码加盐")
     nickname = Column(VARCHAR(30))
     name = Column(VARCHAR(30))

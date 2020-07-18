@@ -2,6 +2,12 @@ import { LoginParams, LoginEntity, PwdLoginParams } from '../'
 
 export default (request) => {
   return {
+    register: (data) => request({
+      url: '/auth/register/username',
+      method: 'post',
+      data
+    }),
+
     verifyCode: () => request({
       url: '/auth/verify-code',
       method: 'get',
