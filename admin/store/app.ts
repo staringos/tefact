@@ -150,6 +150,7 @@ class AppModule extends VuexModule {
     const res = await service.app.lightAppAdd(params)
     if (res.status === 200)
       await this.getAllAppsInOrg(params.own_org_id)
+    return res
   }
 
   @Action({ rawError: true })

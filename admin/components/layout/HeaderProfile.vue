@@ -1,6 +1,6 @@
 <template>
   <div class="header-profile" v-if="currentUser">
-    <img class="avatar" :src="currentUser.user_info.head_url" />
+    <img class="avatar" :src="currentUser.user_info ? currentUser.user_info.head_url : ''" />
     <el-dropdown trigger="click" @command="handleClick">
       <div class="profile">
         <h2 class="username">{{currentUser.nickname}}</h2>

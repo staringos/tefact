@@ -9,6 +9,7 @@ from flask_jwt_extended import (
     create_access_token,
     get_current_user
 )
+from sqlalchemy import or_
 
 from arrplat.common.auth_jwt_utils import user_required
 from arrplat.resources.auth.sms_utils import send_phone_code
@@ -150,9 +151,9 @@ class PasswordLoginResource(Resource):
         verify_code = kwargs.get("verify_code")
         unique_id = kwargs.get("uuid")
 
-        if not valid_phone(phone):
-            return json_response(message="无效的手机号", status=403)
-        elif len(verify_code) != 4 or not verify_code.isdigit():
+        # if not valid_phone(phone):
+        #     return json_response(message="无效的手机号", status=403)
+        if len(verify_code) != 4 or not verify_code.isdigit():
             return {"msg": "验证码格式错误"}
         verify_code_redis = redis_0.get("verify_code:" + unique_id)
         if not verify_code_redis:
@@ -161,7 +162,7 @@ class PasswordLoginResource(Resource):
             if verify_code != verify_code_redis.decode():
                 return json_response(message="验证码错误", status=403)
             else:
-                user = User.query.filter_by(phone=phone).first()
+                user = User.query.filter(or_(User.phone == phone, User.username == phone)).first()
                 if not user:
                     return json_response(message="用户不存在", status=404)
                 if not user.salt:
@@ -222,6 +223,81 @@ class PhoneLoginResource(Resource):
             "access_token": access_token,
             "user": user_data,
         }, message="ok")
+
+
+class UsernameRegisterResource(Resource):
+    @use_kwargs({
+        'phone': fields.String(required=False),
+        'username': fields.String(required=True),
+        'password': fields.String(required=True)
+    })
+    def post(self, **kwargs):
+        """用户名 密码 注册
+          ---
+          tags:
+            - 登录、注册
+          parameters:
+            - name: phone
+              in: body
+              type: string
+              required: false
+              description: 手机号
+            - name: username
+              in: body
+              type: string
+              required: true
+              description: 用户名
+            - name: password
+              in: body
+              type: string
+              required: true
+              description: 密码
+        """
+        phone = kwargs.get('phone', None)
+        username = kwargs.get('username')
+        password = kwargs.get('password')
+
+        if phone and not valid_phone(phone):
+            return json_response(message="无效的手机号", status=403)
+        elif len(username) < 4:
+            return json_response(message="用户名不能小于三位", status=403)
+        if len(password) < 8:
+            return json_response(message="密码最少需要八位", status=403)
+
+        if phone:
+            user = User.query.filter_by(phone=phone).first()
+            if user:
+                return json_response(message="该手机号已注册", status=409)
+        user = User.query.filter_by(username=username).first()
+        if user:
+            return json_response(message="该用户名已注册", status=409)\
+
+        try:
+            salt = bcrypt.gensalt()
+            new_password = bcrypt.hashpw(password.encode(), salt)
+            user_id = generate_uuid()
+            user = User(
+                id=user_id,
+                phone=phone,
+                username=username,
+                password=new_password.decode(),
+                salt=salt.decode(),
+                nickname=username,
+                create_time=time.time()
+            )
+
+            user_info = UserInfo(
+                user_id=user_id,
+                head_url=Conf.get("DEFAULT_HEAD_IMAGE", ""),
+                signature="这个人很懒，什么都没留下"
+            )
+            db.session.add_all([user, user_info])
+            db.session.commit()
+            return json_response(None, message='注册成功', status=200)
+        except Exception as e:
+            _ = e
+            db.session.rollback()
+            return json_response(None, message=f'注册失败{_}', status=500)
 
 
 class PasswordRegisterResource(Resource):
