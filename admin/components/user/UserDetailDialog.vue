@@ -9,11 +9,11 @@
     <div v-if="currentUser">
       <div class="section section-base-info">
         <div class="user-avatar">
-          <el-avatar :size="91" :src="currentUser.user_info.head_url"></el-avatar>
+          <el-avatar :size="91" :src="userInfo.head_url"></el-avatar>
         </div>
         <div class="user-details">
           <ArrTitle size="h2">{{currentUser.nickname}}</ArrTitle>
-          <p>{{currentUser.user_info.signature}}</p>
+          <p>{{userInfo.signature}}</p>
           <AttributeList :attributes="attributes"/>
         </div>
       </div>
@@ -93,16 +93,20 @@
     @app.Action getAllOrgs
     @system.Action setDialogVisible
 
+    get userInfo() {
+      return this.currentUser.userInfo ? this.currentUser.userInfo : {}
+    }
+
     get attributes() {
       return [{
         key: '手机号',
         value: this.currentUser.phone
       }, {
         key: '邮 箱',
-        value: this.currentUser.user_info.email
+        value: this.userInfo.email
       }, {
         key: '性 别',
-        value: this.currentUser.user_info.gender === 1 ? '男':'女'
+        value: this.userInfo.gender === 1 ? '男':'女'
       }]
     }
 

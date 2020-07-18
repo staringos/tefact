@@ -313,7 +313,7 @@ class LightAppResource(Resource):
             admin_route=app_name,
             api_route=app_name,
             title=kwargs.get("title"),
-            description=kwargs.get("description"),
+            description=kwargs.get("description", None),
             icon="/app.png",
             is_official=False,
             own_org_id=org.id,
