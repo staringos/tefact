@@ -4,6 +4,7 @@ import { auth } from "~/utils"
 // import * as authServices from "~/services/auth"
 // import * as userServices from "~/services/user"
 import { service } from '~/utils'
+import { RegisterParams } from "~/services/common/entities/user"
 
 interface LoginResult {
   user: User,
@@ -60,6 +61,11 @@ class UserModule extends VuexModule {
       this.context.commit('LOGIN_RESULT', res.data.data)
 
     return res
+  }
+
+  @Action({ rawError: true })
+  public async register(params: RegisterParams) {
+    return service.auth.register(params)
   }
 
   @Action({ rawError: true })

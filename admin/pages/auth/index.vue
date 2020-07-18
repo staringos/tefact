@@ -8,23 +8,28 @@
       <Card class="login-block">
         <el-row class="login-block-row">
           <el-col :span="12" class="login-block-item login-block-image">
-            <img src="../../assets/images/login.png" />
+            <img src="../../assets/images/login.png"  alt="Tefact"/>
           </el-col>
           <el-col :span="12" class="login-block-item login-block-form">
             <h1 class="title" v-if="loginType === 'login'">验证码登录</h1>
             <h1 class="title" v-else-if="loginType === 'Wechat'">微信登录</h1>
+            <h1 class="title" v-else-if="loginType === 'register'">注 册</h1>
             <h1 class="title" v-else>密码登录</h1>
             <h2 class="description">Build System Without Code</h2>
-            <div v-if="loginType === 'login'" style="width: 60%;margin: 0 auto">
+            <div v-if="loginType === 'login'" class="form-wrapper">
               <PhoneLogin />
             </div>
             <div v-else-if="loginType === 'Wechart'" id="qrcode"></div>
+            <div v-else-if="loginType === 'register'" class="form-wrapper">
+              <Register />
+            </div>
             <div v-else style="width: 60%;margin: 0 auto">
               <PasswordLogin />
             </div>
             <p class="login-type">
               <span style="float:left;" @click="handleChangeLoginType">{{ loginType === 'login' ? '密码登录' : '验证码登录' }}</span>
-              <span style="float: right" @click="handleRegister">免费注册</span>
+              <span style="float: right" v-if="loginType !== 'register'" @click="handleRegister">免费注册</span>
+              <span style="float: right" v-if="loginType === 'register'" @click="handleLogin">立即登录</span>
             </p>
           </el-col>
         </el-row>
@@ -67,6 +72,11 @@
       display: flex;
       flex-grow: 1;
       z-index:2;
+
+      .form-wrapper {
+        width: 60%;
+        margin: 0 auto;
+      }
 
       .login-block {
         width: 80%;
@@ -130,16 +140,16 @@
   import { Component, Vue, namespace, Watch } from 'nuxt-property-decorator'
   import Card from '~/components/ui/Card.vue'
   import Logo from '~/components/layout/UserAdmin/Logo.vue'
-  import PhoneLogin from '~/components/login/PhoneLogin.vue'
-  import PasswordLogin from '~/components/login/PasswordLogin.vue'
+  import PhoneLogin from '~/components/auth/PhoneLogin.vue'
+  import PasswordLogin from '~/components/auth/PasswordLogin.vue'
+  import Register from '~/components/auth/Register.vue'
 
   @Component({
-    components: { Card, PhoneLogin, PasswordLogin, Logo },
+    components: { Register, Card, PhoneLogin, PasswordLogin, Logo },
     layout: 'front'
   })
   export default class Index extends Vue {
-    loginType = 'password'
-    private mounted(): void {}
+    loginType: string = 'password'
 
     @Watch('loginType')
     onLoginTypeChange() {
@@ -149,8 +159,13 @@
     }
 
     public handleRegister() {
-      this.$router.push("/register")
+      this.$router.push("?type=register")
     }
+
+    public handleLogin() {
+      this.$router.push("?type=password")
+    }
+
 
     public requestWechatQRCode () {
         const ba64Css = 'LmltcG93ZXJCb3ggLnFyY29kZSB7d2lkdGg6IDE4MHB4O21hcmlnbi10b3A6LThweH0KLmltcG93ZXJCb3ggLnRpdGxlIHtkaXNwbGF5OiBub25lO30KLmltcG93ZXJCb3ggLmluZm8ge2Rpc3BsYXk6IG5vbmU7fQ=='
@@ -166,6 +181,20 @@
     }
     public handleChangeLoginType() {
       this.loginType = this.loginType === 'login' ? 'Wechat' : 'login'
+    }
+
+    @Watch('$route')
+    onRouteChange() {
+      this.init()
+    }
+
+    init() {
+      const type = this.$route.query.type as string
+      if (type) this.loginType = type
+    }
+
+    public mounted() {
+      this.init()
     }
   }
 </script>

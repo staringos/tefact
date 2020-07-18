@@ -48,6 +48,6 @@ export default class SystemModule extends VuexModule {
     auth.removeToken()
     localStorage.clear()
     sessionStorage.clear()
-    location.href = '/login'
+    location.href = '/auth'
   }
 }
