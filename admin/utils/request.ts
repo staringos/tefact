@@ -52,7 +52,7 @@ service.interceptors.response.use(
     if (error.response.status === 401) {
       auth.setToken('')
       if (global) return {}
-      if (window) window.location.href = '/login'
+      if (window) window.location.href = '/auth'
     }
     return Promise.reject(error.response)
   }

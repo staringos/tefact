@@ -1,7 +1,7 @@
 import { auth } from "~/utils"
 import { appStore } from '~/utils/store-accessor'
 
-const whiteList = ['/login']
+const whiteList = ['/auth']
 
 const pluginFilter = (to) => {
   const appRoute = to.path.replace('/plugins/', '').split('/')[0]
@@ -37,6 +37,6 @@ export default async ({ app }) => {
       return next()
 
     if (whiteList.indexOf(to.path) !== -1) next()
-    else next({path: '/login'})
+    else next({path: '/auth'})
   })
 }
