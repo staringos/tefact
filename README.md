@@ -28,10 +28,6 @@ Build your admin panel without code!
 
 ![APP Overview](./docs/images/k8s.png)
 
-## Tech Stack
-
-![Tefact Overview](./docs/images/overview.png)
-
 #### Front End
 
 - NodeJS = 12.2.0
@@ -131,7 +127,3 @@ python manage.py init-data
 ## Contributing
 
 [CONTRIBUTING](./CONTRIBUTING.md)
-
-欢迎 Star! 欢迎 PR!
-
-![](./docs/images/good.jpeg)
