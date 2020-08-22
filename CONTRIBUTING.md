@@ -1,4 +1,14 @@
-# Contribute to Tefact
+# Contributing Guides
+
+First off, thank you for considering contributing to Tefact. It's people like you that make Tefact such a great tool.
+
+[source: [Active Admin](https://github.com/Tefact/tefact-saas/blob/master/CONTRIBUTING.md)] 
+
+**Need more inspiration?** 
+
+[1] [Read The README](http://read-the-docs.readthedocs.org/en/latest/contribute.html) 
+
+[2] [VUE.js](https://github.com/vuejs/vue)
 
 ## Admin Panel
 
