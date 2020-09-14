@@ -10,7 +10,7 @@ const service = axios.create({
   timeout: 100000 // request timeout
 })
 
-const codeMessage = {
+export const codeMessage = {
   400: '请求错误',
   401: '未授权，请登录',
   422: '未授权，请登录',
