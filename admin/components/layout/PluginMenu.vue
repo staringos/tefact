@@ -5,7 +5,7 @@
       <h3 v-if="currentApp">
         {{currentApp.title}}
       </h3>
-      <el-button type="text" icon="el-icon-edit" @click="handleToAppEditor" circle></el-button>
+      <el-button type="text" icon="el-icon-edit" @click.stop="handleToAppEditor" circle></el-button>
     </div>
     <div class="plugin-menu-wrapper">
       <el-menu
@@ -28,7 +28,10 @@
               <img class="menu-icon" :src="menu.icon" v-if="menu.icon.startsWith('http')" />
               <span>{{menu.name}}</span>
             </template>
-            <el-menu-item :index="getPath(child)" :key="i" v-for="(child, i) in menu.children">{{child.name}}</el-menu-item>
+            <el-menu-item :index="getPath(child)" :key="i" v-for="(child, i) in menu.children">
+              {{child.name}}
+              <el-button class="page-edit-btn" type="text" icon="el-icon-edit" @click="handleToPageEditor(child.page_id)" circle></el-button>
+            </el-menu-item>
           </el-submenu>
         </template>
       </el-menu>
@@ -44,6 +47,17 @@
     height: 100%;
     width: 200px;
     min-width: 200px;
+
+    .page-edit-btn {
+      float: right;
+      padding: 0;
+      line-height: 50px;
+
+      ::v-deep .el-icon-edit {
+        color: #0d5aa7;
+        font-size: 14px;
+      }
+    }
 
     .plugin-menu-wrapper {
       flex: 1;
@@ -106,6 +120,10 @@
 
     handleToAppEditor() {
       this.$router.push(`/app/light/${this.currentApp.id}`)
+    }
+
+    handleToPageEditor(pageId) {
+      this.$router.push(`/app/light/${this.currentApp.id}/${pageId}/editor`)
     }
 
     getPath (menu) {
