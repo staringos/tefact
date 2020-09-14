@@ -114,13 +114,12 @@
 </style>
 <script lang="ts">
   import { Component, Vue, namespace } from 'nuxt-property-decorator'
-  import tools from '~/utils'
 
   const menu = namespace('menu')
   const system = namespace('system')
 
   @Component({})
-  export default class menuBar extends Vue {
+  export default class MenuBar extends Vue {
     @system.Action togglePluginMenu
 
     currentMenu = "/"
@@ -130,6 +129,8 @@
       { id: "data-source", icon: "tf-icon-packing-labeling", title: "数据源", route: "/app/light/${id}/data-source" },
       { id: "setting", icon: "tf-icon-conditions", title: "应用设置", route: "/app/light/${id}/setting" }
     ]
+    $route: any
+    $router: any
 
     handleMenuClick(menu) {
       this.$router.push(menu.route.replace("${id}", this.id))
