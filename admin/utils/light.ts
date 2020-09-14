@@ -32,16 +32,13 @@ export const findMenu = async (menus, target) => {
 
     if (menu.children && menu.children.length > 0) {
       const value = await findMenu(menu.children, target) // 递归查找更深层级
-      if (value) {
-        res = value
-      }
+      if (value) res = value
     }
   }))
 
   // 当前层级找到节点 返回值
-  if (currentIndex !== -1) {
+  if (currentIndex !== -1)
     return { list: menus, index: currentIndex }
-  }
 
   // 如果是更深一层方法返回值 或者 默认值
   return res
@@ -65,11 +62,8 @@ export const loopModify = async (menus, target, newValue: any = null , type = 'd
   if (type === 'delete') list.splice(index, 1)
   if (type === 'modify') list[index] = newValue
   if (type === 'add') {
-    if (list[index].children) {
-      list[index].children.push(newValue)
-    } else {
-      list[index].children = [ newValue ]
-    }
+    if (list[index].children) list[index].children.push(newValue)
+    else list[index].children = [ newValue ]
   }
 
   if (type === 'reorder')
