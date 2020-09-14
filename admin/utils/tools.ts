@@ -48,13 +48,10 @@ export default {
   },
 
   getCookie(cookies: string, name: string) {
-    let arr, reg = new RegExp("(^| )"+name+"=([^;]*)(;|$)");
+    const reg = new RegExp("(^| )"+name+"=([^;]*)(;|$)")
     if (!cookies) return null
-
-    if (arr = cookies.match(reg)) {
-      return unescape(arr[2])
-    } else {
-      return null
-    }
+    let arr = cookies.match(reg);
+    if (arr) return unescape(arr[2])
+    else return null
   }
 }
