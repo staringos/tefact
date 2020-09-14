@@ -12,7 +12,7 @@
     "generate": "nuxt-ts generate",
     "analyze": "nuxt-ts build --analyze",
     "start": "cross-env NODE_ENV=production nuxt-ts start",
-    "lint": "eslint --ext .ts,.js,.vue ."
+    "lint": "./node_modules/.bin/eslint --ext .ts,.js,.vue ."
   },
   "dependencies": {
     "@nuxt/typescript-runtime": "^0.4.10",
@@ -33,13 +33,14 @@
   },
   "peerDependencies": {},
   "devDependencies": {
-    "@types/lodash-es": "^4.17.3",
     "@nuxt/typescript-build": "^1.0.3",
     "@nuxtjs/eslint-config-typescript": "^1.0.0",
+    "@types/lodash-es": "^4.17.3",
     "@vue/test-utils": "^1.0.0-beta.27",
     "babel-jest": "^24.1.0",
     "babel-plugin-component": "^1.1.1",
     "cross-env": "^5.2.0",
+    "eslint": "^7.7.0",
     "jest": "^24.1.0",
     "node-sass": "^4.13.0",
     "nodemon": "^1.18.9",
