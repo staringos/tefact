@@ -1,4 +1,4 @@
-import { Vue, Component, Prop, Watch, namespace } from "nuxt-property-decorator";
+import { Vue, Component, Prop, namespace } from "nuxt-property-decorator";
 import { BaseNodeModel } from '~/utils/entities/editor/node';
 const editor = namespace('editor')
 
@@ -22,13 +22,13 @@ export default class ResoluClass extends Vue {
   }
 
   public handleSave() {
-    if (this.nodeType === 'page') {
+    if (this.nodeType === 'page')
       return
-    }
 
-    if (this.nodeType === 'section') {
+
+    if (this.nodeType === 'section')
       return
-    }
+
 
     this.modifyNode({ sectionId: null, node: this.tmpNode })
   }

@@ -207,7 +207,7 @@
 </style>
 <script lang="ts">
   import { Vue, Component, Prop, Emit, Watch } from 'nuxt-property-decorator'
-  import { Constants } from '~/services/common'
+  import Constants from '~/services/common/constants'
   import { reorder } from '~/utils/light'
   import ButtonForm from './ButtonForm.vue'
 

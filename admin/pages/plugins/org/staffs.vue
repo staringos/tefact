@@ -34,7 +34,8 @@
   import { Component, Vue, namespace, Watch } from 'nuxt-property-decorator'
   import StaffTable from '~/components/org/StaffTable.vue'
   import StaffEditor from '~/components/org/StaffEditor.vue'
-  import { Staff, DefaultStaff } from '~/services/common'
+  import { Staff } from '~/services/common/entities/org'
+  import { DefaultStaff } from '~/services/common/constants'
 
   const app = namespace('app')
   const org = namespace('org')

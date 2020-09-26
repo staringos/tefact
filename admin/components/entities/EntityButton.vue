@@ -9,8 +9,7 @@
 </template>
 <script lang="ts">
   import { Component, Vue, Prop, namespace, Watch } from 'nuxt-property-decorator'
-  import { EntityPageSection } from '~/services/common'
-  import { wrapParamsObject } from '~/utils'
+  import { EntityPageSection } from '~/services/common/entities/entities'
   import List from './List.vue'
   import DataDisplay from './DataDisplay.vue'
 

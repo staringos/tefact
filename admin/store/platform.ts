@@ -1,5 +1,5 @@
 import { Module, VuexModule, Action, Mutation } from 'vuex-module-decorators'
-import { Application } from '~/services/common'
+import { Application } from '~/services/common/entities/app'
 import { service } from '~/utils'
 
 @Module({

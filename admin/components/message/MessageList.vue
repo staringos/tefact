@@ -50,7 +50,7 @@
 </style>
 <script lang="ts">
   import { Component, Vue, namespace, Emit } from 'nuxt-property-decorator'
-  import { Message } from '~/services/common'
+  import { Message } from '~/services/common/entities/user'
 
   const user = namespace('user')
 

@@ -88,7 +88,7 @@
 </style>
 <script lang="ts">
   import { Vue, Component, Prop, namespace } from 'nuxt-property-decorator'
-  import { Constants } from '~/services/common'
+  import Constants from '~/services/common/constants'
   import { reorder, loopModify, loopMenu } from '~/utils/light'
   import { cloneDeep } from "lodash-es";
 

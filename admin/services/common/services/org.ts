@@ -1,4 +1,4 @@
-import { OrgParams } from '../'
+import { OrgParams } from '~/services/common/entities/org'
 import omitBy from 'lodash/omitBy'
 import isNull from 'lodash/isNull'
 

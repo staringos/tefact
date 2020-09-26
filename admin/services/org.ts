@@ -1,5 +1,5 @@
 import request from '~/utils/request'
-import { OrgParams } from '~/services/common'
+import { OrgParams } from '~/services/common/entities/org'
 import _ from 'lodash'
 
 export const createOrg = (org: OrgParams) => request({

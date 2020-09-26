@@ -1,7 +1,8 @@
 import { Module, VuexModule, Mutation, Action } from 'vuex-module-decorators'
 import { systemStore } from '~/utils/store-accessor'
 import { DIALOG_NAME } from './system'
-import { OrgConfig, Application } from '~/services/common'
+import { Application } from '~/services/common/entities/app'
+import { OrgConfig } from '~/services/common/entities/org'
 import { service } from '~/utils'
 import _ from "lodash/index"
 
@@ -54,9 +55,9 @@ class AppModule extends VuexModule {
   @Action({ rawError: true })
   public async modifyApp({ id, app }) {
     const res = await service.app.modifyApp(id, app)
-    if (res.status === 200) {
+    if (res.status === 200)
       this.getAllAppsInOrg(this.currentOrgId)
-    }
+
   }
 
   @Action({ commit: 'GET_APPS', rawError: true })

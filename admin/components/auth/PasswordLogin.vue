@@ -19,7 +19,7 @@
 </template>
 <script lang="ts">
   import { Component, namespace, Vue } from 'nuxt-property-decorator'
-  import { LoginEntity } from '~/services/common'
+  import { LoginEntity } from '~/services/common/entities/user'
   import Tools from '~/utils'
 
   const user = namespace('user')

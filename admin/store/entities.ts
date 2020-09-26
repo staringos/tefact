@@ -1,5 +1,5 @@
 import { Module, VuexModule, Mutation, Action } from 'vuex-module-decorators'
-import { EntityPage } from '~/services/common'
+import { EntityPage } from '~/services/common/entities/entities'
 import { service } from '~/utils'
 import { appStore } from '~/utils/store-accessor'
 
