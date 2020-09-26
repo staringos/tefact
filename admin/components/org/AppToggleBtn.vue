@@ -19,7 +19,7 @@
 </style>
 <script lang="ts">
   import { Vue, Component, namespace, Prop, Emit } from 'nuxt-property-decorator'
-  import { Application } from '~/services/common'
+  import { Application } from '~/services/common/entities/app'
 
   const app = namespace('app')
 

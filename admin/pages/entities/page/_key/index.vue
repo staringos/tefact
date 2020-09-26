@@ -14,7 +14,6 @@
 </style>
 <script lang="ts">
 import { Component, Vue, namespace, Watch } from 'nuxt-property-decorator'
-import { EntityPage } from '~/services/common'
 import PageSection from '~/components/entities/PageSection.vue'
 
 const entities = namespace('entities')

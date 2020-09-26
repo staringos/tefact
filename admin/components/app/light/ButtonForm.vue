@@ -26,7 +26,7 @@
 </style>
 <script lang="ts">
   import { Vue, Component, Prop, Watch, Emit } from 'nuxt-property-decorator'
-  import { Constants } from '~/services/common'
+  import Constants from '~/services/common/constants'
 
   @Component
   export default class ButtonForm extends Vue {

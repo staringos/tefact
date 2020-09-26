@@ -31,7 +31,7 @@
 <script lang="ts">
 import { Vue, namespace, Component } from 'nuxt-property-decorator'
 import Card from '~/components/ui/Card.vue'
-import { LoginEntity } from '~/services/common'
+import { LoginEntity } from '~/services/common/entities/user'
 
 const success = namespace('success')
 @Component({

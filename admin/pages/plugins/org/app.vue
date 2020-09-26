@@ -23,7 +23,7 @@
   import { Component, Vue, namespace } from 'nuxt-property-decorator'
   import AppItem from '~/components/org/AppItem.vue'
   import AppItemDetails from '~/components/org/AppItemDetails.vue'
-  import { Application } from '~/services/common'
+  import { Application } from '~/services/common/entities/app'
 
   const app = namespace('app')
 

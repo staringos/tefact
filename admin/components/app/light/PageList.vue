@@ -69,7 +69,7 @@
   import { Vue, Component, Prop, namespace, Emit } from 'nuxt-property-decorator'
   import PageSectionList from './PageSectionList.vue'
   import { Confirm } from '~/components/ui'
-  import { Constants } from '~/services/common'
+  import Constants from '~/services/common/constants'
 
   const app = namespace('app')
 

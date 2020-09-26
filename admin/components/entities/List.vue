@@ -69,7 +69,7 @@
 </style>
 <script lang="ts">
   import { Component, Vue, namespace, Prop, Watch } from 'nuxt-property-decorator'
-  import { Entity, EntityPageSection } from '~/services/common'
+  import { Entity, EntityPageSection } from '~/services/common/entities/entities'
   import DataDisplay from '~/components/entities/DataDisplay.vue'
   import EntityModifier from '~/components/entities/EntityModifier.vue'
   import EntityButton from '~/components/entities/EntityButton.vue'

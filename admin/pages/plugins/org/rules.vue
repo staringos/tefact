@@ -67,7 +67,8 @@
   import { List, Confirm } from '~/components/ui'
   import RoleStaffTable from '~/components/org/RoleStaffTable.vue'
   import SaveButton from '~/components/org/SaveButton.vue'
-  import { DefaultRole, Role, Staff, Auth } from '~/services/common'
+  import { Role, Staff, Auth } from '~/services/common/entities/org'
+  import { DefaultRole } from '~/services/common/constants'
 
   const org = namespace('org')
   const app = namespace('app')

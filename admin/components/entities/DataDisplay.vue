@@ -20,7 +20,7 @@
 </template>
 <script lang="ts">
   import { Component, Vue, Prop, namespace } from 'nuxt-property-decorator'
-  import { EntityField } from '~/services/common'
+  import { EntityField } from '~/services/common/entities/entities'
   import List from './List.vue'
   import EntityModifier from './EntityModifier.vue'
   import EntityButton from './EntityButton.vue'

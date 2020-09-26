@@ -40,7 +40,8 @@
   import { Component, Vue, namespace, Emit, Watch } from 'nuxt-property-decorator'
   import { DIALOG_NAME } from '~/store/system'
   import { DialogX } from '~/components/ui'
-  import { DefaultUserParams, UserParams } from '~/services/common'
+  import { UserParams } from '~/services/common/entities/user'
+  import { DefaultUserParams } from '~/services/common/constants'
 
   const system = namespace('system')
   const user = namespace('user')

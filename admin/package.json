@@ -2,7 +2,7 @@
   "name": "@tefact/admin",
   "version": "0.0.7",
   "description": "tefact-admin",
-  "author": "georgezouq",
+  "author": "GeorgeZou",
   "private": true,
   "scripts": {
     "test": "jest",
@@ -12,7 +12,7 @@
     "generate": "nuxt-ts generate",
     "analyze": "nuxt-ts build --analyze",
     "start": "cross-env NODE_ENV=production nuxt-ts start",
-    "lint": "./node_modules/.bin/eslint --ext .ts,.js,.vue ."
+    "lint": "./node_modules/.bin/eslint --ext .ts,.js,.vue --fix ."
   },
   "dependencies": {
     "@nuxt/typescript-runtime": "^0.4.10",

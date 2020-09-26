@@ -7,7 +7,7 @@ import platformGenerator from './platform'
 import educationGenerator from './education'
 import editorGenerator from './editor'
 
-const ServicesGenerator = (request) => {
+const ServicesGenerator = request => {
   return {
     app: appGenerator(request),
     org: orgGenerator(request),

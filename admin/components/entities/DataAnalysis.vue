@@ -6,7 +6,7 @@
 </template>
 <script lang="ts">
   import { Component, Vue, Prop } from 'nuxt-property-decorator'
-  import { EntityPageSection } from '~/services/common'
+  import { EntityPageSection } from '~/services/common/entities/entities'
   import List from './List.vue'
 
   @Component({
