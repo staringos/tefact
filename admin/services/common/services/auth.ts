@@ -1,4 +1,4 @@
-import { LoginParams, LoginEntity, PwdLoginParams } from '../'
+import { LoginParams, LoginEntity, PwdLoginParams } from '~/services/common/entities/user'
 
 export default (request) => {
   return {

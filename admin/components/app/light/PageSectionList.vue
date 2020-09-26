@@ -91,7 +91,7 @@
 </style>
 <script lang="ts">
   import { Vue, Component, Prop } from 'nuxt-property-decorator'
-  import { Constants } from '~/services/common'
+  import Constants from '~/services/common/constants'
 
   @Component
   export default class AppItem extends Vue {

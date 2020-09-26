@@ -35,7 +35,7 @@
 </style>
 <script lang="ts">
   import { Component, Vue, Prop } from 'nuxt-property-decorator'
-  import { Entity } from '~/services/common'
+  import { Entity } from '~/services/common/entities/entities'
   import List from './List.vue'
   import DataDisplay from './DataDisplay.vue'
 

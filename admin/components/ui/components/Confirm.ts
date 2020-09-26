@@ -13,9 +13,9 @@ export default {
           return ctx.$message({ type: 'success', message: `${actionName}成功!` })
         }
       }).catch((e: any) => {
-        if (e.response) {
+        if (e.response) 
           ctx.$message({ message: e.response.data.message, type: 'error' })
-        }
+        
       })
     })
   }

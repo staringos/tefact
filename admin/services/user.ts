@@ -1,5 +1,5 @@
 import request from "~/utils/request"
-import { MessageParams } from '~/services/common'
+import { MessageParams } from '~/services/common/entities/user'
 import _ from 'lodash'
 
 export const getMessage = (params: MessageParams) => request({

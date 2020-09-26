@@ -1,4 +1,4 @@
-import { MessageParams } from '../'
+import { MessageParams } from '~/services/common/entities/user'
 import omitBy from 'lodash/omitBy'
 import isNull from 'lodash/isNull'
 

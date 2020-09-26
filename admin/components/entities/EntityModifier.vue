@@ -17,7 +17,7 @@
 </template>
 <script lang="ts">
   import { Component, Vue, Prop, namespace, Watch, Emit } from 'nuxt-property-decorator'
-  import { EntityPageSection, Entity } from '~/services/common'
+  import { EntityPageSection, Entity } from '~/services/common/entities/entities'
   import { wrapParamsObject, findPrimaryKey } from '~/utils'
   import List from './List.vue'
   import DataDisplay from './DataDisplay.vue'

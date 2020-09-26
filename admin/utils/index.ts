@@ -1,4 +1,4 @@
-import { ServiceGenerator } from '../services/common/index'
+import ServiceGenerator from '../services/common/services'
 import request from './request'
 import Tools from "./tools"
 import responseLib from "./BaseResponse"

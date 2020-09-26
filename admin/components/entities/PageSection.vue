@@ -34,7 +34,7 @@
 </style>
 <script lang="ts">
   import { Component, Vue, Prop } from 'nuxt-property-decorator'
-  import { EntityPageSection } from '~/services/common'
+  import { EntityPageSection } from '~/services/common/entities/entities'
   import { extractParams } from '~/utils'
   import List from './List.vue'
   import Details from './Details.vue'

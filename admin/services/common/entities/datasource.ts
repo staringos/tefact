@@ -1,8 +1,8 @@
 export interface DataSource {
-  id: string
-  name: string
-  path: string
-  type: DataSourceType
+  id: string;
+  name: string;
+  path: string;
+  type: DataSourceType;
 }
 
 export interface DataBaseConnect {

@@ -17,9 +17,7 @@
 </template>
 <script lang="ts">
   import { Component, namespace, Vue } from 'nuxt-property-decorator'
-  import { LoginEntity } from '~/services/common'
   import { checkPhone } from '~/utils'
-  import Tools from '~/utils'
   import { RegisterParams } from "~/services/common/entities/user";
 
   const user = namespace('user')

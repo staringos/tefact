@@ -23,7 +23,7 @@
 </style>
 <script lang="ts">
   import { Component, Vue, Prop, namespace } from 'nuxt-property-decorator'
-  import { Entity, EntityPageSection } from '~/services/common'
+  import { EntityPageSection } from '~/services/common/entities/entities'
   import FieldFormItem from './FieldFormItem.vue'
   import { deepCopy } from '~/utils'
 

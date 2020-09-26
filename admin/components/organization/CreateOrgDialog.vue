@@ -41,7 +41,7 @@
 </style>
 <script lang="ts">
   import { Vue, Component, namespace } from 'nuxt-property-decorator'
-  import { DefaultOrgParams } from '~/services/common'
+  import { DefaultOrgParams } from '~/services/common/constants'
   import { DialogX } from '~/components/ui'
   import { DIALOG_NAME } from '~/store/system'
 

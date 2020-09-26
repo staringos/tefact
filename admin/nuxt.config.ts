@@ -1,6 +1,6 @@
 import { Configuration } from '@nuxt/types'
 import LodashModuleReplacementPlugin from 'lodash-webpack-plugin'
-let options = {} as any
+const options = {} as any
 
 const script = [
   { src: 'https://res.wx.qq.com/connect/zh_CN/htmledition/js/wxLogin.js' }
