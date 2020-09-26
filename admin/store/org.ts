@@ -1,7 +1,5 @@
 import { Module, VuexModule, Mutation, Action } from 'vuex-module-decorators'
-// @ts-ignore
-import { Department, Staff, Role, Auth, OrgParams } from '~/services/common'
-// import * as orgServices from '../services/org'
+import { Department, Staff, Role, Auth, OrgParams } from '~/services/common/entities/org'
 import { service } from '~/utils'
 
 function loop(department): Department[] {

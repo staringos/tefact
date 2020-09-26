@@ -34,7 +34,7 @@
 </style>
 <script lang="ts">
   import { Vue, Component, Prop } from 'nuxt-property-decorator'
-  import { Entity, EntityPageSection } from '~/services/common'
+  import { EntityPageSection } from '~/services/common/entities/entities'
 
   @Component
   export default class AppItem extends Vue {

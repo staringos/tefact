@@ -1,15 +1,13 @@
 import { Module, VuexModule, Mutation, Action } from 'vuex-module-decorators'
-import { User } from "~/services/common"
+import { User } from "~/services/common/entities/user"
 import { auth } from "~/utils"
-// import * as authServices from "~/services/auth"
-// import * as userServices from "~/services/user"
 import { service } from '~/utils'
 import { RegisterParams } from "~/services/common/entities/user"
 
 interface LoginResult {
-  user: User,
-  access_token: string,
-  refreshToken?: string
+  user: User;
+  access_token: string;
+  refreshToken?: string;
 }
 
 @Module({

@@ -90,7 +90,7 @@
 <script lang="ts">
   import { Vue, Component, Prop } from 'nuxt-property-decorator'
   import EntityFieldList from './EntityFieldList.vue';
-  import { Constants } from '~/services/common/index.ts'
+  import Constants from '~/services/common/constants'
 
   @Component({
     components: { EntityFieldList }

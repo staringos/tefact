@@ -50,7 +50,7 @@ export default {
   getCookie(cookies: string, name: string) {
     const reg = new RegExp("(^| )"+name+"=([^;]*)(;|$)")
     if (!cookies) return null
-    let arr = cookies.match(reg);
+    const arr = cookies.match(reg);
     if (arr) return unescape(arr[2])
     else return null
   }

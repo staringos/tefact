@@ -1,6 +1,6 @@
 {
   "compilerOptions": {
-    "declaration": true,
+    "declaration": false,
     "removeComments": true,
     "emitDecoratorMetadata": true,
     "resolveJsonModule": true,
@@ -25,10 +25,10 @@
     "baseUrl": ".",
     "paths": {
       "~/*": [
-        "./*"
+        "./src/*"
       ],
       "@/*": [
-        "./*"
+        "./src/*"
       ],
       "lodash/*": [
         "node_modules/@types/lodash/*"

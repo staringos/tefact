@@ -45,7 +45,7 @@
 </style>
 <script lang="ts">
   import { Vue, Component, namespace, Watch } from 'nuxt-property-decorator'
-  import { Application } from '~/services/common'
+  import { Application } from '~/services/common/entities/app'
 
   import EntityList from '~/components/app/light/EntityList.vue'
   import MenuList from '~/components/app/light/MenuList.vue'

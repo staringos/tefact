@@ -36,8 +36,7 @@
 </style>
 <script lang="ts">
   import { Component, Vue, Prop, Emit, Watch, namespace } from 'nuxt-property-decorator'
-  import { EntityField, Entity } from '~/services/common'
-  import { deepCopy } from '~/utils'
+  import { EntityField, Entity } from '~/services/common/entities/entities'
   import Editor from '@tinymce/tinymce-vue'
   import { auth } from '~/utils'
 
