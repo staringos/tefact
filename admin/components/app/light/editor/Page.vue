@@ -1,5 +1,5 @@
 <template>
-  <div class="editor-page-canvas">
+  <div class="editor-page-canvas" @click="resetActive">
     <div class="section section-add" v-if="!page.page_section || page.page_section.length < 1" >
       <AddButton :index="0" :pageId="pageId" show></AddButton>
     </div>
@@ -50,6 +50,7 @@
     handleKeyDown(e) {
       switch(e.key) {
         case 'Backspace':
+          if (this.preview) return;
           this.removeActiveNodes()
       }
     }

@@ -1,5 +1,5 @@
 <template>
-  <div :class="`section ${!preview ? 'hover-style' : ''}${active && !preview ? 'active' : ''}`" @click.stop="handleSectionClick">
+  <div :class="`section ${!preview ? 'hover-style' : ''} ${active && !preview ? 'active' : ''}`" @click="handleSectionClick">
     <AddButton v-if="!preview" :index="index" :pageId="pageId" show></AddButton>
 
     <component
@@ -88,12 +88,13 @@
     hLine = []
 
     handleActiveUpdate(id, active) {
+      const params = { id, active, sectionId: this.section.id }
       if (utils.hasMetaKeyPass()) {
         if (!active) return
-        return this.multipleActiveNode({ id, active })
+        return this.multipleActiveNode(params)
       }
 
-      this.activeNode({ id, active })
+      this.activeNode(params)
     }
 
     handleRefLineChange(params) {
