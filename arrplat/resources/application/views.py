@@ -392,7 +392,7 @@ class LightAppMenu(Resource):
     @use_kwargs({
         "name": fields.String(required=True),
         "application_id": fields.String(required=True),
-        "type": fields.String(required=True),
+        "type": fields.Number(required=True),
         "icon": fields.String(required=False),
         "link": fields.String(required=False),
         "page_key": fields.String(required=False),
@@ -414,7 +414,7 @@ class LightAppMenu(Resource):
           parameters:
             - name: id
               in: body
-              type: string
+              type: number
               required: true
         """
         menu = ApplicationMenus(
