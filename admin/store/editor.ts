@@ -41,7 +41,6 @@ class EditorModule extends VuexModule {
   public currentPageSectionId: string | null = null
   public currentNodeIds: string[] | null = []
 
-
   get currentPage() { return this.page }
   get currentNodesIdsGetter() { return this.currentNodeIds }
   get currentPageSectionIdGetter() { return this.currentPageSectionId }
@@ -82,6 +81,8 @@ class EditorModule extends VuexModule {
   }
 
   @Mutation public ACTIVE_NODE(payload) {
+    this.currentPageSectionId = payload.sectionId
+
     if (payload.active) {
       this.currentNodeIds = [payload.id]
       return
@@ -90,6 +91,8 @@ class EditorModule extends VuexModule {
   }
   @Mutation public MULTIPLE_ACTIVE_NODE(payload) {
     if (!this.currentNodeIds) this.currentNodeIds = []
+
+    this.currentPageSectionId = payload.sectionId
     const has = this.currentNodeIds.indexOf(payload.id)
     if (payload.active) {
       if (has === -1)
@@ -136,11 +139,15 @@ class EditorModule extends VuexModule {
     if (!currentNodeIds || currentNodeIds.length < 0) return
 
     const section = this.page && this.page.page_section.filter(cur => cur.id === this.currentPageSectionId)
+
+    console.log("currentNodeIds:", this.currentNodeIds, section, this.currentPageSectionId, this.page.page_section);
     if (!section || section.length < 1) return
 
     Vue.set(section[0], 'nodes', section[0].nodes.filter(node => {
       return currentNodeIds.indexOf(node.id as string) === -1
     }))
+
+    this.currentNodeIds = []
   }
 
   @Action({ rawError: true, commit: 'CHOOSE_PAGE_SECTION' })
@@ -201,13 +208,13 @@ class EditorModule extends VuexModule {
   }
 
   @Action({ rawError: true, commit: 'ACTIVE_NODE' })
-  public activeNode({ id, active }) {
-    return { id, active }
+  public activeNode({ id, active, sectionId }) {
+    return { id, active, sectionId }
   }
 
   @Action({ rawError: true, commit: 'MULTIPLE_ACTIVE_NODE' })
-  public multipleActiveNode({ id, active }) {
-    return { id, active }
+  public multipleActiveNode({ id, active, sectionId }) {
+    return { id, active, sectionId }
   }
 
   @Action({ commit: 'RESET_ACTIVE' })
@@ -216,7 +223,9 @@ class EditorModule extends VuexModule {
   public resetNodes() { return }
 
   @Action({ commit: 'REMOVE_ACTIVE_NODES' })
-  public removeActiveNodes() { return }
+  public removeActiveNodes() {
+    return
+  }
 }
 
 export default EditorModule

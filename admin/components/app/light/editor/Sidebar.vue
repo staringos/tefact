@@ -1,5 +1,5 @@
 <template>
-  <div class="editor-side-bar">
+  <div class="editor-side-bar" @click.stop>
     <div class="base-resolu" v-if="config.hasTab">
       <el-tabs type="border-card">
         <el-tab-pane
