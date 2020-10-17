@@ -1,8 +1,8 @@
 <template>
-  <div class="editor-wrapper" v-if="currentPage">
+  <div class="editor-wrapper" v-if="currentPage" @click="resetActive">
     <div class="editor-container">
       <Toolbar :page="page" :editorSetting="editorSetting"></Toolbar>
-      <div class="editor-main" @click="handleResetActive">
+      <div class="editor-main">
         <NodeList />
         <Page :page="currentPage" :pageId="pageId" />
       </div>
@@ -69,10 +69,6 @@
 
     init(pageId) {
       this.getPageDetails(pageId)
-    }
-
-    handleResetActive() {
-      this.resetActive()
     }
 
     async mounted() {
