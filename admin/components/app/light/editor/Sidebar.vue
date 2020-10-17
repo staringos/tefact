@@ -31,6 +31,7 @@
     flex: 1;
     background: white;
     display: flex;
+    max-width: 325px;
 
     .base-resolu {
       display: flex;
