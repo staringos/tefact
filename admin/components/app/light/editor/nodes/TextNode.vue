@@ -33,20 +33,19 @@
   }
 </style>
 <script lang="ts">
-  import { Vue, Component, Prop, namespace } from 'nuxt-property-decorator'
-  import { cloneDeep } from 'lodash-es'
+  import { Component, Prop, namespace } from 'nuxt-property-decorator'
+  import { cloneDeep } from 'lodash'
   import NodeClass from './NodeClass'
   import { TextNodeModel } from '~/utils/entities/editor/node'
   import BaseNode from './BaseNode.vue'
   import { Editor, EditorContent } from "tiptap";
-  // import { Bold, Italic, Strike, Underline } from "tiptap-extensions";
 
   const editor = namespace('editor')
 
   @Component({
     components: { BaseNode, EditorContent }
   })
-  export default class TextNode extends NodeClass {
+  export default class TextNode extends NodeClass<TextNodeModel> {
     @Prop() node!: TextNodeModel
     @Prop() preview!: boolean
     @Prop() sectionId!: string

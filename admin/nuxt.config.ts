@@ -80,7 +80,7 @@ const config: Configuration = {
   */
   build: {
     transpile: [
-      'vuex-module-decorators', /^element-ui/, 'lodash-es'
+      'vuex-module-decorators', /^element-ui/
     ],
     plugins: [
       new LodashModuleReplacementPlugin()
@@ -106,7 +106,6 @@ const config: Configuration = {
       }
 
       // https://segmentfault.com/a/1190000011100006
-      // @ts-ignore
       config.resolve.symlinks = false;
     }
   }

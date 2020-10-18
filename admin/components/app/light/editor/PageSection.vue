@@ -14,7 +14,7 @@
       @update:active="(active) => handleActiveUpdate(node.id, active)"
     ></component>
 
-    <!--辅助线-->
+    <!-- Assist Line -->
     <span class="ref-line v-line"
           v-for="item in vLine"
           v-show="item.display && !preview"
@@ -23,43 +23,15 @@
           v-for="item in hLine"
           v-show="item.display && !preview"
           :style="{ top: item.position, left: item.origin, width: item.lineLength}"></span>
-    <!--辅助线END-->
+    <!-- Assist Line END -->
   </div>
 </template>
-<style lang="scss" scoped>
-  @import "../../../../assets/styles/variables";
-
-  .section {
-    flex: 1;
-    min-height: 300px;
-    position: relative;
-    background-color: white;
-
-    &:hover, &.active {
-      border: 1px solid $editor-border-active-color;
-    }
-
-    &.hover-style:hover {
-      /deep/ .add-button {
-        display: flex;
-      }
-    }
-
-    /deep/ .add-button {
-      display: none;
-      position: absolute;
-      bottom: -25px;
-      left: 50%;
-      margin-left: -25px;
-    }
-  }
-
-</style>
 <script lang="ts">
   import { Vue, Component, Prop, namespace } from 'nuxt-property-decorator'
   import TextNode from './nodes/TextNode.vue'
   import ImageNode from './nodes/ImageNode.vue'
   import TableNode from './nodes/TableNode.vue'
+  import ButtonNode from './nodes/ButtonNode.vue'
   import AddButton from '~/components/app/light/editor/AddButton.vue'
   import * as utils from '~/utils'
   import { NodeTypeToComponent } from '~/utils/constants/Editor'
@@ -68,7 +40,7 @@
 
   @Component({
     components: {
-      TextNode, ImageNode, AddButton, TableNode
+      TextNode, ImageNode, AddButton, TableNode, ButtonNode
     }
   })
   export default class PageSection extends Vue {
@@ -103,8 +75,9 @@
       this.hLine = hLine
     }
 
-    handleSectionClick() {
+    handleSectionClick(e) {
       if (this.active) return
+      e.stopPropagation()
       this.$emit("onActiveChange")
     }
 
@@ -112,3 +85,32 @@
     }
   }
 </script>
+
+<style lang="scss" scoped>
+@import "../../../../assets/styles/variables";
+
+.section {
+  flex: 1;
+  min-height: 300px;
+  position: relative;
+  background-color: white;
+
+  &:hover, &.active {
+    border: 1px solid $editor-border-active-color;
+  }
+
+  &.hover-style:hover {
+    /deep/ .add-button {
+      display: flex;
+    }
+  }
+
+  /deep/ .add-button {
+    display: none;
+    position: absolute;
+    bottom: -25px;
+    left: 50%;
+    margin-left: -25px;
+  }
+}
+</style>

@@ -1,11 +1,11 @@
-import { BaseNodeModel } from "~/utils/entities/editor/node"
+import { BaseNodeModel, EditorNodeData } from "~/utils/entities/editor/node"
 
 export interface PageSectionModel {
   id: string;
   title?: string;
   section_type: string;
   page_id: string;
-  nodes: BaseNodeModel[];
+  nodes: BaseNodeModel<EditorNodeData>[];
 }
 
 export interface PageModel {
