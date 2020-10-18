@@ -43,4 +43,5 @@ jobs:
         key: ${{ secrets.DEPLOY_KEY }}
         script: |
           cd /home/saas/tefact-saas-after/
+          cp /home/saas/config.py /home/saas/tefact-saas-after/arrplat/config.py
           gunicorn -c /home/saas/tefact-saas-after/gunicorn.conf saas:app
