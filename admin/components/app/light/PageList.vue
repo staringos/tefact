@@ -26,7 +26,7 @@
         label="操作"
         width="180">
         <template slot-scope="scope">
-          <el-button type="default" size="small" round @click.stop="handleRowClick(scope.row.id)">编辑</el-button>
+          <el-button type="default" size="small" round @click.stop="handleRowClick(scope.row)">编辑</el-button>
 <!--          <el-button type="default" size="small" round @click.stop="handleEdit(scope.row)">编辑</el-button>-->
           <el-button type="danger" size="small" round @click.stop="handleDelete(scope.row)">删除</el-button>
         </template>

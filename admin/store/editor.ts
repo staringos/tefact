@@ -140,7 +140,6 @@ class EditorModule extends VuexModule {
 
     const section = this.page && this.page.page_section.filter(cur => cur.id === this.currentPageSectionId)
 
-    console.log("currentNodeIds:", this.currentNodeIds, section, this.currentPageSectionId, this.page.page_section);
     if (!section || section.length < 1) return
 
     Vue.set(section[0], 'nodes', section[0].nodes.filter(node => {

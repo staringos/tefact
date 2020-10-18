@@ -24,36 +24,9 @@
     </div>
   </div>
 </template>
-<style lang="scss" scoped>
-  @import "../../../../assets/styles/variables";
-
-  .editor-side-bar {
-    flex: 1;
-    background: white;
-    display: flex;
-
-    .base-resolu {
-      display: flex;
-      flex: 1;
-      flex-direction: column;
-
-      .title {
-        display: flex;
-        background: $bg-02;
-      }
-    }
-
-    /deep/ .el-tabs {
-      flex: 1;
-      box-shadow: none;
-      margin-top: -1px;
-    }
-  }
-</style>
 <script lang="ts">
   import { Vue, Component, namespace, Prop } from 'nuxt-property-decorator'
   import { NodeResoluConfig } from '~/utils/constants/Editor'
-  import { BaseNodeModel } from '~/utils/entities/editor/node'
   import Resolu from './resolu'
   const editor = namespace('editor')
 
@@ -97,3 +70,30 @@
     }
   }
 </script>
+<style lang="scss" scoped>
+@import "../../../../assets/styles/variables";
+
+.editor-side-bar {
+  flex: 1;
+  background: white;
+  display: flex;
+  max-width: 325px;
+
+  .base-resolu {
+    display: flex;
+    flex: 1;
+    flex-direction: column;
+
+    .title {
+      display: flex;
+      background: $bg-02;
+    }
+  }
+
+  /deep/ .el-tabs {
+    flex: 1;
+    box-shadow: none;
+    margin-top: -1px;
+  }
+}
+</style>

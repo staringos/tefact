@@ -35,7 +35,6 @@
   @import "../../../../../assets/styles/variables";
 
   .base-node {
-    background: #fff;
     display: flex;
     cursor: pointer;
 
@@ -67,8 +66,8 @@
 <script lang="ts">
   import { Vue, Component, Prop, namespace } from 'nuxt-property-decorator'
   import VueDraggableResizable from 'vue-draggable-resizable-gorkys'
-  import { cloneDeep } from 'lodash-es'
-  import { BaseNodeModel } from '~/utils/entities/editor/node'
+  import { cloneDeep } from 'lodash'
+  import { BaseNodeModel, EditorNodeData } from '~/utils/entities/editor/node'
 
   const editor = namespace('editor')
 
@@ -76,7 +75,7 @@
     components: { VueDraggableResizable }
   })
   export default class BaseNode extends Vue {
-    @Prop() node!: BaseNodeModel
+    @Prop() node!: BaseNodeModel<EditorNodeData>
     @Prop() preview!: boolean
     @Prop() sectionId!: string
     @Prop() active!: string
@@ -129,8 +128,6 @@
       this.modifyNode({ sectionId: this.sectionId, node })
     }
 
-    handleDragging() {
-
-    }
+    handleDragging() {}
   }
 </script>

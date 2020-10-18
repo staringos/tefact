@@ -1,5 +1,5 @@
 <template>
-  <div class="editor-page-canvas" @click="resetActive">
+  <div :class="`editor-page-canvas ${direction}-side`" @click="resetActive">
     <div class="section section-add" v-if="!page.page_section || page.page_section.length < 1" >
       <AddButton :index="0" :pageId="pageId" show></AddButton>
     </div>
@@ -43,6 +43,10 @@
     @editor.Action removeActiveNodes
     @editor.Getter currentPageSectionIdGetter
 
+    get direction() {
+      return this.page.direction
+    }
+
     handleActiveChange(active) {
       this.choosePageSection(active)
     }
@@ -74,6 +78,14 @@
     flex-direction: column;
     margin: 0 auto;
     box-shadow: 0 2px 4px 0 rgba(0,0,0,.12), 0 0 6px 0 rgba(0,0,0,.04);
+
+    &.column-side {
+      overflow-x: hidden;
+    }
+
+    &.row-side {
+      overflow-y: hidden;
+    }
 
     .section {
       min-height: 300px;

@@ -1,6 +1,5 @@
 <template>
-  <div class="editor-node-list-wrapper">
-
+  <div class="editor-node-list-wrapper" @click.stop>
     <div class="editor-node-list">
       <div class="node-item" v-for="(node, i) in nodeList" :key="i" @click="handleAddNode(node.nodeData)">
         <i :class="`tefact-icon ${node.icon}`"></i>
@@ -17,7 +16,7 @@
 <script lang="ts">
   import { Vue, Component, namespace } from 'nuxt-property-decorator'
   import { NodeListConstants } from '~/utils/constants/Editor'
-  import { cloneDeep } from 'lodash-es'
+  import { cloneDeep } from 'lodash'
 
   const editor = namespace('editor')
 

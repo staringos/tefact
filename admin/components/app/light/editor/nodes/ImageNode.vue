@@ -99,8 +99,8 @@
   }
 </style>
 <script lang="ts">
-  import { Vue, Component, Prop, namespace } from 'nuxt-property-decorator'
-  import { cloneDeep } from 'lodash-es'
+  import { Component, namespace } from 'nuxt-property-decorator'
+  import { cloneDeep } from 'lodash'
   import { ImageNodeModel } from '~/utils/entities/editor/node'
   import BaseNode from './BaseNode.vue'
   import NodeClass from "~/components/app/light/editor/nodes/NodeClass";
@@ -111,14 +111,14 @@
   @Component({
     components: { BaseNode }
   })
-  export default class ImageNode extends NodeClass {
+  export default class ImageNode extends NodeClass<ImageNodeModel> {
     editor: any = null
 
     @system.Getter uploadUrl
     @editor.Action modifyNode
 
     get imageData() {
-      return this.node.data
+      return this.node?.data
     }
 
     handleToUpdate(e) {

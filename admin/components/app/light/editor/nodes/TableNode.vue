@@ -22,6 +22,7 @@
   import List from '../../../../../components/entities/List.vue'
   import NodeClass from '~/components/app/light/editor/nodes/NodeClass'
   import BaseNode from './BaseNode.vue'
+  import { TextNodeModel } from "~/utils/entities/editor/node"
 
   @Component({
     components: {
@@ -29,7 +30,7 @@
       BaseNode
     }
   })
-  export default class TableNode extends NodeClass {
+  export default class TableNode extends NodeClass<TextNodeModel> {
     section = {}
     entityParams = {}
     conditions = {}

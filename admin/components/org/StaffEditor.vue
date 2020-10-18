@@ -57,7 +57,7 @@
 <script lang="ts">
   import { Component, Vue, namespace, Prop, Watch, Emit } from 'nuxt-property-decorator'
   import { StaffParams } from '~/services/common/entities/org'
-  import { cloneDeep } from 'lodash-es'
+  import { cloneDeep } from 'lodash'
 
   const org = namespace('org')
   const app = namespace('app')
