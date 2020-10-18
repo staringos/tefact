@@ -34,7 +34,7 @@ jobs:
           cd /home/saas/tefact-saas/admin
           npm install
           npm run build
-          pm2 start saas
+          pm2 start npm --name "saas" -- start
     - name: Back End
       uses: appleboy/ssh-action@master
       with:
