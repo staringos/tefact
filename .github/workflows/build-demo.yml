@@ -23,7 +23,7 @@ jobs:
         FOLDER: ./  # 要推送的文件夹，路径相对于代码仓库的根目录
         SERVER_IP: ${{ secrets.HOST }}  # 引用配置，服务器的host名（IP或者域名domain.com）
         USERNAME: ${{ secrets.USERNAME }}  # 引用配置，服务器登录名
-        SERVER_DESTINATION: /home/saas/tefact-saas-after   # 部署到目标文件夹
+        SERVER_DESTINATION: /home/saas/tefact-saas   # 部署到目标文件夹
     - name: Front End
       uses: appleboy/ssh-action@master
       with:
@@ -31,10 +31,10 @@ jobs:
         username: ${{ secrets.USERNAME }}
         key: ${{ secrets.DEPLOY_KEY }}
         script: |
-          cd /home/saas/tefact-saas-after/admin
+          cd /home/saas/tefact-saas/admin
           npm install
           npm run build
-          pm2 restart saas-after
+          pm2 start saas
     - name: Back End
       uses: appleboy/ssh-action@master
       with:
@@ -42,6 +42,10 @@ jobs:
         username: ${{ secrets.USERNAME }}
         key: ${{ secrets.DEPLOY_KEY }}
         script: |
-          cd /home/saas/tefact-saas-after/
-          cp /home/saas/config.py /home/saas/tefact-saas-after/arrplat/config.py
-          gunicorn -c /home/saas/tefact-saas-after/gunicorn.conf saas:app
+          cd /home/saas/tefact-saas/
+          cp /home/saas/config.py /home/saas/tefact-saas/arrplat/config.py
+          pip install virtualenv
+          virtualenv venv
+          source /home/saas/tefact-saas/venv/bin/active
+          pip install -r requirement.txt
+          gunicorn -c /home/saas/tefact-saas/gunicorn.conf saas:app
