@@ -22,7 +22,7 @@
 <script lang="ts">
   import { Vue, Component, namespace, Watch } from 'nuxt-property-decorator'
   import { DIALOG_NAME } from '~/store/system'
-  import { omitBy, isNull } from 'lodash-es'
+  import { omitBy, isNull } from 'lodash'
 
   const system = namespace('system')
   const app = namespace('app')

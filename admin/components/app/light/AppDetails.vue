@@ -74,7 +74,6 @@
 </style>
 <script lang="ts">
   import { Vue, Component, Prop, Watch, namespace, Emit } from 'nuxt-property-decorator'
-  import { cloneDeep } from "lodash-es"
 
   const app = namespace("app")
   const system = namespace("system")

@@ -90,7 +90,7 @@
   import { Vue, Component, Prop, namespace } from 'nuxt-property-decorator'
   import Constants from '~/services/common/constants'
   import { reorder, loopModify, loopMenu } from '~/utils/light'
-  import { cloneDeep } from "lodash-es";
+  import { cloneDeep } from "lodash";
 
   const app = namespace('app')
 

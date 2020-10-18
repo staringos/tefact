@@ -4,7 +4,9 @@
       <Toolbar :page="page" :editorSetting="editorSetting"></Toolbar>
       <div class="editor-main">
         <NodeList />
-        <Page :page="currentPage" :pageId="pageId" />
+        <div class="editor-container">
+          <Page :page="currentPage" :pageId="pageId" />
+        </div>
       </div>
     </div>
     <Sidebar />
@@ -36,6 +38,14 @@
         overflow: auto;
         flex-direction: row;
         padding: 20px 20px 20px 20px;
+
+        .editor-container {
+          flex-grow: 1;
+          overflow: auto;
+          flex-direction: row;
+          padding: 20px 20px 20px 20px;
+          margin-left: 100px;
+        }
       }
     }
   }

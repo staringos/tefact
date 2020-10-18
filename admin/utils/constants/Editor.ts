@@ -1,4 +1,5 @@
-import { ImageNodeModel, TextNodeModel, TableNodeModel } from '~/utils/entities/editor/node';
+import { ImageNodeModel, TextNodeModel, TableNodeModel, ButtonNodeModel } from '~/utils/entities/editor/node';
+import { cloneDeep } from "lodash"
 
 export const BorderStyle = [
   { value: 'solid', label: '直线' },
@@ -27,7 +28,7 @@ export const NodeResoluConfig = {
     ],
   },
   image: {
-    title: '文字元素配置',
+    title: '图片配置',
     hasTab: true,
     tabs: [
       {
@@ -45,7 +46,7 @@ export const NodeResoluConfig = {
     ],
   },
   page: {
-    title: '段落配置',
+    title: '页面配置',
     hasTab: true,
     tabs: [
       {
@@ -58,7 +59,7 @@ export const NodeResoluConfig = {
     ],
   },
   section: {
-    title: '页面配置',
+    title: '段落配置',
     hasTab: true,
     tabs: [
       {
@@ -89,6 +90,63 @@ export const NodeResoluConfig = {
       },
     ],
   },
+  button: {
+    title: '按钮配置',
+    hasTab: true,
+    tabs: [
+      {
+        title: '基本信息',
+        components: [
+          { type: 'BackgroundResolu', params: {} },
+          { type: 'BorderResolu', params: {} },
+          {
+            type: 'RowsResolu', params: {
+              title: '按钮设置',
+              rows: [{
+                type: 'SelectRow',
+                params: {
+                  title: "类型",
+                  path: "data.type",
+                  selectOptions: [
+                    {value: 'primary', label: 'Primary'},
+                    {value: 'info', label: 'Info'},
+                    {value: 'warning', label: 'Warning'},
+                    {value: 'danger', label: 'Danger'},
+                    {value: 'text', label: 'Text'},
+                    {value: 'success', label: 'Success'},
+                  ]
+                }
+              }, {
+                type: 'SwitchRow',
+                params: {
+                  title: "朴素按钮",
+                  path: "data.plain"
+                }
+              }, {
+                type: 'SwitchRow',
+                params: {
+                  title: "圆角",
+                  path: "data.round"
+                }
+              }, {
+                type: 'SwitchRow',
+                params: {
+                  title: "圆形",
+                  path: "data.circle"
+                }
+              }]
+            }
+          }
+        ],
+      },
+      {
+        title: '数据',
+        components: [
+          { type: 'EntityResolu', params: {} },
+        ],
+      },
+    ],
+  },
 }
 
 export const NodeTypeToComponent = {
@@ -96,6 +154,7 @@ export const NodeTypeToComponent = {
   image: "ImageNode",
   html: "HtmlNode",
   table: "TableNode",
+  button: "ButtonNode",
 }
 
 export const BaseNodeStyle = {
@@ -103,6 +162,16 @@ export const BaseNodeStyle = {
   'font-size': 12,
   'font-color': '#333',
 }
+
+export const BaseNodeConfig = {
+  x: 30,
+  y: 30,
+  w: 120,
+  h: 80,
+  style: { ...BaseNodeStyle },
+}
+
+export const getBaseNodeConfig = () => cloneDeep(BaseNodeConfig);
 
 export const NodeDefaultData = {
   page: {
@@ -117,26 +186,22 @@ export const NodeDefaultData = {
   },
   text: {
     type: 'text',
-    config: {
-      x: 30,
-      y: 30,
-      w: 120,
-      h: 80,
-      style: { ...BaseNodeStyle },
-    },
+    config: getBaseNodeConfig(),
     data: {
       text: '请输入文字',
     },
   } as TextNodeModel,
+  button: {
+    type: 'button',
+    config: { ...getBaseNodeConfig(), w: 98, h: 40 },
+    data: {
+      text: '按钮',
+      type: 'primary'
+    },
+  } as ButtonNodeModel,
   image: {
     type: 'image',
-    config: {
-      x: 30,
-      y: 30,
-      w: 100,
-      h: 100,
-      style: { ...BaseNodeStyle },
-    },
+    config: getBaseNodeConfig(),
     data: {
       url: null,
       title: '',
@@ -144,13 +209,7 @@ export const NodeDefaultData = {
   } as ImageNodeModel,
   table: {
     type: 'table',
-    config: {
-      x: 30,
-      y: 30,
-      w: 500,
-      h: 150,
-      style: { ...BaseNodeStyle },
-    },
+    config: getBaseNodeConfig(),
     data: {
       dataSourceId: null,
       entityId: null,
@@ -192,4 +251,5 @@ export const NodeListConstants = [
   icon: 'tf-icon-mtbutton',
   type: 'button',
   title: '按钮',
+  nodeData: NodeDefaultData.button
 }]

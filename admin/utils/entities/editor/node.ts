@@ -1,3 +1,5 @@
+import { ButtonNativeType, ButtonType } from "element-ui/types/button";
+import { ElementUIComponentSize } from "element-ui/types/component"
 
 export interface EditorNodeData {
   data?: any;
@@ -32,9 +34,9 @@ enum NodeType {
   Button = "button",
 }
 
-export interface BaseNodeModel {
+export interface BaseNodeModel<T extends EditorNodeData> {
   config: EditorNodeConfig;
-  data: EditorNodeData;
+  data: T;
   type: NodeType;
   id?: string;
 }
@@ -92,18 +94,44 @@ export interface TableNodeData extends EditorNodeData {
   entityId?: string | null;
 }
 
-export interface TextNodeModel extends BaseNodeModel {
-  data: TextNodeData;
+export declare interface ElButton {
+  /** Button size */
+  size?: ElementUIComponentSize;
+
+  /** Button type */
+  type?: ButtonType;
+
+  /** Determine whether it's a plain button */
+  plain?: boolean;
+
+  /** Determine whether it's a round button */
+  round?: boolean;
+
+  /** Determine whether it's loading */
+  loading?: boolean;
+
+  /** Disable the button */
+  disabled?: boolean;
+
+  /** Button icon, accepts an icon name of Element icon component */
+  icon?: string;
+
+  /** Same as native button's autofocus */
+  autofocus?: boolean;
+
+  /** Same as native button's type */
+  nativeType?: ButtonNativeType;
 }
 
-export interface ImageNodeModel extends BaseNodeModel {
-  data: ImageNodeData;
+export type BaseButtonNodeData = ElButton & EditorNodeData
+
+export interface ButtonNodeData extends BaseButtonNodeData {
+  text?: string;
+  link?: string;
 }
 
-export interface HTMLCodeNodeModel extends BaseNodeModel {
-  data: ImageNodeData;
-}
-
-export interface TableNodeModel extends BaseNodeModel {
-  data: TableNodeData;
-}
+export type ButtonNodeModel = BaseNodeModel<ButtonNodeData>
+export type TextNodeModel = BaseNodeModel<TextNodeData>
+export type ImageNodeModel = BaseNodeModel<ImageNodeData>
+export type HTMLCodeNodeModel = BaseNodeModel<ImageNodeData>
+export type TableNodeModel = BaseNodeModel<TableNodeData>
