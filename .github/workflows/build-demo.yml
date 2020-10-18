@@ -24,7 +24,8 @@ jobs:
         SERVER_IP: ${{ secrets.HOST }}  # 引用配置，服务器的host名（IP或者域名domain.com）
         USERNAME: ${{ secrets.USERNAME }}  # 引用配置，服务器登录名
         SERVER_DESTINATION: /home/saas/tefact-saas-after   # 部署到目标文件夹
-    - name: Install Dependencies
+    - name: Front End
+      uses: appleboy/ssh-action@master
       with:
         host: ${{ secrets.HOST }}  # 下面三个配置与上一步类似
         username: ${{ secrets.USERNAME }}
@@ -35,7 +36,8 @@ jobs:
           npm install
           npm run build
           pm2 restart saas-after
-    - name: Install Dependencies
+    - name: Back End
+      uses: appleboy/ssh-action@master
       with:
         host: ${{ secrets.HOST }}  # 下面三个配置与上一步类似
         username: ${{ secrets.USERNAME }}
