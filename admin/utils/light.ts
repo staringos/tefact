@@ -1,5 +1,5 @@
 import { Vue } from 'nuxt-property-decorator'
-import { cloneDeep } from "lodash-es"
+import { cloneDeep } from "lodash"
 
 export const reorder = (list, i, position) => {
   if (position === 1 && i > 0) {
@@ -61,10 +61,10 @@ export const loopModify = async (menus, target, newValue: any = null , type = 'd
 
   if (type === 'delete') list.splice(index, 1)
   if (type === 'modify') list[index] = newValue
-  if (type === 'add') 
+  if (type === 'add')
     if (list[index].children) list[index].children.push(newValue)
     else list[index].children = [ newValue ]
-  
+
 
   if (type === 'reorder')
     reorder(list, index, flag)
@@ -98,12 +98,12 @@ export const loopMenu = (menus) => {
 
     const parent = flat.filter(pre => pre.id === menu.parent_id)
 
-    if (parent && parent.length > 0) 
+    if (parent && parent.length > 0)
       if (parent[0].children)
         parent[0].children.push(menu)
       else
         parent[0].children = [menu]
-    
+
   })
 
   return root;

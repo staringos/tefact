@@ -106,7 +106,7 @@
 </style>
 <script>
   import { Component, Vue, namespace } from 'nuxt-property-decorator'
-  import { cloneDeep } from 'lodash-es'
+  import { cloneDeep } from 'lodash'
 
   const app = namespace('app')
   const system = namespace('system')

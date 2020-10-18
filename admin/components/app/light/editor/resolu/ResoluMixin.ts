@@ -1,16 +1,17 @@
 import { Vue, Component, Prop, Watch } from 'nuxt-property-decorator'
-import { cloneDeep } from 'lodash-es'
-import { BaseNodeModel } from '~/utils/entities/editor/node'
+import { cloneDeep } from 'lodash'
+import { BaseNodeModel, EditorNodeData } from '~/utils/entities/editor/node'
 import { BaseNodeStyle, NodeDefaultData } from '~/utils/constants/Editor'
 
 @Component
 export default class ResoluMixin extends Vue {
-  @Prop() public node!: BaseNodeModel
+  @Prop() public node!: BaseNodeModel<EditorNodeData>
   @Prop() public nodeType!: string
 
-  public tmpNode!: BaseNodeModel
+  public tmpNode!: BaseNodeModel<EditorNodeData>
 
   public init() {
+    if (!this.node) return
     const tmpNode = cloneDeep(this.node)
     if (!tmpNode.config)
       tmpNode.config = NodeDefaultData[this.nodeType].config

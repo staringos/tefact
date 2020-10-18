@@ -1,5 +1,5 @@
 import { Vue, Component, Prop, namespace } from "nuxt-property-decorator";
-import { BaseNodeModel } from '~/utils/entities/editor/node';
+import { BaseNodeModel, EditorNodeData } from '~/utils/entities/editor/node';
 const editor = namespace('editor')
 
 @Component
@@ -13,7 +13,7 @@ export default class ResoluClass extends Vue {
     return null
   }
 
-  public tmpNode: BaseNodeModel | null = null
+  public tmpNode: BaseNodeModel<EditorNodeData> | null = null
 
   public handleStyleChange(key, value) {
     if (!this.style) return
@@ -22,13 +22,8 @@ export default class ResoluClass extends Vue {
   }
 
   public handleSave() {
-    if (this.nodeType === 'page')
-      return
-
-
-    if (this.nodeType === 'section')
-      return
-
+    if (this.nodeType === 'page') return
+    if (this.nodeType === 'section') return
 
     this.modifyNode({ sectionId: null, node: this.tmpNode })
   }
