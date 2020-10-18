@@ -48,5 +48,5 @@ jobs:
           virtualenv venv
           source /home/saas/tefact-saas/venv/bin/active
           pip install --upgrade pip
-          pip install -r requirement.txt
+          pip install -r requirements.txt
           gunicorn -c /home/saas/tefact-saas/gunicorn.conf saas:app
