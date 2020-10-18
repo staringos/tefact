@@ -1,0 +1,46 @@
+name: Tefact Demo Builder
+
+on:
+  push:
+    branches:
+      - master
+    paths-ignore:
+      - docs
+      - README.md
+      - LICENSE
+      - CONTRIBUTING.md
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@master
+    - name: Deploy to server
+      uses: AEnterprise/rsync-deploy@v1.0
+      env:
+        DEPLOY_KEY: ${{ secrets.DEPLOY_KEY }}   # 引用配置，SSH私钥
+        ARGS: -avz --delete --exclude='*.pyc'   # rsync参数，排除.pyc文件
+        SERVER_PORT: '22'  # SSH端口
+        FOLDER: ./  # 要推送的文件夹，路径相对于代码仓库的根目录
+        SERVER_IP: ${{ secrets.HOST }}  # 引用配置，服务器的host名（IP或者域名domain.com）
+        USERNAME: ${{ secrets.USERNAME }}  # 引用配置，服务器登录名
+        SERVER_DESTINATION: /home/saas/tefact-saas-after   # 部署到目标文件夹
+    - name: Install Dependencies
+      with:
+        host: ${{ secrets.HOST }}  # 下面三个配置与上一步类似
+        username: ${{ secrets.USERNAME }}
+        key: ${{ secrets.DEPLOY_KEY }}
+        # 重启的脚本，根据自身情况做相应改动，一般要做的是migrate数据库以及重启服务器
+        script: |
+          cd /home/saas/tefact-saas-after
+          npm install
+          npm run build
+          pm2 restart saas-after
+    - name: Install Dependencies
+      with:
+        host: ${{ secrets.HOST }}  # 下面三个配置与上一步类似
+        username: ${{ secrets.USERNAME }}
+        key: ${{ secrets.DEPLOY_KEY }}
+        # 重启的脚本，根据自身情况做相应改动，一般要做的是migrate数据库以及重启服务器
+        script: |
+          cd /home/saas/tefact-saas-after/
+          gunicorn -c /home/saas/tefact-saas-after/gunicorn.conf saas:app
