@@ -59,3 +59,4 @@ Flask-Migrate==2.2.1
 flasgger==0.9.3
 kubernetes
 aliyunsdkcore
+marshmallow_enum
