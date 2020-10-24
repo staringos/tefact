@@ -10,15 +10,14 @@ enum DataSourceType {
 enum DataSourceStatus {
   connected = 'connected',
   error = 'error',
-  lack = 'lack',
-  default = 'default'
+  lack = 'lack'
 }
 
 export interface DataSource {
   id?: string;
   name: string;
   type: DataSourceType;
-  status: DataSourceStatus;
+  status?: DataSourceStatus;
   org_id: string;
 
   description?: string;
@@ -28,14 +27,12 @@ export interface DataSource {
   password?: string;
   default_db?: string;
 
-  create_user_id: string;
+  create_user_id?: string;
 }
 
 export const DefaultDataSource: DataSource = {
-  create_user_id: "",
   name: "",
   org_id: "",
-  status: DataSourceStatus.default,
   type: DataSourceType.mysql
 }
 
