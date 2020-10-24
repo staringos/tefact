@@ -240,7 +240,6 @@ class CreateOrganizationResource(Resource):
             db.session.commit()
         except Exception as e:
             _ = e
-            print(e)
             db.session.rollback()
             return json_response(message="组织添加失败", status=403)
         else:

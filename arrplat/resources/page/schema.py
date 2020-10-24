@@ -60,8 +60,6 @@ class EntitySchema(ma.ModelSchema):
 
     @pre_dump
     def format_sql(self, obj):
-        print("format_sql")
-
         self.query_form_data = obj.query_form_data if hasattr(obj, 'query_form_data') else dict()
         search_params = self.query_form_data.get('search_condition')
         detail_params = self.query_form_data.get('detail_condition')

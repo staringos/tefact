@@ -1,7 +1,7 @@
 <template>
   <div class="title-wrapper">
     <LogoImage />
-    <h3 class="title">{{title || "TEFACT"}}</h3>
+    <h3 class="title" :style="{ color: color }">{{title || "TEFACT"}}</h3>
   </div>
 </template>
 <style lang="scss" scoped>
@@ -35,5 +35,6 @@
   })
   export default class Logo extends Vue {
     @Prop(String) title!: String | null
+    @Prop(String) color!: String | null
   }
 </script>

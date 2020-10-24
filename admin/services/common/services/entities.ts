@@ -4,8 +4,13 @@ export default (request) => {
       url: `/page/data-source/${dataSourceId}`,
       method: 'get',
     }),
-    addDataSource: (data) => request({
-      url: `/page/data-source`,
+    dataSourceList: (data, orgId) => request({
+      url: `/data-source/org/${orgId}`,
+      method: 'get',
+      data,
+    }),
+    addDataSource: (data, orgId) => request({
+      url: `/data-source/org/${orgId}`,
       method: 'post',
       data,
     }),
