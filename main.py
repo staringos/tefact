@@ -1,7 +1,7 @@
 from arrplat.app import app
 from arrplat.config import DEBUG
 import sys
-from arrplat.common.utils import json_response
+# from arrplat.common.utils import json_response
 
 
 # 全局异常捕获
