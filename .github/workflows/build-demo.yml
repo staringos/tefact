@@ -13,7 +13,6 @@ jobs:
   deploy:
     runs-on: ubuntu-latest
     timeout-minutes: 20
-    command_timeout: 200m
     steps:
     - uses: actions/checkout@master
     - name: Deploy to server
@@ -37,7 +36,8 @@ jobs:
           cd /home/saas/tefact-saas/admin
           npm install --registry=https://registry.npm.taobao.org
           npm run build
-          pm2 start npm --name "saas" -- start
+          pm2 delete saas
+          pm2 start --name "saas" npm -- start
     - name: Back End
       uses: appleboy/ssh-action@master
       with:
