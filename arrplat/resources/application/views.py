@@ -400,7 +400,6 @@ class LightAppMenu(Resource):
         "page_id": fields.String(required=False),
     })
     def post(self, **kwargs):
-        print("menu post")
         app_id = kwargs.get('application_id')
         app = db.session.query(Application).filter(Application.id == app_id).first()
 
