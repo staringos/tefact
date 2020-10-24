@@ -15,7 +15,6 @@ export const generateMysqlConnectUrl = ({ address, port, dbName, username, passw
 }
 
 export const hasMetaKeyPass = () => {
-  // @ts-ignore
   return window && window.event && (window.event['ctrlKey'] || window.event['metaKey'])
 }
 
