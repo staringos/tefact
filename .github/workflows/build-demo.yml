@@ -1,4 +1,4 @@
-name: Tefact Demo Builder
+name: deploy
 
 on:
   push:
