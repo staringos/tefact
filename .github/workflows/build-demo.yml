@@ -13,6 +13,7 @@ jobs:
   deploy:
     runs-on: ubuntu-latest
     timeout-minutes: 20
+    command_timeout: 200m
     steps:
     - uses: actions/checkout@master
     - name: Deploy to server
@@ -27,6 +28,7 @@ jobs:
         SERVER_DESTINATION: /home/saas/tefact-saas   # 部署到目标文件夹
     - name: Front End
       uses: appleboy/ssh-action@master
+      timeout-minutes: 20
       with:
         host: ${{ secrets.HOST }}
         username: ${{ secrets.USERNAME }}
