@@ -31,25 +31,22 @@ class DataSourceModule extends VuexModule {
   @Action({ rawError: true })
   public async addDataSource(data) {
     const res = await service.dataSource.addDataSource(data)
-    if (res.data.code === 200) {
-      return this.getDataSourceList(data.org_id)
+    if (res.status === 200) {
+      return this.context.dispatch('dataSource/getDataSourceList', data.org_id, { root: true })
     }
   }
 
   @Action({ rawError: true })
-  public async modifyDataSource(id, data) {
+  public async modifyDataSource({ id, data }) {
     const res = await service.dataSource.modifyDataSource(id,data)
-    if (res.data.code === 200) {
-      return this.getDataSourceList(data.org_id)
+    if (res.status === 200) {
+      return this.context.dispatch('dataSource/getDataSourceList', data.org_id, { root: true })
     }
   }
 
   @Action({ rawError: true })
-  public async deleteDataSource(id, orgId) {
-    const res = await service.dataSource.deleteDataSource(id)
-    if (res.data.code === 200) {
-      return this.getDataSourceList(orgId)
-    }
+  public deleteDataSource(id) {
+    return service.dataSource.deleteDataSource(id)
   }
 
   @Action({ rawError: true })

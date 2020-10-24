@@ -33,7 +33,7 @@
         label="操作">
         <template slot-scope="scope">
           <el-button icon="el-icon-edit" @click="handleToggle(scope.row)" type="text"></el-button>
-          <el-button icon="el-icon-delete" type="text"></el-button>
+          <el-button icon="el-icon-delete" @click="handleDelete(scope.row)" type="text"></el-button>
         </template>
       </el-table-column>
     </el-table>
@@ -80,9 +80,10 @@
   }
 </style>
 <script lang="ts">
-import { identity, pickBy } from 'lodash'
-import { Vue, Component, namespace, Watch } from 'nuxt-property-decorator'
-import { DataSource, getDefaultDataSource } from "~/utils/entities/DataSource"
+  import { identity, pickBy } from 'lodash'
+  import { Vue, Component, namespace, Watch } from 'nuxt-property-decorator'
+  import { DataSource, getDefaultDataSource } from "~/utils/entities/DataSource"
+  import { Confirm } from '~/components/ui'
 
   const app = namespace("app")
   const dataSource = namespace("dataSource")
@@ -94,13 +95,14 @@ import { DataSource, getDefaultDataSource } from "~/utils/entities/DataSource"
     @dataSource.Action getDataSourceList
     @dataSource.Action addDataSource
     @dataSource.Action modifyDataSource
+    @dataSource.Action deleteDataSource
 
     showDialog = false
     form: DataSource = getDefaultDataSource()
     rules: Object = {
       name: [
         { required: true, message: '请输入数据源名称', trigger: 'blur' },
-        { min: 3, max: 6, message: '长度在 2 到 6 个字符', trigger: 'blur' }
+        { min: 3, max: 12, message: '长度在 2 到 12 个字符', trigger: 'blur' }
       ],
       type: [
         { required: true, message: '请选择数据源类型', trigger: 'blur' },
@@ -111,6 +113,11 @@ import { DataSource, getDefaultDataSource } from "~/utils/entities/DataSource"
       port: [
         { required: true, message: '请输入数据源端口号', trigger: 'blur' },
       ]
+    }
+
+    handleDelete(row) {
+      Confirm.deleteConfirm(this, '数据源', () => this.deleteDataSource(row.id))
+        .then(() => this.refresh())
     }
 
     handleToggle(e?: DataSource) {
@@ -143,7 +150,7 @@ import { DataSource, getDefaultDataSource } from "~/utils/entities/DataSource"
 
         try {
           if (form.id) {
-            await this.modifyDataSource(form.id, form)
+            await this.modifyDataSource({ id: form.id, data: form })
           } else {
             await this.addDataSource(form)
           }
