@@ -5,7 +5,7 @@ export default (request) => {
       method: 'get',
     }),
     addDataSource: data => request({
-      url: `/data-source`,
+      url: `/data-source/`,
       method: 'post',
       data: data
     }),

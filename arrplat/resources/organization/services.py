@@ -1,6 +1,12 @@
 from arrplat.resources.organization.models import OrgDepartmentStaff
 from arrplat.resources.auth.models import OrgStaffRole
 from extensions import db
+from .models import Organization
+
+
+def org_exists(org_id):
+    org = db.session.query(Organization).filter(Organization.id == org_id).first()
+    return org
 
 
 def add_staff_department(department_id_list, staff_id):

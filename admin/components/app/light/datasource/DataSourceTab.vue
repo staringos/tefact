@@ -6,27 +6,33 @@
     @on-header-button-click="() => handleToggle()"
     border
     header
+    no-padding
   >
     <el-table
       :data="dataSourceGetter"
-      style="width: 100%"
+      style="width: 100%; max-width: 100%;"
+      size="mini"
       :show-header="false"
+      :show-overflow-tooltip="true"
     >
       <el-table-column
         prop="name"
-        label="名"
-        width="180">
+        label="名">
       </el-table-column>
       <el-table-column
         prop="status"
-        label="状态"
-        width="180">
+        label="状态">
+        <template slot-scope="scope">
+          <i v-if="scope.row.status === 'connected'" class="el-icon-check" style="color: green;"></i>
+          <i v-if="scope.row.status === 'error'" class="el-icon-close" style="color: red;"></i>
+          <i v-if="!scope.row.status || scope.row.status === 'default' " class="el-icon-info" style="color: green;"></i>
+        </template>
       </el-table-column>
       <el-table-column
         prop="operation"
         label="操作">
-        <template>
-          <el-button icon="el-icon-edit" type="text"></el-button>
+        <template slot-scope="scope">
+          <el-button icon="el-icon-edit" @click="handleToggle(scope.row)" type="text"></el-button>
           <el-button icon="el-icon-delete" type="text"></el-button>
         </template>
       </el-table-column>
@@ -34,28 +40,28 @@
 
     <el-dialog title="数据源编辑" :visible.sync="showDialog">
       <el-form :model="form" ref="form" label-width="90px" :rules="rules">
-        <el-form-item label="名称">
+        <el-form-item label="名称" prop="name">
           <el-input v-model="form.name" autocomplete="off"></el-input>
         </el-form-item>
-        <el-form-item label="类型">
+        <el-form-item label="类型" prop="type">
           <el-select v-model="form.type" placeholder="请选择数据源类型">
             <el-option label="Mysql" value="mysql"></el-option>
           </el-select>
         </el-form-item>
         <hr />
-        <el-form-item label="服务器IP">
+        <el-form-item label="服务器IP" prop="host">
           <el-input v-model="form.host" autocomplete="off"></el-input>
         </el-form-item>
-        <el-form-item label="端口号">
+        <el-form-item label="端口号" prop="port">
           <el-input v-model="form.port" autocomplete="off"></el-input>
         </el-form-item>
-        <el-form-item label="用户名">
+        <el-form-item label="用户名" prop="username">
           <el-input v-model="form.username" autocomplete="off"></el-input>
         </el-form-item>
-        <el-form-item label="密码">
+        <el-form-item label="密码" prop="password">
           <el-input v-model="form.password" autocomplete="off"></el-input>
         </el-form-item>
-        <el-form-item label="默认数据库">
+        <el-form-item label="默认数据库" prop="default_db">
           <el-input v-model="form.default_db" autocomplete="off"></el-input>
         </el-form-item>
       </el-form>
@@ -74,6 +80,7 @@
   }
 </style>
 <script lang="ts">
+import { identity, pickBy } from 'lodash'
 import { Vue, Component, namespace, Watch } from 'nuxt-property-decorator'
 import { DataSource, getDefaultDataSource } from "~/utils/entities/DataSource"
 
@@ -132,12 +139,13 @@ import { DataSource, getDefaultDataSource } from "~/utils/entities/DataSource"
         if (!valid) return
 
         this.form.org_id = this.currentOrgIdGetter
+        const form = pickBy(this.form, identity)
 
         try {
-          if (this.form.id) {
-            await this.modifyDataSource(this.form.id, this.form)
+          if (form.id) {
+            await this.modifyDataSource(form.id, form)
           } else {
-            await this.addDataSource(this.form)
+            await this.addDataSource(form)
           }
           (this as any).$message({ message: '操作成功', type: 'success' })
           this.handleToggle()
