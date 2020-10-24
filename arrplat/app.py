@@ -4,10 +4,11 @@ from flask import Flask
 from flask_cors import CORS
 
 from extensions import db, jwt, swagger
-from .setup import setup_plugins, write_pid
+from .setup import write_pid
 from .resources.core.urls import blueprint as core_blueprint
 from .resources.user.urls import blueprint as user_blueprint
 from .resources.auth.urls import blueprint as auth_blueprint
+from .resources.data_source.urls import blueprint as data_source_blueprint
 from .resources.application.urls import blueprint as app_blueprint
 from .resources.page.urls import blueprint as page_blueprint
 from .resources.organization.urls import blueprint as org_blueprint
@@ -44,6 +45,7 @@ def register_blueprints(flask_app):
     flask_app.register_blueprint(app_blueprint, url_prefix='/app')
     flask_app.register_blueprint(page_blueprint, url_prefix='/page')
     flask_app.register_blueprint(org_blueprint, url_prefix='/org')
+    flask_app.register_blueprint(data_source_blueprint, url_prefix='/data-source')
 
 
 config_name = os.environ.get('API_CONFIG', 'development')

@@ -38,8 +38,8 @@ class AppModule extends VuexModule {
   get modifyDialogGetter() { return this.modifyDialog }
 
   @Action({ rawError: true })
-  public addDataSource(data) {
-    return service.entities.addDataSource(data)
+  public addDataSource(data, oldId) {
+    return service.entities.addDataSource(data, oldId)
   }
 
   @Action({ rawError: true })

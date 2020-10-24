@@ -38,6 +38,6 @@
 
   @Component
   export default class EntityEditor extends Vue {
-
+    tableData = []
   }
 </script>

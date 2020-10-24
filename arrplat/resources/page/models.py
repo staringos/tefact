@@ -108,7 +108,7 @@ class DataSource(db.Model):
         2: 'excel',
         3: 'csv'
     }
-    __tablename__ = 'data_source'
+    __tablename__ = 'data_source_tmp'
     id = Column(VARCHAR(32), default=generate_uuid, primary_key=True)
     application_id = Column(VARCHAR(32), ForeignKey('application.id', ondelete='CASCADE'), comment='应用页面ID')
     type = Column(TINYINT, comment='数据类型')
