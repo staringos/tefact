@@ -193,11 +193,10 @@ def wx_get_user_info(code: str, encryptedData: str, iv: str):
     # 通过code获取用户信息
     res = requests.get(
         f"https://api.weixin.qq.com/sns/jscode2session?appid={appid}&secret={secret}&js_code={code}&grant_type=authorization_code").json()
-    print(res)
+
     session_key = res["session_key"]
     pc = WXBizDataCrypt(appid, session_key)
     data = pc.decrypt(encryptedData, iv)
-    print(data)
     # {'openId': 'okQcr5BeEQN02Etgyhem5gje1RK8', 'nickName': '瘦瘦要变成瘦瘦', 'gender': 1, 'language': 'zh_CN',
     #  'city': 'Chaoyang', 'province': 'Beijing', 'country': 'China',
     #  'avatarUrl': 'https://wx.qlogo.cn/mmopen/vi_32/Q0j4TwGTfTIXC2byoG7GJKdYVLvEWibbAI9tjcMmy5whWkjgBH52K4wECTdv4Hc4zNKR6MK9NGic5Qia0ICh8Nd0Q/132',
