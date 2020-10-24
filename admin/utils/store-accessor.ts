@@ -8,7 +8,7 @@ import entities from '../store/entities'
 import platform from '../store/platform'
 import education from '../store/education'
 import editor from '../store/editor'
-import dataSource from '../store/datasource'
+import dataSource from '../store/dataSource'
 
 let systemStore: any = null
 let appStore: any = null

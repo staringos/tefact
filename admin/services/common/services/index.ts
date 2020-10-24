@@ -6,7 +6,7 @@ import entitiesGenerator from './entities'
 import platformGenerator from './platform'
 import educationGenerator from './education'
 import editorGenerator from './editor'
-import dataSourceGenerator from './datasource'
+import dataSourceGenerator from './dataSource'
 
 const ServicesGenerator = request => {
   return {
