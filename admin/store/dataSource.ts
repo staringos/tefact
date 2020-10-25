@@ -53,6 +53,11 @@ class DataSourceModule extends VuexModule {
   public async testConnect(data) {
     return service.dataSource.testConnect(data)
   }
+
+  @Action({ rawError: true })
+  public async getAllDataTable(dsId) {
+    return service.dataSource.getAllDataTable(dsId)
+  }
 }
 
 export default DataSourceModule

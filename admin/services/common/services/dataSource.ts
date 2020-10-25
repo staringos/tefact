@@ -1,5 +1,9 @@
 export default (request) => {
   return {
+    getAllDataTable: dsId => request({
+      url: `/data-source/${dsId}/connect/table`,
+      method: 'get',
+    }),
     getDataSourceList: (orgId) => request({
       url: `/data-source/org/${orgId}`,
       method: 'get',

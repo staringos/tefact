@@ -9,6 +9,32 @@ from arrplat.resources.organization.models import OrgStaff
 from arrplat.common.utils import json_response
 from flask_jwt_extended import get_current_user
 from arrplat.common.auth_jwt_utils import user_required
+from .services import allow_access_data_source
+
+
+class DataTableResource(Resource):
+    @user_required
+    def get(self, data_source_id):
+        """获取数据源内所有的数据表
+           ---
+           tags:
+             - 数据源
+           parameters:
+           responses:
+             200:
+               examples:
+                 response: {"data": null, "message": "添加成功"}
+         """
+        user = get_current_user()
+        res = allow_access_data_source(data_source_id, user.id)
+        if res.__class__.__name__ != "DataSource":
+            return res
+
+        try:
+            tables = res.get_tables()
+            return json_response(data=tables, status=200)
+        except Exception as e:
+            return json_response(message=str(e), status=409)
 
 
 class DataSourceTestResource(Resource):
