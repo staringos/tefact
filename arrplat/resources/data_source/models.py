@@ -48,4 +48,8 @@ class DataSource(BaseEntity):
     def test(self):
         return self.connector
 
+    def query_with_table(self, table_names):
+        return self.connector.query_with_table(table_names)
+
+
 

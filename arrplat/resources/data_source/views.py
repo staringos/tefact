@@ -12,6 +12,36 @@ from arrplat.common.auth_jwt_utils import user_required
 from .services import allow_access_data_source
 
 
+class QueryResource(Resource):
+    @user_required
+    @use_kwargs({
+        'table_names': fields.List(fields.String()),
+    })
+    def post(self, data_source_id, **kwargs):
+        """查询数据表
+           ---
+           tags:
+             - 数据源
+           parameters:
+           responses:
+             200:
+               examples:
+                 response: {"data": null, "message": "添加成功"}
+         """
+        user = get_current_user()
+        res = allow_access_data_source(data_source_id, user.id)
+        if res.__class__.__name__ != "DataSource":
+            return res
+
+        table_names = kwargs.get("table_names", [])
+
+        try:
+            data = res.query_with_table(table_names)
+            return json_response(data=data, status=200)
+        except Exception as e:
+            return json_response(message=str(e), status=409)
+
+
 class DataTableResource(Resource):
     @user_required
     def get(self, data_source_id):

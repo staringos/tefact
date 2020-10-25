@@ -7,7 +7,9 @@
       style="width: 100%"
       size="mini"
       :show-header="false"
-      @selection-change="handleSelectionChange">
+      highlight-current-row
+      @current-change="handleCurrentChange"
+      :current-row-key="value">
       <el-table-column
         prop="name"
         label="姓名">
@@ -24,8 +26,9 @@
   @Component
   export default class AppItem extends Vue {
     @Prop() tableList
+    @Prop() value
 
-    handleSelectionChange(e) {
+    handleCurrentChange(e) {
       this.$emit("input", e.id)
     }
   }

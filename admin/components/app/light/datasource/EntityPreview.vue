@@ -1,23 +1,14 @@
 <template>
   <div class="entity-preview">
     <el-table
-      :data="tableData"
+      :data="data"
       height="250"
       border
       style="width: 100%">
       <el-table-column
-        prop="date"
-        label="日期"
-        width="180">
-      </el-table-column>
-      <el-table-column
-        prop="name"
-        label="姓名"
-        width="180">
-      </el-table-column>
-      <el-table-column
-        prop="address"
-        label="地址">
+        v-for="column in columns"
+        :prop="column.key"
+        :label="column.key">
       </el-table-column>
     </el-table>
   </div>
@@ -34,10 +25,24 @@
 }
 </style>
 <script lang="ts">
-  import { Vue, Component } from 'nuxt-property-decorator'
+  import { Vue, Component, Prop, Watch } from 'nuxt-property-decorator'
 
   @Component
   export default class EntityEditor extends Vue {
-    tableData = []
+    @Prop() data
+    columns: any[] = []
+
+    @Watch("data")
+    handleDataChange() {
+      const { data } = this
+      if (!data || data.length === 0) return
+      const columns = [] as any
+      debugger;
+      for (let key in data) {
+        columns.push({ key })
+      }
+
+      this.columns = columns;
+    }
   }
 </script>
