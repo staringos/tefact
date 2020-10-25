@@ -8,7 +8,6 @@ const script = [
 
 const isDev = process.env.NODE_ENV !== 'production'
 
-// @ts-ignore
 const config: Configuration = {
   dev: isDev,
   server: {
@@ -20,7 +19,7 @@ const config: Configuration = {
   ** Headers of the page
   */
   head: {
-    title: 'Arrplat - 企业级PaaS解决方案',
+    title: 'Tefact - 企业级低代码平台',
     meta: [
       { charset: 'utf-8' },
       { name: 'viewport', content: 'width=device-width, initial-scale=1' },
