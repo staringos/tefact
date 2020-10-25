@@ -1,11 +1,17 @@
 <template>
   <div class="app-editor-page" v-if="app">
-    <ArrPanel class="page-item" v-if="app.menus" border>
+    <ArrPanel class="page-item menu-list" v-if="app.menus" border>
       <MenuList @refresh="handleRefresh" :appId="app.id" :menus="app.menus" :pages="app.pages" :onChange="(value) => handleDataChanged('menus', value)" />
     </ArrPanel>
-    <ArrPanel class="page-item" v-if="app" border>
-      <PageList @refresh="handleRefresh" :appId="app.id" :pages="app.pages" :entities="app.entities" :onChange="(value) => handleDataChanged('pages', value)" />
-    </ArrPanel>
+    <div class="page-right">
+      <ArrPanel class="page-item" v-if="app" border>
+        <PageList @refresh="handleRefresh" :appId="app.id" :pages="app.pages" :entities="app.entities" :onChange="(value) => handleDataChanged('pages', value)" />
+      </ArrPanel>
+
+      <ArrPanel class="page-item" v-if="app" border>
+        <FormList @refresh="handleRefresh" :appId="app.id" :pages="app.pages" :entities="app.entities" :onChange="(value) => handleDataChanged('pages', value)" />
+      </ArrPanel>
+    </div>
   </div>
 </template>
 <style lang="scss" scoped>
@@ -19,6 +25,17 @@
     .app-attributes {
       display: flex;
     }
+
+    .menu-list {
+      width: 200px;
+      max-width: 300px;
+    }
+
+    .page-right {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+    }
   }
 </style>
 <script lang="ts">
@@ -27,12 +44,14 @@
   import MenuList from "~/components/app/light/MenuList.vue";
   import PageList from "~/components/app/light/PageList.vue";
   import AppDetailsMenu from '~/components/app/light/AppDetailsMenu.vue';
+  import FormList from "~/components/app/light/FormList.vue"
 
   const app = namespace('app')
 
   @Component({
     layout: 'AppEditor',
     components: {
+      FormList,
       AppDetailsMenu,
       AppDetails, MenuList, PageList
     }
