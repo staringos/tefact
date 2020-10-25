@@ -1,6 +1,7 @@
 import enum
 from arrplat.common.base.entity import BaseEntity
 from sqlalchemy import Column, VARCHAR, Text, Enum, ForeignKey
+from arrplat.common.connector.mysql import MySQLConnector
 
 
 class DataSourceType(enum.Enum):
@@ -31,4 +32,24 @@ class DataSource(BaseEntity):
 
     org_id = Column(VARCHAR(32), ForeignKey('organization.id', ondelete='CASCADE'), comment='组织ID')
     create_user_id = Column(VARCHAR(32), ForeignKey('user.id', ondelete='CASCADE'), nullable=False, comment='创建用户ID')
+
+    _connector = None
+
+    @property
+    def connector(self):
+        if not self._connector:
+            self._connector = MySQLConnector.connect(self)
+            self._connector.engine.connect()
+        return self._connector
+
+    def get_tables(self):
+        return self.connector.table_names()
+
+    def test(self):
+        return self.connector
+
+    def query_with_table(self, table_names):
+        return self.connector.query_with_table(table_names)
+
+
 

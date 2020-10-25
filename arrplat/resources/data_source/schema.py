@@ -9,4 +9,4 @@ class DataSourceSchema(ma.ModelSchema):
 
     class Meta:
         model = DataSource
-        exclude = ('username', 'password')
+        exclude = ('password', )

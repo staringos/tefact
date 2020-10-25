@@ -1,13 +1,13 @@
 <template>
   <div class="data-source-editor">
     <div class="data-source-tabs">
-      <DataSourceTab />
-      <DataBaseTab />
-      <DataTableTab />
+      <DataSourceTab v-model="currentDataSource" />
+<!--      <DataBaseTab />-->
+      <DataTableTab v-model="currentTable" :tableList="tableList" />
     </div>
     <div class="entity-editor">
       <EntityEditor />
-      <EntityPreview />
+      <EntityPreview :data="data" />
     </div>
   </div>
 </template>
@@ -31,7 +31,7 @@
   }
 </style>
 <script lang="ts">
-  import { Vue, Component, namespace } from 'nuxt-property-decorator'
+  import { Vue, Component, namespace, Watch } from 'nuxt-property-decorator'
   import DataSourceTab from "~/components/app/light/datasource/DataSourceTab.vue"
   import DataBaseTab from "~/components/app/light/datasource/DataBaseTab.vue"
   import DataTableTab from "~/components/app/light/datasource/DataTableTab.vue"
@@ -39,6 +39,7 @@
   import EntityEditor from "~/components/app/light/datasource/EntityEditor.vue"
 
   const app = namespace('app')
+  const dataSource = namespace('dataSource')
 
   @Component({
     layout: 'AppEditor',
@@ -52,37 +53,30 @@
   })
   export default class DataSourceEditor extends Vue {
     id = ''
-    tableData: Object[] = [{
-      date: '2016-05-03',
-      name: '王小虎',
-      address: '上海市普陀区金沙江路 1518 弄'
-    }, {
-      date: '2016-05-02',
-      name: '王小虎',
-      address: '上海市普陀区金沙江路 1518 弄'
-    }, {
-      date: '2016-05-04',
-      name: '王小虎',
-      address: '上海市普陀区金沙江路 1518 弄'
-    }, {
-      date: '2016-05-01',
-      name: '王小虎',
-      address: '上海市普陀区金沙江路 1518 弄'
-    }, {
-      date: '2016-05-08',
-      name: '王小虎',
-      address: '上海市普陀区金沙江路 1518 弄'
-    }, {
-      date: '2016-05-06',
-      name: '王小虎',
-      address: '上海市普陀区金沙江路 1518 弄'
-    }, {
-      date: '2016-05-07',
-      name: '王小虎',
-      address: '上海市普陀区金沙江路 1518 弄'
-    }]
+    currentDataSource = null
+    currentTable = null
+    tableList = []
+    data = []
 
     @app.Action getAppDetails
+    @dataSource.Action getAllDataTable
+    @dataSource.Action query
+
+    @Watch("currentDataSource")
+    async onDataSourceChange() {
+      const res = await this.getAllDataTable(this.currentDataSource);
+      this.tableList = res.data.data
+
+      if (this.tableList && this.tableList.length !== 0) {
+        this.currentTable = (this.tableList[0] as any).id
+      }
+    }
+
+    @Watch("currentTable")
+    async onTableChange() {
+      const res = await this.query({ dsId: this.currentDataSource, tableNames: [this.currentTable] });
+      this.data = res.data.data
+    }
 
     handleClick() {
 

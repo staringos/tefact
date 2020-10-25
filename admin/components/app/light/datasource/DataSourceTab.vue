@@ -9,18 +9,24 @@
     no-padding
   >
     <el-table
+      ref="table"
       :data="dataSourceGetter"
-      style="width: 100%; max-width: 100%;"
+      style="width: 100%; max-width: 100%; overflow-y: auto;"
       size="mini"
       :show-header="false"
       :show-overflow-tooltip="true"
+      highlight-current-row
+      :current-row-key="value"
+      @current-change="handleCurrentChange"
     >
       <el-table-column
         prop="name"
+        width="130"
         label="名">
       </el-table-column>
       <el-table-column
         prop="status"
+        width="35"
         label="状态">
         <template slot-scope="scope">
           <i v-if="scope.row.status === 'connected'" class="el-icon-check" style="color: green;"></i>
@@ -39,7 +45,7 @@
     </el-table>
 
     <el-dialog title="数据源编辑" :visible.sync="showDialog">
-      <el-form :model="form" ref="form" label-width="90px" :rules="rules">
+      <el-form :model="form" ref="form" label-width="100px" :rules="rules">
         <el-form-item label="名称" prop="name">
           <el-input v-model="form.name" autocomplete="off"></el-input>
         </el-form-item>
@@ -59,7 +65,7 @@
           <el-input v-model="form.username" autocomplete="off"></el-input>
         </el-form-item>
         <el-form-item label="密码" prop="password">
-          <el-input v-model="form.password" autocomplete="off"></el-input>
+          <el-input v-model="form.password" autocomplete="off" type="password"></el-input>
         </el-form-item>
         <el-form-item label="默认数据库" prop="default_db">
           <el-input v-model="form.default_db" autocomplete="off"></el-input>
@@ -81,21 +87,25 @@
 </style>
 <script lang="ts">
   import { identity, pickBy } from 'lodash'
-  import { Vue, Component, namespace, Watch } from 'nuxt-property-decorator'
+  import { Vue, Component, Prop, namespace, Watch } from 'nuxt-property-decorator'
   import { DataSource, getDefaultDataSource } from "~/utils/entities/DataSource"
   import { Confirm } from '~/components/ui'
 
   const app = namespace("app")
   const dataSource = namespace("dataSource")
+  const PLACEHOLDER_PASSWORD = "$$PLACEHOLDER_PASSWORD$$"
 
   @Component
   export default class DataSourceTab extends Vue {
+    @Prop() value
+
     @app.Getter currentOrgIdGetter
     @dataSource.Getter dataSourceGetter
     @dataSource.Action getDataSourceList
     @dataSource.Action addDataSource
     @dataSource.Action modifyDataSource
     @dataSource.Action deleteDataSource
+    @dataSource.Action testConnect
 
     showDialog = false
     form: DataSource = getDefaultDataSource()
@@ -112,7 +122,14 @@
       ],
       port: [
         { required: true, message: '请输入数据源端口号', trigger: 'blur' },
+      ],
+      "default_db": [
+        { required: true, message: '请输入默认数据库名', trigger: 'blur' },
       ]
+    }
+
+    handleCurrentChange(e) {
+      this.$emit("input", e.id)
     }
 
     handleDelete(row) {
@@ -128,6 +145,9 @@
       }
 
       this.form = { ...e }
+      if (!this.form.password) {
+        this.form.password = PLACEHOLDER_PASSWORD
+      }
     }
 
     handleCancel() {
@@ -135,8 +155,15 @@
       this.form = getDefaultDataSource()
     }
 
-    handleTest() {
+    async handleTest() {
+      const that = (this as any)
 
+      try {
+        await this.testConnect(this.form)
+        that.$message({ message: '连接成功', type: 'success' })
+      } catch(e) {
+        that.$message({ message: e.data.message, type: 'error' })
+      }
     }
 
     handleSubmit() {
@@ -150,6 +177,7 @@
 
         try {
           if (form.id) {
+            if (form.password === PLACEHOLDER_PASSWORD) delete form.password
             await this.modifyDataSource({ id: form.id, data: form })
           } else {
             await this.addDataSource(form)
@@ -168,9 +196,14 @@
       this.refresh();
     }
 
-    refresh() {
+    async refresh() {
       if (!this.currentOrgIdGetter) return;
-      this.getDataSourceList(this.currentOrgIdGetter);
+      const res = await this.getDataSourceList(this.currentOrgIdGetter);
+      const first = res?.[0];
+      if (first) {
+        (this.$refs.table as any).setCurrentRow(first);
+        this.handleCurrentChange(first)
+      }
     }
 
     mounted() {

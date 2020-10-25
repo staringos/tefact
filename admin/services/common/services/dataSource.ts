@@ -1,5 +1,16 @@
 export default (request) => {
   return {
+    getAllDataTable: dsId => request({
+      url: `/data-source/${dsId}/connect/table`,
+      method: 'get',
+    }),
+    query: (dsId, tableNames) => request({
+      url: `/data-source/${dsId}/connect/query`,
+      method: 'post',
+      data: {
+        table_names: tableNames
+      }
+    }),
     getDataSourceList: (orgId) => request({
       url: `/data-source/org/${orgId}`,
       method: 'get',
@@ -19,7 +30,7 @@ export default (request) => {
       method: 'delete'
     }),
     testConnect: data => request({
-      url: `/data-source/test`,
+      url: `/data-source/test/`,
       method: 'post',
       data
     }),

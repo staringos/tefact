@@ -1,6 +1,6 @@
 <template>
   <div>
-    <ArrTitle bordered>页面列表
+    <ArrTitle bordered>表单列表
       <el-button size="small" icon="el-icon-plus" @click="handleEdit()" circle />
     </ArrTitle>
     <el-table
@@ -10,7 +10,7 @@
       style="width: 100%">
       <el-table-column
         prop="title"
-        label="页面名"
+        label="表单名"
         width="180">
       </el-table-column>
       <el-table-column
@@ -20,7 +20,7 @@
       </el-table-column>
       <el-table-column
         prop="direction"
-        label="页面方向">
+        label="方向">
       </el-table-column>
       <el-table-column
         prop="sort"
@@ -28,7 +28,6 @@
         width="180">
         <template slot-scope="scope">
           <el-button type="default" size="small" round @click.stop="handleRowClick(scope.row)">编辑</el-button>
-<!--          <el-button type="default" size="small" round @click.stop="handleEdit(scope.row)">编辑</el-button>-->
           <el-button type="danger" size="small" round @click.stop="handleDelete(scope.row)">删除</el-button>
         </template>
       </el-table-column>
