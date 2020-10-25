@@ -33,10 +33,19 @@ class DataSource(BaseEntity):
     org_id = Column(VARCHAR(32), ForeignKey('organization.id', ondelete='CASCADE'), comment='组织ID')
     create_user_id = Column(VARCHAR(32), ForeignKey('user.id', ondelete='CASCADE'), nullable=False, comment='创建用户ID')
 
-    sql_alchemy_url_template = "mysql+pymysql://{username}:{password}@{host}:{port}/"
+    _connector = None
+
+    @property
+    def connector(self):
+        if not self._connector:
+            self._connector = MySQLConnector.connect(self)
+            self._connector.engine.connect()
+        return self._connector
+
+    def get_tables(self):
+        return self.connector.table_names()
 
     def test(self):
-        mysql = MySQLConnector.connect(self)
-        mysql.engine.connect()
+        return self.connector
 
 
