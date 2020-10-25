@@ -4,6 +4,13 @@ export default (request) => {
       url: `/data-source/${dsId}/connect/table`,
       method: 'get',
     }),
+    query: (dsId, tableNames) => request({
+      url: `/data-source/${dsId}/connect/query`,
+      method: 'post',
+      data: {
+        table_names: tableNames
+      }
+    }),
     getDataSourceList: (orgId) => request({
       url: `/data-source/org/${orgId}`,
       method: 'get',

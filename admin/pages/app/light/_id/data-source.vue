@@ -7,7 +7,7 @@
     </div>
     <div class="entity-editor">
       <EntityEditor />
-      <EntityPreview />
+      <EntityPreview :data="data" />
     </div>
   </div>
 </template>
@@ -56,16 +56,27 @@
     currentDataSource = null
     currentTable = null
     tableList = []
+    data = []
 
     @app.Action getAppDetails
     @dataSource.Action getAllDataTable
+    @dataSource.Action query
 
     @Watch("currentDataSource")
     async onDataSourceChange() {
       const res = await this.getAllDataTable(this.currentDataSource);
       this.tableList = res.data.data
+
+      if (this.tableList && this.tableList.length !== 0) {
+        this.currentTable = (this.tableList[0] as any).id
+      }
     }
 
+    @Watch("currentTable")
+    async onTableChange() {
+      const res = await this.query({ dsId: this.currentDataSource, tableNames: [this.currentTable] });
+      this.data = res.data.data
+    }
 
     handleClick() {
 
