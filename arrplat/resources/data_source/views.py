@@ -1,7 +1,7 @@
 from flask_restful import Resource
 from flask_apispec import use_kwargs
 from marshmallow import fields
-from .models import DataSource, DataSourceStatus
+from .models import DataSource, DataSourceStatus, DataSourceType
 from .schema import DataSourceSchema
 from extensions import db
 from arrplat.resources.organization.services import org_exists
@@ -9,6 +9,41 @@ from arrplat.resources.organization.models import OrgStaff
 from arrplat.common.utils import json_response
 from flask_jwt_extended import get_current_user
 from arrplat.common.auth_jwt_utils import user_required
+
+
+class DataSourceTestResource(Resource):
+    @user_required
+    @use_kwargs({
+        'type': fields.String(required=True),
+        'host': fields.String(required=True),
+        'port': fields.String(required=True),
+        'username': fields.String(),
+        'password': fields.String()
+    })
+    def post(self, **kwargs):
+        """测试数据源链接
+           ---
+           tags:
+             - 数据源
+           parameters:
+           responses:
+             200:
+               examples:
+                 response: {"data": null, "message": "添加成功"}
+         """
+        try:
+            ds = DataSource(
+                type=DataSourceType(kwargs.get("type")),
+                username=kwargs.get("username"),
+                password=kwargs.get("password"),
+                host=kwargs.get("host"),
+                port=kwargs.get("port")
+            )
+
+            ds.test()
+            return json_response(message="链接成功", status=200)
+        except Exception as e:
+            return json_response(message="链接失败" + str(e), status=409)
 
 
 class OrgDataSourceList(Resource):
@@ -117,8 +152,12 @@ class DataSourceModifyResource(Resource):
 
         data_source.name = kwargs.get("name")
         data_source.org_id = kwargs.get("org_id")
-        data_source.username = kwargs.get("username")
-        data_source.password = kwargs.get("password")
+
+        if kwargs.get("username"):
+            data_source.username = kwargs.get("username")
+        if kwargs.get("password"):
+            data_source.password = kwargs.get("password")
+
         data_source.host = kwargs.get("host")
         data_source.port = kwargs.get("port")
         data_source.default_db = kwargs.get("default_db")
@@ -177,6 +216,7 @@ class DataSourceResource(Resource):
             password=kwargs.get("password"),
             status=DataSourceStatus.connected,
             host=kwargs.get("host"),
+            type=DataSourceType(kwargs.get("type", "mysql")),
             port=kwargs.get("port"),
             default_db=kwargs.get("default_db"),
             create_user_id=user.id

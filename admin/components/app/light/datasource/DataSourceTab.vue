@@ -10,7 +10,7 @@
   >
     <el-table
       :data="dataSourceGetter"
-      style="width: 100%; max-width: 100%;"
+      style="width: 100%; max-width: 100%; overflow-y: auto;"
       size="mini"
       :show-header="false"
       :show-overflow-tooltip="true"
@@ -59,7 +59,7 @@
           <el-input v-model="form.username" autocomplete="off"></el-input>
         </el-form-item>
         <el-form-item label="密码" prop="password">
-          <el-input v-model="form.password" autocomplete="off"></el-input>
+          <el-input v-model="form.password" autocomplete="off" type="password"></el-input>
         </el-form-item>
         <el-form-item label="默认数据库" prop="default_db">
           <el-input v-model="form.default_db" autocomplete="off"></el-input>
@@ -87,6 +87,7 @@
 
   const app = namespace("app")
   const dataSource = namespace("dataSource")
+  const PLACEHOLDER_PASSWORD = "$$PLACEHOLDER_PASSWORD$$"
 
   @Component
   export default class DataSourceTab extends Vue {
@@ -96,6 +97,7 @@
     @dataSource.Action addDataSource
     @dataSource.Action modifyDataSource
     @dataSource.Action deleteDataSource
+    @dataSource.Action testConnect
 
     showDialog = false
     form: DataSource = getDefaultDataSource()
@@ -124,6 +126,7 @@
       this.showDialog = !this.showDialog
       if (!e) {
         this.form = getDefaultDataSource()
+        this.form.password = PLACEHOLDER_PASSWORD
         return;
       }
 
@@ -135,8 +138,15 @@
       this.form = getDefaultDataSource()
     }
 
-    handleTest() {
+    async handleTest() {
+      const that = (this as any)
 
+      try {
+        await this.testConnect(this.form)
+        that.$message({ message: '连接成功', type: 'success' })
+      } catch(e) {
+        that.$message({ message: e.data.message, type: 'error' })
+      }
     }
 
     handleSubmit() {
@@ -150,6 +160,7 @@
 
         try {
           if (form.id) {
+            if (form.password === PLACEHOLDER_PASSWORD) delete form.password
             await this.modifyDataSource({ id: form.id, data: form })
           } else {
             await this.addDataSource(form)

@@ -19,7 +19,7 @@ export default (request) => {
       method: 'delete'
     }),
     testConnect: data => request({
-      url: `/data-source/test`,
+      url: `/data-source/test/`,
       method: 'post',
       data
     }),
