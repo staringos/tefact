@@ -8,6 +8,7 @@
       style="width: 100%;"
       row-key="id"
       border
+      size="mini"
       :tree-props="{children: 'children', hasChildren: 'hasChildren'}">
       <el-table-column prop="date" label="" width="50"></el-table-column>
       <el-table-column prop="name" label="姓名" sortable>
@@ -17,9 +18,9 @@
           <span>{{scope.row.name}}</span>
         </template>
       </el-table-column>
-      <el-table-column prop="link" label="链接"></el-table-column>
-      <el-table-column prop="page_key" label="页面"></el-table-column>
-      <el-table-column prop="type" label="菜单类型"></el-table-column>
+      <!--      <el-table-column prop="link" label="链接"></el-table-column>-->
+      <!--      <el-table-column prop="page_key" label="页面"></el-table-column>-->
+      <!--      <el-table-column prop="type" label="菜单类型"></el-table-column>-->
       <el-table-column prop="sort" label="操作" width="180">
         <template slot-scope="scope">
           <el-button-group>
