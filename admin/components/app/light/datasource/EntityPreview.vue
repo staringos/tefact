@@ -38,8 +38,8 @@
       const { data } = this
       if (!data || data.length === 0) return
       const columns = [] as any
-      debugger;
-      for (let key in data) {
+
+      for (let key in data[0]) {
         columns.push({ key })
       }
 
