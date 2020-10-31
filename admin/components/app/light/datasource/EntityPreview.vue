@@ -6,7 +6,8 @@
       border
       style="width: 100%">
       <el-table-column
-        v-for="column in columns"
+        v-for="(column, i) in columns"
+        :key="i"
         :prop="column.key"
         :label="column.key">
       </el-table-column>

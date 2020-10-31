@@ -9,10 +9,10 @@
   .base-resolu {
     display: flex;
 
-    /deep/ .el-tabs__content {
+    ::v-deep .el-tabs__content {
       padding-top: 0;
 
-      /deep/ .el-collapse {
+      ::v-deep .el-collapse {
         border-top: 0;
       }
     }
