@@ -50,7 +50,7 @@
       }
     }
 
-    /deep/ .handle {
+    ::v-deep .handle {
       z-index: 999;
     }
 

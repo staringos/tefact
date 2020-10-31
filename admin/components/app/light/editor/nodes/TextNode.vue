@@ -17,7 +17,7 @@
   </BaseNode>
 </template>
 <style lang="scss" scoped>
-  /deep/ .text-node-editor, /deep/ .ProseMirror {
+  ::v-deep .text-node-editor, ::v-deep .ProseMirror {
     width: 100%;
     height: 100%;
   }

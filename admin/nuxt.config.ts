@@ -1,12 +1,20 @@
 import { Configuration } from '@nuxt/types'
 import LodashModuleReplacementPlugin from 'lodash-webpack-plugin'
-const options = {} as any
+import Sass from 'sass'
+import Fiber from 'fibers'
 
 const script = [
   { src: 'https://res.wx.qq.com/connect/zh_CN/htmledition/js/wxLogin.js' }
 ]
 
 const isDev = process.env.NODE_ENV !== 'production'
+
+const customSass = {
+  implementation: Sass,
+  sassOptions: {
+    fiber: Fiber,
+  }
+};
 
 const config: Configuration = {
   dev: isDev,
@@ -32,10 +40,6 @@ const config: Configuration = {
   },
 
   env: {
-    // ARRPLAT_BASE_URL: 'http://saasapi.tefact.com/',
-    // ARRPLAT_BASE_URL: 'http://arrplat.arrway.cn/api'
-    // ARRPLAT_BASE_URL: 'http://arrplatapi.arrway.cn/api'
-    // ARRPLAT_BASE_URL: 'http://localhost:5500'
     ARRPLAT_BASE_URL: isDev ? 'http://localhost:5500' : 'http://saasapi.tefact.com/',
     BUCKET_NAME: 'arrplat',
   },
@@ -78,6 +82,9 @@ const config: Configuration = {
   ** Build configuration
   */
   build: {
+    loaders: {
+      scss: customSass
+    },
     transpile: [
       'vuex-module-decorators', /^element-ui/
     ],

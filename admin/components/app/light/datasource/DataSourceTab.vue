@@ -80,7 +80,7 @@
   </ArrPanel>
 </template>
 <style lang="scss">
-  /deep/ .data-source-tab {
+::v-deep .data-source-tab {
     margin: 0;
     height: 100px;
   }

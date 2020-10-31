@@ -38,7 +38,7 @@
     background-color: $gray-01;
     position: relative;
 
-    &, .uploader, /deep/ .el-upload, /deep/ .el-upload-dragger {
+    &, .uploader, ::v-deep .el-upload, ::v-deep .el-upload-dragger {
       width: 100%;
       height: 100%;
     }
@@ -78,7 +78,7 @@
       margin-top: -16px;
     }
 
-    /deep/ .image-node-image {
+    ::v-deep .image-node-image {
       width: 100%;
       height: 100%;
     }
