@@ -41,10 +41,11 @@
     "babel-plugin-component": "^1.1.1",
     "cross-env": "^5.2.0",
     "eslint": "^7.7.0",
+    "fibers": "^5.0.0",
     "jest": "^24.1.0",
-    "node-sass": "^4.13.0",
     "nodemon": "^1.18.9",
     "purgecss": "^1.4.1",
+    "sass": "^1.28.0",
     "sass-loader": "^8.0.0",
     "vue-jest": "^4.0.0-0"
   }
