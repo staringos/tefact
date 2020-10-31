@@ -100,12 +100,12 @@
   }
 
   &.hover-style:hover {
-    /deep/ .add-button {
+    ::v-deep .add-button {
       display: flex;
     }
   }
 
-  /deep/ .add-button {
+  ::v-deep .add-button {
     display: none;
     position: absolute;
     bottom: -25px;

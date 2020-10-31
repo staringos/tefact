@@ -90,7 +90,7 @@
     }
   }
 
-  /deep/ .el-tabs {
+  ::v-deep .el-tabs {
     flex: 1;
     box-shadow: none;
     margin-top: -1px;

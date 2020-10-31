@@ -77,11 +77,11 @@
   .entity-resolu {
     padding: 10px 0;
 
-    /deep/ .el-row {
+    ::v-deep .el-row {
       padding-bottom: 10px;
     }
 
-    /deep/ .el-form-item {
+    ::v-deep .el-form-item {
       margin-bottom: 5px;
     }
   }
