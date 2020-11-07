@@ -5,7 +5,7 @@
         Tefact
       </h1>
       <h2 class="subtitle">
-        An platform for union business system
+        Build your admin panel without code!
       </h2>
     </div>
   </div>
