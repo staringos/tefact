@@ -11,7 +11,9 @@
       <el-button type="info" icon="el-icon-back" size="small">上一步</el-button>
       <el-button type="info" icon="el-icon-right" size="small">下一步</el-button>
       <el-button type="info" icon="el-icon-data-analysis" size="small">预览</el-button>
-      <el-button type="info" icon="el-icon-share" size="small">发布</el-button>
+      <SharePage :page="page">
+        <el-button type="info" icon="el-icon-share" size="small">分享</el-button>
+      </SharePage>
     </div>
 
     <div class="right-button">
@@ -28,10 +30,12 @@
 </style>
 <script lang="ts">
   import { Vue, Component, Prop, namespace } from 'nuxt-property-decorator'
+  import SharePage from "~/components/app/light/SharePage.vue"
 
   const editor = namespace('editor')
-
-  @Component
+  @Component({
+    components: { SharePage }
+  })
   export default class Toolbar extends Vue {
     @Prop([Object]) page
     @Prop([Object]) editorSetting
