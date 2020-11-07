@@ -12,6 +12,7 @@ from .resources.data_source.urls import blueprint as data_source_blueprint
 from .resources.application.urls import blueprint as app_blueprint
 from .resources.page.urls import blueprint as page_blueprint
 from .resources.organization.urls import blueprint as org_blueprint
+from .resources.share.urls import blueprint as share_blueprint
 from arrplat.config import config
 from .common.utils import DecimalEncoder
 
@@ -46,6 +47,7 @@ def register_blueprints(flask_app):
     flask_app.register_blueprint(page_blueprint, url_prefix='/page')
     flask_app.register_blueprint(org_blueprint, url_prefix='/org')
     flask_app.register_blueprint(data_source_blueprint, url_prefix='/data-source')
+    flask_app.register_blueprint(share_blueprint, url_prefix='/s')
 
 
 config_name = os.environ.get('API_CONFIG', 'development')

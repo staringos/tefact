@@ -1,8 +1,34 @@
 from arrplat.config import DEFAULT_PAGE, DEFAULT_PAGE_SIZE
 from flask import request
-from extensions import ma, db
 import copy
 from arrplat.common.utils import calculate_page, get_sql_params
+from .models import DataSource, Page
+from extensions import db
+from arrplat.resources.organization.services import org_exists
+from arrplat.resources.organization.models import OrgStaff
+from arrplat.resources.application.models import Application
+from arrplat.common.utils import json_response
+
+
+def allow_access_page(id, user_id):
+    if not id:
+        return json_response(message="参数错误", status=400)
+
+    page = db.session.query(Page, Application.own_org_id)\
+        .join(Application, Page.application_id == Application.id)\
+        .filter(Page.id == id)\
+        .first()
+
+    if not page:
+        return json_response(message=f"页面未找到", status=404)
+
+    org_id = page[1]
+    staff = db.session.query(OrgStaff).filter(OrgStaff.user_id == user_id and OrgStaff.org_id == org_id).first()
+
+    if not staff:
+        return json_response(message=f"用户无权限", status=403)
+
+    return page[0], org_id
 
 
 def split_different_field(self, fields):
