@@ -51,6 +51,10 @@ class AppModule extends VuexModule {
     })
     return current
   }
+  @Action({ rawError: true })
+  public sharePage({ pageId, type }) {
+    return service.app.sharePage(pageId, type)
+  }
 
   @Action({ rawError: true })
   public async modifyApp({ id, app }) {

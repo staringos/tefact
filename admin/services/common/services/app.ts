@@ -13,6 +13,15 @@ export default (request) => {
       method: 'post',
       data,
     }),
+    sharePage: (pageId, type) => request({
+      url: `/s/p/${pageId}`,
+      method: 'post',
+      data: {
+        type
+      },
+    }),
+
+
     addMenu: (data) => request({
       url: `/app/light/menu`,
       method: 'post',

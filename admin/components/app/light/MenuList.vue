@@ -24,12 +24,12 @@
       <el-table-column prop="sort" label="操作" width="180">
         <template slot-scope="scope">
           <el-button-group>
-            <el-button type="default" size="small" round @click="switchSort(scope.row, 1)" icon="el-icon-top"></el-button>
-            <el-button type="default" size="small" round @click="switchSort(scope.row, 0)" icon="el-icon-bottom"></el-button>
+            <el-button class="text-btn" type="text" size="small" round @click="switchSort(scope.row, 1)" icon="el-icon-top"></el-button>
+            <el-button class="text-btn" type="text" size="small" round @click="switchSort(scope.row, 0)" icon="el-icon-bottom"></el-button>
           </el-button-group>
           <el-button-group>
-            <el-button type="default" size="small" round @click="handleEdit(scope.row)" icon="el-icon-edit"></el-button>
-            <el-button type="danger" size="small" round @click="handleDelete(scope.row)" icon="el-icon-delete"></el-button>
+            <el-button class="text-btn" type="text" size="small" round @click="handleEdit(scope.row)" icon="el-icon-edit"></el-button>
+            <el-button class="text-btn delete-btn" type="text" size="small" round @click="handleDelete(scope.row)" icon="el-icon-delete"></el-button>
           </el-button-group>
 
           <el-button type="default" size="small" @click="handleDialogOpen(scope.row)" round>添加子菜单</el-button>
@@ -85,6 +85,14 @@
 <style lang="scss">
   .menu-list {
     flex: 1;
+
+    .text-btn {
+      padding: 3px;
+    }
+
+    .delete-btn {
+      color: red;
+    }
   }
 </style>
 <script lang="ts">
