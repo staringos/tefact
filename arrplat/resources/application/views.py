@@ -9,7 +9,9 @@ from .models import Application, ApplicationMenus
 from arrplat.common.utils import json_response, generate_uuid_len, valid_uuid, valid_phone, valid_boolean
 from arrplat.resources.application.schema import ApplicationSchema
 from arrplat.resources.page.models import Page, PageSection, DataSource
+from arrplat.resources.share.models import SharePage
 from arrplat.resources.page.schema import DataSourceSchema, PageSchema, PageSectionSchema
+from arrplat.resources.share.schema import SharePageSchema
 import time
 
 
@@ -95,6 +97,7 @@ class PageSectionListResource(Resource):
 
 class LightPageResource(Resource):
     page_schema = PageSchema(many=False)
+    share_page_schema = SharePageSchema(many=False)
 
     def delete(self, id):
         """页面删除
@@ -175,7 +178,14 @@ class LightPageResource(Resource):
         if not page:
             return json_response(message="找不到页面", status=404)
 
-        return json_response(data=self.page_schema.dump(page).data)
+        page = self.page_schema.dump(page).data
+
+        share = db.session.query(SharePage).filter(SharePage.page_id == id).first()
+
+        if share:
+            page['share'] = self.share_page_schema.dump(share).data
+
+        return json_response(data=page)
 
 
 class LightAppModifyResource(Resource):
