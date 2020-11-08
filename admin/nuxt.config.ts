@@ -61,6 +61,7 @@ const config: Configuration = {
     '~plugins/ElementUI',
     '~plugins/GlobalComponent',
     '~plugins/ArrplatUI',
+    '~plugins/Clipboard',
     { src: '~/plugins/AxiosToken.ts', ssr: false },
     { src: '~/plugins/PersistedState.ts', ssr: false },
     { src: '~/plugins/Route.ts', ssr: false },
