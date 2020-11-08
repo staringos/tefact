@@ -57,6 +57,7 @@ class AddShareResource(Resource):
 
         return json_response(message="分享成功", data={
             "id": share.id,
+            "key": share.key,
             "password": share.password
         })
 

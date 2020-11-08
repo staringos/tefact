@@ -8,4 +8,3 @@ class SharePageSchema(ma.ModelSchema):
 
     class Meta:
         model = SharePage
-        exclude = ('password', )
