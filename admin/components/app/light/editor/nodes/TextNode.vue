@@ -12,6 +12,7 @@
       :editor="editor"
       ref="editor"
       class="text-node-editor"
+      @keydown.native="handleKeydown"
     />
     <div class="mask" v-if="!editing" @dblclick="handleEditing"></div>
   </BaseNode>
@@ -69,8 +70,13 @@
 
       // this.editor.on('update', this.handleUpdate)
       editor.on('blur', this.handleUpdate)
+      editor.on('keydown', this.handleKeydown)
 
       this.editor = editor
+    }
+
+    handleKeydown(e) {
+      if (this.editing) e.stopPropagation()
     }
 
     handleEditing() {

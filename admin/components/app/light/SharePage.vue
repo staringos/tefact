@@ -23,7 +23,7 @@
     <div class="share-block" v-if="share">
       <span class="share-title"></span>
       <div class="share-content">
-        <el-button type="text">点击复制</el-button>
+        <el-button type="text" @click.stop="handleCopy">点击复制</el-button>
       </div>
     </div>
     <div style="text-align: right; margin: 0">
@@ -34,7 +34,7 @@
   </el-popover>
 </template>
 <script>
-import { Vue, Component, namespace, Prop } from 'nuxt-property-decorator'
+import { Vue, Component, namespace, Prop, Watch } from 'nuxt-property-decorator'
 import { DefaultShare } from "@/services/common/entities/share.ts";
 
 const app = namespace('app')
@@ -50,6 +50,11 @@ export default class SharePage extends Vue {
   @Prop() page
   @app.Action sharePage
 
+  @Watch("page", { immediate: true })
+  handlePageChange() {
+    this.share = this.page.share
+  }
+
   get address() {
     if (!this.share) return '';
     const host = window.location.host;
@@ -57,9 +62,18 @@ export default class SharePage extends Vue {
   }
 
   async handleShare() {
-    console.log("this.page:", this.page);
     const res = await this.sharePage({ pageId: this.page.id, type: this.form.type });
     this.share = res.data;
+  }
+
+  async handleCopy() {
+    const message = `链接：${this.address}   密码：${this.share.password}`
+
+    this.$copyText(message).then(() => {
+      this.$message.success('复制成功')
+    }, () => {
+      this.$message.error('复制失败，请手动复制')
+    })
   }
 }
 </script>
@@ -82,7 +96,7 @@ export default class SharePage extends Vue {
     }
 
     .password {
-      width: 50px;
+      width: 68px;
     }
   }
 }
