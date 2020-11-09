@@ -9,6 +9,12 @@ const script = [
 
 const isDev = process.env.NODE_ENV !== 'production'
 
+if (!isDev) {
+  script.push({
+    src: 'https://hm.baidu.com/hm.js?4d0b59a36bbb65c0522de6a7e6d026f2'
+  })
+}
+
 const customSass = {
   implementation: Sass,
   sassOptions: {
@@ -62,6 +68,7 @@ const config: Configuration = {
     '~plugins/GlobalComponent',
     '~plugins/ArrplatUI',
     '~plugins/Clipboard',
+    '~plugins/Baidu',
     { src: '~/plugins/AxiosToken.ts', ssr: false },
     { src: '~/plugins/PersistedState.ts', ssr: false },
     { src: '~/plugins/Route.ts', ssr: false },
