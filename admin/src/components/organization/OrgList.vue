@@ -2,7 +2,7 @@
   <div class="org-list">
     <ul>
       <li class="item" v-for="(item, index) in allOrgs" :key="index" :command="item.id" @click="() => handleOrgSelect(item.id)">
-        <el-avatar :src="item.head_url"></el-avatar>
+        <el-avatar :src="item.head_url + '?imageView2/0/w/200/h/200'"></el-avatar>
         <span class="name">{{ item.name }}</span>
         <i class="active el-icon-check" v-if="item.id === currentOrg.id"></i>
       </li>
@@ -39,6 +39,10 @@
       })
       await this.onOrgChanged(id)
       loading.close()
+    }
+
+    $loading(arg0: { lock: boolean; text: string; spinner: string; background: string }) {
+      throw new Error("Method not implemented.")
     }
 
     handleOpenCreateOrg() {
