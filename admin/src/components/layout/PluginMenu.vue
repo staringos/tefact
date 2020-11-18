@@ -1,7 +1,7 @@
 <template>
   <div class="plugin-menu" v-if="showPluginMenuGetter">
     <div class="plugin-menu-title">
-      <img v-if="currentApp" :src="currentApp.icon" />
+      <img v-if="currentApp" :src="currentApp.icon + '?imageView2/0/w/200/h/200'" />
       <h3 v-if="currentApp">
         {{currentApp.title}}
       </h3>

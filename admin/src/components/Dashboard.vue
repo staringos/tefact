@@ -2,7 +2,7 @@
   <div class="app-list">
     <div class="app-item" v-for="(app, i) in orgApps" :key="i" @click="() => handleAppClick(app)">
       <div class="app-item-bg"></div>
-      <img class="icon" :src="app.icon"/>
+      <img class="icon" :src="app.icon + '?imageView2/0/w/200/h/200'"/>
       <div class="name">
         {{app.title}}
       </div>

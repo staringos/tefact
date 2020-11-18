@@ -7,7 +7,7 @@
       <el-tooltip class="item" effect="dark" :content="app.title" placement="right" v-for="(app, i) in orgApps" :key="i">
         <a href="javascript:void(0);" @click="handleAppClick(app)">
           <div :class="`app-btn ${currentApp && currentApp.name === app.name ? ' active' : ''}`">
-            <img :src="app.icon" />
+            <img :src="app.icon + '?imageView2/0/w/200/h/200'" />
           </div>
         </a>
       </el-tooltip>
