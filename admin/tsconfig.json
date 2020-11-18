@@ -25,10 +25,10 @@
     "baseUrl": ".",
     "paths": {
       "~/*": [
-        "./*"
+        "./src/*"
       ],
       "@/*": [
-        "./*"
+        "./src/*"
       ],
       "lodash/*": [
         "node_modules/@types/lodash/*"

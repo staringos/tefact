@@ -24,6 +24,7 @@ const customSass = {
 
 const config: Configuration = {
   dev: isDev,
+  srcDir: 'src/',
   server: {
     port: 8800,
     host: '0.0.0.0'
@@ -90,6 +91,7 @@ const config: Configuration = {
   ** Build configuration
   */
   build: {
+    analyze: true,
     loaders: {
       scss: customSass
     },
