@@ -1,7 +1,7 @@
 {
   "name": "@tefact/admin",
   "version": "0.0.7",
-  "description": "tefact-admin",
+  "description": "Low code platform.",
   "author": "GeorgeZou",
   "private": true,
   "scripts": {
@@ -22,7 +22,6 @@
     "element-ui": "^2.12.0",
     "js-cookie": "^2.2.1",
     "lodash": "^4.17.20",
-    "lodash-webpack-plugin": "^0.11.5",
     "nuxt": "^2.12.2",
     "nuxt-property-decorator": "^2.7.2",
     "tiptap": "^1.27.1",
@@ -44,6 +43,7 @@
     "eslint": "^7.7.0",
     "fibers": "^5.0.0",
     "jest": "^24.1.0",
+    "lodash-webpack-plugin": "^0.11.5",
     "nodemon": "^1.18.9",
     "purgecss": "^1.4.1",
     "sass": "^1.28.0",
