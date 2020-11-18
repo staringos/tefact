@@ -41,10 +41,6 @@
       loading.close()
     }
 
-    $loading(arg0: { lock: boolean; text: string; spinner: string; background: string }) {
-      throw new Error("Method not implemented.")
-    }
-
     handleOpenCreateOrg() {
       this.setDialogVisible({ key: DIALOG_NAME.CREATE_ORG, visible: true })
     }
