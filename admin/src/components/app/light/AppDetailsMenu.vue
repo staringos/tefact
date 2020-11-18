@@ -1,7 +1,7 @@
 <template>
   <div class="app-menu">
     <div class="title-part">
-      <el-avatar :size="50" :src="app.icon" />
+      <el-avatar :size="50" :src="app.icon + '?imageView2/0/w/200/h/200'" />
       <h3>{{app.title}}</h3>
     </div>
     <el-menu :default-active="active" class="el-menu-vertical-demo" router>
