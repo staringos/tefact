@@ -1,5 +1,5 @@
 <template>
-  <div class="title-wrapper">
+  <div class="title-wrapper" @click="handleClick">
     <LogoImage />
     <h3 class="title" :style="{ color: color }">{{title || "TEFACT"}}</h3>
   </div>
@@ -15,6 +15,7 @@
     margin-left: 30px;
     margin-right: 50px;
     color: #323233;
+    cursor: pointer;
 
     .title {
       font-size: 20px;
@@ -36,5 +37,12 @@
   export default class Logo extends Vue {
     @Prop(String) title!: String | null
     @Prop(String) color!: String | null
+    @Prop(String) direct!: String | null
+
+    handleClick() {
+      if (this.direct) {
+        location.href = this.direct as any
+      }
+    }
   }
 </script>

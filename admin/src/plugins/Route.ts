@@ -33,6 +33,9 @@ export default async ({ app }) => {
     if (to.path && to.path.indexOf('/light') === 0)
       lightFilter(to)
 
+    if (to.path && to.path.indexOf('/s/p') === 0)
+      return next()
+
     if (auth.getToken())
       return next()
 

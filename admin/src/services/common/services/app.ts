@@ -21,6 +21,18 @@ export default (request) => {
       },
     }),
 
+    getSharePageInfo: key => request({
+      url: `/s/p/${key}`,
+      method: 'get'
+    }),
+
+    getSharePageDetails: (key, pwd) => request({
+      url: `/s/p/${key}/d`,
+      method: 'post',
+      data: {
+        pwd
+      }
+    }),
 
     addMenu: (data) => request({
       url: `/app/light/menu`,
