@@ -13,13 +13,13 @@
         </a>
       </el-tooltip>
 
-      <el-tooltip class="item" effect="dark" content="添加应用" placement="right">
-        <nuxt-link to="/">
-          <div class="menu-btn menu-add-btn">
-            <i class="el-icon-plus"></i>
-          </div>
-        </nuxt-link>
-      </el-tooltip>
+      <!--      <el-tooltip class="item" effect="dark" content="添加应用" placement="right">-->
+      <!--        <nuxt-link to="/">-->
+      <!--          <div class="menu-btn menu-add-btn">-->
+      <!--            <i class="el-icon-plus"></i>-->
+      <!--          </div>-->
+      <!--        </nuxt-link>-->
+      <!--      </el-tooltip>-->
     </div>
   </div>
 </template>
@@ -127,7 +127,7 @@
       { id: "home", icon: "tf-icon-all", title: "基本信息", route: "/app/light/${id}/" },
       { id: "menu-page", icon: "tf-icon-integral", title: "菜单页面", route: "/app/light/${id}/menu-page" },
       { id: "data-source", icon: "tf-icon-packing-labeling", title: "数据源", route: "/app/light/${id}/data-source" },
-      { id: "setting", icon: "tf-icon-conditions", title: "应用设置", route: "/app/light/${id}/setting" }
+      // { id: "setting", icon: "tf-icon-conditions", title: "应用设置", route: "/app/light/${id}/setting" }
     ]
     $route: any
     $router: any

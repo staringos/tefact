@@ -4,6 +4,7 @@
     v-on="$listeners"
     :node="node"
     :sectionId="sectionId"
+    :preview="preview"
     class="text-node"
   >
     <editor-content
