@@ -2,7 +2,7 @@
   <el-menu :default-active="activeIndex" router class="header-bar" mode="horizontal">
     <Logo :title="title" color="#303133" />
     <div class="header-bar-main">
-      <el-menu-item :index="`/plugins/${orgApps && orgApps[0] ? orgApps[0].admin_route : '' }`">工作台</el-menu-item>
+      <el-menu-item :index="getWorkspaceIndex()">工作台</el-menu-item>
       <el-menu-item index="/admin">桌面</el-menu-item>
     </div>
     <div class="header-right">
@@ -47,6 +47,20 @@
 
     @app.Getter orgApps
     @Prop(String) title!: string | null
+
+    getWorkspaceIndex() {
+      const { orgApps } = this
+      if (!orgApps) return "/admin"
+      const cur = orgApps[0]
+      if (!cur) return "/admin"
+
+      switch(cur.type) {
+        case "light":
+          return `/light/${cur.admin_route}`
+        default:
+          return `/plugins/${cur.admin_route}`
+      }
+    }
   }
 </script>
 <style lang="scss">
