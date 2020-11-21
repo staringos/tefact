@@ -95,11 +95,9 @@
   position: relative;
   background-color: white;
 
-  &:hover, &.active {
+  &.hover-style:hover, &.active {
     border: 1px solid $editor-border-active-color;
-  }
 
-  &.hover-style:hover {
     ::v-deep .add-button {
       display: flex;
     }

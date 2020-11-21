@@ -1,13 +1,19 @@
 <template>
   <el-menu :default-active="activeIndex" router class="header-bar" mode="horizontal">
-    <Logo :title="title" color="#303133" />
+    <Logo :title="title" color="#303133" :direct="direct" />
     <div class="header-bar-main">
       <el-menu-item :index="getWorkspaceIndex()">工作台</el-menu-item>
       <el-menu-item index="/admin">桌面</el-menu-item>
     </div>
-    <div class="header-right">
+    <div class="header-right" v-if="checkLoginStatus">
       <Toolbar />
       <HeaderProfile />
+    </div>
+    <div class="header-right" v-if="!checkLoginStatus">
+      <el-button type="text" size="small" @click="handleLogin">登录</el-button>
+      <div class="btn-wrapper">
+        <el-button type="primary" size="small" @click="handleRegister">免费注册</el-button>
+      </div>
     </div>
     <CreateOrgDialog />
     <UserDetailDialog />
@@ -28,6 +34,7 @@
   import BasicModifyDialog from '~/components/app/BasicModifyDialog.vue'
 
   const app = namespace('app')
+  const user = namespace('user')
 
   @Component({
     components: {
@@ -46,7 +53,17 @@
     activeIndex = '0'
 
     @app.Getter orgApps
+    @user.Getter checkLoginStatus
     @Prop(String) title!: string | null
+    @Prop({ default: '/' }) direct
+
+    handleLogin() {
+      this.$router.push({path: '/auth'})
+    }
+
+    handleRegister() {
+      this.$router.push({path: '/auth?type=register'})
+    }
 
     getWorkspaceIndex() {
       const { orgApps } = this
@@ -98,6 +115,12 @@
     .header-right {
       margin-right: 20px;
       display: flex;
+      .btn-wrapper {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin-left: 18px;
+      }
       /*margin-left: auto;*/
     }
   }

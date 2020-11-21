@@ -58,7 +58,8 @@ export default class SharePage extends Vue {
   get address() {
     if (!this.share) return '';
     const host = window.location.host;
-    return `https://${host}/s/p/${this.share.key}`;
+    const protocol = window.location.protocol;
+    return `${protocol}//${host}/s/p/${this.share.key}`;
   }
 
   async handleShare() {
