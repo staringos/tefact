@@ -16,8 +16,6 @@ Build your admin panel without code!
 ![Tefact Overview](./docs/images/editor.png)
 
 [点击查看DEMO](http://saas.tefact.com)
-用户名: 18310734267
-密码: 123456
 
 ![Tefact Overview](./docs/images/home-page.png)
 
@@ -124,6 +122,12 @@ Init product structure data
 ```bash
 python manage.py init-data
 ```
+
+## 获取技术支持
+
+关注 `真科技Tefact` 微信公众号，回复 `技术支持` 加入微信群，获取 1v1 人工技术支持.
+
+![qrcode](./docs/images/qrcode.jpg)
 
 ## Contributing
 
