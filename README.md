@@ -1,14 +1,24 @@
 <div align="center">
-  <img src="./admin/assets/images/logo-banner.png">
+  <img src="./admin/src/assets/images/logo-banner.png">
+</div>
+<div align="center">
+  <a href="https://tefact.com">官网</a> | 
+  <a href="https://saas.tefact.com">立即使用</a> | 
+  <a href="https://tefact.com/docs">文档</a> | 
+  <a href="https://tefact.com/docs/com">社区</a> | 
+  <a href="https://tefact.com/docs/joinus">加入我们</a>
+</div>
+
+<div align="center">
+  [![license](https://img.shields.io/badge/license-MIT-brightgreen.svg?style=flat)](https://github.com/Tefact/tefact-saas)
+  [![Actions Status](https://github.com/tefact/tefact-saas/workflows/deploy/badge.svg)](https://github.com/tefact/tefact-saas/actions)
+  [![Release Version](https://img.shields.io/badge/release-0.0.1-green.svg)](https://github.com/Tefact/tefact-saas/releases)
+  [![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg)](https://github.com/Tefact/tefact-saas/pulls)
+  [![Total alerts](https://img.shields.io/lgtm/alerts/g/Tefact/tefact-saas.svg?logo=lgtm&logoWidth=18)](https://lgtm.com/projects/g/Tefact/tefact-saas/alerts/)
 </div>
 
 # Tefact 低代码平台
 
-[![license](https://img.shields.io/badge/license-MIT-brightgreen.svg?style=flat)](https://github.com/Tefact/tefact-saas)
-[![Actions Status](https://github.com/tefact/tefact-saas/workflows/deploy/badge.svg)](https://github.com/tefact/tefact-saas/actions)
-[![Release Version](https://img.shields.io/badge/release-0.0.1-green.svg)](https://github.com/Tefact/tefact-saas/releases)
-[![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg)](https://github.com/Tefact/tefact-saas/pulls)
-[![Total alerts](https://img.shields.io/lgtm/alerts/g/Tefact/tefact-saas.svg?logo=lgtm&logoWidth=18)](https://lgtm.com/projects/g/Tefact/tefact-saas/alerts/)
 
 让你通过无需任何代码即可生成简单CRUD后台，方便的管理您的应用、页面、数据源、工作流 
 Build your admin panel without code!
