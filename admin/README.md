@@ -1,6 +1,6 @@
 # arrplat-admin
 
-> arrplat-adminn
+> arrplat-admin
 
 ## Build Setup
 

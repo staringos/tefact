@@ -9,6 +9,7 @@
           <nuxt />
         </div>
       </div>
+      <SettingBtn />
     </el-row>
   </div>
 </template>
@@ -26,12 +27,13 @@
   import HeaderBar from '../components/layout/UserAdmin/HeaderBar.vue'
   import AppBar from '../components/layout/UserAdmin/AppBar.vue'
   import PluginMenu from '~/components/layout/PluginMenu.vue'
+  import SettingBtn from '~/components/layout/SettingBtn.vue'
 
   const app = namespace('app')
 
   @Component({
     components: {
-      PluginMenu, HeaderBar, AppBar
+      PluginMenu, HeaderBar, AppBar, SettingBtn
     }
   })
   export default class Plugin extends Vue {
