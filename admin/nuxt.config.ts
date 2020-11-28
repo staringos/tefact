@@ -22,7 +22,7 @@ const customSass = {
   }
 };
 
-const config: Configuration = {
+const config = {
   dev: isDev,
   srcDir: 'src/',
   server: {
@@ -85,7 +85,7 @@ const config: Configuration = {
   ** Nuxt.js modules
   */
   modules: [
-    // '@nuxtjs/svg'
+    '@nuxtjs/style-resources',
   ],
   /*
   ** Build configuration
@@ -110,6 +110,9 @@ const config: Configuration = {
           }
         ]
       ],
+    },
+    styleResources: {
+      scss: ['./src/assets/styles/variables.scss']
     },
     /*
     ** You can extend webpack config here

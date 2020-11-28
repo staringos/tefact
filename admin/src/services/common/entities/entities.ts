@@ -3,8 +3,9 @@ export interface Page {
   name?: string;
   title?: string;
   page_section: PageSection[];
-  html_content: null;
-  section_type: null;
+  html_content: string | null;
+  section_type: string;
+  head_image: string | null;
 }
 
 export interface EntityPageSection {
