@@ -1,4 +1,5 @@
 import { Route } from './vue'
+import { Page } from "~/services/common/entities/entities"
 
 export interface LightAppParams {}
 
@@ -22,6 +23,7 @@ export interface Application {
   install_number?: number;
   create_time?: number;
   menus: Menu[] | null | [];
+  pages: Page[];
 }
 
 export interface ApplicationCategory {
