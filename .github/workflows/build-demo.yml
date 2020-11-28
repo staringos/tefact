@@ -34,8 +34,12 @@ jobs:
         key: ${{ secrets.DEPLOY_KEY }}
         script: |
           cd /home/saas/tefact-saas/admin
+          npm install nvm --global
+          nvm install 12.2.0
+          nvm use 12.2.0
           npm install --registry=https://registry.npm.taobao.org
           npm run build
+          pm2 stop saas
           pm2 delete saas
           pm2 start --name "saas" npm -- start
     - name: Back End
