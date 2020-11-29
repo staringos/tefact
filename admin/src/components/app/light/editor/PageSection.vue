@@ -33,6 +33,7 @@
   import TableNode from './nodes/TableNode.vue'
   import ButtonNode from './nodes/ButtonNode.vue'
   import CardNode from './nodes/CardNode.vue'
+  import CarouselNode from './nodes/CarouselNode.vue'
   import AddButton from '~/components/app/light/editor/AddButton.vue'
   import * as utils from '~/utils'
   import { NodeTypeToComponent } from '~/utils/constants/Editor'
@@ -41,7 +42,7 @@
 
   @Component({
     components: {
-      TextNode, ImageNode, AddButton, TableNode, ButtonNode, CardNode
+      TextNode, ImageNode, AddButton, TableNode, ButtonNode, CardNode, CarouselNode
     }
   })
   export default class PageSection extends Vue {

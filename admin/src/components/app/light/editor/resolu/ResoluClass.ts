@@ -5,6 +5,7 @@ const editor = namespace('editor')
 @Component
 export default class ResoluClass extends Vue {
   @Prop() public nodeType
+  @Prop() public isDirectModify
   @editor.Action public modifyNode
 
   get style() {
@@ -25,6 +26,8 @@ export default class ResoluClass extends Vue {
     if (this.nodeType === 'page') return
     if (this.nodeType === 'section') return
 
+    if (this.isDirectModify)
+      return this.$emit("modify", this.tmpNode)
     this.modifyNode({ sectionId: null, node: this.tmpNode })
   }
 }

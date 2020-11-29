@@ -5,6 +5,7 @@ import BackgroundResolu from './BackgroundResolu'
 import PositionResolu from './PositionResolu'
 import EntityResolu from './EntityResolu'
 import RowsResolu from './RowsResolu'
+import ListResolu from './ListResolu'
 
 export default {
   ImageResolu,
@@ -13,5 +14,6 @@ export default {
   BackgroundResolu,
   EntityResolu,
   RowsResolu,
+  ListResolu,
   PositionResolu
 }
