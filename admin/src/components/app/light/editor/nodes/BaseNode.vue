@@ -37,6 +37,8 @@
   .base-node {
     display: flex;
     cursor: pointer;
+    box-sizing: border-box;
+    border: 1px solid transparent;
 
     &.not-preview {
       &.base-node-active {
@@ -60,6 +62,7 @@
       width: 100%;
       height: 100%;
       overflow: hidden;
+      box-sizing: border-box;
     }
   }
 </style>

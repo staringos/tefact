@@ -27,6 +27,43 @@ export const NodeResoluConfig = {
       },
     ],
   },
+  CardNode: {
+    title: '卡片配置',
+    hasTab: true,
+    tabs: [
+      {
+        title: '基本信息',
+        components: [
+          { type: 'PositionResolu', params: {} },
+          { type: 'BackgroundResolu', params: {} },
+          { type: 'BorderResolu', params: {} },
+          { type: 'TextResolu', params: {} },
+        ],
+      }, {
+        title: '数据展示',
+        components: [
+          {
+            type: 'RowsResolu', params: {
+              title: '卡片内容设置',
+              rows: [{
+                type: 'TextRow',
+                params: {
+                  title: "标题",
+                  path: "data.title"
+                }
+              }, {
+                type: 'TextareaRow',
+                params: {
+                  title: "内容",
+                  path: "data.content"
+                }
+              }]
+            }
+          }
+        ],
+      },
+    ],
+  },
   image: {
     title: '图片配置',
     hasTab: true,
@@ -154,7 +191,7 @@ export const NodeTypeToComponent = {
   image: "ImageNode",
   html: "HtmlNode",
   table: "TableNode",
-  button: "ButtonNode",
+  button: "ButtonNode"
 }
 
 export const BaseNodeStyle = {
@@ -217,6 +254,14 @@ export const NodeDefaultData = {
       title: '',
     },
   } as TableNodeModel,
+  CardNode: {
+    type: 'CardNode',
+    config: getBaseNodeConfig(),
+    data: {
+      title: "卡片标题",
+      content: "卡片内容"
+    },
+  }
 }
 
 export const NodeListConstants = [
@@ -252,4 +297,26 @@ export const NodeListConstants = [
   type: 'button',
   title: '按钮',
   nodeData: NodeDefaultData.button
-}]
+}, {
+  icon: 'tf-icon-browser',
+  type: 'BrowserNode',
+  title: '网页',
+}, {
+  icon: 'tf-icon-lunbotu',
+  type: 'CarouselNode',
+  title: '轮播图',
+}, {
+  icon: 'tf-icon-navs',
+  type: 'NavNode',
+  title: '导航',
+}, {
+  icon: 'tf-icon-card',
+  type: 'CardNode',
+  title: '卡片',
+  nodeData: NodeDefaultData.CardNode
+}, {
+  icon: 'tf-icon-form',
+  type: 'FormNode',
+  title: '表单',
+},
+]
