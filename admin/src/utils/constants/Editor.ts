@@ -27,6 +27,37 @@ export const NodeResoluConfig = {
       },
     ],
   },
+  BrowserNode: {
+    title: '网页配置',
+    hasTab: true,
+    tabs: [
+      {
+        title: '基本信息',
+        components: [
+          {type: 'PositionResolu', params: {}},
+          {type: 'BackgroundResolu', params: {}},
+          {type: 'BorderResolu', params: {}},
+          {type: 'TextResolu', params: {}},
+        ],
+      }, {
+        title: '数据展示',
+        components: [
+          {
+            type: 'RowsResolu', params: {
+              title: '网页内容设置',
+              rows: [{
+                type: 'TextRow',
+                params: {
+                  title: '链接',
+                  path: "data.src"
+                }
+              }]
+            }
+          }
+        ],
+      },
+    ],
+  },
   CardNode: {
     title: '卡片配置',
     hasTab: true,
@@ -313,6 +344,13 @@ export const NodeDefaultData = {
       content: "卡片内容"
     },
   },
+  BrowserNode: {
+    type: 'BrowserNode',
+    config: getBaseNodeConfig(),
+    data: {
+      src: 'https://tefact.com'
+    }
+  },
   CarouselNode: {
     type: 'CarouselNode',
     config: getBaseNodeConfig(),
@@ -374,7 +412,8 @@ export const NodeListConstants = [
   icon: 'tf-icon-browser',
   type: 'BrowserNode',
   title: '网页',
-}, {
+  nodeData: NodeDefaultData.BrowserNode
+  }, {
   icon: 'tf-icon-lunbotu',
   type: 'CarouselNode',
   title: '轮播图',
