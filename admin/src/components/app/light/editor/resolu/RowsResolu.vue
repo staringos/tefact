@@ -19,11 +19,10 @@ import { Component, Prop } from "nuxt-property-decorator";
 import BaseResolu from '~/components/app/light/editor/resolu/BaseResolu.vue'
 import ResoluMixin from '~/components/app/light/editor/resolu/ResoluMixin'
 import ResoluBase from '~/components/app/light/editor/resolu/ResoluClass'
-import SelectRow from '~/components/app/light/editor/resolu/rows/SelectRow'
-import SwitchRow from '~/components/app/light/editor/resolu/rows/SwitchRow'
+import Rows from '~/components/app/light/editor/resolu/rows'
 
 @Component({
-  components: { BaseResolu, SelectRow, SwitchRow },
+  components: { BaseResolu, ...Rows },
   mixins: [ ResoluMixin ]
 })
 export default class SelectResolu extends ResoluBase {

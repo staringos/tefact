@@ -7,7 +7,7 @@
       :key="node.id"
       :node="node"
       :sectionId="section.id"
-      :is="NodeTypeToComponent[node.type]"
+      :is="NodeTypeToComponent[node.type] || node.type"
       :preview="preview"
       :active="currentNodesIdsGetter.indexOf(node.id) > -1"
       @onRefLineChange="handleRefLineChange"
@@ -32,6 +32,9 @@
   import ImageNode from './nodes/ImageNode.vue'
   import TableNode from './nodes/TableNode.vue'
   import ButtonNode from './nodes/ButtonNode.vue'
+  import CardNode from './nodes/CardNode.vue'
+  import CarouselNode from './nodes/CarouselNode.vue'
+  import BrowserNode from './nodes/BrowserNode.vue'
   import AddButton from '~/components/app/light/editor/AddButton.vue'
   import * as utils from '~/utils'
   import { NodeTypeToComponent } from '~/utils/constants/Editor'
@@ -40,7 +43,7 @@
 
   @Component({
     components: {
-      TextNode, ImageNode, AddButton, TableNode, ButtonNode
+      TextNode, ImageNode, AddButton, TableNode, ButtonNode, CardNode, CarouselNode, BrowserNode
     }
   })
   export default class PageSection extends Vue {
@@ -87,13 +90,13 @@
 </script>
 
 <style lang="scss" scoped>
-@import "../../../../assets/styles/variables";
-
 .section {
   flex: 1;
   min-height: 300px;
   position: relative;
   background-color: white;
+  box-sizing: border-box;
+  border: 1px solid transparent;
 
   &.hover-style:hover, &.active {
     border: 1px solid $editor-border-active-color;
