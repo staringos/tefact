@@ -8,11 +8,6 @@
     </div>
   </div>
 </template>
-<style lang="scss">
-  .editor-node-list-wrapper {
-    position: fixed;
-  }
-</style>
 <script lang="ts">
   import { Vue, Component, namespace } from 'nuxt-property-decorator'
   import { NodeListConstants } from '~/utils/constants/Editor'
@@ -32,17 +27,17 @@
   }
 </script>
 <style lang="scss">
-  @import "../../../../assets/styles/variables";
-
   .editor-node-list-wrapper {
     overflow: auto;
-    width: 100px;
+    width: 160px;
     background: #fff;
+    border-right: 1px solid $borderSecondColor;
 
     .editor-node-list {
       display: flex;
-      flex-direction: column;
+      flex-direction: row;
       padding: 10px;
+      flex-wrap: wrap;
 
       .node-item {
         width: 70px;
@@ -54,6 +49,7 @@
         flex-direction: column;
         cursor: pointer;
         user-select: none;
+        box-sizing: border-box;
 
         &:hover {
           color: $secondColor;

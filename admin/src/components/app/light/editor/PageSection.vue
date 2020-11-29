@@ -94,6 +94,8 @@
   min-height: 300px;
   position: relative;
   background-color: white;
+  box-sizing: border-box;
+  border: 1px solid transparent;
 
   &.hover-style:hover, &.active {
     border: 1px solid $editor-border-active-color;
