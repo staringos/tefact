@@ -15,7 +15,6 @@
           <div class="bottom clearfix">
             <el-button type="text" class="button" @click.stop="handleEdit(item)">编辑</el-button>
             <el-button type="text" class="button" @click.stop="handleEdit(item)">分享</el-button>
-            <el-button type="text" class="button">删除</el-button>
           </div>
         </div>
       </el-card>

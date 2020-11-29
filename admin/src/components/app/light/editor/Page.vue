@@ -73,7 +73,7 @@
   @import "../../../../assets/styles/variables";
 
   .editor-page-canvas {
-    width: 80%;
+    width: 95%;
     display: flex;
     flex-direction: column;
     margin: 0 auto;

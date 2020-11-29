@@ -37,14 +37,13 @@
         display: flex;
         overflow: auto;
         flex-direction: row;
-        padding: 20px 20px 20px 20px;
+        padding: 0;
 
         .editor-container {
           flex-grow: 1;
           overflow: auto;
           flex-direction: row;
-          padding: 20px 20px 20px 20px;
-          margin-left: 100px;
+          padding: 20px 20px 0 20px;
         }
       }
     }

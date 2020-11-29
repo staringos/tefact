@@ -60,3 +60,4 @@ flasgger==0.9.3
 kubernetes
 aliyunsdkcore
 marshmallow_enum
+sentry-sdk[flask]

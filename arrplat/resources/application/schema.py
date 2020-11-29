@@ -65,7 +65,6 @@ class ApplicationSchema(ma.ModelSchema):
 
     @pre_dump
     def step(self, data, **kwargs):
-        print(kwargs)
         data.menus = data.menus.filter(ApplicationMenus.platform.contains(self.platform))
         return data
 
