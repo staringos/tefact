@@ -15,6 +15,8 @@ from .resources.organization.urls import blueprint as org_blueprint
 from .resources.share.urls import blueprint as share_blueprint
 from arrplat.config import config
 from .common.utils import DecimalEncoder
+from sentry_sdk.integrations.flask import FlaskIntegration
+import sentry_sdk
 
 flask_env = os.environ.get("FLASK_ENV", "development")
 
@@ -35,6 +37,11 @@ def create_app():
 def configure_extensions(flask_app):
     db.init_app(flask_app)
     jwt.init_app(flask_app)
+    sentry_sdk.init(
+        dsn="https://73c01025a6624aeaa768e5750634059a@o483948.ingest.sentry.io/5536563",
+        integrations=[FlaskIntegration()],
+        traces_sample_rate=1.0
+    )
     if flask_env == "development":
         swagger.init_app(flask_app)
 
@@ -52,3 +59,8 @@ def register_blueprints(flask_app):
 
 config_name = os.environ.get('API_CONFIG', 'development')
 app = create_app()
+
+
+@app.route('/debug-sentry')
+def trigger_error():
+    division_by_zero = 1 / 0

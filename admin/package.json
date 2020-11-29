@@ -16,6 +16,7 @@
   },
   "dependencies": {
     "@nuxt/typescript-runtime": "^0.4.10",
+    "@nuxtjs/sentry": "^4.5.0",
     "@tinymce/tinymce-vue": "^3.2.0",
     "@types/lodash": "^4.14.159",
     "axios": "^0.19.0",
