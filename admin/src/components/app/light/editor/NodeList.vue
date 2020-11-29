@@ -51,6 +51,17 @@
         user-select: none;
         box-sizing: border-box;
 
+        i {
+          font-size: 20px;
+          color: $mainColor;
+        }
+
+        span {
+          font-size: 12px;
+          color: $textMainColor;
+          margin-top: 5px;
+        }
+
         &:hover {
           color: $secondColor;
           border: 1px solid $editor-node-border-color;
