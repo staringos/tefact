@@ -64,6 +64,57 @@ export const NodeResoluConfig = {
       },
     ],
   },
+  CarouselNode: {
+    title: '轮播图配置',
+    hasTab: true,
+    tabs: [
+      {
+        title: '基本信息',
+        components: [
+          { type: 'PositionResolu', params: {} },
+          { type: 'BackgroundResolu', params: {} },
+          { type: 'BorderResolu', params: {} },
+          { type: 'TextResolu', params: {} },
+        ],
+      }, {
+        title: '数据展示',
+        components: [
+          {
+            type: 'ListResolu',
+            params: {
+              title: '轮播图内容设置',
+              path: 'data.list',
+              rows: [{
+                type: 'TextRow',
+                params: {
+                  title: "标题",
+                  path: "title"
+                }
+              }, {
+                type: 'TextRow',
+                params: {
+                  title: "描述",
+                  path: "desc"
+                }
+              }, {
+                type: 'TextRow',
+                params: {
+                  title: "图片",
+                  path: "image"
+                }
+              }, {
+                type: 'TextRow',
+                params: {
+                  title: "超链接",
+                  path: "link"
+                }
+              }]
+            }
+          }
+        ],
+      },
+    ],
+  },
   image: {
     title: '图片配置',
     hasTab: true,
@@ -261,6 +312,28 @@ export const NodeDefaultData = {
       title: "卡片标题",
       content: "卡片内容"
     },
+  },
+  CarouselNode: {
+    type: 'CarouselNode',
+    config: getBaseNodeConfig(),
+    data: {
+      list: [{
+        image: '/images/image.png',
+        title: 'Default Image',
+        desc: 'Default Image',
+        link: 'http://saas.tefact.com'
+      }, {
+        image: '/images/image.png',
+        title: 'Default Image',
+        desc: 'Default Image',
+        link: 'http://saas.tefact.com'
+      }, {
+        image: '/images/image.png',
+        title: 'Default Image',
+        desc: 'Default Image',
+        link: 'http://saas.tefact.com'
+      }],
+    },
   }
 }
 
@@ -305,6 +378,7 @@ export const NodeListConstants = [
   icon: 'tf-icon-lunbotu',
   type: 'CarouselNode',
   title: '轮播图',
+  nodeData: NodeDefaultData.CarouselNode
 }, {
   icon: 'tf-icon-navs',
   type: 'NavNode',
