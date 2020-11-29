@@ -1,5 +1,5 @@
-import { Configuration } from '@nuxt/types'
-import LodashModuleReplacementPlugin from 'lodash-webpack-plugin'
+// import { Configuration } from '@nuxt/types'
+// import LodashModuleReplacementPlugin from 'lodash-webpack-plugin'
 import Sass from 'sass'
 import Fiber from 'fibers'
 
@@ -98,9 +98,9 @@ const config = {
     transpile: [
       'vuex-module-decorators', /^element-ui/
     ],
-    plugins: [
-      new LodashModuleReplacementPlugin()
-    ],
+    // plugins: [
+    //   new LodashModuleReplacementPlugin()
+    // ],
     babel: {
       plugins: [
         ["component",
