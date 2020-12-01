@@ -28,11 +28,21 @@
             @click="handleStyleChange('text-decoration', isUnderline ? 'none' : 'underline')"
           ></el-button>
         </el-button-group>
-
-        <el-button-group class="resolu-form-item">
-          <el-button :type="style['text-align'] === 'left' ? 'primary' : 'default'" icon="tefact-icon tf-icon-youduiqi" size="mini" @click="handleStyleChange('text-align', 'left')"></el-button>
-          <el-button :type="style['text-align'] === 'center' ? 'primary' : 'default'" icon="tefact-icon tf-icon-zhongduiqi" size="mini" @click="handleStyleChange('text-align', 'center')"></el-button>
-          <el-button :type="style['text-align'] === 'right' ? 'primary' : 'default'" icon="tefact-icon tf-icon-zuoduiqi" size="mini" @click="handleStyleChange('text-align', 'right')"></el-button>
+      </div>
+      <div class="resolu-row">
+        <div class="resolu-label">对齐</div>
+        <el-button-group>
+          <el-button :type="style['justify-content'] === 'flex-start' ? 'primary' : 'default'" icon="tefact-icon tf-icon-youduiqi" size="mini" @click="handleStyleChange('justify-content', 'flex-start')"></el-button>
+          <el-button :type="style['justify-content'] === 'center' ? 'primary' : 'default'" icon="tefact-icon tf-icon-zhongduiqi" size="mini" @click="handleStyleChange('justify-content', 'center')"></el-button>
+          <el-button :type="style['justify-content'] === 'flex-end' ? 'primary' : 'default'" icon="tefact-icon tf-icon-zuoduiqi" size="mini" @click="handleStyleChange('justify-content', 'flex-end')"></el-button>
+        </el-button-group>
+      </div>
+      <div class="resolu-row">
+        <div class="resolu-label"></div>
+        <el-button-group>
+          <el-button :type="style['align-items'] === 'flex-start' ? 'primary' : 'default'" icon="tefact-icon tf-icon-vertical-align-top" size="mini" @click="handleStyleChange('align-items', 'flex-start')"></el-button>
+          <el-button :type="style['align-items'] === 'center' ? 'primary' : 'default'" icon="tefact-icon tf-icon-vertical-align-middle" size="mini" @click="handleStyleChange('align-items', 'center')"></el-button>
+          <el-button :type="style['align-items'] === 'flex-end' ? 'primary' : 'default'" icon="tefact-icon tf-icon-vertical-align-bottom" size="mini" @click="handleStyleChange('align-items', 'flex-end')"></el-button>
         </el-button-group>
       </div>
     </div>
@@ -40,6 +50,9 @@
 </template>
 <style lang="scss">
   @import "./resolu";
+  .field-break {
+    display: block;
+  }
 </style>
 <script lang="ts">
   import { Vue, Component, Prop } from 'nuxt-property-decorator'
