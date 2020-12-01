@@ -13,6 +13,8 @@ export interface EditorNodeStyle {
   'background-image'?: string;
   'text-color'?: string;
   'text-size'?: string;
+  'align-items'?: string;
+  'justify-content'?: string;
   'z-index'?: number;
 }
 
