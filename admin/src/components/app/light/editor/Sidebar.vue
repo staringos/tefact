@@ -83,6 +83,7 @@
     display: flex;
     flex: 1;
     flex-direction: column;
+    max-width: 100%;
 
     .title {
       display: flex;

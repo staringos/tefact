@@ -1,7 +1,7 @@
 @import "../../../../../assets/styles/variables";
 
 .resolu-container {
-  height: 80px;
+  min-height: 80px;
   display: flex;
   flex-direction: column;
 
@@ -16,6 +16,7 @@
     line-height: 40px;
     margin-right: 10px;
     width: 60px;
+    min-width: 60px;
   }
 }
 
