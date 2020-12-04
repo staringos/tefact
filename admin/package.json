@@ -47,7 +47,6 @@
     "jest": "^24.1.0",
     "lodash-webpack-plugin": "^0.11.5",
     "nodemon": "^1.18.9",
-    "purgecss": "^1.4.1",
     "sass": "^1.28.0",
     "sass-loader": "^8.0.0",
     "vue-jest": "^4.0.0-0"
