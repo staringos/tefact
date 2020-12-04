@@ -91,7 +91,10 @@ const config = {
   ** Build configuration
   */
   build: {
-    analyze: false,
+    analyze: true,
+    // filenames: {
+    //   app: '[name].[chunkhash].js'
+    // },
     loaders: {
       scss: customSass
     },
@@ -126,14 +129,16 @@ const config = {
 
       // https://segmentfault.com/a/1190000011100006
       config.resolve.symlinks = false;
+
     }
-  }
+  },
 } as any
 
 if (!isDev) {
   config.sentry = {
     dsn: 'https://926a3edc432c40c08eb09edf20a4d3c1@o483948.ingest.sentry.io/5536565', // Enter your project's DSN here
-      config: {}, // Additional config
+    config: {}, // Additional config
+    lazy: true
   }
 }
 
