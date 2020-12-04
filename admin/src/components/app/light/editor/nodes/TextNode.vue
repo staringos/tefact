@@ -20,6 +20,7 @@
       :style="textContextStyle"
       v-html="node.data.text"
       :contenteditable="editing"
+      ref="editor"
       @keydown="handleKeydown"
     ></div>
     <div class="mask" v-if="!editing" @dblclick="handleEditing"></div>
@@ -52,7 +53,6 @@
   import NodeClass from './NodeClass'
   import { TextNodeModel } from '~/utils/entities/editor/node'
   import BaseNode from './BaseNode.vue'
-  // import { Editor, EditorContent } from "tiptap";
 
   const editor = namespace('editor')
 
@@ -77,45 +77,21 @@
       }
     }
 
-    // init () {
-    //   const editor = new Editor({
-    //     extensions: [
-    //       // new Bold(),
-    //       // new Italic(),
-    //       // new Strike(),
-    //       // new Underline()
-    //     ],
-    //     editable: !this.preview,
-    //     content: this.node.data.text
-    //   });
-    //
-    //   // this.editor.on('update', this.handleUpdate)
-    //   editor.on('blur', this.handleUpdate)
-    //   editor.on('keydown', this.handleKeydown)
-    //
-    //   this.editor = editor
-    // }
-
     handleKeydown(e) {
       if (this.editing) e.stopPropagation()
     }
 
     handleEditing() {
       this.editing = true
-      this.editor.focus()
     }
 
     handleUpdate() {
-      const newContent = this.editor.getHTML()
+      const newContent = (this.$refs.editor as any).innerHTML;
       const node = cloneDeep(this.node)
       node.data.text = newContent
       this.modifyNode({ sectionId: this.sectionId, node })
 
       this.editing = false
     }
-
-    // mounted() {
-    //   this.init()
-    // }
   }
 </script>
