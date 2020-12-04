@@ -30,9 +30,9 @@ service.interceptors.request.use(
   config => {
     const token = auth.getToken()
 
-    if (token) 
+    if (token)
       config.headers['Authorization'] = `Bearer ${auth.getToken()}`
-    
+
 
     return config
   },
@@ -48,7 +48,7 @@ service.interceptors.response.use(
     return response
   },
   error => {
-    console.log('hererrr', error.response)
+    console.log('hererrr', error)
     if (error.response.status === 401) {
       auth.setToken('')
       if (global) return {}
@@ -61,12 +61,12 @@ service.interceptors.response.use(
 export default (params: any) => {
   if (params.ctx && params.ctx.req && params.ctx.req.headers) {
     const token = Tools.getCookie(params.ctx.req.headers.cookie, auth.TokenKey)
-    if (token && token.length > 1) 
+    if (token && token.length > 1)
       params.headers = {
         ...params.headers,
         Authorization: `Bearer ${token}`
       }
-    
+
   }
 
   return service(params)

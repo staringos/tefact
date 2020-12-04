@@ -7,7 +7,7 @@
     <h3>分享页面</h3>
     <div class="share-block">
       <span class="share-title">分享权限</span>
-      <div class="share-content">
+      <div class="share-content">{{form.type}}
         <el-radio v-model="form.type" label="free">无权限</el-radio>
         <el-radio v-model="form.type" label="password">密码</el-radio>
         <el-radio v-model="form.type" label="login">登录访问</el-radio>
@@ -36,6 +36,7 @@
 <script>
 import { Vue, Component, namespace, Prop, Watch } from 'nuxt-property-decorator'
 import { DefaultShare } from "@/services/common/entities/share.ts";
+import { cloneDeep } from "lodash";
 
 const app = namespace('app')
 
@@ -53,6 +54,7 @@ export default class SharePage extends Vue {
   @Watch("page", { immediate: true })
   handlePageChange() {
     this.share = this.page.share
+    this.form = cloneDeep(this.page.share)
   }
 
   get address() {
