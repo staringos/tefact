@@ -52,9 +52,9 @@ class AppModule extends VuexModule {
     return current
   }
 
-  @Action({ rawError: true, commit: 'SHARE_PAGE' })
+  @Action({ rawError: true })
   public async sharePage({ pageId, type }) {
-    const res = service.app.sharePage(pageId, type)
+    const res = await service.app.sharePage(pageId, type)
     return res.data;
   }
 

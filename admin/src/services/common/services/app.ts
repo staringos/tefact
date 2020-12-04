@@ -26,7 +26,7 @@ export default (request) => {
       method: 'get'
     }),
 
-    getSharePageDetails: (key, pwd) => request({
+    getSharePageDetails: (key, pwd?) => request({
       url: `/s/p/${key}/d`,
       method: 'post',
       data: {
