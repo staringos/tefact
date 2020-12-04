@@ -1,5 +1,5 @@
 import { ImageNodeModel, TextNodeModel, TableNodeModel, ButtonNodeModel } from '~/utils/entities/editor/node';
-import { cloneDeep } from "lodash"
+import cloneDeep from 'lodash/cloneDeep'
 
 export const BorderStyle = [
   { value: 'solid', label: '直线' },

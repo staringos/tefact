@@ -1,5 +1,5 @@
 import { Vue } from 'nuxt-property-decorator'
-import cloneDeep from "lodash/cloneDeep"
+import cloneDeep from 'lodash/cloneDeep'
 
 export const reorder = (list, i, position) => {
   if (position === 1 && i > 0) {

@@ -36,7 +36,7 @@
 <script>
 import { Vue, Component, namespace, Prop, Watch } from 'nuxt-property-decorator'
 import { DefaultShare } from "@/services/common/entities/share.ts";
-import { cloneDeep } from "lodash";
+import cloneDeep from "lodash/cloneDeep";
 
 const app = namespace('app')
 
