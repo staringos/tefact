@@ -7,7 +7,7 @@
     <h3>分享页面</h3>
     <div class="share-block">
       <span class="share-title">分享权限</span>
-      <div class="share-content">{{form.type}}
+      <div class="share-content">
         <el-radio v-model="form.type" label="free">无权限</el-radio>
         <el-radio v-model="form.type" label="password">密码</el-radio>
         <el-radio v-model="form.type" label="login">登录访问</el-radio>
@@ -17,7 +17,7 @@
       <span class="share-title">分享信息</span>
       <div class="share-content">
         <el-input class="address" size="mini" :value="address" @keydown="() => false" placeholder="地址"></el-input>
-        <el-input class="password" size="mini" v-model="share.password" @keydown="() => false" placeholder="密码"></el-input>
+        <el-input v-if="form.type === 'password'" class="password" size="mini" v-model="share.password" @keydown="() => false" placeholder="密码"></el-input>
       </div>
     </div>
     <div class="share-block" v-if="share">
