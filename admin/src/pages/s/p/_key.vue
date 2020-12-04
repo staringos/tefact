@@ -16,6 +16,7 @@ import { service } from '~/utils'
 import RequestPasswordDialog from '~/components/share/RequestPasswordDialog.vue';
 import SharePage from '~/components/share/SharePage.vue';
 import { Page } from "~/services/common/entities/entities"
+import { SharePageEntity } from "~/utils/entities/Share"
 
 @Component({
   layout: "Share",
@@ -23,9 +24,9 @@ import { Page } from "~/services/common/entities/entities"
     RequestPasswordDialog, SharePage
   }
 })
-export default class AppItem extends Vue {
+export default class Share extends Vue {
   key: string | null = null
-  info: string | null = null
+  info: SharePageEntity | null = null
   auth: boolean = false
   pageData: Page | null = null
 
@@ -40,6 +41,12 @@ export default class AppItem extends Vue {
   }
 
   async refresh() {
+    const loading = this.$loading({
+      lock: true,
+      text: '加载中...',
+      spinner: 'el-icon-loading',
+      background: 'rgba(0, 0, 0, 0.7)'
+    })
     const key = this.$route.params.key;
     this.key = key;
     if (!this.key) {
@@ -53,6 +60,8 @@ export default class AppItem extends Vue {
         this.pageData = JSON.parse(cache)
         this.info = { key: this.key } as any
         this.auth = true
+
+        loading.close();
         return;
       } catch(e) {
         sessionStorage.removeItem(key)
@@ -66,7 +75,14 @@ export default class AppItem extends Vue {
       return
     }
 
-    this.info = res.data?.data
+    this.info = res.data?.data as SharePageEntity
+
+    if (this.info.type === "free") {
+      this.auth = true
+      const pageData = await service.app.getSharePageDetails(this.info.key)
+      this.handleAuth(pageData.data.data)
+      loading.close();
+    }
   }
 }
 </script>
