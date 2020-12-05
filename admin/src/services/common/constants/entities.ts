@@ -33,7 +33,8 @@ const DefaultPage: PageModel = {
   config: {
     viewMode: "fixed",
     style: {
-      width: 1200
+      width: 1200,
+      'background-color': 'white'
     }
   },
   page_section: [],
