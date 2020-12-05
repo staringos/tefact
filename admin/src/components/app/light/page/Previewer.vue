@@ -25,6 +25,7 @@
 
       .el-dialog__body {
         flex: 1;
+        padding-top: 0;
         overflow: hidden;
         display: flex;
       }
