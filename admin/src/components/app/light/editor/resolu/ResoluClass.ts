@@ -23,11 +23,11 @@ export default class ResoluClass extends Vue {
   }
 
   public handleSave() {
-    if (this.nodeType === 'page') return
-    if (this.nodeType === 'section') return
+    // if (this.nodeType === 'page') return
+    // if (this.nodeType === 'section') return
 
     if (this.isDirectModify)
       return this.$emit("modify", this.tmpNode)
-    this.modifyNode({ sectionId: null, node: this.tmpNode })
+    this.modifyNode({ sectionId: null, node: this.tmpNode, nodeType: this.nodeType })
   }
 }

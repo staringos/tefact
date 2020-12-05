@@ -16,6 +16,8 @@ export interface EditorNodeStyle {
   'align-items'?: string;
   'justify-content'?: string;
   'z-index'?: number;
+  'width'?: number;
+  'height'?: number;
 }
 
 export interface EditorNodeConfig {

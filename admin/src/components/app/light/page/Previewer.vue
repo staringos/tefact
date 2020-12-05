@@ -5,7 +5,7 @@
     class="page-previewer"
     :before-close="() => $emit('cancel')"
     fullscreen>
-    <div class="page-container">
+    <div class="page-container" v-if="page">
       <div class="header"></div>
       <div class="content">
         <Page :page="page" :pageId="page.id" :preview="true" />
@@ -46,7 +46,7 @@
     }
 
     .content {
-      overflow: auto;
+      overflow: hidden;
       flex: 1;
     }
   }

@@ -14,21 +14,41 @@
           <span>{{ item.name }}</span>
           <div class="bottom clearfix">
             <el-button type="text" class="button" @click.stop="handleEdit(item)">编辑</el-button>
-            <el-button type="text" class="button" @click.stop="handleEdit(item)">分享</el-button>
+            <el-button type="text" class="button" @click.stop="handlePreviewer(item)">预览</el-button>
           </div>
         </div>
       </el-card>
+      <el-card class="app-item-card add-page" body-style="{ padding: '0px' }" @click.native="handleOpenModify">
+        <i class="el-icon-plus"></i>
+      </el-card>
     </div>
+    <PageModifyDialog v-if="currentApp" :isEdit="isEdit" :form="form" :dialogVisible="showAddPage" :appId="currentApp.id" @cancel="handleCancel" @refresh="refresh" />
+    <Previewer :page="page" :show="showPreviewer" @cancel="handlePreviewerHide" />
   </ArrPanel>
 </template>
-<style lang="scss">
+<style lang="scss" scoped>
+  .home-page-content {
+    .add-page {
+      display: flex;
+      justify-content: center;
+      align-items: center;
 
+      .el-icon-plus {
+        font-size: 52px;
+      }
+    }
+  }
 </style>
 <script lang="ts">
   import { Vue, Component, namespace, Watch } from 'nuxt-property-decorator'
   import { Application } from "~/services/common/entities/app"
+  import PageModifyDialog from "~/components/app/light/page/PageModifyDialog.vue"
+  import Previewer from "~/components/app/light/page/Previewer.vue"
+  import Constants from "~/services/common/constants"
+  import cloneDeep from 'lodash/cloneDeep'
 
   const app = namespace('app')
+  const editor = namespace('editor')
 
   type ListItemType = 'page' | 'form'
 
@@ -42,20 +62,43 @@
   }
 
   @Component({
+    components: {Previewer, PageModifyDialog},
     layout: 'plugin'
   })
   export default class HomePage extends Vue {
     @app.Getter currentApp
     @app.Action getAppDetails
+    @editor.Action getPageDetails
 
     activeName: string = 'all'
+    page = null
+    form = cloneDeep(Constants.entities.DefaultPage)
     list: ListItem[] = []
     app!: Application
+    showPreviewer: Boolean = false
+    showAddPage: Boolean = false
+    isEdit: Boolean = false
+
+    handlePreviewerHide() {
+      this.showPreviewer = false
+      this.page = null
+    }
+
+    handleOpenModify() {
+      this.showAddPage = true
+    }
+
+    handleCancel() {
+      this.showAddPage = false
+      this.isEdit = false
+      this.form = cloneDeep(Constants.entities.DefaultPage)
+    }
 
     @Watch('activeName', { immediate: true })
     handleSwitchActive() {
       if (!this.app) return
       const res = [] as ListItem[]
+
       switch (this.activeName) {
         case "all":
           this.app.pages.forEach(page => {
@@ -83,6 +126,11 @@
 
     handleClick(e) {
       this.activeName = e
+    }
+
+    async handlePreviewer(item) {
+      this.page = await this.getPageDetails(item.id)
+      this.showPreviewer = true
     }
 
     async refresh() {

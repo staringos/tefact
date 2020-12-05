@@ -8,8 +8,8 @@
 
     <div class="tool-list">
       <el-button type="info" icon="el-icon-receiving" size="small" @click="handleSavePage">保存</el-button>
-      <el-button type="info" icon="el-icon-back" size="small">上一步</el-button>
-      <el-button type="info" icon="el-icon-right" size="small">下一步</el-button>
+<!--      <el-button type="info" icon="el-icon-back" size="small">上一步</el-button>-->
+<!--      <el-button type="info" icon="el-icon-right" size="small">下一步</el-button>-->
       <el-button type="info" icon="el-icon-data-analysis" size="small" @click="handlePreviewer">预览</el-button>
       <SharePageEditor :page="page">
         <el-button type="info" icon="el-icon-share" size="small">分享</el-button>
