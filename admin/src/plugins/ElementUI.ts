@@ -45,6 +45,8 @@ export default () => {
   Vue.component('ElCollapse', () => import('element-ui/lib/collapse'))
   Vue.component('ElCollapseItem', () => import('element-ui/lib/collapse-item'))
   Vue.component('ElPopconfirm', () => import('element-ui/lib/popconfirm'))
+  Vue.component('ElCarousel', () => import('element-ui/lib/carousel'))
+  Vue.component('ElCarouselItem', () => import('element-ui/lib/carousel-item'))
 }
 
 // import { Vue } from 'nuxt-property-decorator'

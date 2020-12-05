@@ -4,6 +4,7 @@
     v-on="$listeners"
     :node="node"
     :sectionId="sectionId"
+    :preview="preview"
     class="button-node"
   >
     <el-carousel class="node-main" indicator-position="outside">
