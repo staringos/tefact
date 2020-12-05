@@ -1,5 +1,5 @@
 <template>
-  <div :class="`editor-page-canvas ${direction}-side`" @click="resetActive">
+  <div :class="`editor-page-canvas ${direction}-side`" :style="style" @click="resetActive">
     <div class="section section-add" v-if="!page.page_section || page.page_section.length < 1" >
       <AddButton :index="0" :pageId="pageId" show></AddButton>
     </div>
@@ -17,12 +17,12 @@
 </template>
 <script lang="ts">
   import { Vue, Component, Prop, namespace } from 'nuxt-property-decorator'
-  import TextNode from './nodes/TextNode.vue'
 
   import 'vue-draggable-resizable-gorkys/dist/VueDraggableResizable.css'
   import PageSection from '~/components/app/light/editor/PageSection.vue'
-  import { PageModel } from "~/utils/entities/editor/page";
-  import AddButton from "~/components/app/light/editor/AddButton.vue"
+  import { PageModel } from '~/utils/entities/editor/page'
+  import AddButton from '~/components/app/light/editor/AddButton.vue'
+  import cloneDeep from 'lodash/cloneDeep'
 
   const editor = namespace('editor')
 
@@ -35,6 +35,7 @@
   export default class Page extends Vue {
     @Prop() pageId!: string
     @Prop() page!: PageModel
+    @Prop({ type: String, default: 'pc' }) device
     @Prop(Boolean) preview!: Boolean
 
     @editor.Action addPageSection
@@ -45,6 +46,15 @@
 
     get direction() {
       return this.page.direction
+    }
+
+    get style() {
+      const style = cloneDeep(this.page.config?.style) as any
+      if (!style) return
+      if (this.page.config.viewMode === "fixed") {
+        style.width = style.width + 'px'
+      }
+      return style
     }
 
     handleActiveChange(active) {

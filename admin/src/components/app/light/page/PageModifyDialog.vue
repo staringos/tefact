@@ -22,9 +22,9 @@
       </el-form-item>
     </el-form>
     <span slot="footer" class="dialog-footer">
-        <el-button @click="$emit('cancel')">取 消</el-button>
-        <el-button type="primary" @click="handleSave()">确 定</el-button>
-      </span>
+      <el-button @click="$emit('cancel')">取 消</el-button>
+      <el-button type="primary" @click="handleSave()">确 定</el-button>
+    </span>
   </el-dialog>
 </template>
 <style lang="scss">

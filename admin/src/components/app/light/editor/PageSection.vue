@@ -1,5 +1,9 @@
 <template>
-  <div :class="`section ${!preview ? 'hover-style' : ''} ${active && !preview ? 'active' : ''}`" @click="handleSectionClick">
+  <div
+    :class="`page-section ${!preview ? 'hover-style' : ''} ${active && !preview ? 'active' : ''}`"
+    :style="style"
+    @click="handleSectionClick"
+  >
     <AddButton v-if="!preview" :index="index" :pageId="pageId" show></AddButton>
 
     <component
@@ -62,6 +66,10 @@
     vLine = []
     hLine = []
 
+    get style() {
+      return this.section.config?.style
+    }
+
     handleActiveUpdate(id, active) {
       const params = { id, active, sectionId: this.section.id }
       if (utils.hasMetaKeyPass()) {
@@ -90,11 +98,10 @@
 </script>
 
 <style lang="scss" scoped>
-.section {
+.page-section {
   flex: 1;
   min-height: 300px;
   position: relative;
-  background-color: white;
   box-sizing: border-box;
   border: 1px solid transparent;
 

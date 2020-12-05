@@ -1,3 +1,5 @@
+import { PageModel } from "~/utils/entities/editor/page"
+
 const MenuType = [{
   key: 1,
   value: '自定义（链接 字段必填）',
@@ -24,11 +26,17 @@ const PageDirection = [{
   value: '横向',
 }]
 
-const DefaultPage = {
+const DefaultPage: PageModel = {
   // key: '',
   title: '',
   direction: 'column',
-  sections: [],
+  config: {
+    viewMode: "fixed",
+    style: {
+      width: 1200
+    }
+  },
+  page_section: [],
 }
 
 const DefaultPageSection = {
@@ -36,6 +44,9 @@ const DefaultPageSection = {
   entity_key: null,
   entity_params: null,
   type: 'list',
+  config: {
+    style: {}
+  },
   has_add_btn: false,
 }
 

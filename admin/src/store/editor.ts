@@ -116,6 +116,19 @@ class EditorModule extends VuexModule {
     section[0].nodes = section[0].nodes.filter(node => node.id !== payload.nodeId)
   }
   @Mutation public MODIFY_NODE(payload) {
+    const { nodeType, node } = payload
+    if (nodeType === 'page') {
+      return Vue.set(this.page as any, 'config', node.config)
+    }
+
+    if (nodeType === 'section') {
+      this.page?.page_section.map(cur => {
+        if (cur.id === node.id) {
+          Vue.set(cur, 'config', node.config)
+        }
+      })
+    }
+
     if (!payload.sectionId && this.page) {
       const res = findNodeByNodeId(this.page.page_section, payload.node.id, true)
 
@@ -163,6 +176,7 @@ class EditorModule extends VuexModule {
   @Action({ rawError: true })
   public async savePageDetails() {
     const page = cloneDeep(this.page)
+
     if (!page) return
     const id = page.id
     delete page.id
@@ -202,8 +216,8 @@ class EditorModule extends VuexModule {
   }
 
   @Action({ rawError: true })
-  public async modifyNode({ sectionId, node }) {
-    this.context.commit('MODIFY_NODE', { sectionId, node })
+  public async modifyNode(params) {
+    this.context.commit('MODIFY_NODE', params)
   }
 
   @Action({ rawError: true, commit: 'ACTIVE_NODE' })
