@@ -16,7 +16,7 @@
   </div>
 </template>
 <script lang="ts">
-  import { Vue, Component, Prop, namespace } from 'nuxt-property-decorator'
+  import { Vue, Component, Prop, namespace, Watch } from 'nuxt-property-decorator'
 
   import 'vue-draggable-resizable-gorkys/dist/VueDraggableResizable.css'
   import PageSection from '~/components/app/light/editor/PageSection.vue'
@@ -39,6 +39,8 @@
     @Prop({ type: String, default: 'pc' }) device
     @Prop(Boolean) preview!: Boolean
 
+    style = {}
+
     @editor.Action addPageSection
     @editor.Action choosePageSection
     @editor.Action resetActive
@@ -49,9 +51,21 @@
       return this.page.direction
     }
 
-    get style() {
-      const style = cloneDeep(this.page.config?.style) as any
-      return transformStyle(style)
+    @Watch("page.config")
+    refreshStyle() {
+      const { style, viewMode } = this.page.config
+      const res = cloneDeep(style) as any
+      if (viewMode === 'adapt' && this.$el) {
+        const realWidth = this.$el.getBoundingClientRect().width
+        const setWidth = style.width
+
+        if (setWidth && setWidth > 0) {
+          delete res.width;
+          res['transform'] = `scale(${setWidth / realWidth})`
+        }
+      }
+
+      this.style = transformStyle(res)
     }
 
     handleActiveChange(active) {
@@ -68,6 +82,7 @@
 
     mounted() {
       window.addEventListener('keydown', this.handleKeyDown)
+      this.refreshStyle()
     }
 
     beforeDestroy() {
