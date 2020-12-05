@@ -23,6 +23,7 @@
   import { PageModel } from '~/utils/entities/editor/page'
   import AddButton from '~/components/app/light/editor/AddButton.vue'
   import cloneDeep from 'lodash/cloneDeep'
+  import { transformStyle } from "~/utils/editor"
 
   const editor = namespace('editor')
 
@@ -50,11 +51,7 @@
 
     get style() {
       const style = cloneDeep(this.page.config?.style) as any
-      if (!style) return
-      if (this.page.config.viewMode === "fixed") {
-        style.width = style.width + 'px'
-      }
-      return style
+      return transformStyle(style)
     }
 
     handleActiveChange(active) {
