@@ -173,6 +173,29 @@ export const NodeResoluConfig = {
         components: [
           { type: 'BackgroundResolu', params: {} },
           { type: 'BorderResolu', params: {} },
+          {
+            type: 'RowsResolu', params: {
+              title: '布局设置',
+              rows: [{
+                type: 'SelectRow',
+                params: {
+                  title: "布局模式",
+                  path: "config.viewMode",
+                  selectOptions: [
+                    {value: 'fixed', label: '固定'},
+                    {value: 'adapt', label: '适配'},
+                  ]
+                }
+              }, {
+                type: 'NumberRow',
+                params: {
+                  title: "页面宽度",
+                  unit: "px",
+                  path: "config.style.width"
+                }
+              }]
+            }
+          }
         ],
       },
     ],
