@@ -5,7 +5,9 @@
       <div class="editor-main">
         <NodeList />
         <div class="editor-container">
-          <Page :page="currentPage" :pageId="pageId" />
+          <div class="page-pad">
+            <Page :page="currentPage" :pageId="pageId" />
+          </div>
         </div>
       </div>
     </div>
@@ -44,6 +46,12 @@
           overflow: auto;
           flex-direction: row;
           padding: 20px 20px 0 20px;
+          width: 0;
+
+          .page-pad {
+            padding-right: 20px;
+            flex: 1;
+          }
         }
       }
     }

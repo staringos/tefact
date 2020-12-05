@@ -16,13 +16,14 @@
   </div>
 </template>
 <script lang="ts">
-  import { Vue, Component, Prop, namespace } from 'nuxt-property-decorator'
+  import { Vue, Component, Prop, namespace, Watch } from 'nuxt-property-decorator'
 
   import 'vue-draggable-resizable-gorkys/dist/VueDraggableResizable.css'
   import PageSection from '~/components/app/light/editor/PageSection.vue'
   import { PageModel } from '~/utils/entities/editor/page'
   import AddButton from '~/components/app/light/editor/AddButton.vue'
   import cloneDeep from 'lodash/cloneDeep'
+  import { transformStyle } from "~/utils/editor"
 
   const editor = namespace('editor')
 
@@ -38,6 +39,8 @@
     @Prop({ type: String, default: 'pc' }) device
     @Prop(Boolean) preview!: Boolean
 
+    style = {}
+
     @editor.Action addPageSection
     @editor.Action choosePageSection
     @editor.Action resetActive
@@ -48,13 +51,21 @@
       return this.page.direction
     }
 
-    get style() {
-      const style = cloneDeep(this.page.config?.style) as any
-      if (!style) return
-      if (this.page.config.viewMode === "fixed") {
-        style.width = style.width + 'px'
+    @Watch("page.config")
+    refreshStyle() {
+      const { style, viewMode } = this.page.config
+      const res = cloneDeep(style) as any
+      if (viewMode === 'adapt' && this.$el) {
+        const realWidth = this.$el.getBoundingClientRect().width
+        const setWidth = style.width
+
+        if (setWidth && setWidth > 0) {
+          delete res.width;
+          res['transform'] = `scale(${setWidth / realWidth})`
+        }
       }
-      return style
+
+      this.style = transformStyle(res)
     }
 
     handleActiveChange(active) {
@@ -71,6 +82,7 @@
 
     mounted() {
       window.addEventListener('keydown', this.handleKeyDown)
+      this.refreshStyle()
     }
 
     beforeDestroy() {

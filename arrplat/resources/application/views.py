@@ -123,6 +123,7 @@ class LightPageResource(Resource):
         "title": fields.String(required=False),
         "type": fields.Number(required=False),
         "direction": fields.String(required=False),
+        "config": fields.Dict(required=False),
         "page_section": fields.List(fields.Dict, required=False)
     })
     def put(self, id, **kwargs):
@@ -142,6 +143,7 @@ class LightPageResource(Resource):
         page.title = kwargs.get("title")
         page.type = PageSection.string_to_data_type(kwargs.get("type"))
         page.direction = Page.string_to_direction_type(kwargs.get("direction", 1))
+        page.config = kwargs.get("config", {})
 
         sections = kwargs.get("page_section")
         if sections or len(sections) > 0:
@@ -153,6 +155,7 @@ class LightPageResource(Resource):
                 old_section.entity_id = item.get("entity_id")
                 old_section.entity_params = item.get("entity_params")
                 old_section.section_type = item.get("section_type", None)
+                old_section.config = item.get("config", {})
                 old_section.sort = i
                 old_section.nodes = item.get("nodes")
 
@@ -362,6 +365,7 @@ class LightAppPage(Resource):
         "title": fields.String(required=True),
         "app_id": fields.String(required=True),
         "direction": fields.String(required=False),
+        "config": fields.Dict(required=False),
     })
     def post(self, **kwargs):
         """添加应用页面
@@ -386,6 +390,7 @@ class LightAppPage(Resource):
         page = Page(
             key=key,
             title=kwargs.get('title'),
+            config=kwargs.get('config', {}),
             application_id=app.id,
             direction=Page.string_to_direction_type(direction),
         )
