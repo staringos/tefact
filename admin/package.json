@@ -25,8 +25,6 @@
     "lodash": "^4.17.20",
     "nuxt": "^2.12.2",
     "nuxt-property-decorator": "^2.7.2",
-    "tiptap": "^1.27.1",
-    "tiptap-extensions": "^1.29.1",
     "uuid": "^8.0.0",
     "vue-clipboard2": "^0.3.1",
     "vue-draggable-resizable-gorkys": "^2.3.6",

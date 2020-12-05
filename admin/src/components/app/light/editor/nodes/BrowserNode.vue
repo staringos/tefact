@@ -4,6 +4,7 @@
     v-on="$listeners"
     :node="node"
     :sectionId="sectionId"
+    :preview="preview"
     class="button-node"
   >
     <iframe class="node-main" :src="nodeData.src"></iframe>
