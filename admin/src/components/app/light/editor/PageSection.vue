@@ -42,6 +42,7 @@
   import AddButton from '~/components/app/light/editor/AddButton.vue'
   import * as utils from '~/utils'
   import { NodeTypeToComponent } from '~/utils/constants/Editor'
+  import { transformStyle } from "~/utils/editor"
 
   const editor = namespace('editor')
 
@@ -67,7 +68,7 @@
     hLine = []
 
     get style() {
-      return this.section.config?.style
+      return transformStyle(this.section.config?.style)
     }
 
     handleActiveUpdate(id, active) {
