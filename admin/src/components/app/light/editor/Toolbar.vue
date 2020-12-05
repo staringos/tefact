@@ -10,7 +10,7 @@
       <el-button type="info" icon="el-icon-receiving" size="small" @click="handleSavePage">保存</el-button>
       <el-button type="info" icon="el-icon-back" size="small">上一步</el-button>
       <el-button type="info" icon="el-icon-right" size="small">下一步</el-button>
-      <el-button type="info" icon="el-icon-data-analysis" size="small">预览</el-button>
+      <el-button type="info" icon="el-icon-data-analysis" size="small" @click="handlePreviewer">预览</el-button>
       <SharePageEditor :page="page">
         <el-button type="info" icon="el-icon-share" size="small">分享</el-button>
       </SharePageEditor>
@@ -25,6 +25,7 @@
     </div>
 
     <PageModifyDialog v-if="appId" :isEdit="isEdit" :form="form" :dialogVisible="dialogVisible" :appId="appId" @cancel="handleCancel" />
+    <Previewer :page="page" :show="showPreviewer" @cancel="handlePreviewerHide" />
   </div>
 </template>
 <style lang="scss">
@@ -35,17 +36,19 @@
   import SharePageEditor from "~/components/app/light/SharePageEditor.vue"
   import PageModifyDialog from "~/components/app/light/page/PageModifyDialog.vue"
   import Constants from "~/services/common/constants"
+  import Previewer from "~/components/app/light/page/Previewer.vue"
 
   const editor = namespace('editor')
 
   @Component({
-    components: { PageModifyDialog, SharePageEditor }
+    components: {Previewer, PageModifyDialog, SharePageEditor }
   })
   export default class Toolbar extends Vue {
     @Prop([Object]) page
     @Prop([Object]) editorSetting
 
     isEdit: boolean = false
+    showPreviewer: boolean = false
     appId: string | null = null
     dialogVisible: boolean = false
     form = { ...Constants.entities.DefaultPage } as any
@@ -56,6 +59,14 @@
       { icon: 'tf-icon-pc', name: 'PC', value: 'pc' },
       { icon: 'tf-icon-mobile-phone', name: 'h5', value: 'h5' },
     ]
+
+    handlePreviewer() {
+      this.showPreviewer = true
+    }
+
+    handlePreviewerHide() {
+      this.showPreviewer = false
+    }
 
     handleOpenModify() {
       if (this.page) {
