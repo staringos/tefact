@@ -92,7 +92,7 @@ const config = {
   ** Build configuration
   */
   build: {
-    // analyze: true,
+    analyze: true,
     loaders: {
       scss: customSass
     },
@@ -136,7 +136,7 @@ if (!isDev) {
   config.sentry = {
     dsn: 'https://926a3edc432c40c08eb09edf20a4d3c1@o483948.ingest.sentry.io/5536565', // Enter your project's DSN here
     config: {}, // Additional config
-    lazy: false
+    lazy: true
   }
 }
 
