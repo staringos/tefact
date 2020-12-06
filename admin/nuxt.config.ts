@@ -59,7 +59,8 @@ const config = {
   ** Global CSS
   */
   css: [
-    '~/assets/styles/index.scss'
+    '~/assets/styles/index.scss',
+    '~/assets/css/index.css'
   ],
   /*
   ** Plugins to load before mounting the App
@@ -91,10 +92,7 @@ const config = {
   ** Build configuration
   */
   build: {
-    analyze: true,
-    // filenames: {
-    //   app: '[name].[chunkhash].js'
-    // },
+    // analyze: true,
     loaders: {
       scss: customSass
     },
@@ -138,7 +136,7 @@ if (!isDev) {
   config.sentry = {
     dsn: 'https://926a3edc432c40c08eb09edf20a4d3c1@o483948.ingest.sentry.io/5536565', // Enter your project's DSN here
     config: {}, // Additional config
-    lazy: true
+    lazy: false
   }
 }
 

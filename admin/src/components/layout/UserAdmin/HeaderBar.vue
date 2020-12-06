@@ -1,26 +1,28 @@
 <template>
-  <el-menu :default-active="activeIndex" router class="header-bar" mode="horizontal">
-    <Logo :title="title" color="#303133" :direct="direct" />
-    <div class="header-bar-main">
-      <el-menu-item :index="getWorkspaceIndex()">工作台</el-menu-item>
-      <el-menu-item index="/admin">桌面</el-menu-item>
-    </div>
-    <div class="header-right" v-if="checkLoginStatus">
-      <Toolbar />
-      <HeaderProfile />
-    </div>
-    <div class="header-right" v-if="!checkLoginStatus">
-      <el-button type="text" size="small" @click="handleLogin">登录</el-button>
-      <div class="btn-wrapper">
-        <el-button type="primary" size="small" @click="handleRegister">免费注册</el-button>
+  <client-only>
+    <el-menu :default-active="activeIndex" router class="header-bar" mode="horizontal">
+      <Logo :title="title" color="#303133" :direct="direct" />
+      <div class="header-bar-main">
+        <el-menu-item :index="getWorkspaceIndex()">工作台</el-menu-item>
+        <el-menu-item index="/admin">桌面</el-menu-item>
       </div>
-    </div>
-    <CreateOrgDialog />
-    <UserDetailDialog />
-    <UserModifyDialog />
-    <NoOrgDialog />
-    <BasicModifyDialog />
-  </el-menu>
+      <div class="header-right" v-if="checkLoginStatus">
+        <Toolbar />
+        <HeaderProfile />
+      </div>
+      <div class="header-right" v-if="!checkLoginStatus">
+        <el-button type="text" size="small" @click="handleLogin">登录</el-button>
+        <div class="btn-wrapper">
+          <el-button type="primary" size="small" @click="handleRegister">免费注册</el-button>
+        </div>
+      </div>
+      <CreateOrgDialog />
+      <UserDetailDialog />
+      <UserModifyDialog />
+      <NoOrgDialog />
+      <BasicModifyDialog />
+    </el-menu>
+  </client-only>
 </template>
 <script lang="ts">
   import Logo from './Logo.vue'

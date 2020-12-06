@@ -48,7 +48,7 @@ service.interceptors.response.use(
     return response
   },
   error => {
-    console.log('hererrr', error)
+    console.log('hererrr', error, error.config)
     if (error.response.status === 401) {
       auth.setToken('')
       if (global) return {}

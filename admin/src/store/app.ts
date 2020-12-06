@@ -90,6 +90,7 @@ class AppModule extends VuexModule {
 
   @Action({ rawError: true })
   public async init() {
+    if (process.server) return
     const orgs = await this.getAllOrgs(1)
     orgs.length > 0 && await this.getAllAppsInOrg(this.currentOrg?.id)
     if (orgs.length < 1) await this.setOrgDialogFlag(true)

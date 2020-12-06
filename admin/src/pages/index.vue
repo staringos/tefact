@@ -5,8 +5,19 @@
         Tefact
       </h1>
       <h2 class="subtitle">
-        Build your admin panel without code!
+        Build your application without code!
       </h2>
+      <p>
+        <el-button type="primary" plain>
+          <a href="/auth?register">免费注册</a>
+        </el-button>
+        <el-button type="info" plain>
+          <a href="/auth">去登录</a>
+        </el-button>
+      </p>
+      <p class="loading">
+        <i class="el-icon-loading"></i>
+      </p>
     </div>
   </div>
 </template>
@@ -16,29 +27,29 @@
   import Tools from '~/utils'
   const app = namespace('app')
 
-  @Component({
-      layout: 'UserAdmin'
-  })
+  @Component({})
   export default class Index extends Vue {
     @app.Getter orgApps
+    @app.Action('init') init:any
 
-    @Watch('orgApps')
+    @Watch('orgApps', { immediate: true })
     onAllAppsChanged() {
       this.jumpToFirstApp()
     }
 
     jumpToFirstApp() {
       const first = this.orgApps[0]
-      first && Tools.gotoAppIndex(first, this.$router)
+      if (first)
+        return Tools.gotoAppIndex(first, this.$router)
     }
 
     mounted() {
-      this.jumpToFirstApp()
+      this.init()
     }
   }
 </script>
 
-<style>
+<style lang="scss" scoped>
 /* Sample `apply` at-rules with Tailwind CSS
 .container {
   @apply min-h-screen flex justify-center items-center text-center mx-auto;
@@ -51,6 +62,20 @@
   justify-content: center;
   align-items: center;
   text-align: center;
+
+  a {
+    text-decoration: none;
+    color: inherit;
+  }
+
+  .el-icon-loading {
+    text-align: center;
+    font-size: 52px;
+  }
+
+  .loading {
+    margin-top: 22px;
+  }
 }
 
 .title {
