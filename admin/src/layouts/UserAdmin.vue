@@ -32,7 +32,9 @@
     @app.Getter currentOrg
 
     mounted () {
-      this.init(this.currentOrg)
+      if (process.client) {
+        this.init(this.currentOrg)
+      }
     }
   }
 </script>
