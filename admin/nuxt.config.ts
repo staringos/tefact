@@ -92,7 +92,7 @@ const config = {
   ** Build configuration
   */
   build: {
-    analyze: true,
+    analyze: false,
     loaders: {
       scss: customSass
     },
