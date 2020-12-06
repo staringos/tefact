@@ -3,7 +3,7 @@
 </div>
 <div align="center">
   <a href="https://tefact.com">官网</a> | 
-  <a href="https://saas.tefact.com">立即使用</a> | 
+  <a href="http://saas.tefact.com">立即使用</a> | 
   <a href="https://tefact.com/docs">文档</a> | 
   <a href="https://tefact.com/docs/join-us">社区</a> | 
   <a href="https://tefact.com/docs/join-us">技术支持</a>
