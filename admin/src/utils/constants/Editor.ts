@@ -1,5 +1,6 @@
 import { ImageNodeModel, TextNodeModel, TableNodeModel, ButtonNodeModel } from '~/utils/entities/editor/node';
 import cloneDeep from 'lodash/cloneDeep'
+import isNumber from 'lodash/isNumber'
 
 export const BorderStyle = [
   { value: 'solid', label: '直线' },
@@ -50,6 +51,43 @@ export const NodeResoluConfig = {
                 params: {
                   title: '链接',
                   path: "data.src"
+                }
+              }]
+            }
+          }
+        ],
+      },
+    ],
+  },
+  FormNode: {
+    title: '表单配置',
+    hasTab: true,
+    tabs: [
+      {
+        title: '基本信息',
+        components: [
+          { type: 'PositionResolu', params: {} },
+          { type: 'BackgroundResolu', params: {} },
+          { type: 'BorderResolu', params: {} },
+          { type: 'TextResolu', params: {} },
+        ],
+      }, {
+        title: '数据展示',
+        components: [
+          {
+            type: 'RowsResolu', params: {
+              title: '卡片内容设置',
+              rows: [{
+                type: 'TextRow',
+                params: {
+                  title: "标题",
+                  path: "data.title"
+                }
+              }, {
+                type: 'TextareaRow',
+                params: {
+                  title: "内容",
+                  path: "data.content"
                 }
               }]
             }
@@ -313,7 +351,17 @@ export const BaseNodeConfig = {
   style: { ...BaseNodeStyle },
 }
 
-export const getBaseNodeConfig = () => cloneDeep(BaseNodeConfig);
+export const getBaseNodeConfig = (width?: number, height?: number) => {
+  const res = cloneDeep(BaseNodeConfig);
+  if (isNumber(width)) {
+    res.w = width
+  }
+
+  if (isNumber(height)) {
+    res.h = height
+  }
+  return res;
+}
 
 export const NodeDefaultData = {
   page: {
@@ -395,8 +443,99 @@ export const NodeDefaultData = {
         link: 'http://saas.tefact.com'
       }],
     },
+  },
+  FormNode: {
+    type: 'FormNode',
+    config: getBaseNodeConfig(350, 390),
+    data: {
+      formId: null
+    },
   }
 }
+
+export const FormNodeList = [
+  {
+    icon: 'tf-icon-input',
+    type: 'InputNode',
+    title: '文字',
+    nodeData: NodeDefaultData.text,
+  }, {
+    icon: 'tf-icon-date',
+    type: 'DateNode',
+    title: '日期',
+    nodeData: NodeDefaultData.text,
+  }, {
+    icon: 'tf-icon-money',
+    type: 'MoneyNode',
+    title: '价格',
+    nodeData: NodeDefaultData.text,
+  }, {
+    icon: 'tf-icon-number',
+    type: 'NumberNode',
+    title: '数字',
+    nodeData: NodeDefaultData.text,
+  }, {
+    icon: 'tf-icon-phone',
+    type: 'PhoneNode',
+    title: '手机号',
+    nodeData: NodeDefaultData.text,
+  }, {
+    icon: 'tf-icon-radio',
+    type: 'RadioNode',
+    title: '单选框',
+    nodeData: NodeDefaultData.text,
+  }, {
+    icon: 'tf-icon-select',
+    type: 'SelectNode',
+    title: '下拉框',
+    nodeData: NodeDefaultData.text,
+  }, {
+    icon: 'tf-icon-slider',
+    type: 'SliderNode',
+    title: '数字区间',
+    nodeData: NodeDefaultData.text,
+  }, {
+    icon: 'tf-icon-qq',
+    type: 'QQNode',
+    title: 'QQ号',
+    nodeData: NodeDefaultData.text,
+  }, {
+    icon: 'tf-icon-switch',
+    type: 'SwitchNode',
+    title: '开关',
+    nodeData: NodeDefaultData.text,
+  }, {
+    icon: 'tf-icon-textarea',
+    type: 'TextAreaNode',
+    title: '多行文本',
+    nodeData: NodeDefaultData.text,
+  }, {
+    icon: 'tf-icon-time',
+    type: 'TimeNode',
+    title: '时间',
+    nodeData: NodeDefaultData.text,
+  }, {
+    icon: 'tf-icon-upload',
+    type: 'FileNode',
+    title: '文件',
+    nodeData: NodeDefaultData.text,
+  }, {
+    icon: 'tf-icon-checkbox',
+    type: 'CheckboxNode',
+    title: '多选框',
+    nodeData: NodeDefaultData.text,
+  }, {
+    icon: 'tf-icon-date-range',
+    type: 'TextAreaNode',
+    title: '时间区间',
+    nodeData: NodeDefaultData.text,
+  }, {
+    icon: 'tf-icon-editor',
+    type: 'EditorNode',
+    title: '富文本',
+    nodeData: NodeDefaultData.text,
+  }
+]
 
 export const NodeListConstants = [
   {
@@ -454,5 +593,6 @@ export const NodeListConstants = [
   icon: 'tf-icon-form',
   type: 'FormNode',
   title: '表单',
+  nodeData: NodeDefaultData.FormNode
 },
 ]
