@@ -1,9 +1,9 @@
 <template>
   <div class="editor-wrapper" v-if="currentPage" @click="resetActive">
     <div class="editor-container">
-      <Toolbar :page="currentPage" :editorSetting="editorSetting"></Toolbar>
+      <Toolbar :page="currentPage" :editorSetting="editorSetting" :editorType="editorType"></Toolbar>
       <div class="editor-main">
-        <NodeList />
+        <NodeList :editorType="editorType" />
         <div class="editor-container">
           <div class="page-pad">
             <Page :page="currentPage" :pageId="pageId" />
@@ -78,10 +78,24 @@
     @editor.Action getPageDetails
     @editor.Action resetActive
     @editor.Getter currentPage
+    @editor.Getter currentNode
     pageId: string | null = null
 
     editorSetting = {
-      device: 'pc',
+      device: 'pc'
+    }
+
+    get editorType() {
+      console.log("currentPage:", this.currentPage)
+      if (this.currentNode && this.currentNode.type === 'FormNode') {
+        return 'form'
+      }
+
+      if (this.editorSetting.device) {
+        return this.editorSetting.device
+      }
+
+      return 'pc'
     }
 
     init(pageId) {

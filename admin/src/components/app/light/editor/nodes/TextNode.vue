@@ -7,14 +7,6 @@
     :preview="preview"
     class="text-node"
   >
-    <!--    <editor-content-->
-    <!--      v-if="editor"-->
-    <!--      spellcheck="false"-->
-    <!--      :editor="editor"-->
-    <!--      ref="editor"-->
-    <!--      class="text-node-editor"-->
-    <!--      @keydown.native="handleKeydown"-->
-    <!--    />-->
     <div
       class="editor-content"
       :style="textContextStyle"
