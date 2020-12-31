@@ -1,0 +1,41 @@
+@import "../../../../../assets/styles/variables";
+
+.resolu-container {
+  min-height: 80px;
+  display: flex;
+  flex-direction: column;
+
+  .resolu-row {
+    margin-bottom: 10px;
+    display: flex;
+    align-items: center;
+  }
+
+  .resolu-label {
+    display: block;
+    line-height: 40px;
+    margin-right: 10px;
+    width: 60px;
+    min-width: 60px;
+  }
+}
+
+.resolu-form-item {
+  margin-left: 10px;
+  flex: 1;
+}
+
+.resolu-input {
+  background: $gray-02;
+  border: 0;
+  height: 30px;
+  padding-left: 10px;
+  flex: 1;
+  margin-right: 10px;
+
+  &:focus {
+    outline-offset: 0;
+    outline: none;
+    border: 0;
+  }
+}

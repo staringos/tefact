@@ -389,7 +389,6 @@ class ApplicationData(Command):
         :return:
         # """
         print('开始删除无配置应用及相关信息')
-        print(self.plus_keys)
 
         Application.query.filter(~Application.key.in_(self.plus_keys)).delete(synchronize_session=False)
 

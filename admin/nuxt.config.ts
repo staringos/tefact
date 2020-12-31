@@ -1,6 +1,7 @@
-import { Configuration } from '@nuxt/types'
-import LodashModuleReplacementPlugin from 'lodash-webpack-plugin'
-let options = {} as any
+// import { Configuration } from '@nuxt/types'
+// import LodashModuleReplacementPlugin from 'lodash-webpack-plugin'
+import Sass from 'sass'
+import Fiber from 'fibers'
 
 const script = [
   { src: 'https://res.wx.qq.com/connect/zh_CN/htmledition/js/wxLogin.js' }
@@ -8,9 +9,22 @@ const script = [
 
 const isDev = process.env.NODE_ENV !== 'production'
 
-// @ts-ignore
-const config: Configuration = {
+if (!isDev) {
+  script.push({
+    src: 'https://hm.baidu.com/hm.js?4d0b59a36bbb65c0522de6a7e6d026f2'
+  })
+}
+
+const customSass = {
+  implementation: Sass,
+  sassOptions: {
+    fiber: Fiber,
+  }
+};
+
+const config = {
   dev: isDev,
+  srcDir: 'src/',
   server: {
     port: 8800,
     host: '0.0.0.0'
@@ -20,7 +34,7 @@ const config: Configuration = {
   ** Headers of the page
   */
   head: {
-    title: 'Arrplat - 企业级PaaS解决方案',
+    title: 'Tefact - 企业级低代码平台',
     meta: [
       { charset: 'utf-8' },
       { name: 'viewport', content: 'width=device-width, initial-scale=1' },
@@ -33,10 +47,6 @@ const config: Configuration = {
   },
 
   env: {
-    // ARRPLAT_BASE_URL: 'http://saasapi.tefact.com/',
-    // ARRPLAT_BASE_URL: 'http://arrplat.arrway.cn/api'
-    // ARRPLAT_BASE_URL: 'http://arrplatapi.arrway.cn/api'
-    // ARRPLAT_BASE_URL: 'http://localhost:5500'
     ARRPLAT_BASE_URL: isDev ? 'http://localhost:5500' : 'http://saasapi.tefact.com/',
     BUCKET_NAME: 'arrplat',
   },
@@ -49,7 +59,8 @@ const config: Configuration = {
   ** Global CSS
   */
   css: [
-    '~/assets/styles/index.scss'
+    '~/assets/styles/index.scss',
+    '~/assets/css/index.css'
   ],
   /*
   ** Plugins to load before mounting the App
@@ -58,6 +69,8 @@ const config: Configuration = {
     '~plugins/ElementUI',
     '~plugins/GlobalComponent',
     '~plugins/ArrplatUI',
+    '~plugins/Clipboard',
+    '~plugins/Baidu',
     { src: '~/plugins/AxiosToken.ts', ssr: false },
     { src: '~/plugins/PersistedState.ts', ssr: false },
     { src: '~/plugins/Route.ts', ssr: false },
@@ -73,18 +86,22 @@ const config: Configuration = {
   ** Nuxt.js modules
   */
   modules: [
-    // '@nuxtjs/svg'
+    '@nuxtjs/style-resources', '@nuxtjs/sentry',
   ],
   /*
   ** Build configuration
   */
   build: {
+    analyze: false,
+    loaders: {
+      scss: customSass
+    },
     transpile: [
-      'vuex-module-decorators', /^element-ui/, 'lodash-es'
+      'vuex-module-decorators', /^element-ui/
     ],
-    plugins: [
-      new LodashModuleReplacementPlugin()
-    ],
+    // plugins: [
+    //   new LodashModuleReplacementPlugin()
+    // ],
     babel: {
       plugins: [
         ["component",
@@ -94,6 +111,9 @@ const config: Configuration = {
           }
         ]
       ],
+    },
+    styleResources: {
+      scss: ['./src/assets/styles/variables.scss']
     },
     /*
     ** You can extend webpack config here
@@ -106,9 +126,17 @@ const config: Configuration = {
       }
 
       // https://segmentfault.com/a/1190000011100006
-      // @ts-ignore
       config.resolve.symlinks = false;
+
     }
+  },
+} as any
+
+if (!isDev) {
+  config.sentry = {
+    dsn: 'https://926a3edc432c40c08eb09edf20a4d3c1@o483948.ingest.sentry.io/5536565', // Enter your project's DSN here
+    config: {}, // Additional config
+    lazy: true
   }
 }
 

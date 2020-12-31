@@ -8,7 +8,13 @@ First off, thank you for considering contributing to Tefact. It's people like yo
 
 [1] [Read The README](http://read-the-docs.readthedocs.org/en/latest/contribute.html) 
 
-[2] [VUE.js](https://github.com/vuejs/vue)
+[2] [NUXT.js](https://github.com/nuxt/nuxt.js)
+
+[3] [VUE.js](https://github.com/vuejs/vue)
+
+[4] [Flask](https://github.com/pallets/flask)
+
+[5] [SQLAlchemy](https://github.com/sqlalchemy/sqlalchemy)
 
 ## Admin Panel
 
@@ -22,7 +28,7 @@ Vue Components
 
   </div>
 </template>
-<style lang="scss">
+<style lang="scss" scoped>
 
 </style>
 <script lang="ts">

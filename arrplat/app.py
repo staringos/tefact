@@ -4,15 +4,19 @@ from flask import Flask
 from flask_cors import CORS
 
 from extensions import db, jwt, swagger
-from .setup import setup_plugins, write_pid
+from .setup import write_pid
 from .resources.core.urls import blueprint as core_blueprint
 from .resources.user.urls import blueprint as user_blueprint
 from .resources.auth.urls import blueprint as auth_blueprint
+from .resources.data_source.urls import blueprint as data_source_blueprint
 from .resources.application.urls import blueprint as app_blueprint
 from .resources.page.urls import blueprint as page_blueprint
 from .resources.organization.urls import blueprint as org_blueprint
+from .resources.share.urls import blueprint as share_blueprint
 from arrplat.config import config
 from .common.utils import DecimalEncoder
+from sentry_sdk.integrations.flask import FlaskIntegration
+import sentry_sdk
 
 flask_env = os.environ.get("FLASK_ENV", "development")
 
@@ -33,6 +37,11 @@ def create_app():
 def configure_extensions(flask_app):
     db.init_app(flask_app)
     jwt.init_app(flask_app)
+    sentry_sdk.init(
+        dsn="https://73c01025a6624aeaa768e5750634059a@o483948.ingest.sentry.io/5536563",
+        integrations=[FlaskIntegration()],
+        traces_sample_rate=1.0
+    )
     if flask_env == "development":
         swagger.init_app(flask_app)
 
@@ -44,7 +53,14 @@ def register_blueprints(flask_app):
     flask_app.register_blueprint(app_blueprint, url_prefix='/app')
     flask_app.register_blueprint(page_blueprint, url_prefix='/page')
     flask_app.register_blueprint(org_blueprint, url_prefix='/org')
+    flask_app.register_blueprint(data_source_blueprint, url_prefix='/data-source')
+    flask_app.register_blueprint(share_blueprint, url_prefix='/s')
 
 
 config_name = os.environ.get('API_CONFIG', 'development')
 app = create_app()
+
+
+@app.route('/debug-sentry')
+def trigger_error():
+    division_by_zero = 1 / 0

@@ -9,7 +9,9 @@ from .models import Application, ApplicationMenus
 from arrplat.common.utils import json_response, generate_uuid_len, valid_uuid, valid_phone, valid_boolean
 from arrplat.resources.application.schema import ApplicationSchema
 from arrplat.resources.page.models import Page, PageSection, DataSource
+from arrplat.resources.share.models import SharePage
 from arrplat.resources.page.schema import DataSourceSchema, PageSchema, PageSectionSchema
+from arrplat.resources.share.schema import SharePageSchema
 import time
 
 
@@ -95,6 +97,7 @@ class PageSectionListResource(Resource):
 
 class LightPageResource(Resource):
     page_schema = PageSchema(many=False)
+    share_page_schema = SharePageSchema(many=False)
 
     def delete(self, id):
         """页面删除
@@ -120,6 +123,7 @@ class LightPageResource(Resource):
         "title": fields.String(required=False),
         "type": fields.Number(required=False),
         "direction": fields.String(required=False),
+        "config": fields.Dict(required=False),
         "page_section": fields.List(fields.Dict, required=False)
     })
     def put(self, id, **kwargs):
@@ -139,6 +143,7 @@ class LightPageResource(Resource):
         page.title = kwargs.get("title")
         page.type = PageSection.string_to_data_type(kwargs.get("type"))
         page.direction = Page.string_to_direction_type(kwargs.get("direction", 1))
+        page.config = kwargs.get("config", {})
 
         sections = kwargs.get("page_section")
         if sections or len(sections) > 0:
@@ -150,6 +155,7 @@ class LightPageResource(Resource):
                 old_section.entity_id = item.get("entity_id")
                 old_section.entity_params = item.get("entity_params")
                 old_section.section_type = item.get("section_type", None)
+                old_section.config = item.get("config", {})
                 old_section.sort = i
                 old_section.nodes = item.get("nodes")
 
@@ -175,7 +181,14 @@ class LightPageResource(Resource):
         if not page:
             return json_response(message="找不到页面", status=404)
 
-        return json_response(data=self.page_schema.dump(page).data)
+        page = self.page_schema.dump(page).data
+
+        share = db.session.query(SharePage).filter(SharePage.page_id == id).first()
+
+        if share:
+            page['share'] = self.share_page_schema.dump(share).data
+
+        return json_response(data=page)
 
 
 class LightAppModifyResource(Resource):
@@ -352,6 +365,7 @@ class LightAppPage(Resource):
         "title": fields.String(required=True),
         "app_id": fields.String(required=True),
         "direction": fields.String(required=False),
+        "config": fields.Dict(required=False),
     })
     def post(self, **kwargs):
         """添加应用页面
@@ -376,6 +390,7 @@ class LightAppPage(Resource):
         page = Page(
             key=key,
             title=kwargs.get('title'),
+            config=kwargs.get('config', {}),
             application_id=app.id,
             direction=Page.string_to_direction_type(direction),
         )
@@ -392,7 +407,7 @@ class LightAppMenu(Resource):
     @use_kwargs({
         "name": fields.String(required=True),
         "application_id": fields.String(required=True),
-        "type": fields.String(required=True),
+        "type": fields.Number(required=True),
         "icon": fields.String(required=False),
         "link": fields.String(required=False),
         "page_key": fields.String(required=False),
@@ -400,7 +415,6 @@ class LightAppMenu(Resource):
         "page_id": fields.String(required=False),
     })
     def post(self, **kwargs):
-        print("menu post")
         app_id = kwargs.get('application_id')
         app = db.session.query(Application).filter(Application.id == app_id).first()
 
@@ -414,7 +428,7 @@ class LightAppMenu(Resource):
           parameters:
             - name: id
               in: body
-              type: string
+              type: number
               required: true
         """
         menu = ApplicationMenus(
