@@ -60,7 +60,7 @@ Build your application without code!
 
 ## Getting Start
 
-[查看文档](https://tefact.com/docs/getting-start)
+[查看文档](https://tefact.com/docs/getting-start) | [API文档](http://localhost:5500/)
 
 ## 获取技术支持
 
