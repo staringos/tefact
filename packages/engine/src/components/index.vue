@@ -1,6 +1,7 @@
 <template>
   <div class="editor-wrapper" v-if="currentPage || form" @click="resetActive">
     <div class="editor-container">
+      <el-button>BUTTON</el-button>
       <Toolbar
         :item="currentPage || form"
         :isForm="isForm"

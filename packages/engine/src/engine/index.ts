@@ -1,7 +1,7 @@
-import EventEmitter from 'eventemitter3'
-import cloneDeep from 'lodash/clonedeep'
-import flatMapDeep from 'lodash/flatMapDeep'
-import keyBy from 'lodash/keyBy'
+import EventEmitter from "eventemitter3";
+import cloneDeep from "lodash/clonedeep";
+import flatMapDeep from "lodash/flatMapDeep";
+import keyBy from "lodash/keyBy";
 
 export type TargetCompileType = "page" | "form";
 
@@ -36,9 +36,7 @@ export interface IBaseNode {
 }
 
 function _flattenNodes(target: ITarget) {
-  return keyBy(
-    flatMapDeep(target.config, "children")
-  );
+  return keyBy(flatMapDeep(target.config, "children"));
 }
 
 /**
@@ -51,12 +49,12 @@ function _flattenNodes(target: ITarget) {
  * @event save: target need to save
  */
 export default class Engine extends EventEmitter {
-  constructor (compile: TargetCompileType, target: ITarget) {
+  constructor(compile: TargetCompileType, target: ITarget) {
     super();
     this.compile = compile;
     this.target = target;
     this._tmpTarget = cloneDeep(target);
-    this._allNodesMap = _flattenNodes(this._tmpTarget)
+    this._allNodesMap = _flattenNodes(this._tmpTarget);
   }
 
   compile: TargetCompileType = "page";
@@ -65,17 +63,17 @@ export default class Engine extends EventEmitter {
   private _allNodesMap: Record<string, IBaseNode>;
 
   public add(config: IBaseNode) {
-    this._tmpTarget?.config?.children?.push(config)
-    this._allNodesMap = _flattenNodes(this._tmpTarget)
-    this.emit("add", this._tmpTarget)
+    this._tmpTarget?.config?.children?.push(config);
+    this._allNodesMap = _flattenNodes(this._tmpTarget);
+    this.emit("add", this._tmpTarget);
   }
 
   public update(config: IBaseNode) {
     this._allNodesMap[config.id] = config;
-    this.emit("update", this._tmpTarget)
+    this.emit("update", this._tmpTarget);
   }
 
   public save() {
-    this.emit("save", this._tmpTarget)
+    this.emit("save", this._tmpTarget);
   }
 }

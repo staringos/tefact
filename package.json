@@ -1,5 +1,5 @@
 {
-  "name": "@tefact/engine",
+  "name": "tefact",
   "private": true,
   "devDependencies": {
     "@typescript-eslint/eslint-plugin": "^4.14.2",
