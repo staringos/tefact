@@ -1,0 +1,39 @@
+$borderColor: #e2e8f0;
+$defaultTextColor: #92929D;
+$mainTextColor: #414141;
+$defaultHover: #ebf3ff;
+$hoverBackground: #eaf2fc;
+
+$editorBackground: #f0f2f5;
+
+// main
+$mainColor: #3181DE;
+$secondColor: #a1bede;
+$thirdColor: #38b0e4;
+$dangerColor: #f56c6c;
+
+$borderColor: #e2e8f0;
+$borderSecondColor: #E2E2EA;
+
+$textMainColor: #919bae;
+
+$editor-menu-color: #2c3d59;
+$editor-text-color: #000000cc;
+$editor-main-color: #00b4ff;
+$editor-border-active-color: #00b4ff;
+$editor-border-focus-color: #ff0000;
+
+$editor-text-active-color: $editor-main-color;
+$editor-node-border-color: $editor-border-active-color;
+
+
+$bg-02: #f3f6fb;
+
+$gray-01: #f1f2f5;
+$gray-02: #f4f7fd;
+$gray-03: #F5F7FA;
+$gray-05: #c0c4cc;
+
+:export{
+  mainColor : $mainColor
+}

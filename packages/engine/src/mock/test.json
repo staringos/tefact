@@ -1,0 +1,48 @@
+{
+  "title": "这是一个新页面",
+  "feature": "page",
+  "config": {
+    "children": [
+      {
+        "id": "1",
+        "type": "section",
+        "style": {
+          "backgroundColor": "#333"
+        },
+        "data": {
+          "target": ""
+        },
+        "children": [{
+          "id": "12",
+          "type": "TextNode",
+          "style": {
+            "color": "white"
+          },
+          "data": {
+            "target": "这是一段文字呀"
+          }
+        }]
+      },
+      {
+        "id": "11",
+        "type": "section",
+        "style": {
+          "backgroundColor": "#333"
+        },
+        "data": {
+          "target": ""
+        },
+        "children": [{
+          "id": "122",
+          "type": "TextNode",
+          "style": {
+            "color": "white"
+          },
+          "data": {
+            "target": "这是一段文字呀呀呀"
+          }
+        }]
+      }
+    ]
+  }
+}

@@ -1,0 +1,29 @@
+// eslint-disable-next-line @typescript-eslint/no-var-requires
+const path = require("path");
+// eslint-disable-next-line @typescript-eslint/no-var-requires
+const nodeExternals = require("webpack-node-externals");
+
+const isLib = process.env.BD === "lib";
+const isProd = process.env.NODE_ENV === "production";
+
+// function addStyleResource(rule) {
+//   rule
+//     .use("style-resource")
+//     .loader("style-resources-loader")
+//     .options({
+//       patterns: [path.resolve(__dirname, "./src/assets/styles/index.scss")]
+//     });
+// }
+
+module.exports = {
+  configureWebpack: {
+    externals: isProd && isLib ? [nodeExternals()] : {}
+  },
+  css: {
+    loaderOptions: {
+      sass: {
+        prependData: `@import "~@/assets/styles/index.scss";`
+      }
+    }
+  }
+};
