@@ -1,0 +1,26 @@
+{
+  "name": "@tefact/feature-form",
+  "version": "0.0.1",
+  "description": "> TODO: description",
+  "author": "GeorgeZou <zousongqi@foxmail.com>",
+  "homepage": "",
+  "license": "ISC",
+  "main": "./src/index.ts",
+  "directories": {
+    "lib": "src",
+    "test": "__tests__"
+  },
+  "files": [
+    "src"
+  ],
+  "scripts": {
+    "test": "echo \"Error: run tests from root\" && exit 1"
+  },
+  "dependencies": {
+    "vue": "^2.6.12",
+    "vue-property-decorator": "^9.1.2"
+  },
+  "devDependencies": {
+    "typescript": "^4.1.3"
+  }
+}

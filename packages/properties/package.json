@@ -1,0 +1,25 @@
+{
+  "name": "@tefact/engine-properties",
+  "version": "0.0.1",
+  "description": "> TODO: description",
+  "author": "GeorgeZou <zousongqi@foxmail.com>",
+  "homepage": "",
+  "license": "ISC",
+  "main": "lib/properties.js",
+  "directories": {
+    "lib": "lib",
+    "test": "__tests__"
+  },
+  "files": [
+    "lib"
+  ],
+  "scripts": {
+    "test": "echo \"Error: run tests from root\" && exit 1"
+  },
+  "dependencies": {
+    "vue": "^2.6.12"
+  },
+  "devDependencies": {
+    "vue-property-decorator": "^9.1.2"
+  }
+}
