@@ -1,5 +1,5 @@
 {
-  "name": "@tefact/feature-page",
+  "name": "@tefact/core",
   "version": "0.0.1",
   "description": "> TODO: description",
   "author": "GeorgeZou <zousongqi@foxmail.com>",
@@ -7,8 +7,7 @@
   "license": "ISC",
   "main": "src/index.ts",
   "directories": {
-    "lib": "src",
-    "test": "__tests__"
+    "lib": "src"
   },
   "files": [
     "src"
@@ -17,12 +16,14 @@
     "test": "echo \"Error: run tests from root\" && exit 1"
   },
   "dependencies": {
-    "@tefact/core": "^0.0.1",
-    "@tefact/properties": "^0.0.1",
+    "csstype": "^3.0.6",
+    "eventemitter3": "^4.0.7",
+    "lodash": "^4.17.20",
     "vue": "^2.6.12",
     "vue-property-decorator": "^9.1.2"
   },
   "devDependencies": {
+    "@types/lodash": "^4.14.168",
     "typescript": "^4.1.3"
   }
 }

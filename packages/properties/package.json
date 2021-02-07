@@ -1,25 +1,28 @@
 {
-  "name": "@tefact/engine-properties",
+  "name": "@tefact/properties",
   "version": "0.0.1",
   "description": "> TODO: description",
   "author": "GeorgeZou <zousongqi@foxmail.com>",
   "homepage": "",
   "license": "ISC",
-  "main": "lib/properties.js",
+  "main": "./src/index.ts",
   "directories": {
-    "lib": "lib",
+    "lib": "src",
     "test": "__tests__"
   },
   "files": [
-    "lib"
+    "src"
   ],
   "scripts": {
     "test": "echo \"Error: run tests from root\" && exit 1"
   },
   "dependencies": {
-    "vue": "^2.6.12"
-  },
-  "devDependencies": {
+    "@tefact/core": "^0.0.1",
+    "@tefact/feature-form": "^0.0.1",
+    "@tefact/feature-page": "^0.0.1",
+    "@types/lodash": "^4.14.168",
+    "lodash": "^4.17.20",
+    "vue": "^2.6.12",
     "vue-property-decorator": "^9.1.2"
   }
 }
