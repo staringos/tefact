@@ -1,6 +1,6 @@
 {
   "title": "这是一个新页面",
-  "feature": "page",
+  "featureType": "page",
   "config": {
     "children": [
       {

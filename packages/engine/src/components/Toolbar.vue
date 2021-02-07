@@ -21,7 +21,7 @@
         @click="handlePreviewer"
         >预览</el-button
       >
-      <SharePageEditor :page="target" :pageType="feature">
+      <SharePageEditor :page="target" :pageType="featureType">
         <el-button type="info" icon="el-icon-share" size="small"
           >分享</el-button
         >
@@ -72,8 +72,8 @@ export default class Toolbar extends BaseView {
     { icon: "tf-icon-mobile-phone", name: "Mobile", value: "mobile" }
   ];
 
-  get feature() {
-    return this.engine.feature;
+  get featureType() {
+    return this.engine.featureType;
   }
 
   handleSavePage() {}

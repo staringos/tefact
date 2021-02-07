@@ -2,7 +2,7 @@ import EventEmitter from 'eventemitter3'
 import { IEngine } from '../../../common/src'
 import { DEFAULT_SETTING } from '@/engine/constants'
 import cloneDeep from 'lodash/cloneDeep'
-import { TargetCompileType, ITarget, IBaseNode, EVENT, ISetting } from '@tefact/common'
+import { TargetFeatureType, ITarget, IBaseNode, EVENT, ISetting } from '@tefact/common'
 import keyBy from 'lodash/keyBy'
 import flatMapDeep from 'lodash/flatMapDeep'
 import set from 'lodash/set'
@@ -26,7 +26,7 @@ export default class Engine extends EventEmitter<string, ITarget> implements IEn
     this.init(target, setting)
   }
 
-  compile: TargetCompileType = "page";
+  compile: TargetFeatureType = "page";
   public activeNodeIds: Array<string> = [];
   public target?: ITarget;
   private _setting?: ISetting;
@@ -34,22 +34,19 @@ export default class Engine extends EventEmitter<string, ITarget> implements IEn
   private _allNodesMap?: Record<string, IBaseNode>;
   private static _engineInstance: null | Engine = null
 
-  get setting(): ISetting | undefined {
-    return this._setting;
-  }
+  get setting(): ISetting | undefined { return this._setting; }
+  get featureType(): string { return this.target?.featureType || "page"; }
+  get isForm() { return this.target?.featureType === "form"; }
 
-  get feature(): string {
-    return this.target?.feature || "page";
-  }
-
-  get isForm() {
-    return this.target?.feature === "form";
+  get activeNode(): IBaseNode | null {
+    if (!this._allNodesMap || !this.activeNodeIds) return null;
+    return this._allNodesMap[this.activeNodeIds[0]];
   }
 
   public init(target?: ITarget, setting?: ISetting) {
     if (target) {
       this.target = target;
-      this.compile = target.feature;
+      this.compile = target.featureType;
       this._tmpTarget = cloneDeep(target);
       this._allNodesMap = _flattenNodes(this._tmpTarget);
     }
@@ -63,13 +60,17 @@ export default class Engine extends EventEmitter<string, ITarget> implements IEn
     this.activeNodeIds = ids;
   }
 
-  public resetActive() {
-    this.activeNodeIds = [];
+  public resetActive = () => {
+    this.activeNodeIds = [] as Array<string>;
   }
 
-  public add(config: IBaseNode) {
+  public add(config: IBaseNode, index = -1) {
     if (!this._tmpTarget) return;
-    this._tmpTarget?.config?.children?.push(config);
+    if (index === -1) {
+      this._tmpTarget?.config?.children?.push(config);
+    } else {
+      this._tmpTarget?.config?.children.splice(index, 0, config);
+    }
     this._allNodesMap = _flattenNodes(this._tmpTarget);
     this.emit(EVENT.ADD, this._tmpTarget);
   }
@@ -107,7 +108,45 @@ export default class Engine extends EventEmitter<string, ITarget> implements IEn
     return Engine._engineInstance;
   }
 
-  changeSetting(setting: ISetting) {
+  public changeSetting(setting: ISetting) {
     this._setting = setting;
   }
+
+  public deleteNode(id: string) {
+    if (!this._tmpTarget) return;
+    const config = this._tmpTarget.config;
+    if (!config.children) return;
+    config.children = BFSPop(config.children as TreeNode[], id) as any;
+    this.emit(EVENT.UPDATE, this._tmpTarget);
+  }
+}
+
+type TreeNode = {
+  id: string | number;
+  children?: Array<any>
+}
+
+function BFSPop<T extends {
+  id: string | number;
+  children?: Array<any>
+}>(list: Array<T>, id: string | number): Array<T> {
+  if (!list) return list;
+  let isDelete = false;
+  list.forEach((cur, i) => {
+    if (cur.id === id) {
+      list.splice(i, 1)
+      isDelete = true;
+      return;
+    }
+  })
+
+  if (isDelete) return list;
+
+  list.forEach(cur => {
+    if (cur.children && cur.children.length > 0) {
+      cur.children = BFSPop(cur.children, id);
+    }
+  });
+
+  return list;
 }

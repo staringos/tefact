@@ -1,14 +1,26 @@
 <template>
-  <div class="hello">NodeBar</div>
+  <div class="nodes-bar">
+    <NodeListPanel :featureType="featureType" />
+    <LayersPanel :featureType="featureType" />
+  </div>
 </template>
-
+<style lang="scss" scoped>
+.nodes-bar {
+  display: flex;
+  width: 160px;
+  flex-direction: column;
+}
+</style>
 <script lang="ts">
-import { Component, Prop, Vue } from "vue-property-decorator";
+import { Vue, Component, Prop } from "vue-property-decorator";
+import LayersPanel from "@/components/panels/LayersPanel.vue";
+import NodeListPanel from "@/components/panels/NodeListPanel.vue";
+import { TargetFeatureType } from "@tefact/common";
 
-@Component
-export default class Toolbar extends Vue {
-  @Prop() private msg?: string;
+@Component({
+  components: { NodeListPanel, LayersPanel }
+})
+export default class NodesBar extends Vue {
+  @Prop() featureType?: TargetFeatureType;
 }
 </script>
-
-<style scoped lang="scss"></style>

@@ -17,6 +17,7 @@
     "test": "echo \"Error: run tests from root\" && exit 1"
   },
   "dependencies": {
+    "@tefact/common": "^0.0.1",
     "vue": "^2.6.12",
     "vue-property-decorator": "^9.1.2"
   },

@@ -1,4 +1,6 @@
-export type TargetCompileType = "page" | "form";
+import * as CSS from "csstype";
+
+export type TargetFeatureType = "page" | "form";
 
 export const EVENT = {
   ADD: "add",
@@ -11,14 +13,11 @@ export const EVENT = {
 export interface ITarget {
   id: string;
   title: string;
-  feature: TargetCompileType;
+  featureType: TargetFeatureType;
   config: ITargetConfig;
 }
 
-export interface INodeStyle extends CSSStyleDeclaration {
-  h: number;
-  w: number;
-}
+export interface INodeStyle extends CSS.PropertiesHyphen<string | number, number> {}
 
 export interface INodeData {
   target: any;
@@ -30,12 +29,20 @@ export interface ITargetConfig {
   children: IBaseNode[];
 }
 
+export interface IPos {
+  x: number;
+  y: number;
+  w: number;
+  h: number;
+}
+
 export interface IBaseNode {
   id: string;
   type: string;
+  pos: IPos;
   style: INodeStyle;
-  data: INodeData;
-  children: IBaseNode[];
+  data?: INodeData;
+  children?: IBaseNode[];
 }
 
 export type DeviceType = "pc" | "mobile";
@@ -60,4 +67,16 @@ export interface IEngine {
 /* class decorator */
 export function StaticImplements<T>() {
   return <U extends T>(constructor: U) => {constructor};
+}
+
+export type NodeListConfig = {
+  title: string | null;
+  list: Record<string, NodeConfig>
+}
+
+export type NodeConfig = {
+  title: string
+  icon: string
+  type: string
+  nodeData: IBaseNode
 }

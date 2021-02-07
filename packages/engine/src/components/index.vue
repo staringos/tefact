@@ -135,14 +135,8 @@ export default class Editor extends BaseView {
   }
 
   get editorType(): string {
-    if (this.isForm) {
-      return "form";
-    }
-
-    if (this.setting.device) {
-      return this.setting.device;
-    }
-
+    if (this.isForm) return "form";
+    if (this.setting.device) return this.setting.device;
     return "pc";
   }
 
