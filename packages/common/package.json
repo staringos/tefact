@@ -1,17 +1,17 @@
 {
-  "name": "@tefact/engine-common",
+  "name": "@tefact/common",
   "version": "0.0.1",
   "description": "> TODO: description",
   "author": "GeorgeZou <zousongqi@foxmail.com>",
   "homepage": "",
   "license": "ISC",
-  "main": "lib/common.js",
+  "main": "src/index.ts",
   "directories": {
-    "lib": "lib",
+    "lib": "src",
     "test": "__tests__"
   },
   "files": [
-    "lib"
+    "src"
   ],
   "scripts": {
     "test": "echo \"Error: run tests from root\" && exit 1"

@@ -1,14 +1,7 @@
 <template>
-  <div class="editor-wrapper" v-if="currentPage || form" @click="resetActive">
+  <div class="editor-wrapper" v-if="engine" @click="engine.resetActive">
     <div class="editor-container">
-      <el-button>BUTTON</el-button>
-      <Toolbar
-        :item="currentPage || form"
-        :isForm="isForm"
-        :editorSetting="editorSetting"
-        :editorType="editorType"
-        @editorSettingChange="handleEditorSettingChange"
-      ></Toolbar>
+      <Toolbar :target="target || form"></Toolbar>
       <div class="editor-main">
         <NodesBar :editorType="editorType" />
         <div class="editor-container">
@@ -17,27 +10,27 @@
           <div v-if="!isMobile" class="page-pad">
             <Page
               v-if="!isForm"
-              :page="currentPage"
+              :page="target"
               :pageId="pageId"
               :isMobile="isMobile"
             />
-            <Form v-else :form="form" :isEdit="true" :isMobile="isMobile" />
+            <Form v-else :form="target" :isEdit="true" :isMobile="isMobile" />
           </div>
           <div v-else class="page-pad mobile">
             <div class="inner">
               <Page
                 v-if="!isForm"
-                :page="currentPage"
+                :page="target"
                 :pageId="pageId"
                 :isMobile="isMobile"
               />
-              <Form v-else :form="form" :isEdit="true" :isMobile="isMobile" />
+              <Form v-else :form="target" :isEdit="true" :isMobile="isMobile" />
             </div>
           </div>
         </div>
       </div>
     </div>
-    <Sidebar />
+    <PropertiesBar />
   </div>
 </template>
 <style lang="scss" scoped>
@@ -117,53 +110,58 @@
 }
 </style>
 <script lang="ts">
-import { Vue, Component, Prop } from "vue-property-decorator";
+import { Component, Prop, Watch } from "vue-property-decorator";
 import Page from "@tefact/feature-page";
-import Form, { IForm } from "@tefact/feature-form";
+import Form from "@tefact/feature-form";
 import Toolbar from "@/components/Toolbar.vue";
 import PropertiesBar from "@/components/PropertiesBar.vue";
 import NodesBar from "@/components/NodesBar.vue";
+import Engine, { BaseView } from "@/engine";
+import { ISetting, ITarget, EVENT } from "@tefact/common";
+import { DEFAULT_SETTING } from "@/engine/constants";
 
 @Component({
   components: { NodesBar, Toolbar, PropertiesBar, Page, Form }
 })
-export default class Editor extends Vue {
-  currentPage = {
-    title: "这是一个新页面"
-  };
-
-  @Prop() form?: IForm;
+export default class Editor extends BaseView {
+  @Prop() target?: ITarget;
   @Prop(Boolean) isForm?: boolean;
 
   pageId: string | null = null;
-
-  editorSetting = {
-    device: "pc"
-  };
+  setting: ISetting = DEFAULT_SETTING;
 
   get isMobile(): boolean {
-    return this.editorSetting.device === "mobile";
+    return this.setting.device === "mobile";
   }
 
   get editorType(): string {
     if (this.isForm) {
-      // if (this.isForm || this.currentNode && this.currentNode.type === 'FormNode') {
       return "form";
     }
 
-    if (this.editorSetting.device) {
-      return this.editorSetting.device;
+    if (this.setting.device) {
+      return this.setting.device;
     }
 
     return "pc";
   }
 
-  async init() {
-    console.log("init");
+  @Watch("target", { immediate: true })
+  handleTargetChange(): void {
+    this.init();
   }
 
-  handleEditorSettingChange(es: any) {
-    this.editorSetting = es;
+  init(): void {
+    const { $emit } = this;
+    Engine.instance(this.target, this.setting)
+      .on(EVENT.ADD, (data: ITarget) => $emit(EVENT.ADD, data))
+      .on(EVENT.UPDATE, (data: ITarget) => $emit(EVENT.UPDATE, data))
+      .on(EVENT.SAVE, (data: ITarget) => $emit(EVENT.SAVE, data))
+      .on(EVENT.SHARE, (data: ITarget) => $emit(EVENT.SHARE, data));
+  }
+
+  handleEditorSettingChange(es: ISetting): void {
+    this.setting = es;
   }
 }
 </script>

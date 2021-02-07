@@ -10,6 +10,7 @@
     "lint": "vue-cli-service lint"
   },
   "dependencies": {
+    "@tefact/common": "^0.0.1",
     "@tefact/feature-form": "^0.0.1",
     "@tefact/feature-page": "^0.0.1",
     "@types/lodash": "^4.14.168",
@@ -17,6 +18,7 @@
     "element-ui": "^2.4.5",
     "eventemitter3": "^4.0.7",
     "lodash": "^4.17.20",
+    "qrcode": "^1.4.4",
     "vue": "^2.6.11",
     "vue-class-component": "^7.2.3",
     "vue-property-decorator": "^9.1.2"
