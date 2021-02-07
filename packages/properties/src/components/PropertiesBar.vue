@@ -51,7 +51,7 @@ export default class PropertiesContainer extends BaseView {
     return this.currentTarget;
   }
 
-  get nodeType() {
+  get nodeType(): string {
     if (this.activeNode) {
       return this.activeNode.type;
     }

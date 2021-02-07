@@ -1,5 +1,5 @@
 import { BaseNodeStyle, getBaseNode } from './nodes'
-import { NodeConfig } from "@/types";
+import { NodeConfig } from "../types";
 
 function getDefaultShapeConfig(title: string, icon: string, shapeType: string, width?: number): NodeConfig {
   return {

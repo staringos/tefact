@@ -1,4 +1,4 @@
-import { ISetting } from "@/types";
+import { ISetting } from "../types";
 import { BaseNodeStyle } from "./nodes"
 
 export const DEFAULT_SETTING: ISetting = {

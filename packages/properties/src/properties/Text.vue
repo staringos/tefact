@@ -112,7 +112,7 @@
 </style>
 <script lang="ts">
 import { Component } from "vue-property-decorator";
-import BaseProperties from "~/components/app/light/editor/properties/Base.vue";
+import BaseProperties from "./Base.vue";
 import PropertiesMixin from "../components/PropertiesMixin";
 import PropertiesClass from "../components/PropertiesClass";
 
