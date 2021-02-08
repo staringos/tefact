@@ -23,6 +23,6 @@ export default class PropertiesClass extends BaseView {
     if (!this.tmpNode) return;
     if (this.isDirectModify)
       return this.$emit("modify", this.tmpNode)
-    this.engine.updateConfig(this.tmpNode)
+    this.engine.updateNode(this.tmpNode)
   }
 }

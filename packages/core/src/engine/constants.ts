@@ -2,6 +2,9 @@ import { ISetting } from "../types";
 import { BaseNodeStyle } from "./nodes"
 
 export const DEFAULT_SETTING: ISetting = {
+  uploadUrl: "/core/upload-files/tefact-saas",
+  customHeader: {},
+  formList: [],
   device: "pc",
   theme: "default",
   i18n: "zh-CN",

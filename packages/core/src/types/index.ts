@@ -7,6 +7,8 @@ export const EVENT = {
   UPDATE: "update",
   UPDATE_CONFIG: "update_config",
   SHARE: "share",
+  OPEN_FORM_EDITOR: "open_form_editor",
+  TO_ADD_TARGET: "to_add_target",
   SAVE: "save"
 }
 
@@ -49,6 +51,9 @@ export type DeviceType = "pc" | "mobile";
 
 export interface ISetting {
   device: DeviceType;
+  uploadUrl: string;
+  customHeader?: Record<string, any>;
+  formList?: Array<ITarget>;
   theme: "default";
   i18n: "zh-CN";
 }
@@ -59,7 +64,7 @@ export interface IEngine {
 
   add(config: IBaseNode): void;
   update(path: string, value: any): void;
-  updateConfig(config: IBaseNode): void;
+  updateNode(config: IBaseNode): void;
   save(config: IBaseNode): void;
   share(config: IBaseNode): void;
 }

@@ -16,8 +16,12 @@ const isProd = process.env.NODE_ENV === "production";
 // }
 
 module.exports = {
-  configureWebpack: {
-    externals: isProd && isLib ? [nodeExternals()] : {}
+  configureWebpack(config) {
+    config.externals = isProd && isLib ? [nodeExternals()] : {};
+    console.log("config:", config.watchOptions);
+    // watchOptions: {
+    //   included: /node_modules/
+    // }
   },
   css: {
     loaderOptions: {

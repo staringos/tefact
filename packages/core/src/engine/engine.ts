@@ -1,7 +1,7 @@
 import EventEmitter from 'eventemitter3'
 import { DEFAULT_SETTING } from './constants'
 import cloneDeep from 'lodash/cloneDeep'
-import { IEngine, TargetFeatureType, ITarget, IBaseNode, EVENT, ISetting } from '@tefact/core'
+import { IEngine, ITarget, IBaseNode, EVENT, ISetting } from "@tefact/core";
 import keyBy from 'lodash/keyBy'
 import flatMapDeep from 'lodash/flatMapDeep'
 import set from 'lodash/set'
@@ -25,7 +25,6 @@ export default class Engine extends EventEmitter<string, ITarget> implements IEn
     this.init(target, setting)
   }
 
-  compile: TargetFeatureType = "page";
   public activeNodeIds: Array<string> = [];
   public target?: ITarget;
   private _setting?: ISetting;
@@ -45,7 +44,6 @@ export default class Engine extends EventEmitter<string, ITarget> implements IEn
   public init(target?: ITarget, setting?: ISetting) {
     if (target) {
       this.target = target;
-      this.compile = target.featureType;
       this._tmpTarget = cloneDeep(target);
       this._allNodesMap = _flattenNodes(this._tmpTarget);
     }
@@ -79,12 +77,11 @@ export default class Engine extends EventEmitter<string, ITarget> implements IEn
     this.emit(EVENT.UPDATE, set(this._tmpTarget, path, value));
   }
 
-  public updateConfig(config: IBaseNode) {
+  public updateNode(config: IBaseNode) {
     if (!this._allNodesMap) return
     this._allNodesMap[config.id] = config;
     this.emit(EVENT.UPDATE_CONFIG, this._tmpTarget);
   }
-
 
   public save() {
     this.emit(EVENT.ADD, this._tmpTarget);
@@ -117,6 +114,14 @@ export default class Engine extends EventEmitter<string, ITarget> implements IEn
     if (!config.children) return;
     config.children = BFSPop(config.children as TreeNode[], id) as any;
     this.emit(EVENT.UPDATE, this._tmpTarget);
+  }
+
+  public openTargetEditor(targetId: string) {
+    this.emit(EVENT.OPEN_FORM_EDITOR, targetId);
+  }
+
+  public toAddTarget() {
+    this.emit(EVENT.TO_ADD_TARGET);
   }
 }
 
