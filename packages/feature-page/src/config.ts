@@ -2,7 +2,19 @@ import { IPropertiesComponents } from "@tefact/properties"
 import { IProperties } from "@tefact/properties"
 
 export class PageProperties {
-  static defaultProperties(title: string, dataComponents?: Array<IPropertiesComponents>, basicComponents?: Array<IPropertiesComponents>) {
+  static defaultPageSections() {
+    return {
+      config: {
+        h: 500,
+        style: {}
+      },
+      section_type: 'editor',
+      page_id: null,
+      nodes: [],
+    }
+  }
+
+  static defaultProperties(title: string, dataComponents?: Array<IPropertiesComponents> | null, basicComponents?: Array<IPropertiesComponents>) {
     const res = {
       title,
       hasTab: true,

@@ -1,6 +1,12 @@
+export interface ISelectItem {
+  value: string;
+  label: string;
+}
+
 export interface IPropertiesRowParams {
   title: string;
   path: string;
+  selectOptions?: Array<ISelectItem>
 }
 
 export interface IPropertiesRow {
@@ -12,6 +18,7 @@ export interface IPropertiesComponents {
   type: string;
   params: {
     title?: string;
+    path?: string;
     rows?: Array<IPropertiesRow>
   }
 }

@@ -21,7 +21,7 @@ export const DefaultBaseNode: IBaseNode = {
   style: { ...BaseNodeStyle },
 }
 
-export const getBaseNode = (width?: number, height?: number, additionConfig?: any) => {
+export const getBaseNode = (width?: number, height?: number, additionConfig?: any): IBaseNode => {
   let res = cloneDeep(DefaultBaseNode);
   if (isNumber(width)) res.pos.w = width
   if (isNumber(height)) res.pos.h = height

@@ -26,7 +26,7 @@
   height: 120px;
 }
 </style>
-<script>
+<script lang="ts">
 import { Component } from "vue-property-decorator";
 import BaseRow from "./BaseRow.vue";
 import RowMixin from "./RowMixin.ts";
@@ -43,8 +43,8 @@ export default class ImageUploadRow extends BaseView {
   // @system.Getter uploadUrl;
   // @user.Getter authHeader;
 
-  handleUpdate(e) {
-    this.handleChange("https://" + e[0]);
+  handleUpdate(e: Array<string>) {
+    (this as any).handleChange("https://" + e[0]);
   }
 }
 </script>

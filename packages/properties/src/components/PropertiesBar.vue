@@ -29,9 +29,9 @@ import { Component, Prop, Watch } from "vue-property-decorator";
 import Properties from "../properties";
 import { PROPERTIES_CONFIGS } from "../config";
 import { BaseView } from "@tefact/core";
+import { EVENT_INSIDE } from "@tefact/core";
 
 // const editor = namespace('editor')
-export const EVENT_EDITOR_SWITCH_TAB = 'EVENT_EDITOR_SWITCH_TAB'
 
 @Component({
   components: Properties,
@@ -73,7 +73,7 @@ export default class PropertiesContainer extends BaseView {
 
   mounted() {
     const that = this as any;
-    that.$bus.$on(EVENT_EDITOR_SWITCH_TAB, (msg: string) => {
+    that.$bus.$on(EVENT_INSIDE.SWITCH_PROPERTIES_TAB, (msg: string) => {
       this.activeTab = msg;
     });
   }

@@ -3,6 +3,7 @@ import { NodeConfig } from "@tefact/core";
 import { FormProperties } from "./config"
 import { IProperties } from "@tefact/properties"
 
+export * from "./constants";
 
 export interface IForm {};
 export const PROPERTIES = {

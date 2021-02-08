@@ -5,6 +5,8 @@ import { IEngine, ITarget, IBaseNode, EVENT, ISetting } from "@tefact/core";
 import keyBy from 'lodash/keyBy'
 import flatMapDeep from 'lodash/flatMapDeep'
 import set from 'lodash/set'
+import findIndex from 'lodash/findIndex'
+import { BFS } from "@tefact/utils"
 
 function _flattenNodes(target: ITarget) {
   return keyBy(flatMapDeep(target.config, "children"));
@@ -35,7 +37,6 @@ export default class Engine extends EventEmitter<string, ITarget> implements IEn
   get setting(): ISetting | undefined { return this._setting; }
   get featureType(): string { return this.target?.featureType || "page"; }
   get isForm() { return this.target?.featureType === "form"; }
-
   get activeNode(): IBaseNode | null {
     if (!this._allNodesMap || !this.activeNodeIds) return null;
     return this._allNodesMap[this.activeNodeIds[0]];
@@ -55,6 +56,10 @@ export default class Engine extends EventEmitter<string, ITarget> implements IEn
 
   public active(ids: Array<string>) {
     this.activeNodeIds = ids;
+  }
+
+  public moreActive(id: string) {
+    this.activeNodeIds.push(id);
   }
 
   public resetActive = () => {
@@ -112,7 +117,15 @@ export default class Engine extends EventEmitter<string, ITarget> implements IEn
     if (!this._tmpTarget) return;
     const config = this._tmpTarget.config;
     if (!config.children) return;
-    config.children = BFSPop(config.children as TreeNode[], id) as any;
+    config.children = BFS(config.children, id).delete() as any;
+    this.emit(EVENT.UPDATE, this._tmpTarget);
+  }
+
+  public copyNode(id: string) {
+    if (!this._tmpTarget) return;
+    const config = this._tmpTarget.config;
+    if (!config.children) return;
+    config.children = BFS(config.children, id).copy() as any;
     this.emit(EVENT.UPDATE, this._tmpTarget);
   }
 
@@ -123,34 +136,57 @@ export default class Engine extends EventEmitter<string, ITarget> implements IEn
   public toAddTarget() {
     this.emit(EVENT.TO_ADD_TARGET);
   }
-}
 
-type TreeNode = {
-  id: string | number;
-  children?: Array<any>
-}
+  public reOrderNode(nodeId: string, parentId: string, type: string) {
+    const parentNode = this._tmpTarget?.config?.children?.filter((cur: IBaseNode) => cur.id === parentId)[0];
+    if (!parentNode) return
+    const nodes = parentNode.children
+    let index = 0
+    let tmp = null as any
+    let newList = [] as any
 
-function BFSPop<T extends {
-  id: string | number;
-  children?: Array<any>
-}>(list: Array<T>, id: string | number): Array<T> {
-  if (!list) return list;
-  let isDelete = false;
-  list.forEach((cur, i) => {
-    if (cur.id === id) {
-      list.splice(i, 1)
-      isDelete = true;
-      return;
+    if (!nodes || nodes.length < 1) return;
+
+    switch(type) {
+      case 'top':
+        newList = nodes.filter((cur: IBaseNode) => {
+          if (cur.id === nodeId) {
+            tmp = cur
+            return false
+          }
+          return true
+        })
+        parentNode.children = [ ...newList, tmp ]
+        break
+      case 'bottom':
+        newList = nodes.filter((cur: IBaseNode) => {
+          if (cur.id === nodeId) {
+            tmp = cur
+            return false
+          }
+          return true
+        })
+        parentNode.children = [ tmp, ...newList ]
+        break
+      case 'up':
+        index = findIndex(nodes, (cur: IBaseNode) => cur.id === nodeId);
+        if (index >= nodes.length - 1) return
+        tmp = nodes[index + 1]
+        nodes[index + 1] = nodes[index]
+        nodes[index] = tmp
+        break
+      case 'down':
+        index = findIndex(nodes, (cur: IBaseNode) => cur.id === nodeId);
+        if (index <= 0) return
+        tmp = nodes[index - 1]
+        nodes[index - 1] = nodes[index]
+        nodes[index] = tmp
+        break
     }
-  })
-
-  if (isDelete) return list;
-
-  list.forEach(cur => {
-    if (cur.children && cur.children.length > 0) {
-      cur.children = BFSPop(cur.children, id);
-    }
-  });
-
-  return list;
+  }
 }
+
+// type TreeNode = {
+//   id: string | number;
+//   children?: Array<any>
+// }

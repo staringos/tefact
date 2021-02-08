@@ -2,8 +2,8 @@
   <el-upload
     ref="uploader"
     class="image-uploader"
-    :action="engine.setting.uploadUrl"
-    :headers="engine.setting.customHeader"
+    :action="setting.uploadUrl"
+    :headers="setting.customHeader"
     :show-file-list="false"
     :on-success="handleUpdate"
     drag

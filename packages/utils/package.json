@@ -5,19 +5,23 @@
   "author": "GeorgeZou <zousongqi@foxmail.com>",
   "homepage": "",
   "license": "ISC",
-  "main": "lib/main.js",
+  "main": "./src/index.ts",
   "directories": {
-    "lib": "lib",
+    "lib": "src",
     "test": "__tests__"
   },
   "files": [
-    "lib"
+    "src"
   ],
   "scripts": {
     "test": "echo \"Error: run tests from root\" && exit 1"
   },
   "dependencies": {
+    "@types/uuid": "^8.3.0",
+    "lodash": "^4.17.20",
+    "uuid": "^8.3.2"
   },
   "devDependencies": {
+    "@types/lodash": "^4.14.168"
   }
 }

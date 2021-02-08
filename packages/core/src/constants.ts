@@ -1,4 +1,4 @@
-import { IBaseNode, INodeData, INodeStyle, ITarget } from './index'
+import { IBaseNode, INodeStyle, ITarget } from './index'
 
 export const DefaultTarget: ITarget = {
   id: "",
@@ -9,6 +9,21 @@ export const DefaultTarget: ITarget = {
     data: {
       target: ""
     },
+    viewMode: "adapt",
     children: [] as IBaseNode[]
   },
+}
+
+export const EVENT = {
+  ADD: "add",
+  UPDATE: "update",
+  UPDATE_CONFIG: "update_config",
+  SHARE: "share",
+  OPEN_FORM_EDITOR: "open_form_editor",
+  TO_ADD_TARGET: "to_add_target",
+  SAVE: "save"
+}
+
+export const EVENT_INSIDE = {
+  SWITCH_PROPERTIES_TAB: "SWITCH_PROPERTIES_TAB",
 }

@@ -2,19 +2,15 @@ import * as CSS from "csstype";
 
 export type TargetFeatureType = "page" | "form";
 
-export const EVENT = {
-  ADD: "add",
-  UPDATE: "update",
-  UPDATE_CONFIG: "update_config",
-  SHARE: "share",
-  OPEN_FORM_EDITOR: "open_form_editor",
-  TO_ADD_TARGET: "to_add_target",
-  SAVE: "save"
+export interface IPosition {
+  x: number;
+  y: number;
 }
 
 export interface ITarget {
   id: string;
   title: string;
+  direction?: "horizontal" | "vertical";
   featureType: TargetFeatureType;
   config: ITargetConfig;
 }
@@ -25,9 +21,12 @@ export interface INodeData {
   target: any;
 }
 
+export type FreeNodeData = Record<string, any>;
+
 export interface ITargetConfig {
   style: INodeStyle;
-  data: INodeData;
+  data: INodeData & FreeNodeData;
+  viewMode: "adapt" | "fixed";
   children: IBaseNode[];
 }
 
@@ -43,7 +42,7 @@ export interface IBaseNode {
   type: string;
   pos: IPos;
   style: INodeStyle;
-  data?: INodeData;
+  data: INodeData & FreeNodeData;
   children?: IBaseNode[];
 }
 

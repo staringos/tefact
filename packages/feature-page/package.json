@@ -18,8 +18,13 @@
   },
   "dependencies": {
     "@tefact/core": "^0.0.1",
+    "@tefact/feature-form": "^0.0.1",
     "@tefact/properties": "^0.0.1",
+    "@tefact/ui": "^0.0.1",
+    "@tefact/utils": "^0.0.1",
+    "resize-detector": "^0.2.2",
     "vue": "^2.6.12",
+    "vue-draggable-resizable-gorkys": "^2.4.4",
     "vue-property-decorator": "^9.1.2"
   },
   "devDependencies": {
