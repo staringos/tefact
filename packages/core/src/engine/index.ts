@@ -11,7 +11,10 @@ export class BaseView extends Vue {
   get currentTarget() { return this.engine.target; }
   get featureType() { return this.engine.featureType; }
   get isForm() { return this.engine.isForm; }
-  get setting() { return this.engine.setting || DEFAULT_SETTING; }
+  get setting() {
+    console.log("this.engine:", this.engine)
+    return this.engine.setting;
+  }
 
   getFormList() {
     return this.setting.formList;

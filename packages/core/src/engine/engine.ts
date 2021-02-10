@@ -29,12 +29,12 @@ export default class Engine extends EventEmitter<string, ITarget> implements IEn
 
   public activeNodeIds: Array<string> = [];
   public target?: ITarget;
-  private _setting?: ISetting;
+  private _setting: ISetting = DEFAULT_SETTING;
   private _tmpTarget?: ITarget;
   private _allNodesMap?: Record<string, IBaseNode>;
   private static _engineInstance: null | Engine = null
 
-  get setting(): ISetting | undefined { return this._setting; }
+  get setting(): ISetting { return this._setting; }
   get featureType(): string { return this.target?.featureType || "page"; }
   get isForm() { return this.target?.featureType === "form"; }
   get activeNode(): IBaseNode | null {
@@ -135,6 +135,10 @@ export default class Engine extends EventEmitter<string, ITarget> implements IEn
 
   public toAddTarget() {
     this.emit(EVENT.TO_ADD_TARGET);
+  }
+
+  public resetNodeOrder(nodeId: string, index: number) {
+    // TODO reset node order
   }
 
   public reOrderNode(nodeId: string, parentId: string, type: string) {

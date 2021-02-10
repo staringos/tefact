@@ -18,6 +18,7 @@ export const DefaultBaseNode: IBaseNode = {
     w: 120,
     h: 80,
   },
+  data: {},
   style: { ...BaseNodeStyle },
 }
 

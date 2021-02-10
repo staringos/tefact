@@ -26,7 +26,7 @@ import { Vue, Component, Prop, Watch } from "vue-property-decorator";
 import { addListener, removeListener } from "resize-detector";
 
 import "vue-draggable-resizable-gorkys/dist/VueDraggableResizable.css";
-import PageSection from "./nodes/Section.vue";
+import PageSection from "./nodes/SectionNode.vue";
 import AddButton from "./components/AddButton.vue";
 import cloneDeep from "lodash/cloneDeep";
 import { transformStyle } from "@tefact/utils";

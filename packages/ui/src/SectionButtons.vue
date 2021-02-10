@@ -34,8 +34,9 @@
   </div>
 </template>
 <script lang="ts">
-import { Vue, Component, Prop } from "vue-property-decorator";
+import { Component, Prop } from "vue-property-decorator";
 import { BaseView, IBaseNode } from "@tefact/core";
+import { PageProperties } from "../../feature-page/src/config";
 
 // const editor = namespace("editor");
 
@@ -55,15 +56,15 @@ export default class SectionButtons extends BaseView {
 
   handleAdd() {
     if (this.pageType === "page")
-      this.engine.add({ index: this.index, pageId: this.pageId });
+      this.engine.add(PageProperties.defaultPageSections());
   }
 
   handleDelete() {
-    this.engine.delete(this.section.id);
+    this.engine.deleteNode(this.section.id);
   }
 
-  handleSectionIndex(index) {
-    this.engine.reOrderNode(this.section.id, index);
+  handleSectionIndex(index: number) {
+    this.engine.resetNodeOrder(this.section.id, index);
   }
 }
 </script>

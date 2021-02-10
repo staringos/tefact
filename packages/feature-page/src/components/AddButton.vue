@@ -4,8 +4,6 @@
   </div>
 </template>
 <style lang="scss" scoped>
-@import "../../../../assets/styles/variables";
-
 .add-button {
   width: 50px;
   height: 50px;

@@ -1,16 +1,23 @@
 import { IPropertiesComponents } from "@tefact/properties"
 import { IProperties } from "@tefact/properties"
+import { IBaseNode } from "@tefact/core"
 
 export class PageProperties {
-  static defaultPageSections() {
+  static defaultPageSections(): IBaseNode {
     return {
-      config: {
+      id: "",
+      type: "section",
+      pos: {
         h: 500,
-        style: {}
+        w: 500,
+        x: 0,
+        y: 0,
       },
-      section_type: 'editor',
-      page_id: null,
-      nodes: [],
+      style: {},
+      data: {},
+      // section_type: 'editor',
+      // page_id: null,
+      children: [] as Array<IBaseNode>,
     }
   }
 

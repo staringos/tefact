@@ -7,13 +7,15 @@ import CarouselNode from './CarouselNode.vue'
 import BrowserNode from './BrowserNode.vue'
 import FormNode from './FormNode.vue'
 import ShapeNode from './ShapeNode.vue'
-import Section from './Section.vue'
+import SectionNode from './SectionNode.vue'
 import { PageProperties } from "../config"
 import { IProperties } from "@tefact/properties"
 import { NodeConfig } from "@tefact/core"
 
+console.log("SectionNode:", SectionNode);
+
 const nodes = {
-  Section,
+  SectionNode,
   TextNode,
   ImageNode,
   TableNode,
@@ -32,7 +34,8 @@ const NODES = {} as Record<string, NodeConfig>;
 
 Object.keys(nodes).forEach((key: string) => {
   const node = nodes[key];
-
+  console.log("key:", key, node, nodes);
+  if (!node) return;
   if (node.PROPERTIES) PROPERTIES[key] = node.PROPERTIES
   if (node.NODE) NODES[key] = node.NODE
 })

@@ -124,6 +124,8 @@ import Engine, {
   DEFAULT_SETTING
 } from "@tefact/core";
 
+console.log("BaseView:", BaseView);
+
 @Component({
   components: { NodesBar, Toolbar, PropertiesBar, Page, Form }
 })
@@ -131,15 +133,17 @@ export default class Editor extends BaseView {
   @Prop() target?: ITarget;
 
   pageId: string | null = null;
-  setting: ISetting = DEFAULT_SETTING;
 
   get isMobile(): boolean {
-    return this.setting.device === "mobile";
+    console.log("setting:", this.setting);
+    return this.setting?.device === "mobile";
   }
 
   get editorType(): string {
+    console.log("setting1:", this);
+
     if (this.isForm) return "form";
-    if (this.setting.device) return this.setting.device;
+    if (this.setting?.device) return this.setting?.device;
     return "pc";
   }
 
@@ -158,7 +162,8 @@ export default class Editor extends BaseView {
   }
 
   handleEditorSettingChange(es: ISetting): void {
-    this.setting = es;
+    console.log("es:", es);
+    //   this.setting = es;
   }
 }
 </script>

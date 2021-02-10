@@ -18,7 +18,7 @@ export interface ITarget {
 export interface INodeStyle extends CSS.PropertiesHyphen<string | number, number> {}
 
 export interface INodeData {
-  target: any;
+  target?: any;
 }
 
 export type FreeNodeData = Record<string, any>;
@@ -42,7 +42,7 @@ export interface IBaseNode {
   type: string;
   pos: IPos;
   style: INodeStyle;
-  data: INodeData & FreeNodeData;
+  data: FreeNodeData;
   children?: IBaseNode[];
 }
 

@@ -35,8 +35,6 @@
   </vue-draggable-resizable>
 </template>
 <style lang="scss">
-@import "../../../../../assets/styles/variables";
-
 .base-node {
   display: flex;
   box-sizing: border-box;

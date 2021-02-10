@@ -96,7 +96,7 @@ type POS = { x: number; y: number };
     ...nodes,
   },
 })
-export default class Section extends BaseView {
+export default class SectionNode extends BaseView {
   @Prop() section!: IBaseNode;
   @Prop(Boolean) preview!: boolean;
   @Prop() index!: number;
