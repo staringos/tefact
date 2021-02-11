@@ -3,10 +3,10 @@
     :class="`base-node ${preview ? '' : 'not-preview'}`"
     classNameActive="base-node-active"
     :style="nodeBaseStyle"
-    :w="tmpConfig.w"
-    :h="tmpConfig.h"
-    :x="tmpConfig.x"
-    :y="tmpConfig.y"
+    :w="tmpConfig.pos.w"
+    :h="tmpConfig.pos.h"
+    :x="tmpConfig.pos.x"
+    :y="tmpConfig.pos.y"
     :parent="false"
     :debug="false"
     :min-width="2"
@@ -96,6 +96,7 @@ export default class BaseNode extends BaseView {
   @Watch("node.config", { deep: true, immediate: true })
   handleNodeConfigChange() {
     const { node } = this;
+    console.log("handleNodeConfigChange:", node);
     if (!node) return;
     this.tmpConfig = cloneDeep(node);
   }

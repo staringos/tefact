@@ -4,12 +4,13 @@ import cloneDeep from 'lodash/cloneDeep'
 import { IEngine, ITarget, IBaseNode, EVENT, ISetting } from "@tefact/core";
 import keyBy from 'lodash/keyBy'
 import flatMapDeep from 'lodash/flatMapDeep'
+import flattenDeep from 'lodash/flattenDeep'
 import set from 'lodash/set'
 import findIndex from 'lodash/findIndex'
 import { BFS } from "@tefact/utils"
 
 function _flattenNodes(target: ITarget) {
-  return keyBy(flatMapDeep(target.config, "children"));
+  return keyBy(flatMapDeep([target.config], "children"), "id");
 }
 
 /**
@@ -37,7 +38,8 @@ export default class Engine extends EventEmitter<string, ITarget> implements IEn
   get setting(): ISetting { return this._setting; }
   get featureType(): string { return this.target?.featureType || "page"; }
   get isForm() { return this.target?.featureType === "form"; }
-  get activeNode(): IBaseNode | null {
+  get activatedNode(): IBaseNode | null {
+    console.log("this._allNodesMap:", this._allNodesMap);
     if (!this._allNodesMap || !this.activeNodeIds) return null;
     return this._allNodesMap[this.activeNodeIds[0]];
   }
@@ -54,7 +56,8 @@ export default class Engine extends EventEmitter<string, ITarget> implements IEn
     }
   }
 
-  public active(ids: Array<string>) {
+  public activeNode(ids: Array<string>) {
+    console.log("activeNode11:", ids);
     this.activeNodeIds = ids;
   }
 

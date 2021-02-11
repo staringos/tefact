@@ -11,7 +11,7 @@
 </template>
 <script>
 import { Component } from "vue-property-decorator";
-import BaseRow from "~/components/app/light/editor/properties/rows/BaseRow.vue";
+import BaseRow from "./BaseRow.vue";
 import RowMixin from "./RowMixin.ts";
 
 @Component({

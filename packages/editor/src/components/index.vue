@@ -1,5 +1,5 @@
 <template>
-  <div class="editor-wrapper" v-if="engine" @click="engine.resetActive">
+  <div class="editor-wrapper" v-if="engine.target" @click="engine.resetActive">
     <div class="editor-container">
       <Toolbar :target="target || form"></Toolbar>
       <div class="editor-main">
@@ -116,32 +116,23 @@ import Form from "@tefact/feature-form";
 import Toolbar from "@/components/Toolbar.vue";
 import PropertiesBar from "@tefact/properties";
 import NodesBar from "@/components/NodesBar.vue";
-import Engine, {
-  BaseView,
-  ISetting,
-  ITarget,
-  EVENT,
-  DEFAULT_SETTING
-} from "@tefact/core";
-
-console.log("BaseView:", BaseView);
+import Engine, { BaseView, ISetting, ITarget, EVENT } from "@tefact/core";
 
 @Component({
   components: { NodesBar, Toolbar, PropertiesBar, Page, Form }
+  // mixins: [BaseView]
 })
 export default class Editor extends BaseView {
   @Prop() target?: ITarget;
+  @Prop() editorSetting?: ISetting;
 
   pageId: string | null = null;
 
   get isMobile(): boolean {
-    console.log("setting:", this.setting);
     return this.setting?.device === "mobile";
   }
 
   get editorType(): string {
-    console.log("setting1:", this);
-
     if (this.isForm) return "form";
     if (this.setting?.device) return this.setting?.device;
     return "pc";
@@ -153,12 +144,12 @@ export default class Editor extends BaseView {
   }
 
   init(): void {
-    const { $emit } = this;
-    Engine.instance(this.target, this.setting)
-      .on(EVENT.ADD, (data: ITarget) => $emit(EVENT.ADD, data))
-      .on(EVENT.UPDATE, (data: ITarget) => $emit(EVENT.UPDATE, data))
-      .on(EVENT.SAVE, (data: ITarget) => $emit(EVENT.SAVE, data))
-      .on(EVENT.SHARE, (data: ITarget) => $emit(EVENT.SHARE, data));
+    const { $emit, engine } = this;
+    Engine.instance(this.target, this.editorSetting);
+    engine.on(EVENT.ADD, (data: ITarget) => $emit(EVENT.ADD, data));
+    engine.on(EVENT.UPDATE, (data: ITarget) => $emit(EVENT.UPDATE, data));
+    engine.on(EVENT.SAVE, (data: ITarget) => $emit(EVENT.SAVE, data));
+    engine.on(EVENT.SHARE, (data: ITarget) => $emit(EVENT.SHARE, data));
   }
 
   handleEditorSettingChange(es: ISetting): void {

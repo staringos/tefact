@@ -11,7 +11,7 @@ export default class PropertiesClass extends BaseView {
     return null
   }
 
-  public tmpNode: IBaseNode | null = null
+  public tmpNode!: IBaseNode
 
   public handleStyleChange(key: string, value: string | number) {
     if (!this.style || !this.tmpNode) return

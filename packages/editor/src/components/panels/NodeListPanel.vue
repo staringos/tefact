@@ -40,27 +40,27 @@ import { IBaseNode, NodeListConfig } from "@tefact/core";
 const EditorNodesDetails = {
   shape: {
     title: "图形",
-    list: Shape.SHAPE_NODE_LIST,
+    list: Shape.SHAPE_NODE_LIST
   },
   form: {
     title: "表单",
-    list: FORM_NODE_LIST,
+    list: FORM_NODE_LIST
   },
   page: {
     title: null,
-    list: PAGE_NODE_LIST,
+    list: PAGE_NODE_LIST
   },
   default: {
     title: null,
-    list: PAGE_NODE_LIST,
-  },
+    list: PAGE_NODE_LIST
+  }
 } as Record<string, NodeListConfig>;
 
 @Component({
   components: {
     BasePanel,
-    draggable,
-  },
+    draggable
+  }
 })
 export default class NodeList extends BaseView {
   // @editor.Action addNode;
@@ -70,7 +70,9 @@ export default class NodeList extends BaseView {
   curDraggingNode: any | null = null;
 
   get editorDetails(): NodeListConfig {
-    if (this.activeNodeType) return EditorNodesDetails[this.activeNodeType];
+    console.log("this.activeNodeType:", this.activeNodeType);
+    if (this.activeNodeType && EditorNodesDetails[this.activeNodeType])
+      return EditorNodesDetails[this.activeNodeType];
     return this.featureType
       ? EditorNodesDetails[super.featureType]
       : EditorNodesDetails["default"];

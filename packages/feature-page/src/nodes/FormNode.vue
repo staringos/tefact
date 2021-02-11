@@ -75,8 +75,7 @@ export default class FormNode extends NodeClass<IBaseNode> {
   }
 
   handleChoose() {
-    const that = this as any;
-    that.$bus.$emit(EVENT_INSIDE.SWITCH_PROPERTIES_TAB, "1");
+    this.engine.emit(EVENT_INSIDE.SWITCH_PROPERTIES_TAB, "1");
   }
   handleAdd() {}
 

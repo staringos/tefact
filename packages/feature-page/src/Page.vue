@@ -83,7 +83,7 @@ export default class Page extends BaseView {
   }
 
   handleActiveChange(active: string) {
-    this.engine.active([active]);
+    this.engine.activeNode([active]);
   }
 
   handleKeyDown(e: any) {

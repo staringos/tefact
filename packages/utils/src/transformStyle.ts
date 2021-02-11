@@ -19,6 +19,8 @@ const transformStyle = (config: IBaseNode | ITargetConfig) => {
     if (pos.h) res.height = `${pos.h}px`
     if (pos.w) res.width = `${pos.w}px`
   }
+
+  console.log("transformStyle:", res, config);
   return res
 }
 

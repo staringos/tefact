@@ -4,7 +4,7 @@
       <div class="resolu-row">
         <div class="resolu-label">背景色</div>
         <el-color-picker
-          v-model="tmpNode.config.style['background-color']"
+          v-model="tmpNode.style['background-color']"
           @change="handleSave"
           show-alpha
         ></el-color-picker>
@@ -44,7 +44,9 @@ export default class Background extends PropertiesClass {
 
   @Watch("tmpNode", { immediate: true, deep: true })
   handleTmpNodeChange() {
-    const image = (this as any).tmpNode.config.style["background-image"];
+    if (!this.tmpNode) return;
+    console.log("tmpNode:", this.tmpNode);
+    const image = (this as any).tmpNode.style["background-image"];
     if (!image) {
       this.tmpInput = null;
       return;
@@ -55,14 +57,14 @@ export default class Background extends PropertiesClass {
   @Watch("tmpInput")
   handleUpdate() {
     if (!this.tmpInput) return;
-    const style = (this as any).tmpNode.config.style;
+    const style = (this as any).tmpNode.style;
     style["background-image"] = `url(${this.tmpInput})`;
     style["background-size"] = `100% 100%`;
     this.handleSave();
   }
 
   handleDeleteBackground() {
-    const style = (this as any).tmpNode.config.style;
+    const style = (this as any).tmpNode.style;
 
     delete style["background-image"];
     delete style["background-size"];

@@ -16,7 +16,6 @@
               :nodeType="nodeType"
               v-bind="component.params"
               :node="nodeData"
-              :sectionId="sectionId"
             ></component>
           </el-collapse>
         </el-tab-pane>
@@ -47,19 +46,22 @@ export default class PropertiesContainer extends BaseView {
   // @editor.Getter isFormGetter;
 
   get nodeData() {
-    if (this.activeNode) return this.activeNode;
+    if (this.activatedNode) return this.activatedNode;
+    console.log("this.currentTarget:", this.currentTarget);
     return this.currentTarget;
   }
 
   get nodeType(): string {
-    if (this.activeNode) {
-      return this.activeNode.type;
+    console.log("activeNode:", this.activatedNode);
+    if (this.activatedNode) {
+      return this.activatedNode.type;
     }
 
     return "page";
   }
 
   get config() {
+    console.log("nodeType: ", this.nodeType, this.NodeResoluConfig);
     if (this.isForm && this.nodeType === "page") {
       return this.NodeResoluConfig["FormPage"];
     }
@@ -72,8 +74,7 @@ export default class PropertiesContainer extends BaseView {
   }
 
   mounted() {
-    const that = this as any;
-    that.$bus.$on(EVENT_INSIDE.SWITCH_PROPERTIES_TAB, (msg: string) => {
+    this.engine.on(EVENT_INSIDE.SWITCH_PROPERTIES_TAB, (msg: string) => {
       this.activeTab = msg;
     });
   }

@@ -10,7 +10,7 @@
     <div
       class="editor-content"
       :style="textContextStyle"
-      v-html="node.data.text"
+      v-html="node.data.target"
       :contenteditable="editing"
       ref="editor"
       @keydown="handleKeydown"

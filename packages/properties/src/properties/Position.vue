@@ -6,13 +6,13 @@
         <input
           type="number"
           class="resolu-input"
-          v-model.number="tmpNode.config.x"
+          v-model.number="tmpNode.pos.x"
           @blur="handleSave"
         />
         <input
           type="number"
           class="resolu-input"
-          v-model.number="tmpNode.config.y"
+          v-model.number="tmpNode.pos.y"
           @blur="handleSave"
         />
       </div>
@@ -21,13 +21,13 @@
         <input
           type="number"
           class="resolu-input"
-          v-model.number="tmpNode.config.w"
+          v-model.number="tmpNode.pos.w"
           @blur="handleSave"
         />
         <input
           type="number"
           class="resolu-input"
-          v-model.number="tmpNode.config.h"
+          v-model.number="tmpNode.pos.h"
           @blur="handleSave"
         />
       </div>

@@ -56,7 +56,7 @@ type LayerMenuItem = {
 };
 
 @Component({
-  components: { BasePanel },
+  components: { BasePanel }
 })
 export default class LayersPanel extends BaseView {
   data = [] as Array<LayerMenuItem>;
@@ -73,22 +73,22 @@ export default class LayersPanel extends BaseView {
   @Watch("currentPage", { immediate: true, deep: true })
   handlePageChange() {
     const newData = [] as Array<LayerMenuItem>;
-    const activeId = this.activeNode?.id;
+    const activeId = this.activatedNode?.id;
     const isForm = this.featureType === "form";
     const nodes = this.currentTarget?.config?.children;
     if (!nodes) return;
-    nodes.forEach((cur) => {
+    nodes.forEach(cur => {
       let children = [] as Array<IBaseNode>;
 
       if (!isForm) {
         children =
-          cur.children?.map((node) => {
+          cur.children?.map(node => {
             return {
               id: node.id,
               label: node.type,
               active: node.id === activeId,
               sectionId: cur.id,
-              type: node.type,
+              type: node.type
             } as any;
           }) || [];
       }
@@ -97,7 +97,7 @@ export default class LayersPanel extends BaseView {
         label: isForm ? cur.type : "段落",
         type: isForm ? cur.type : "section",
         active: cur.id === activeId,
-        children,
+        children
       } as LayerMenuItem);
     });
 
@@ -106,7 +106,7 @@ export default class LayersPanel extends BaseView {
 
   // @Watch("currentSectionIdGetter")
   handleCurrentChange(node: IBaseNode) {
-    this.engine.active([node.id]);
+    this.engine.activeNode([node.id]);
   }
 
   @Watch("currentNode")

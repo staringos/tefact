@@ -11,7 +11,7 @@
         <input
           type="number"
           class="resolu-input border-width"
-          v-model.number="tmpNode.config.style['font-size']"
+          v-model.number="tmpNode.style['font-size']"
           @blur="handleSave"
         />px
       </div>

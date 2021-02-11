@@ -11,6 +11,7 @@ export default class PropertiesMixin extends BaseView {
 
   public init() {
     if (!this.node) return
+
     const tmpNode = cloneDeep(this.node)
     if (!tmpNode && DefaultNodeData[this.featureType])
       this.tmpNode = DefaultNodeData[this.featureType]
@@ -26,7 +27,8 @@ export default class PropertiesMixin extends BaseView {
     this.init()
   }
 
-  public mounted() {
+  public beforeMounted() {
+    console.log("mounted init");
     this.init()
   }
 }

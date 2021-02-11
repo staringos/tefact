@@ -13,7 +13,7 @@
       :sectionId="section.id"
       :is="node.type"
       :preview="preview"
-      :sectionConfig="section.config"
+      :sectionConfig="section"
       :active="engine.activeNodeIds.indexOf(node.id) > -1"
       @onRefLineChange="handleRefLineChange"
       @update:active="(active) => handleActiveUpdate(node.id, active)"
@@ -45,7 +45,7 @@
     <span
       class="ref-line v-line"
       v-for="(item, i) in vLine"
-      :key="i"
+      :key="i + 'v'"
       v-show="item.display && !preview"
       :style="{
         left: item.position,
@@ -56,7 +56,7 @@
     <span
       class="ref-line h-line"
       v-for="(item, i) in hLine"
-      :key="i"
+      :key="i + 'h'"
       v-show="item.display && !preview"
       :style="{ top: item.position, left: item.origin, width: item.lineLength }"
     ></span>
@@ -183,11 +183,12 @@ export default class SectionNode extends BaseView {
       return this.engine.moreActive(id);
     }
 
-    this.engine.active([id]);
+    this.engine.activeNode([id]);
   }
 
   handleRefLineChange(params: any) {
     const { vLine, hLine } = params;
+    console.log("VLine:", vLine, hLine);
     this.vLine = vLine;
     this.hLine = hLine;
   }

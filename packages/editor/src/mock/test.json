@@ -7,14 +7,26 @@
         "id": "1",
         "type": "section",
         "style": {
-          "backgroundColor": "#333"
+          "background-color": "#333"
         },
         "data": {
           "target": ""
         },
+        "pos": {
+          "w": 1200,
+          "h": 500,
+          "x": 0,
+          "y": 0
+        },
         "children": [{
           "id": "12",
           "type": "TextNode",
+          "pos": {
+            "x": 10,
+            "y": 10,
+            "width": 100,
+            "height": 100
+          },
           "style": {
             "color": "white"
           },
@@ -26,15 +38,27 @@
       {
         "id": "11",
         "type": "section",
+        "pos": {
+          "x": 10,
+          "y": 10,
+          "width": 100,
+          "height": 100
+        },
         "style": {
-          "backgroundColor": "#333"
+          "background-color": "#333"
         },
         "data": {
-          "target": ""
+          "target": "这是一段文字呀"
         },
         "children": [{
           "id": "122",
           "type": "TextNode",
+          "pos": {
+            "x": 10,
+            "y": 10,
+            "width": 100,
+            "height": 100
+          },
           "style": {
             "color": "white"
           },
