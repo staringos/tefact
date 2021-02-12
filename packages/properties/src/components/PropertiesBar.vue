@@ -47,12 +47,10 @@ export default class PropertiesContainer extends BaseView {
 
   get nodeData() {
     if (this.activatedNode) return this.activatedNode;
-    console.log("this.currentTarget:", this.currentTarget);
     return this.currentTarget;
   }
 
   get nodeType(): string {
-    console.log("activeNode:", this.activatedNode);
     if (this.activatedNode) {
       return this.activatedNode.type;
     }
@@ -61,7 +59,6 @@ export default class PropertiesContainer extends BaseView {
   }
 
   get config() {
-    console.log("nodeType: ", this.nodeType, this.NodeResoluConfig);
     if (this.isForm && this.nodeType === "page") {
       return this.NodeResoluConfig["FormPage"];
     }

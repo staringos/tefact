@@ -28,7 +28,7 @@
             "height": 100
           },
           "style": {
-            "color": "white"
+            "color": "#fff"
           },
           "data": {
             "target": "这是一段文字呀"
@@ -60,7 +60,7 @@
             "height": 100
           },
           "style": {
-            "color": "white"
+            "color": "#fff"
           },
           "data": {
             "target": "这是一段文字呀呀呀"

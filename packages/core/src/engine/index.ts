@@ -1,6 +1,5 @@
-import { Vue, Component } from "vue-property-decorator";
+import { Component, Vue } from "vue-property-decorator";
 import Engine from "./engine";
-import { DEFAULT_SETTING } from "./constants"
 
 @Component
 export class BaseView extends Vue {

@@ -4,7 +4,7 @@
       <div class="resolu-row">
         <div class="resolu-label">样式</div>
         <el-color-picker
-          v-model="style['color']"
+          v-model="tmpNode.style['color']"
           @change="handleSave"
           show-alpha
         ></el-color-picker>
@@ -52,7 +52,9 @@
         <el-button-group>
           <el-button
             :type="
-              style['justify-content'] === 'flex-start' ? 'primary' : 'default'
+              tmpNode.style['justify-content'] === 'flex-start'
+                ? 'primary'
+                : 'default'
             "
             icon="tefact-icon tf-icon-youduiqi"
             size="mini"
@@ -60,7 +62,9 @@
           ></el-button>
           <el-button
             :type="
-              style['justify-content'] === 'center' ? 'primary' : 'default'
+              tmpNode.style['justify-content'] === 'center'
+                ? 'primary'
+                : 'default'
             "
             icon="tefact-icon tf-icon-zhongduiqi"
             size="mini"
@@ -68,7 +72,9 @@
           ></el-button>
           <el-button
             :type="
-              style['justify-content'] === 'flex-end' ? 'primary' : 'default'
+              tmpNode.style['justify-content'] === 'flex-end'
+                ? 'primary'
+                : 'default'
             "
             icon="tefact-icon tf-icon-zuoduiqi"
             size="mini"
@@ -81,20 +87,28 @@
         <el-button-group>
           <el-button
             :type="
-              style['align-items'] === 'flex-start' ? 'primary' : 'default'
+              tmpNode.style['align-items'] === 'flex-start'
+                ? 'primary'
+                : 'default'
             "
             icon="tefact-icon tf-icon-vertical-align-top"
             size="mini"
             @click="handleStyleChange('align-items', 'flex-start')"
           ></el-button>
           <el-button
-            :type="style['align-items'] === 'center' ? 'primary' : 'default'"
+            :type="
+              tmpNode.style['align-items'] === 'center' ? 'primary' : 'default'
+            "
             icon="tefact-icon tf-icon-vertical-align-middle"
             size="mini"
             @click="handleStyleChange('align-items', 'center')"
           ></el-button>
           <el-button
-            :type="style['align-items'] === 'flex-end' ? 'primary' : 'default'"
+            :type="
+              tmpNode.style['align-items'] === 'flex-end'
+                ? 'primary'
+                : 'default'
+            "
             icon="tefact-icon tf-icon-vertical-align-bottom"
             size="mini"
             @click="handleStyleChange('align-items', 'flex-end')"
@@ -122,17 +136,20 @@ import PropertiesClass from "../components/PropertiesClass";
 })
 export default class TextProperties extends PropertiesClass {
   get isUnderline(): boolean {
-    if (this.style) return this.style["text-decoration"] === "underline";
+    const style = this.tmpNode.style;
+    if (style) return style["text-decoration"] === "underline";
     return false;
   }
 
   get isBold(): boolean {
-    if (this.style) return this.style["font-weight"] === "bold";
+    const style = this.tmpNode.style;
+    if (style) return style["font-weight"] === "bold";
     return false;
   }
 
   get isItalic(): boolean {
-    if (this.style) return this.style["font-style"] === "italic";
+    const style = this.tmpNode.style;
+    if (style) return style["font-style"] === "italic";
     return false;
   }
 }

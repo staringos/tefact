@@ -47,10 +47,8 @@ import PropertiesClass from "../components/PropertiesClass";
   components: { BaseProperties },
   mixins: [PropertiesMixin],
 })
-export default class PositionResolu extends PropertiesClass {
+export default class PositionProperties extends PropertiesClass {
   @Prop() sectionId!: string;
   @Prop() onlySize!: boolean;
-
-  mounted() {}
 }
 </script>

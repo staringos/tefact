@@ -1,6 +1,6 @@
 <template>
   <div id="app">
-    <Editor :target="target" />
+    <Editor v-model="target" />
   </div>
 </template>
 <style lang="scss" scoped>

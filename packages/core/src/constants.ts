@@ -15,6 +15,7 @@ export const DefaultTarget: ITarget = {
 }
 
 export const EVENT = {
+  INPUT: "input",
   ADD: "add",
   UPDATE: "update",
   UPDATE_CONFIG: "update_config",
@@ -22,6 +23,11 @@ export const EVENT = {
   OPEN_FORM_EDITOR: "open_form_editor",
   TO_ADD_TARGET: "to_add_target",
   SAVE: "save"
+}
+
+export const DRAGGING_TYPE = {
+  MOVE: "move",
+  ADD: "add",
 }
 
 export const EVENT_INSIDE = {

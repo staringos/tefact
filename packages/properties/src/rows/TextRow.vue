@@ -20,7 +20,7 @@
   </BaseRow>
 </template>
 <script>
-import { Component, Prop } from "vue-property-decorator";
+import { Component, Prop, Vue } from "vue-property-decorator";
 import BaseRow from "./BaseRow.vue";
 import RowMixin from "./RowMixin.ts";
 
@@ -28,7 +28,7 @@ import RowMixin from "./RowMixin.ts";
   components: { BaseRow },
   mixins: [RowMixin],
 })
-export default class TextRow {
+export default class TextRow extends Vue {
   @Prop(String) suffix;
   @Prop({ type: String, default: "text" }) type;
 }

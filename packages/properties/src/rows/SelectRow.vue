@@ -20,7 +20,7 @@
   </BaseRow>
 </template>
 <script>
-import { Component, Prop } from "vue-property-decorator";
+import { Vue, Component, Prop } from "vue-property-decorator";
 import BaseRow from "./BaseRow.vue";
 import RowMixin from "./RowMixin.ts";
 
@@ -28,7 +28,7 @@ import RowMixin from "./RowMixin.ts";
   components: { BaseRow },
   mixins: [RowMixin],
 })
-export default class SelectResolu {
+export default class SelectResolu extends Vue {
   @Prop() selectOptions;
 }
 </script>

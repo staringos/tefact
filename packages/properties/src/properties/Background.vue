@@ -45,7 +45,6 @@ export default class Background extends PropertiesClass {
   @Watch("tmpNode", { immediate: true, deep: true })
   handleTmpNodeChange() {
     if (!this.tmpNode) return;
-    console.log("tmpNode:", this.tmpNode);
     const image = (this as any).tmpNode.style["background-image"];
     if (!image) {
       this.tmpInput = null;

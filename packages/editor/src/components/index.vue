@@ -1,7 +1,7 @@
 <template>
   <div class="editor-wrapper" v-if="engine.target" @click="engine.resetActive">
     <div class="editor-container">
-      <Toolbar :target="target || form"></Toolbar>
+      <Toolbar :target="currentTarget || form"></Toolbar>
       <div class="editor-main">
         <NodesBar :editorType="editorType" />
         <div class="editor-container">
@@ -10,21 +10,31 @@
           <div v-if="!isMobile" class="page-pad">
             <Page
               v-if="!isForm"
-              :page="target"
+              :page="currentTarget"
               :pageId="pageId"
               :isMobile="isMobile"
             />
-            <Form v-else :form="target" :isEdit="true" :isMobile="isMobile" />
+            <Form
+              v-else
+              :form="currentTarget"
+              :isEdit="true"
+              :isMobile="isMobile"
+            />
           </div>
           <div v-else class="page-pad mobile">
             <div class="inner">
               <Page
                 v-if="!isForm"
-                :page="target"
+                :page="currentTarget"
                 :pageId="pageId"
                 :isMobile="isMobile"
               />
-              <Form v-else :form="target" :isEdit="true" :isMobile="isMobile" />
+              <Form
+                v-else
+                :form="currentTarget"
+                :isEdit="true"
+                :isMobile="isMobile"
+              />
             </div>
           </div>
         </div>
@@ -110,7 +120,7 @@
 }
 </style>
 <script lang="ts">
-import { Component, Prop, Watch } from "vue-property-decorator";
+import { Vue, Component, Prop, Watch } from "vue-property-decorator";
 import Page from "@tefact/feature-page";
 import Form from "@tefact/feature-form";
 import Toolbar from "@/components/Toolbar.vue";
@@ -123,7 +133,7 @@ import Engine, { BaseView, ISetting, ITarget, EVENT } from "@tefact/core";
   // mixins: [BaseView]
 })
 export default class Editor extends BaseView {
-  @Prop() target?: ITarget;
+  @Prop() value?: ITarget;
   @Prop() editorSetting?: ISetting;
 
   pageId: string | null = null;
@@ -132,24 +142,42 @@ export default class Editor extends BaseView {
     return this.setting?.device === "mobile";
   }
 
+  get currentTarget() {
+    console.log("this.engine.target:", this.engine.target);
+    return this.engine.target;
+  }
+
   get editorType(): string {
     if (this.isForm) return "form";
     if (this.setting?.device) return this.setting?.device;
     return "pc";
   }
 
-  @Watch("target", { immediate: true })
+  @Watch("value", { immediate: true })
   handleTargetChange(): void {
     this.init();
   }
 
   init(): void {
-    const { $emit, engine } = this;
-    Engine.instance(this.target, this.editorSetting);
-    engine.on(EVENT.ADD, (data: ITarget) => $emit(EVENT.ADD, data));
-    engine.on(EVENT.UPDATE, (data: ITarget) => $emit(EVENT.UPDATE, data));
-    engine.on(EVENT.SAVE, (data: ITarget) => $emit(EVENT.SAVE, data));
-    engine.on(EVENT.SHARE, (data: ITarget) => $emit(EVENT.SHARE, data));
+    console.log("----------- init:", this.engine.target === this.value);
+    // eslint-disable-next-line @typescript-eslint/no-this-alias
+    const that = this;
+    if (that.engine.target === this.value) return;
+
+    function execEvent(type: string) {
+      return (data: ITarget) => {
+        console.log("-=-=-=-=-:", type);
+        that.$emit(EVENT.INPUT, data);
+        that.$emit(type, data);
+      };
+    }
+
+    this.engine = Engine.instance(this.value, this.editorSetting);
+    this.engine.on(EVENT.ADD, execEvent(EVENT.ADD));
+    this.engine.on(EVENT.UPDATE, execEvent(EVENT.UPDATE));
+    this.engine.on(EVENT.UPDATE_CONFIG, execEvent(EVENT.UPDATE_CONFIG));
+    this.engine.on(EVENT.SAVE, execEvent(EVENT.SAVE));
+    this.engine.on(EVENT.SHARE, execEvent(EVENT.SHARE));
   }
 
   handleEditorSettingChange(es: ISetting): void {

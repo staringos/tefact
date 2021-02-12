@@ -18,11 +18,11 @@ export default class RowMixin extends BaseView {
   public tmpText = ""
   public tmpNode: IBaseNode | null = null
 
-  get style() {
-    if (this.tmpNode)
-      return this.tmpNode.style
-    return null
-  }
+  // get style() {
+  //   if (this.tmpNode)
+  //     return this.tmpNode.style
+  //   return null
+  // }
 
   get currentData() {
     return get(this.tmpNode, this.path)
@@ -38,11 +38,11 @@ export default class RowMixin extends BaseView {
     this.tmpText = get(this.tmpNode, this.path)
   }
 
-  public handleStyleChange(key: string, value: any) {
-    if (!this.style) return
-    (this.style as any)[key] = value
-    this.handleSave()
-  }
+  // public handleStyleChange(key: string, value: any) {
+  //   if (!this.style) return
+  //   (this.style as any)[key] = value
+  //   this.handleSave()
+  // }
 
   public handleSave() {
     if (this.isDirectModify)

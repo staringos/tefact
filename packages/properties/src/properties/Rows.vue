@@ -25,7 +25,7 @@ import Rows from "../rows";
   components: { BaseProperties, ...Rows },
   mixins: [PropertiesMixin],
 })
-export default class SelectResolu extends PropertiesClass {
+export default class SelectProperties extends PropertiesClass {
   @Prop([Array]) rows;
   @Prop([String]) title;
 }

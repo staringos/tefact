@@ -1,10 +1,17 @@
 <template>
-  <div
+  <draggable
     :class="`page-section ${!preview ? 'hover-style' : ''} ${
       active && !preview ? 'active' : ''
     }`"
+    :group="{
+      name: 'form-item',
+      pull: engine.draggingType === 'add' ? 'clone' : 'move',
+      put: true,
+    }"
     :style="style"
     @click="handleSectionClick"
+    @end="handleDragEnd"
+    @add="handleAdd"
   >
     <component
       v-for="node in section.children"
@@ -73,7 +80,7 @@
       :style="vBorderLineStyle"
     ></span>
     <!-- Assist Line END -->
-  </div>
+  </draggable>
 </template>
 <script lang="ts">
 import { Component, Prop, Watch } from "vue-property-decorator";
@@ -81,8 +88,10 @@ import AddButton from "../components/AddButton.vue";
 import nodes from "./";
 import { SectionButtons } from "@tefact/ui";
 import NodeContextMenu from "../components/NodeContextMenu.vue";
-import { BaseView, IBaseNode } from "@tefact/core";
+import { BaseView, DRAGGING_TYPE, IBaseNode } from "@tefact/core";
 import { hasMetaKeyPass, transformStyle } from "@tefact/utils";
+import draggable from "vuedraggable";
+import cloneDeep from "lodash/cloneDeep";
 
 // const editor = namespace("editor");
 
@@ -93,6 +102,7 @@ type POS = { x: number; y: number };
     SectionButtons,
     NodeContextMenu,
     AddButton,
+    draggable,
     ...nodes,
   },
 })
@@ -128,6 +138,21 @@ export default class SectionNode extends BaseView {
     if (!this.activeNodeId) {
       this.handleHideBorder();
     }
+  }
+
+  handleAdd(e: any) {
+    console.log("section !:", this.engine.draggingNode, e);
+    console.log("x:" + e.offsetX + " y:" + e.offsetY);
+    if (!this.engine.draggingNode) return;
+
+    const newNode = cloneDeep(this.engine.draggingNode);
+    // newNode.pos = {};
+    this.engine.addNode(newNode, this.section.id);
+  }
+
+  handleDragEnd() {
+    console.log("go!:", this.engine.draggingNode, this.section.id);
+    // if (this.engine.draggingType === DRAGGING_TYPE.ADD) {
   }
 
   handleHideBorder() {
@@ -188,7 +213,6 @@ export default class SectionNode extends BaseView {
 
   handleRefLineChange(params: any) {
     const { vLine, hLine } = params;
-    console.log("VLine:", vLine, hLine);
     this.vLine = vLine;
     this.hLine = hLine;
   }

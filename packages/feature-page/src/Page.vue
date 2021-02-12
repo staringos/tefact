@@ -9,7 +9,7 @@
     </div>
     <PageSection
       v-for="(section, i) in sections"
-      :key="i"
+      :key="section.id"
       :index="i"
       :section="section"
       :pageId="pageId"
@@ -22,7 +22,7 @@
   </div>
 </template>
 <script lang="ts">
-import { Vue, Component, Prop, Watch } from "vue-property-decorator";
+import { Component, Prop, Watch } from "vue-property-decorator";
 import { addListener, removeListener } from "resize-detector";
 
 import "vue-draggable-resizable-gorkys/dist/VueDraggableResizable.css";

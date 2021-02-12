@@ -3,10 +3,10 @@
     :class="`base-node ${preview ? '' : 'not-preview'}`"
     classNameActive="base-node-active"
     :style="nodeBaseStyle"
-    :w="tmpConfig.pos.w"
-    :h="tmpConfig.pos.h"
-    :x="tmpConfig.pos.x"
-    :y="tmpConfig.pos.y"
+    :w="tmpNode.pos.w"
+    :h="tmpNode.pos.h"
+    :x="tmpNode.pos.x"
+    :y="tmpNode.pos.y"
     :parent="false"
     :debug="false"
     :min-width="2"
@@ -91,19 +91,18 @@ export default class BaseNode extends BaseView {
 
   // @editor.Action modifyNode;
 
-  tmpConfig: IBaseNode | null = null;
+  tmpNode: IBaseNode | null = null;
 
-  @Watch("node.config", { deep: true, immediate: true })
+  @Watch("node", { deep: true, immediate: true })
   handleNodeConfigChange() {
     const { node } = this;
-    console.log("handleNodeConfigChange:", node);
     if (!node) return;
-    this.tmpConfig = cloneDeep(node);
+    this.tmpNode = cloneDeep(node);
   }
 
   get nodeBaseStyle() {
-    if (!this.tmpConfig) return {};
-    const result = transformStyle(this.tmpConfig);
+    if (!this.tmpNode) return {};
+    const result = transformStyle(this.tmpNode);
     result["z-index"] = this.index;
 
     if (this.isShape) delete result[`background-color`];
@@ -136,16 +135,16 @@ export default class BaseNode extends BaseView {
   }
 
   handleResize(x: number, y: number, w: number, h: number) {
-    if (!this.tmpConfig) return;
-    const curConfig = this.tmpConfig.pos;
+    if (!this.tmpNode) return;
+    const curConfig = this.tmpNode.pos;
     if (
       x !== curConfig.x ||
       y !== curConfig.y ||
       w !== curConfig.w ||
       h !== curConfig.h
     ) {
-      this.tmpConfig = {
-        ...this.tmpConfig,
+      this.tmpNode = {
+        ...this.tmpNode,
         pos: {
           x,
           y,

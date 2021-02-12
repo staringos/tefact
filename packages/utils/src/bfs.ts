@@ -1,5 +1,6 @@
 import generateId from "./generateId";
 import cloneDeep from "lodash/cloneDeep";
+import { IBaseNode } from "@tefact/core"
 
 type BFSFindResult<T> = {
   index: number;
@@ -10,6 +11,7 @@ type BFSFindResult<T> = {
 interface IBFSInstance<T> {
   find(): BFSFindResult<T>;
   delete(): Array<T>;
+  addChild(node: IBaseNode): Array<T>;
   copy(): Array<T>;
 }
 
@@ -20,6 +22,15 @@ export default function BFS<T extends {
   const { index, target, parent } = BFSFind(list, id);
 
   return {
+    addChild(node: IBaseNode) {
+      if (!target || !target.children) return list;
+      // const newNode = cloneDeep(node);
+      // newNode.id = generateId();
+
+      console.log("parent:", parent);
+      target.children.push(node as any);
+      return list;
+    },
     find(): BFSFindResult<T> {
       return { index, target, parent };
     },
@@ -27,7 +38,7 @@ export default function BFS<T extends {
       parent.splice(index, 1)
       return list;
     },
-    clone() {
+    copy() {
       if (!target) return list;
       target.id = generateId();
       parent.push(cloneDeep(target));
@@ -41,7 +52,7 @@ function BFSFind<T extends {
   children?: Array<any>
 }>(list: Array<T>, id: string | number): BFSFindResult<T> {
   if (!list) return list;
-  let isDelete = false;
+  const isDelete = false;
   let index = -1
   let target = null;
   let parent = [] as Array<T>;
@@ -61,7 +72,7 @@ function BFSFind<T extends {
 
   list.forEach(cur => {
     if (cur.children && cur.children.length > 0) {
-      let res = BFSFind(cur.children, id);
+      const res = BFSFind(cur.children, id);
       if (res.index !== -1) {
         index = res.index;
         target = res.target;

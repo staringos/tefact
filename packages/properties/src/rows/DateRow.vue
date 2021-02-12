@@ -9,7 +9,7 @@
   </BaseRow>
 </template>
 <script>
-import { Component, Prop } from "vue-property-decorator";
+import { Component, Prop, Vue } from "vue-property-decorator";
 import BaseRow from "./BaseRow.vue";
 import RowMixin from "./RowMixin.ts";
 
@@ -17,7 +17,7 @@ import RowMixin from "./RowMixin.ts";
   components: { BaseRow },
   mixins: [RowMixin],
 })
-export default class DateRow {
+export default class DateRow extends Vue {
   @Prop([String]) dateType;
 }
 </script>

@@ -37,9 +37,9 @@
     ]
   },
   "include": [
-    "../feature-page/src/nodes/src/**/*.ts",
-    "../feature-page/src/nodes/src/**/*.tsx",
-    "../feature-page/src/nodes/src/**/*.vue",
+    "./src/**/*.ts",
+    "./src/**/*.tsx",
+    "./src/**/*.vue",
     "tests/**/*.ts",
     "tests/**/*.tsx"
   ],

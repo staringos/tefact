@@ -20,6 +20,8 @@ import {
   Switch,
   Table,
   TableColumn,
+  Menu,
+  MenuItem,
   FormItem
 } from "element-ui";
 
@@ -43,4 +45,6 @@ Vue.use(FormItem);
 Vue.use(DatePicker);
 Vue.use(Upload);
 Vue.use(InputNumber);
+Vue.use(Menu);
+Vue.use(MenuItem);
 Vue.use(Switch);

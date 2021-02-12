@@ -9,9 +9,8 @@
     <draggable
       class="editor-node-list"
       :group="{ name: 'form-item', pull: 'clone', put: false }"
-      :clone="handleClone"
       :sort="false"
-      @end="handleDragEnd"
+      @clone="handleClone"
       @change="handleChange"
       :list="list"
     >
@@ -32,7 +31,7 @@
 import { Component } from "vue-property-decorator";
 import cloneDeep from "lodash/cloneDeep";
 import { FORM_NODE_LIST, PAGE_NODE_LIST } from "@/components/features";
-import { Shape, BaseView } from "@tefact/core";
+import { Shape, BaseView, DRAGGING_TYPE } from "@tefact/core";
 import draggable from "vuedraggable";
 import BasePanel from "@/components/panels/BasePanel.vue";
 import { IBaseNode, NodeListConfig } from "@tefact/core";
@@ -70,7 +69,6 @@ export default class NodeList extends BaseView {
   curDraggingNode: any | null = null;
 
   get editorDetails(): NodeListConfig {
-    console.log("this.activeNodeType:", this.activeNodeType);
     if (this.activeNodeType && EditorNodesDetails[this.activeNodeType])
       return EditorNodesDetails[this.activeNodeType];
     return this.featureType
@@ -85,20 +83,28 @@ export default class NodeList extends BaseView {
   handleChange() {}
 
   handleClone(e: any) {
-    this.curDraggingNode = e;
+    if (!e) return;
+    console.log("e:", e);
+    this.engine.dragging(this.list[e.oldIndex].nodeData, DRAGGING_TYPE.ADD);
+  }
+
+  handleDragStart(e: any) {
+    if (!e) return;
   }
 
   handleDragEnd(e: any) {
-    if (!this.curDraggingNode) return;
-    this.handleAddNode(this.curDraggingNode.nodeData, e.newIndex);
-    this.curDraggingNode = null;
+    console.log("e:", e);
+    this.engine.cleanDragging();
+    // if (!this.curDraggingNode) return;
+    // this.handleAddNode(this.curDraggingNode.nodeData, e.newIndex);
+    // this.curDraggingNode = null;
   }
 
   handleAddNode(nodeData: IBaseNode, index = -1) {
     // if (this.editorType === "form") {
     //   return this.addFormNode({ node: cloneDeep(nodeData), index });
     // }
-    this.engine.add(cloneDeep(nodeData), index);
+    this.engine.addNode(cloneDeep(nodeData), index);
   }
 
   handleGoBack() {}

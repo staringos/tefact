@@ -2,15 +2,25 @@ import EventEmitter from 'eventemitter3'
 import { DEFAULT_SETTING } from './constants'
 import cloneDeep from 'lodash/cloneDeep'
 import { IEngine, ITarget, IBaseNode, EVENT, ISetting } from "@tefact/core";
-import keyBy from 'lodash/keyBy'
-import flatMapDeep from 'lodash/flatMapDeep'
-import flattenDeep from 'lodash/flattenDeep'
 import set from 'lodash/set'
 import findIndex from 'lodash/findIndex'
 import { BFS } from "@tefact/utils"
+import { Vue } from "vue-property-decorator"
+import { generateId } from "@tefact/utils"
 
 function _flattenNodes(target: ITarget) {
-  return keyBy(flatMapDeep([target.config], "children"), "id");
+  const map = {} as Record<string, IBaseNode>;
+  function popAllChildren(cur:Array<IBaseNode>) {
+    cur.forEach(cur => {
+      map[cur.id] = cur;
+      if (cur.children && cur.children.length > 0) {
+        popAllChildren(cur.children);
+      }
+    })
+  }
+
+  popAllChildren(target.config.children)
+  return map;
 }
 
 /**
@@ -22,42 +32,56 @@ function _flattenNodes(target: ITarget) {
  * @event update: target update
  * @event save: target need to save
  */
-export default class Engine extends EventEmitter<string, ITarget> implements IEngine{
+export default class Engine extends EventEmitter<string, ITarget> implements IEngine {
   private constructor(target?: ITarget, setting: ISetting = DEFAULT_SETTING) {
     super();
-    this.init(target, setting)
+    return this.init(target, setting)
   }
 
   public activeNodeIds: Array<string> = [];
-  public target?: ITarget;
+  public target!: ITarget;
+  private _targetBackup!: ITarget;
   private _setting: ISetting = DEFAULT_SETTING;
-  private _tmpTarget?: ITarget;
+  private _draggingNode: IBaseNode | null = null;
+  private _draggingType: string | null = null;
   private _allNodesMap?: Record<string, IBaseNode>;
   private static _engineInstance: null | Engine = null
 
+  get draggingNode(): IBaseNode | null { return this._draggingNode; }
+  get draggingType(): string | null { return this._draggingType; }
   get setting(): ISetting { return this._setting; }
   get featureType(): string { return this.target?.featureType || "page"; }
   get isForm() { return this.target?.featureType === "form"; }
   get activatedNode(): IBaseNode | null {
-    console.log("this._allNodesMap:", this._allNodesMap);
     if (!this._allNodesMap || !this.activeNodeIds) return null;
     return this._allNodesMap[this.activeNodeIds[0]];
   }
 
   public init(target?: ITarget, setting?: ISetting) {
     if (target) {
-      this.target = target;
-      this._tmpTarget = cloneDeep(target);
-      this._allNodesMap = _flattenNodes(this._tmpTarget);
+      this.target = Vue.observable(cloneDeep(target));
+      this._targetBackup = target;
+      this._allNodesMap = _flattenNodes(this.target);
     }
 
     if (setting) {
       this._setting = setting;
     }
+
+    return Vue.observable(this);
+  }
+
+  public dragging(node: IBaseNode, type: string) {
+    this._draggingNode = node;
+    this._draggingType = type;
+  }
+
+  public cleanDragging() {
+    this._draggingNode = null;
+    this._draggingType = null;
   }
 
   public activeNode(ids: Array<string>) {
-    console.log("activeNode11:", ids);
     this.activeNodeIds = ids;
   }
 
@@ -70,33 +94,55 @@ export default class Engine extends EventEmitter<string, ITarget> implements IEn
   }
 
   public add(config: IBaseNode, index = -1) {
-    if (!this._tmpTarget) return;
+    if (!this.target) return;
+
+    const target = cloneDeep(this.target);
+    const newNode = cloneDeep(config);
+    newNode.id = generateId();
+
     if (index === -1) {
-      this._tmpTarget?.config?.children?.push(config);
+      target?.config?.children?.push(newNode);
     } else {
-      this._tmpTarget?.config?.children.splice(index, 0, config);
+      target?.config?.children.splice(index, 0, newNode);
     }
-    this._allNodesMap = _flattenNodes(this._tmpTarget);
-    this.emit(EVENT.ADD, this._tmpTarget);
+    this._allNodesMap = _flattenNodes(target);
+    this.emit(EVENT.ADD, target);
+  }
+
+  public addNode(config: IBaseNode, parentId: string | number = -1) {
+    if (!this.target) return;
+    if (parentId === -1) {
+      this.add(config, -1);
+    } else {
+      const newNode = cloneDeep(config);
+      newNode.id = generateId();
+      const newConfig = this.target?.config;
+      BFS(newConfig.children, parentId).addChild(newNode);
+    }
+    this._allNodesMap = _flattenNodes(this.target);
+    this.emit(EVENT.ADD, this.target);
   }
 
   public update(path: string, value: any) {
-    if (!this._tmpTarget) return
-    this.emit(EVENT.UPDATE, set(this._tmpTarget, path, value));
+    if (!this.target) return
+    this.emit(EVENT.UPDATE, set(this.target, path, value));
   }
 
   public updateNode(config: IBaseNode) {
-    if (!this._allNodesMap) return
-    this._allNodesMap[config.id] = config;
-    this.emit(EVENT.UPDATE_CONFIG, this._tmpTarget);
+    if (!this._allNodesMap) return;
+    this._allNodesMap[config.id].style = config.style;
+    this._allNodesMap[config.id].pos = config.pos;
+    this._allNodesMap[config.id].data = config.data;
+
+    this.emit(EVENT.UPDATE_CONFIG, this.target);
   }
 
   public save() {
-    this.emit(EVENT.ADD, this._tmpTarget);
+    this.emit(EVENT.ADD, this.target);
   }
 
   public share() {
-    this.emit(EVENT.SHARE, this._tmpTarget);
+    this.emit(EVENT.SHARE, this.target);
   }
 
   public static instance(target?: ITarget, setting: ISetting = DEFAULT_SETTING): Engine {
@@ -117,19 +163,19 @@ export default class Engine extends EventEmitter<string, ITarget> implements IEn
   }
 
   public deleteNode(id: string) {
-    if (!this._tmpTarget) return;
-    const config = this._tmpTarget.config;
+    if (!this.target) return;
+    const config = this.target.config;
     if (!config.children) return;
     config.children = BFS(config.children, id).delete() as any;
-    this.emit(EVENT.UPDATE, this._tmpTarget);
+    this.emit(EVENT.UPDATE, this.target);
   }
 
   public copyNode(id: string) {
-    if (!this._tmpTarget) return;
-    const config = this._tmpTarget.config;
+    if (!this.target) return;
+    const config = this.target.config;
     if (!config.children) return;
     config.children = BFS(config.children, id).copy() as any;
-    this.emit(EVENT.UPDATE, this._tmpTarget);
+    this.emit(EVENT.UPDATE, this.target);
   }
 
   public openTargetEditor(targetId: string) {
@@ -145,7 +191,7 @@ export default class Engine extends EventEmitter<string, ITarget> implements IEn
   }
 
   public reOrderNode(nodeId: string, parentId: string, type: string) {
-    const parentNode = this._tmpTarget?.config?.children?.filter((cur: IBaseNode) => cur.id === parentId)[0];
+    const parentNode = this.target?.config?.children?.filter((cur: IBaseNode) => cur.id === parentId)[0];
     if (!parentNode) return
     const nodes = parentNode.children
     let index = 0

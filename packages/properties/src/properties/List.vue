@@ -69,7 +69,7 @@ import FormEdit from "../components/FormEdit";
   components: { FormEdit, BaseProperties, ...Rows },
   mixins: [PropertiesMixin],
 })
-export default class ListResolu extends PropertiesClass {
+export default class ListProperties extends PropertiesClass {
   @Prop([Array]) rows;
   @Prop([String]) title;
   @Prop([String]) path;

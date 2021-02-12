@@ -68,7 +68,7 @@ export const BorderStyle = [
   components: { BaseProperties },
   mixins: [PropertiesMixin],
 })
-export default class BorderResolu extends PropertiesClass {
+export default class BorderProperties extends PropertiesClass {
   BorderStyle = BorderStyle;
 }
 </script>

@@ -29,20 +29,14 @@
 <script lang="ts">
 import { Component } from "vue-property-decorator";
 import BaseRow from "./BaseRow.vue";
-import RowMixin from "./RowMixin.ts";
+import RowMixin from "./RowMixin";
 import { BaseView } from "@tefact/core";
-
-// const system = namespace("system");
-// const user = namespace("user");
 
 @Component({
   components: { BaseRow },
   mixins: [RowMixin],
 })
 export default class ImageUploadRow extends BaseView {
-  // @system.Getter uploadUrl;
-  // @user.Getter authHeader;
-
   handleUpdate(e: Array<string>) {
     (this as any).handleChange("https://" + e[0]);
   }

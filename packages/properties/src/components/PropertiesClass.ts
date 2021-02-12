@@ -1,28 +1,9 @@
-import { Component, Prop } from 'vue-property-decorator'
+import { Component } from 'vue-property-decorator'
 import { BaseView, IBaseNode } from '@tefact/core'
 
 @Component
 export default class PropertiesClass extends BaseView {
-  @Prop(Boolean) public isDirectModify?: boolean
+  tmpNode!:IBaseNode;
 
-  get style() {
-    if (this.tmpNode)
-      return this.tmpNode.style
-    return null
-  }
-
-  public tmpNode!: IBaseNode
-
-  public handleStyleChange(key: string, value: string | number) {
-    if (!this.style || !this.tmpNode) return
-    (this.tmpNode.style as any)[key] = value
-    this.handleSave()
-  }
-
-  public handleSave() {
-    if (!this.tmpNode) return;
-    if (this.isDirectModify)
-      return this.$emit("modify", this.tmpNode)
-    this.engine.updateNode(this.tmpNode)
-  }
+  handleSave() {}
 }

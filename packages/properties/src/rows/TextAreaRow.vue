@@ -9,7 +9,7 @@
   </BaseRow>
 </template>
 <script>
-import { Component } from "vue-property-decorator";
+import { Component, Vue } from "vue-property-decorator";
 import BaseRow from "./BaseRow.vue";
 import RowMixin from "./RowMixin.ts";
 
@@ -17,5 +17,5 @@ import RowMixin from "./RowMixin.ts";
   components: { BaseRow },
   mixins: [RowMixin],
 })
-export default class TextAreaRow {}
+export default class TextAreaRow extends Vue {}
 </script>

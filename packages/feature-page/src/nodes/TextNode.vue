@@ -77,12 +77,17 @@ export default class TextNode extends NodeClass<IBaseNode> {
 
   handleEditing() {
     this.editing = true;
+    if (this.editing) {
+      this.$nextTick(() => {
+        (this.$refs.editor as HTMLDivElement).focus();
+      });
+    }
   }
 
   handleUpdate() {
     const newContent = (this.$refs.editor as any).innerHTML;
     const node = cloneDeep(this.node);
-    node.data.text = newContent;
+    node.data.target = newContent;
     this.engine.updateNode(node);
     this.editing = false;
   }
