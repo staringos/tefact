@@ -47,7 +47,7 @@ export default class RowMixin extends BaseView {
   public handleSave() {
     if (this.isDirectModify)
       return this.$emit("modify", this.tmpNode)
-    this.engine.updateNode({ sectionId: null, node: this.tmpNode, nodeType: this.nodeType })
+    this.engine.updateNode(this.tmpNode)
   }
 
   public init() {

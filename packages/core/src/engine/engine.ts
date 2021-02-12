@@ -112,15 +112,15 @@ export default class Engine extends EventEmitter<string, ITarget> implements IEn
   public addNode(config: IBaseNode, parentId: string | number = -1) {
     if (!this.target) return;
     if (parentId === -1) {
-      this.add(config, -1);
-    } else {
-      const newNode = cloneDeep(config);
-      newNode.id = generateId();
-      const newConfig = this.target?.config;
-      BFS(newConfig.children, parentId).addChild(newNode);
+      return this.add(config, -1);
     }
+    const newNode = cloneDeep(config);
+    newNode.id = generateId();
+    const newConfig = this.target?.config;
+    BFS(newConfig.children, parentId).addChild(newNode);
     this._allNodesMap = _flattenNodes(this.target);
     this.emit(EVENT.ADD, this.target);
+    this.activeNode([newNode.id])
   }
 
   public update(path: string, value: any) {
@@ -238,8 +238,3 @@ export default class Engine extends EventEmitter<string, ITarget> implements IEn
     }
   }
 }
-
-// type TreeNode = {
-//   id: string | number;
-//   children?: Array<any>
-// }

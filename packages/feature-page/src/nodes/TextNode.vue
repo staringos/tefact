@@ -96,7 +96,7 @@ export default class TextNode extends NodeClass<IBaseNode> {
     ...getBaseNode(),
     type: "TextNode",
     data: {
-      text: "请输入文字",
+      target: "请输入文字",
     } as FreeNodeData,
   } as IBaseNode;
 

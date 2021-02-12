@@ -21,6 +21,7 @@ import {
   Table,
   TableColumn,
   Menu,
+  Input,
   MenuItem,
   FormItem
 } from "element-ui";
@@ -47,4 +48,5 @@ Vue.use(Upload);
 Vue.use(InputNumber);
 Vue.use(Menu);
 Vue.use(MenuItem);
+Vue.use(Input);
 Vue.use(Switch);

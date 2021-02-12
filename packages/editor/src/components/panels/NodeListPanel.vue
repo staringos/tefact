@@ -12,6 +12,7 @@
       :sort="false"
       @clone="handleClone"
       @change="handleChange"
+      @end="handleDragEnd"
       :list="list"
     >
       <div
@@ -62,10 +63,6 @@ const EditorNodesDetails = {
   }
 })
 export default class NodeList extends BaseView {
-  // @editor.Action addNode;
-  // @editor.Action addFormNode;
-
-  // subNodeType: string | null = null;
   curDraggingNode: any | null = null;
 
   get editorDetails(): NodeListConfig {
@@ -92,8 +89,7 @@ export default class NodeList extends BaseView {
     if (!e) return;
   }
 
-  handleDragEnd(e: any) {
-    console.log("e:", e);
+  handleDragEnd() {
     this.engine.cleanDragging();
     // if (!this.curDraggingNode) return;
     // this.handleAddNode(this.curDraggingNode.nodeData, e.newIndex);
