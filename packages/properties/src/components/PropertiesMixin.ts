@@ -41,14 +41,12 @@ export default class PropertiesMixin extends BaseView {
   }
 
   public handleSave() {
-    console.log("handleSave:", this.tmpNode)
     if (!this.tmpNode) return;
     if (this.isDirectModify)
       return this.$emit("modify", this.tmpNode)
 
     this.$nextTick(() => {
-      console.log("(((((((((( before:", this.tmpNode)
-      this.engine.updateNode(this.tmpNode)
+      this.tmpNode && this.engine.updateNode(this.tmpNode)
     })
   }
 
