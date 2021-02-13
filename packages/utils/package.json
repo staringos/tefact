@@ -3,6 +3,14 @@
   "version": "0.0.1",
   "description": "> TODO: description",
   "author": "GeorgeZou <zousongqi@foxmail.com>",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Tefact/tefact-engine.git",
+    "directory": "packages/utils"
+  },
+  "publishConfig": {
+    "registry": "https://npm.pkg.github.com/"
+  },
   "homepage": "",
   "license": "ISC",
   "main": "./src/index.ts",
