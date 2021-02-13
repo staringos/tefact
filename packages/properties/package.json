@@ -6,6 +6,14 @@
   "homepage": "",
   "license": "ISC",
   "main": "./src/index.ts",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Tefact/tefact-engine.git",
+    "directory": "packages/properties"
+  },
+  "publishConfig": {
+    "registry": "https://npm.pkg.github.com/"
+  },
   "directories": {
     "lib": "src",
     "test": "__tests__"

@@ -2,6 +2,14 @@
   "name": "@tefact/editor",
   "version": "0.0.1",
   "private": true,
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Tefact/tefact-engine.git",
+    "directory": "packages/editor"
+  },
+  "publishConfig": {
+    "registry": "https://npm.pkg.github.com/"
+  },
   "scripts": {
     "build": "cross-env BD=lib vue-cli-service build --mode production --target lib --name @tefact/editor ./src/index.ts",
     "serve": "vue-cli-service serve",

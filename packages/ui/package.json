@@ -6,6 +6,14 @@
   "homepage": "https://github.com/Tefact/tefact-engine#readme",
   "license": "ISC",
   "main": "src/index.ts",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Tefact/tefact-engine.git",
+    "directory": "packages/ui"
+  },
+  "publishConfig": {
+    "registry": "https://npm.pkg.github.com/"
+  },
   "directories": {
     "lib": "lib",
     "test": "__tests__"
@@ -13,10 +21,6 @@
   "files": [
     "lib"
   ],
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/Tefact/tefact-engine.git"
-  },
   "scripts": {
     "test": "echo \"Error: run tests from root\" && exit 1"
   },
