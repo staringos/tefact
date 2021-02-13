@@ -1,10 +1,9 @@
 {
   "name": "@tefact/editor",
   "version": "0.0.1",
-  "private": true,
   "repository": {
     "type": "git",
-    "url": "https://github.com/Tefact/tefact-engine.git",
+    "url": "https://github.com/tefact/tefact-engine.git",
     "directory": "packages/editor"
   },
   "publishConfig": {

@@ -8,7 +8,7 @@
   "main": "src/index.ts",
   "repository": {
     "type": "git",
-    "url": "https://github.com/Tefact/tefact-engine.git",
+    "url": "https://github.com/tefact/tefact-engine.git",
     "directory": "packages/ui"
   },
   "publishConfig": {
@@ -25,7 +25,7 @@
     "test": "echo \"Error: run tests from root\" && exit 1"
   },
   "bugs": {
-    "url": "https://github.com/Tefact/tefact-engine/issues"
+    "url": "https://github.com/tefact/tefact-engine/issues"
   },
   "dependencies": {
     "@tefact/core": "^0.0.1",

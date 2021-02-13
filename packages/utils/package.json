@@ -5,7 +5,7 @@
   "author": "GeorgeZou <zousongqi@foxmail.com>",
   "repository": {
     "type": "git",
-    "url": "https://github.com/Tefact/tefact-engine.git",
+    "url": "https://github.com/tefact/tefact-engine.git",
     "directory": "packages/utils"
   },
   "publishConfig": {
