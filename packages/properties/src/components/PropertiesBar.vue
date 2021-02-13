@@ -1,5 +1,5 @@
 <template>
-  <div class="editor-side-bar" @click.stop @keydown.stop>
+  <div class="properties-bar" @click.stop @keydown.stop>
     <div class="base-resolu" v-if="config && config.hasTab">
       <el-tabs type="border-card" v-model="activeTab">
         <el-tab-pane
@@ -80,11 +80,11 @@ export default class PropertiesContainer extends BaseView {
 <style lang="scss" scoped>
 @import "~@tefact/core/src/variables.scss";
 
-.editor-side-bar {
+.properties-bar {
   flex: 1;
   background: white;
   display: flex;
-  max-width: 325px;
+  max-width: 290px;
 
   .base-resolu {
     display: flex;

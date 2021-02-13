@@ -6,7 +6,7 @@
       @blur="() => handleChange(tmpText)"
       placeholder=""
     ></el-input-number>
-    <span>{{ unit }}</span>
+    <span class="text"> {{ unit }}</span>
   </BaseRow>
 </template>
 <script>
@@ -23,3 +23,8 @@ export default class NumberRow extends BaseView {
   @Prop(String) unit;
 }
 </script>
+<style lang="scss" scoped>
+.text {
+  margin-left: 5px;
+}
+</style>

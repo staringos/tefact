@@ -3,30 +3,32 @@
     <div class="resolu-container" v-if="tmpNode">
       <div class="resolu-row" v-if="!onlySize">
         <div class="resolu-label">位置</div>
-        <input
-          type="number"
-          class="resolu-input"
-          v-model.number="tmpNode.pos.x"
-          @blur="handleSave"
-        />
-        <input
-          type="number"
-          class="resolu-input"
-          v-model.number="tmpNode.pos.y"
-          @blur="handleSave"
-        />
+        <div class="content">
+          <input
+            type="number"
+            class="properties-input half"
+            v-model.number="tmpNode.pos.x"
+            @blur="handleSave"
+          />
+          <input
+            type="number"
+            class="properties-input half"
+            v-model.number="tmpNode.pos.y"
+            @blur="handleSave"
+          />
+        </div>
       </div>
       <div class="resolu-row">
         <div class="resolu-label">大小</div>
         <input
           type="number"
-          class="resolu-input"
+          class="properties-input half"
           v-model.number="tmpNode.pos.w"
           @blur="handleSave"
         />
         <input
           type="number"
-          class="resolu-input"
+          class="properties-input half"
           v-model.number="tmpNode.pos.h"
           @blur="handleSave"
         />

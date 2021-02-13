@@ -9,7 +9,7 @@
       put: true,
     }"
     :style="style"
-    @click="handleSectionClick"
+    @click.native="handleSectionClick"
     @end="handleDragEnd"
     @add="handleAdd"
   >
@@ -88,7 +88,7 @@ import AddButton from "../components/AddButton.vue";
 import nodes from "./";
 import { SectionButtons } from "@tefact/ui";
 import NodeContextMenu from "../components/NodeContextMenu.vue";
-import { BaseView, DRAGGING_TYPE, IBaseNode } from "@tefact/core";
+import { BaseView, IBaseNode } from "@tefact/core";
 import { hasMetaKeyPass, transformStyle } from "@tefact/utils";
 import draggable from "vuedraggable";
 import cloneDeep from "lodash/cloneDeep";
@@ -220,7 +220,7 @@ export default class SectionNode extends BaseView {
   handleSectionClick(e: Event) {
     if (this.active) return;
     e.stopPropagation();
-    this.$emit("onActiveChange");
+    this.$emit("onActiveChange", this.section.id);
   }
 
   static NODE = {

@@ -1,4 +1,5 @@
 import cloneDeep from 'lodash/cloneDeep'
+import isNumber from 'lodash/isNumber'
 import { IBaseNode, ITargetConfig } from "@tefact/core"
 
 const ParamLengthReg = /width|height|size|radius/
@@ -16,8 +17,8 @@ const transformStyle = (config: IBaseNode | ITargetConfig) => {
 
   if ((config as IBaseNode).pos) {
     const pos = (config as IBaseNode).pos;
-    if (pos.h) res.height = `${pos.h}px`
-    if (pos.w) res.width = `${pos.w}px`
+    if (pos.h) res.height = isNumber(pos.h) ? `${pos.h}px` : pos.h;
+    if (pos.w) res.width = isNumber(pos.w) ? `${pos.w}px` : pos.w;
   }
 
   return res

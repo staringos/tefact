@@ -69,13 +69,12 @@
 }
 </style>
 <script lang="ts">
-import { Vue, Component, Prop, Watch } from "vue-property-decorator";
+import { Component, Prop, Watch } from "vue-property-decorator";
 import VueDraggableResizable from "vue-draggable-resizable-gorkys";
 import cloneDeep from "lodash/cloneDeep";
+import isNumber from "lodash/isNumber";
 import { transformStyle } from "@tefact/utils";
-import { BaseView, IBaseNode } from "@tefact/core";
-
-// const editor = namespace("editor");
+import { BaseView, IBaseNode, INodePos } from "@tefact/core";
 
 @Component({
   components: { VueDraggableResizable },
@@ -88,8 +87,6 @@ export default class BaseNode extends BaseView {
   @Prop() active!: string;
   @Prop() index!: number;
   @Prop() sectionConfig!: any;
-
-  // @editor.Action modifyNode;
 
   tmpNode: IBaseNode | null = null;
 
@@ -164,49 +161,37 @@ export default class BaseNode extends BaseView {
     this.engine.updateNode(node);
   }
 
-  handleDragging(x: number, y: number, w: number, h: number) {
+  handleDragging(x: number, y: number) {
     if (!this.active) return;
     const { sectionConfig, node } = this;
+    const pos = node.pos as INodePos;
+    const sectionH = isNumber(sectionConfig.pos.h)
+      ? sectionConfig.pos.h
+      : this.currentTarget.config.style.height;
 
-    if (x >= -1 && x <= 1) {
+    if (x >= -1 && x <= 1) return this.$emit("showBorder", "left");
+
+    if (x >= -1 - pos.w && x <= 1 - pos.w)
       return this.$emit("showBorder", "left");
-    }
 
-    if (x >= -1 - node.pos.w && x <= 1 - node.pos.w) {
-      return this.$emit("showBorder", "left");
-    }
+    if (y >= -1 && y <= 1) return this.$emit("showBorder", "top");
 
-    if (y >= -1 && y <= 1) {
+    if (y >= -1 - pos.h && y <= 1 - pos.h)
       return this.$emit("showBorder", "top");
-    }
 
-    if (y >= -1 - node.pos.h && y <= 1 - node.pos.h) {
-      return this.$emit("showBorder", "top");
-    }
-
-    if (y >= sectionConfig.h - 1 && y <= sectionConfig.h + 1) {
+    if (y >= sectionH - 1 && y <= sectionH + 1)
       return this.$emit("showBorder", "bottom");
-    }
 
-    if (
-      y >= sectionConfig.h - node.pos.h - 1 &&
-      y <= sectionConfig.h - node.pos.h + 1
-    ) {
+    if (y >= sectionH - pos.h - 1 && y <= sectionH - pos.h + 1)
       return this.$emit("showBorder", "bottom");
-    }
 
     const parentWidth = (this.$el.parentNode as any).clientWidth;
 
-    if (x >= parentWidth - 1 && x <= parentWidth + 1) {
+    if (x >= parentWidth - 1 && x <= parentWidth + 1)
       return this.$emit("showBorder", "right");
-    }
 
-    if (
-      x >= parentWidth - node.pos.w - 1 &&
-      x <= parentWidth - node.pos.w + 1
-    ) {
+    if (x >= parentWidth - pos.w - 1 && x <= parentWidth - pos.w + 1)
       return this.$emit("showBorder", "right");
-    }
 
     return this.$emit("hideBorder");
   }

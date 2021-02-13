@@ -35,7 +35,7 @@
           :key="i"
           :type="engine.setting.device === device.value ? 'primary' : 'default'"
           size="small"
-          @click="handleSelectDevices(device)"
+          @click="handleSelectDevices(device.value)"
         >
           <i :class="`tefact-icon ${device.icon}`"></i>
         </el-button>
@@ -54,7 +54,7 @@
 import { Component, Prop } from "vue-property-decorator";
 import SharePageEditor from "@/components/common/SharePageEditor.vue";
 import Previewer from "@/components/common/Previewer.vue";
-import { BaseView, ITarget, ISetting, DeviceType } from "@tefact/core";
+import { BaseView, ITarget, DeviceType } from "@tefact/core";
 
 @Component({
   components: { Previewer, SharePageEditor }
@@ -88,10 +88,7 @@ export default class Toolbar extends BaseView {
   handleOpenModify() {}
 
   handleSelectDevices(device: DeviceType) {
-    this.engine.changeSetting({
-      ...this.engine.setting,
-      device
-    } as ISetting);
+    this.engine.changeSettingItem("device", device);
   }
 }
 </script>

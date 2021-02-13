@@ -45,8 +45,9 @@ export default class Engine extends EventEmitter<string, ITarget> implements IEn
 
   public activeNodeIds: Array<string> = [];
   public target!: ITarget;
+  public setting: ISetting = Vue.observable(DEFAULT_SETTING);
+
   private _targetBackup!: ITarget;
-  private _setting: ISetting = DEFAULT_SETTING;
   private _draggingNode: IBaseNode | null = null;
   private _draggingType: string | null = null;
   private _allNodesMap?: Record<string, IFlattenNode>;
@@ -54,7 +55,6 @@ export default class Engine extends EventEmitter<string, ITarget> implements IEn
 
   get draggingNode(): IBaseNode | null { return this._draggingNode; }
   get draggingType(): string | null { return this._draggingType; }
-  get setting(): ISetting { return this._setting; }
   get featureType(): string { return this.target?.featureType || "page"; }
   get isForm() { return this.target?.featureType === "form"; }
   get activatedNode(): IFlattenNode | null {
@@ -73,11 +73,8 @@ export default class Engine extends EventEmitter<string, ITarget> implements IEn
       this._refreshAllNodeMap();
     }
 
-    if (setting) {
-      this._setting = setting;
-    }
-
-    return Vue.observable(this);
+    if (setting) this.changeSetting(setting)
+    return this;
   }
 
   private _refreshAllNodeMap() {
@@ -170,8 +167,12 @@ export default class Engine extends EventEmitter<string, ITarget> implements IEn
     return Engine._engineInstance;
   }
 
+  public changeSettingItem(key: string, value: any) {
+    Vue.set(this.setting, key, value);
+  }
+
   public changeSetting(setting: ISetting) {
-    this._setting = setting;
+    this.setting = Vue.observable(setting);
   }
 
   public deleteNode(id: string) {
@@ -199,7 +200,26 @@ export default class Engine extends EventEmitter<string, ITarget> implements IEn
   }
 
   public resetNodeOrder(nodeId: string, index: number) {
-    // TODO reset node order
+    if (!this._allNodesMap) return;
+    const node = this._allNodesMap[nodeId];
+    const newChildren = [] as Array<IBaseNode>;
+    const children = this.target?.config?.children;
+
+    let before = false;
+    children.forEach((cur: IBaseNode, i: number) => {
+      if (cur.id === node.id) {
+        before = i < index;
+        return;
+      }
+      if (i === index) {
+        if (before) newChildren.push(cur);
+        newChildren.push(node);
+        if (!before) newChildren.push(cur);
+        return;
+      }
+      newChildren.push(cur);
+    });
+    Vue.set(this.target?.config, "children", newChildren);
   }
 
   public reOrderNode(nodeId: string, parentId: string, type: string) {

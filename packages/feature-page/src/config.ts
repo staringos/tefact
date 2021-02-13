@@ -9,7 +9,7 @@ export class PageProperties {
       type: "section",
       pos: {
         h: 500,
-        w: 500,
+        w: "100%",
         x: 0,
         y: 0,
       },

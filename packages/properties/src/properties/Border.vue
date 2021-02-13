@@ -26,7 +26,7 @@
         </el-select>
         <input
           type="number"
-          class="resolu-input border-width"
+          class="properties-input border-width"
           v-model.number="tmpNode.style['border-width']"
           @blur="handleSave"
         />px
@@ -35,7 +35,7 @@
         <div class="resolu-label">圆角</div>
         <input
           type="number"
-          class="resolu-input border-width"
+          class="properties-input border-width"
           v-model.number="tmpNode.style['border-radius']"
           @blur="handleSave"
         />px
@@ -48,7 +48,7 @@
 
 .border-width {
   width: 50px;
-  margin-left: 10px;
+  margin-left: 8px;
 }
 </style>
 <script lang="ts">

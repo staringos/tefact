@@ -5,7 +5,11 @@
       <div class="editor-main">
         <NodesBar :editorType="editorType" />
         <div class="editor-container">
-          <img v-if="isMobile" class="phone-bg" src="/images/GooglePhone.png" />
+          <img
+            v-if="isMobile"
+            class="phone-bg"
+            :src="require('../assets/images/GooglePhone.png')"
+          />
 
           <div v-if="!isMobile" class="page-pad">
             <Page

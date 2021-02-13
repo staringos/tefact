@@ -2,12 +2,14 @@
   "title": "这是一个新页面",
   "featureType": "page",
   "config": {
+    "viewMode": "fixed",
+    "style": {},
     "children": [
       {
         "id": "1",
         "type": "section",
         "style": {
-          "background-color": "#333"
+          "background-color": "#fff"
         },
         "data": {
           "target": ""
@@ -28,7 +30,7 @@
             "height": 100
           },
           "style": {
-            "color": "#fff"
+            "color": "#333"
           },
           "data": {
             "target": "这是一段文字呀"

@@ -38,8 +38,6 @@ import { Component, Prop } from "vue-property-decorator";
 import { BaseView, IBaseNode } from "@tefact/core";
 import { PageProperties } from "../../feature-page/src/config";
 
-// const editor = namespace("editor");
-
 @Component
 export default class SectionButtons extends BaseView {
   @Prop(Number) index!: number;
@@ -50,13 +48,9 @@ export default class SectionButtons extends BaseView {
   @Prop(Boolean) isMobile!: boolean;
   @Prop(Object) section!: IBaseNode;
 
-  // @editor.Action setSectionIndex;
-  // @editor.Action deleteSection;
-  // @editor.Action addPageSection;
-
   handleAdd() {
     if (this.pageType === "page")
-      this.engine.add(PageProperties.defaultPageSections());
+      this.engine.add(PageProperties.defaultPageSections(), this.index + 1);
   }
 
   handleDelete() {

@@ -33,6 +33,11 @@ export interface ITargetConfig {
 export interface IPos {
   x: number;
   y: number;
+  w: number | string;
+  h: number | string;
+}
+
+export type INodePos = IPos & {
   w: number;
   h: number;
 }

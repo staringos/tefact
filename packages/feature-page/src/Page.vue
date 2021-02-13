@@ -32,8 +32,6 @@ import cloneDeep from "lodash/cloneDeep";
 import { transformStyle } from "@tefact/utils";
 import { BaseView, ITarget } from "@tefact/core";
 
-// const editor = namespace("editor");
-
 @Component({
   components: {
     AddButton,
@@ -48,12 +46,6 @@ export default class Page extends BaseView {
   @Prop(Boolean) isMobile!: boolean;
 
   style = {};
-
-  // @editor.Action addPageSection;
-  // @editor.Action chooseSection;
-  // @editor.Action resetActive;
-  // @editor.Action removeActiveNodes;
-  // @editor.Getter currentSectionIdGetter;
 
   get direction() {
     return this.page.direction;
@@ -114,7 +106,7 @@ export default class Page extends BaseView {
   margin: 0 auto;
   box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.12), 0 0 6px 0 rgba(0, 0, 0, 0.04);
   transform-origin: center top;
-  padding-bottom: 20px;
+  margin-bottom: 20px;
 
   &.column-side {
     overflow-x: hidden;

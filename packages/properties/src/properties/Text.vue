@@ -10,7 +10,7 @@
         ></el-color-picker>
         <input
           type="number"
-          class="resolu-input border-width"
+          class="properties-input border-width"
           v-model.number="tmpNode.style['font-size']"
           @blur="handleSave"
         />px
