@@ -192,7 +192,6 @@ export default class BaseNode extends BaseView {
 
     if (x >= parentWidth - pos.w - 1 && x <= parentWidth - pos.w + 1)
       return this.$emit("showBorder", "right");
-
     return this.$emit("hideBorder");
   }
 }

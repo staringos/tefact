@@ -1,5 +1,6 @@
 import { IPropertiesComponents } from "@tefact/properties"
 import { IPropertiesRow, IPropertiesTab } from "@tefact/properties"
+import { IFormNode } from "./types"
 
 export class FormProperties {
   static defaultStyledProperties() {
@@ -25,7 +26,7 @@ export class FormProperties {
     }
   }
 
-  static defaultProperties(type: string, components?: Array<IPropertiesComponents>, rowComponents?: Array<IPropertiesRow>) {
+  static defaultProperties(type: string, components?: Array<IPropertiesComponents> | null, rowComponents?: Array<IPropertiesRow>) {
     const res = {
       title: '基本信息',
       components: [
@@ -175,5 +176,21 @@ export class FormProperties {
         ],
       },
     ],
+  }
+
+  static getBaseFormSection(type: string, config?: any, h?: number): IFormNode {
+    return {
+      id: "",
+      style: {},
+      pos: {
+        h
+      },
+      label: '字段名',
+      key: 'fieldName',
+      default: '',
+      itemType: 'field',
+      type: type,
+      ...config
+    }
   }
 }

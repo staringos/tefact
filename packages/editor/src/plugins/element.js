@@ -26,6 +26,8 @@ import {
   Card,
   Carousel,
   CarouselItem,
+  Checkbox,
+  CheckboxGroup,
   FormItem
 } from "element-ui";
 
@@ -56,3 +58,5 @@ Vue.use(Card);
 Vue.use(Carousel);
 Vue.use(CarouselItem);
 Vue.use(Switch);
+Vue.use(Checkbox);
+Vue.use(CheckboxGroup);

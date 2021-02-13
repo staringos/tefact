@@ -19,8 +19,12 @@
   "dependencies": {
     "@tefact/core": "^0.0.1",
     "@tefact/properties": "^0.0.1",
+    "@tefact/ui": "^0.0.1",
+    "@tefact/utils": "^0.0.1",
+    "lodash": "^4.17.20",
     "vue": "^2.6.12",
-    "vue-property-decorator": "^9.1.2"
+    "vue-property-decorator": "^9.1.2",
+    "vuedraggable": "^2.24.3"
   },
   "devDependencies": {
     "typescript": "^4.1.3"

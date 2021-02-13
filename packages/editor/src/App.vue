@@ -1,6 +1,6 @@
 <template>
   <div id="app">
-    <Editor v-model="target" />
+    <Editor v-if="target" v-model="target" />
   </div>
 </template>
 <style lang="scss" scoped>
@@ -14,7 +14,8 @@
 <script lang="ts">
 import { Component, Vue } from "vue-property-decorator";
 import Editor from "./components/index.vue";
-import TestJSON from "./mock/test.json";
+import Mock from "./mock";
+import getQueryVariable from "../../utils/src/getQueryParameters";
 
 @Component({
   components: {
@@ -22,6 +23,12 @@ import TestJSON from "./mock/test.json";
   }
 })
 export default class App extends Vue {
-  target = TestJSON;
+  target = null;
+
+  beforeMount() {
+    const target = getQueryVariable("target");
+    const key = target ? target : "page";
+    this.target = Mock[key];
+  }
 }
 </script>

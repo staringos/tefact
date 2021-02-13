@@ -106,6 +106,7 @@ export default class NodeList extends BaseView {
       else parentId = this.engine.activatedNodeParentId;
     }
 
+    if (this.featureType === "form") return this.engine.add(nodeData, parentId);
     this.engine.addNode(nodeData, parentId);
   }
 
