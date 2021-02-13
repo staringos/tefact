@@ -6,11 +6,12 @@
     "url": "https://github.com/tefact/tefact-engine.git",
     "directory": "packages/editor"
   },
+  "main": "lib/index.umd.min.js",
   "publishConfig": {
     "registry": "https://npm.pkg.github.com/"
   },
   "scripts": {
-    "build": "cross-env BD=lib vue-cli-service build --mode production --target lib --name @tefact/editor ./src/index.ts",
+    "build": "cross-env BD=lib vue-cli-service build --mode production --target lib --name index ./src/index.ts",
     "serve": "vue-cli-service serve",
     "build-web": "vue-cli-service build",
     "test:unit": "vue-cli-service test:unit",
