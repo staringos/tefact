@@ -23,6 +23,7 @@ import {
   Menu,
   Input,
   MenuItem,
+  Card,
   FormItem
 } from "element-ui";
 
@@ -49,4 +50,5 @@ Vue.use(InputNumber);
 Vue.use(Menu);
 Vue.use(MenuItem);
 Vue.use(Input);
+Vue.use(Card);
 Vue.use(Switch);

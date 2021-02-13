@@ -10,17 +10,22 @@ import { generateId } from "@tefact/utils"
 
 function _flattenNodes(target: ITarget) {
   const map = {} as Record<string, IBaseNode>;
-  function popAllChildren(cur:Array<IBaseNode>) {
+  function popAllChildren(cur:Array<IBaseNode>, parentId = -1) {
     cur.forEach(cur => {
+      cur.parentId = parentId
       map[cur.id] = cur;
       if (cur.children && cur.children.length > 0) {
-        popAllChildren(cur.children);
+        popAllChildren(cur.children, cur.id);
       }
     })
   }
 
   popAllChildren(target.config.children)
   return map;
+}
+
+interface IFlattenNode extends IBaseNode {
+  parentId?: string
 }
 
 /**
@@ -44,7 +49,7 @@ export default class Engine extends EventEmitter<string, ITarget> implements IEn
   private _setting: ISetting = DEFAULT_SETTING;
   private _draggingNode: IBaseNode | null = null;
   private _draggingType: string | null = null;
-  private _allNodesMap?: Record<string, IBaseNode>;
+  private _allNodesMap?: Record<string, IFlattenNode>;
   private static _engineInstance: null | Engine = null
 
   get draggingNode(): IBaseNode | null { return this._draggingNode; }
@@ -56,12 +61,16 @@ export default class Engine extends EventEmitter<string, ITarget> implements IEn
     if (!this._allNodesMap || !this.activeNodeIds) return null;
     return this._allNodesMap[this.activeNodeIds[0]];
   }
+  get activatedNodeParentId(): string | number {
+    if (!this.activatedNode) return -1;
+    return this.activatedNode.parentId;
+  }
 
   public init(target?: ITarget, setting?: ISetting) {
     if (target) {
       this.target = Vue.observable(cloneDeep(target));
       this._targetBackup = target;
-      this._allNodesMap = _flattenNodes(this.target);
+      this._refreshAllNodeMap();
     }
 
     if (setting) {
@@ -69,6 +78,10 @@ export default class Engine extends EventEmitter<string, ITarget> implements IEn
     }
 
     return Vue.observable(this);
+  }
+
+  private _refreshAllNodeMap() {
+    this._allNodesMap = _flattenNodes(this.target);
   }
 
   public dragging(node: IBaseNode, type: string) {
@@ -96,7 +109,7 @@ export default class Engine extends EventEmitter<string, ITarget> implements IEn
   public add(config: IBaseNode, index = -1) {
     if (!this.target) return;
 
-    const target = cloneDeep(this.target);
+    const target = this.target;
     const newNode = cloneDeep(config);
     newNode.id = generateId();
 
@@ -105,20 +118,19 @@ export default class Engine extends EventEmitter<string, ITarget> implements IEn
     } else {
       target?.config?.children.splice(index, 0, newNode);
     }
-    this._allNodesMap = _flattenNodes(target);
+    this._refreshAllNodeMap()
     this.emit(EVENT.ADD, target);
   }
 
   public addNode(config: IBaseNode, parentId: string | number = -1) {
     if (!this.target) return;
-    if (parentId === -1) {
-      return this.add(config, -1);
-    }
     const newNode = cloneDeep(config);
     newNode.id = generateId();
     const newConfig = this.target?.config;
+
+    if (parentId === -1) parentId = newConfig.children[0].id
     BFS(newConfig.children, parentId).addChild(newNode);
-    this._allNodesMap = _flattenNodes(this.target);
+    this._refreshAllNodeMap();
     this.emit(EVENT.ADD, this.target);
     this.activeNode([newNode.id])
   }

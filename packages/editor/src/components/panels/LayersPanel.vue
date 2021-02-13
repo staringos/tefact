@@ -61,16 +61,7 @@ type LayerMenuItem = {
 export default class LayersPanel extends BaseView {
   data = [] as Array<LayerMenuItem>;
 
-  // @editor.Getter currentPage
-  // @editor.Getter currentNode
-  // @editor.Getter currentSectionIdGetter
-  // @editor.Action chooseSection
-  // @editor.Action activeNode
-  // @editor.Action chooseNode
-  // @editor.Action deleteNode
-  // @editor.Action deleteSection
-
-  @Watch("currentPage", { immediate: true, deep: true })
+  @Watch("engine.target", { immediate: true, deep: true })
   handlePageChange() {
     const newData = [] as Array<LayerMenuItem>;
     const activeId = this.activatedNode?.id;

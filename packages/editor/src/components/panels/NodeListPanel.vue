@@ -96,11 +96,15 @@ export default class NodeList extends BaseView {
     // this.curDraggingNode = null;
   }
 
-  handleAddNode(nodeData: IBaseNode, index = -1) {
-    // if (this.editorType === "form") {
-    //   return this.addFormNode({ node: cloneDeep(nodeData), index });
-    // }
-    this.engine.addNode(cloneDeep(nodeData), index);
+  handleAddNode(nodeData: IBaseNode) {
+    let parentId = undefined;
+
+    if (this.activeNodeId) {
+      if (this.activeNodeType === "section") parentId = this.activeNodeId;
+      else parentId = this.engine.activatedNodeParentId;
+    }
+
+    this.engine.addNode(cloneDeep(nodeData), parentId);
   }
 
   handleGoBack() {}
