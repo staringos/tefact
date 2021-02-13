@@ -57,7 +57,7 @@ import Previewer from "@/components/common/Previewer.vue";
 import { BaseView, ITarget, ISetting, DeviceType } from "@tefact/core";
 
 @Component({
-  components: { Previewer, SharePageEditor },
+  components: { Previewer, SharePageEditor }
 })
 export default class Toolbar extends BaseView {
   @Prop() target?: ITarget;
@@ -68,7 +68,7 @@ export default class Toolbar extends BaseView {
 
   deviceList = [
     { icon: "tf-icon-pc", name: "PC", value: "pc" },
-    { icon: "tf-icon-mobile-phone", name: "Mobile", value: "mobile" },
+    { icon: "tf-icon-mobile-phone", name: "Mobile", value: "mobile" }
   ];
 
   get featureType() {
@@ -90,7 +90,7 @@ export default class Toolbar extends BaseView {
   handleSelectDevices(device: DeviceType) {
     this.engine.changeSetting({
       ...this.engine.setting,
-      device,
+      device
     } as ISetting);
   }
 }

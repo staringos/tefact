@@ -43,8 +43,8 @@ export default class BrowserNode extends NodeClass<IBaseNode> {
   editor: any = null;
 
   static DEFAULT = {
+    ...getBaseNode(),
     type: "BrowserNode",
-    config: getBaseNode(),
     data: {
       src: "https://tefact.com",
     },

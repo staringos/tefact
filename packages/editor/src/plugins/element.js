@@ -24,6 +24,8 @@ import {
   Input,
   MenuItem,
   Card,
+  Carousel,
+  CarouselItem,
   FormItem
 } from "element-ui";
 
@@ -51,4 +53,6 @@ Vue.use(Menu);
 Vue.use(MenuItem);
 Vue.use(Input);
 Vue.use(Card);
+Vue.use(Carousel);
+Vue.use(CarouselItem);
 Vue.use(Switch);

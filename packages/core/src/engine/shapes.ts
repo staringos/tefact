@@ -6,7 +6,7 @@ function getDefaultShapeConfig(title: string, icon: string, shapeType: string, w
     title,
     icon: icon,
     type: 'ShapeNode',
-    nodeData: getBaseNode(width || 50, 50, { type: "ShapeNode", shapeType, style: { ...BaseNodeStyle, 'background-color': '#3181DE' }}),
+    nodeData: getBaseNode(width || 50, 50, { type: "ShapeNode", data: { target: shapeType }, style: { ...BaseNodeStyle, 'background-color': '#3181DE' }}),
   };
 }
 

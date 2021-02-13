@@ -8,7 +8,7 @@
     :isShape="true"
     class="text-node"
   >
-    <component :node="node" :is="node.data.shapeType"></component>
+    <component :node="node" :is="node.data.target"></component>
   </BaseNode>
 </template>
 <style lang="scss" scoped>

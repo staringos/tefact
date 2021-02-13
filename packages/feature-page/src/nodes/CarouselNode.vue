@@ -68,27 +68,27 @@ export default class CarouselNode extends NodeClass<IBaseNode> {
   editor: any = null;
 
   static DEFAULT = {
+    ...getBaseNode(),
     type: "CarouselNode",
-    config: getBaseNode(),
     data: {
       list: [
         {
-          image: "/images/image.png",
+          image: "https://saas.tefact.com/images/image.png",
           title: "Default Image",
           desc: "Default Image",
-          link: "http://saas.tefact.com",
+          link: "https://saas.tefact.com",
         },
         {
-          image: "/images/image.png",
+          image: "http://saas.tefact.com/images/image.png",
           title: "Default Image",
           desc: "Default Image",
-          link: "http://saas.tefact.com",
+          link: "https://saas.tefact.com",
         },
         {
-          image: "/images/image.png",
+          image: "http://saas.tefact.com/images/image.png",
           title: "Default Image",
           desc: "Default Image",
-          link: "http://saas.tefact.com",
+          link: "https://saas.tefact.com",
         },
       ],
     },

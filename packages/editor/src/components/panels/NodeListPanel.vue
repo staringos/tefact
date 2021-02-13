@@ -2,7 +2,7 @@
   <BasePanel
     class="editor-node-list-wrapper"
     :title="editorDetails.title || '元素'"
-    :hasBack="activeNodeType === 'shape'"
+    :hasBack="editorDetails.hasGoBack"
     @back="handleGoBack"
     @click.stop
   >
@@ -10,17 +10,17 @@
       class="editor-node-list"
       :group="{ name: 'form-item', pull: 'clone', put: false }"
       :sort="false"
+      :list="list"
       @clone="handleClone"
       @change="handleChange"
       @end="handleDragEnd"
-      :list="list"
     >
       <div
         class="node-item"
         :node="node"
         v-for="(node, i) in editorDetails.list"
         :key="i"
-        @click="handleAddNode(node.nodeData)"
+        @click="handleSelect(node.nodeData)"
       >
         <i :class="`tefact-icon ${node.icon}`"></i>
         <span>{{ node.title }}</span>
@@ -30,7 +30,6 @@
 </template>
 <script lang="ts">
 import { Component } from "vue-property-decorator";
-import cloneDeep from "lodash/cloneDeep";
 import { FORM_NODE_LIST, PAGE_NODE_LIST } from "@/components/features";
 import { Shape, BaseView, DRAGGING_TYPE } from "@tefact/core";
 import draggable from "vuedraggable";
@@ -40,18 +39,22 @@ import { IBaseNode, NodeListConfig } from "@tefact/core";
 const EditorNodesDetails = {
   shape: {
     title: "图形",
+    hasGoBack: true,
     list: Shape.SHAPE_NODE_LIST
   },
   form: {
     title: "表单",
+    hasGoBack: false,
     list: FORM_NODE_LIST
   },
   page: {
     title: null,
+    hasGoBack: false,
     list: PAGE_NODE_LIST
   },
   default: {
     title: null,
+    hasGoBack: false,
     list: PAGE_NODE_LIST
   }
 } as Record<string, NodeListConfig>;
@@ -64,13 +67,14 @@ const EditorNodesDetails = {
 })
 export default class NodeList extends BaseView {
   curDraggingNode: any | null = null;
+  subNodeType: string | null = null;
 
   get editorDetails(): NodeListConfig {
-    if (this.activeNodeType && EditorNodesDetails[this.activeNodeType])
-      return EditorNodesDetails[this.activeNodeType];
-    return this.featureType
-      ? EditorNodesDetails[super.featureType]
-      : EditorNodesDetails["default"];
+    if (this.subNodeType) return EditorNodesDetails[this.subNodeType];
+    return (
+      EditorNodesDetails[this.currentTarget.featureType] ||
+      EditorNodesDetails.default
+    );
   }
 
   get list() {
@@ -85,18 +89,16 @@ export default class NodeList extends BaseView {
     this.engine.dragging(this.list[e.oldIndex].nodeData, DRAGGING_TYPE.ADD);
   }
 
-  handleDragStart(e: any) {
-    if (!e) return;
-  }
-
   handleDragEnd() {
     this.engine.cleanDragging();
-    // if (!this.curDraggingNode) return;
-    // this.handleAddNode(this.curDraggingNode.nodeData, e.newIndex);
-    // this.curDraggingNode = null;
   }
 
-  handleAddNode(nodeData: IBaseNode) {
+  handleSelect(nodeData: IBaseNode) {
+    if (nodeData.type === "ShapeNode" && this.subNodeType !== "shape") {
+      this.subNodeType = "shape";
+      return;
+    }
+
     let parentId = undefined;
 
     if (this.activeNodeId) {
@@ -104,19 +106,16 @@ export default class NodeList extends BaseView {
       else parentId = this.engine.activatedNodeParentId;
     }
 
-    this.engine.addNode(cloneDeep(nodeData), parentId);
+    this.engine.addNode(nodeData, parentId);
   }
 
-  handleGoBack() {}
+  handleGoBack() {
+    this.subNodeType = null;
+  }
 }
 </script>
 <style lang="scss">
 .editor-node-list-wrapper {
-  //overflow: auto;
-  //width: 160px;
-  //background: #fff;
-  //border-right: 1px solid $borderSecondColor;
-
   .header {
     width: 100%;
     height: 38px;

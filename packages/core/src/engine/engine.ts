@@ -8,10 +8,14 @@ import { BFS } from "@tefact/utils"
 import { Vue } from "vue-property-decorator"
 import { generateId } from "@tefact/utils"
 
+type IFlattenNode = {
+  parentId?: string | number
+} & IBaseNode;
+
 function _flattenNodes(target: ITarget) {
-  const map = {} as Record<string, IBaseNode>;
-  function popAllChildren(cur:Array<IBaseNode>, parentId = -1) {
-    cur.forEach(cur => {
+  const map = {} as Record<string, IFlattenNode>;
+  function popAllChildren(parent:Array<IFlattenNode>, parentId: number | string = -1) {
+    parent.forEach((cur) => {
       cur.parentId = parentId
       map[cur.id] = cur;
       if (cur.children && cur.children.length > 0) {
@@ -20,12 +24,8 @@ function _flattenNodes(target: ITarget) {
     })
   }
 
-  popAllChildren(target.config.children)
+  popAllChildren(target.config.children as Array<IFlattenNode>)
   return map;
-}
-
-interface IFlattenNode extends IBaseNode {
-  parentId?: string
 }
 
 /**
@@ -57,11 +57,11 @@ export default class Engine extends EventEmitter<string, ITarget> implements IEn
   get setting(): ISetting { return this._setting; }
   get featureType(): string { return this.target?.featureType || "page"; }
   get isForm() { return this.target?.featureType === "form"; }
-  get activatedNode(): IBaseNode | null {
+  get activatedNode(): IFlattenNode | null {
     if (!this._allNodesMap || !this.activeNodeIds) return null;
     return this._allNodesMap[this.activeNodeIds[0]];
   }
-  get activatedNodeParentId(): string | number {
+  get activatedNodeParentId(): string | number | undefined {
     if (!this.activatedNode) return -1;
     return this.activatedNode.parentId;
   }

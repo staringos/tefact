@@ -65,7 +65,7 @@ export default class PropertiesContainer extends BaseView {
     return this.NodeResoluConfig[this.nodeType];
   }
 
-  @Watch("currentNode")
+  @Watch("activeNodeId")
   handleCurrentNodeChange() {
     this.activeTab = "0";
   }
