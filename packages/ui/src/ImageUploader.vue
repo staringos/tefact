@@ -42,14 +42,9 @@
 import { Component, Prop } from "vue-property-decorator";
 import { BaseView } from "@tefact/core";
 
-// const system = namespace("system");
-// const user = namespace("user");
-
 @Component
 export default class ImageUploader extends BaseView {
   @Prop() value!: string;
-  // @system.Getter uploadUrl;
-  // @user.Getter authHeader;
 
   handleUpdate(e: Array<string>): void {
     this.$emit("input", `https://${e[0]}`);
