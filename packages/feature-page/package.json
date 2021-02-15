@@ -1,6 +1,6 @@
 {
   "name": "@tefact/feature-page",
-  "version": "0.0.3-alpha.1",
+  "version": "0.0.3-alpha.2",
   "description": "> TODO: description",
   "author": "GeorgeZou <zousongqi@foxmail.com>",
   "homepage": "",
@@ -26,9 +26,9 @@
   },
   "dependencies": {
     "@tefact/core": "^0.0.2",
-    "@tefact/feature-form": "^0.0.3-alpha.1",
-    "@tefact/properties": "^0.0.3-alpha.1",
-    "@tefact/ui": "^0.0.3-alpha.1",
+    "@tefact/feature-form": "^0.0.3-alpha.2",
+    "@tefact/properties": "^0.0.3-alpha.2",
+    "@tefact/ui": "^0.0.3-alpha.2",
     "@tefact/utils": "^0.0.1",
     "resize-detector": "^0.2.2",
     "vue": "^2.6.12",
