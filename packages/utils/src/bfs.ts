@@ -54,7 +54,7 @@ function BFSFind<T extends {
   if (!list) return list;
   const isDelete = false;
   let index = -1
-  let target = null;
+  let target = null as any;
   let parent = [] as Array<T>;
 
   list.forEach((cur, i) => {
