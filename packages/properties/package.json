@@ -1,6 +1,6 @@
 {
   "name": "@tefact/properties",
-  "version": "0.0.3-alpha.5",
+  "version": "0.0.3-alpha.6",
   "description": "> TODO: description",
   "author": "GeorgeZou <zousongqi@foxmail.com>",
   "homepage": "",
@@ -26,8 +26,8 @@
   },
   "dependencies": {
     "@tefact/core": "^0.0.3-alpha.5",
-    "@tefact/feature-form": "^0.0.3-alpha.5",
-    "@tefact/feature-page": "^0.0.3-alpha.5",
+    "@tefact/feature-form": "^0.0.3-alpha.6",
+    "@tefact/feature-page": "^0.0.3-alpha.6",
     "@tefact/ui": "^0.0.3-alpha.5",
     "@types/lodash": "^4.14.168",
     "lodash": "^4.17.20",
