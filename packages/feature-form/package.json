@@ -27,8 +27,8 @@
   "dependencies": {
     "@tefact/core": "^0.0.3-alpha.5",
     "@tefact/properties": "^0.0.3-alpha.5",
-    "@tefact/ui": "0.0.3-alpha.3",
-    "@tefact/utils": "^0.0.1",
+    "@tefact/ui": "0.0.3-alpha.5",
+    "@tefact/utils": "0.0.3-alpha.3",
     "lodash": "^4.17.20",
     "vue": "^2.6.12",
     "vue-property-decorator": "^9.1.2",
