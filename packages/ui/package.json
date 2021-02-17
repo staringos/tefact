@@ -1,6 +1,6 @@
 {
   "name": "@tefact/ui",
-  "version": "0.0.3-alpha.2",
+  "version": "0.0.3-alpha.5",
   "description": "> TODO: description",
   "author": "GeorgeZou <zousongqi@foxmail.com>",
   "homepage": "https://github.com/Tefact/tefact-engine#readme",
@@ -28,7 +28,7 @@
     "url": "https://github.com/tefact/tefact-engine/issues"
   },
   "dependencies": {
-    "@tefact/core": "^0.0.2",
+    "@tefact/core": "^0.0.3-alpha.5",
     "element-ui": "^2.15.0",
     "vue": "^2.6.12",
     "vue-property-decorator": "^9.1.2"
