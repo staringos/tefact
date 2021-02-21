@@ -52,12 +52,12 @@
 <style lang="scss"></style>
 <script lang="ts">
 import { Component, Prop } from "vue-property-decorator";
-import SharePageEditor from "@/components/common/SharePageEditor.vue";
-import Previewer from "@/components/common/Previewer.vue";
+import SharePageEditor from "TEFACT_EDITOR/components/common/SharePageEditor.vue";
+import Previewer from "TEFACT_EDITOR/components/common/Previewer.vue";
 import { BaseView, ITarget, DeviceType } from "@tefact/core";
 
 @Component({
-  components: { Previewer, SharePageEditor }
+  components: { Previewer, SharePageEditor },
 })
 export default class Toolbar extends BaseView {
   @Prop() target?: ITarget;
@@ -68,14 +68,16 @@ export default class Toolbar extends BaseView {
 
   deviceList = [
     { icon: "tf-icon-pc", name: "PC", value: "pc" },
-    { icon: "tf-icon-mobile-phone", name: "Mobile", value: "mobile" }
+    { icon: "tf-icon-mobile-phone", name: "Mobile", value: "mobile" },
   ];
 
   get featureType() {
     return this.engine.featureType;
   }
 
-  handleSavePage() {}
+  handleSavePage() {
+    this.engine.save();
+  }
 
   handlePreviewer(): void {
     this.showPreviewer = true;

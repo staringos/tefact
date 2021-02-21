@@ -15,14 +15,14 @@ const isProd = process.env.NODE_ENV === "production";
 const plugins = [
   new webpack.IgnorePlugin({
     resourceRegExp: /^\.\/locale$/,
-    contextRegExp: /moment$/
-  })
+    contextRegExp: /moment$/,
+  }),
 ];
 
 if (isLib) {
   plugins.push(
     new webpack.optimize.LimitChunkCountPlugin({
-      maxChunks: 1
+      maxChunks: 1,
     })
   );
 }
@@ -33,7 +33,7 @@ module.exports = {
   productionSourceMap: true,
   filenameHashing: false,
   lintOnSave: process.env.NODE_ENV !== "production",
-  chainWebpack: config => {
+  chainWebpack: (config) => {
     config.plugins.delete("prefetch");
     if (isLib) {
       config.entry("main").clear();
@@ -41,16 +41,17 @@ module.exports = {
     }
 
     config.resolve.alias.set("@", resolve("src"));
+    config.resolve.alias.set("TEFACT_EDITOR", resolve("src"));
   },
   configureWebpack: {
     plugins,
-    externals: isProd && isLib ? [nodeExternals()] : {}
+    externals: isProd && isLib ? [nodeExternals()] : {},
   },
   css: {
     loaderOptions: {
       sass: {
-        prependData: `@import "~@/assets/styles/index.scss";`
-      }
-    }
-  }
+        prependData: `@import "~@/assets/styles/index.scss";`,
+      },
+    },
+  },
 };

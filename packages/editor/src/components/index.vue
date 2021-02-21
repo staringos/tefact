@@ -1,5 +1,5 @@
 <template>
-  <div class="editor-wrapper" v-if="engine.target" @click="engine.resetActive">
+  <div class="editor-wrapper" v-if="engine.target" @click="handleEditorClick">
     <div class="editor-container">
       <Toolbar :target="currentTarget || form"></Toolbar>
       <div class="editor-main">
@@ -124,16 +124,16 @@
 }
 </style>
 <script lang="ts">
-import { Vue, Component, Prop, Watch } from "vue-property-decorator";
+import { Component, Prop, Watch } from "vue-property-decorator";
 import Page from "@tefact/feature-page";
 import Form from "@tefact/feature-form";
-import Toolbar from "@/components/Toolbar.vue";
+import Toolbar from "TEFACT_EDITOR/components/Toolbar.vue";
 import PropertiesBar from "@tefact/properties";
-import NodesBar from "@/components/NodesBar.vue";
+import NodesBar from "TEFACT_EDITOR/components/NodesBar.vue";
 import Engine, { BaseView, ISetting, ITarget, EVENT } from "@tefact/core";
 
 @Component({
-  components: { NodesBar, Toolbar, PropertiesBar, Page, Form }
+  components: { NodesBar, Toolbar, PropertiesBar, Page, Form },
   // mixins: [BaseView]
 })
 export default class Editor extends BaseView {
@@ -147,7 +147,6 @@ export default class Editor extends BaseView {
   }
 
   get currentTarget() {
-    console.log("this.engine.target:", this.engine.target);
     return this.engine.target;
   }
 
@@ -163,14 +162,12 @@ export default class Editor extends BaseView {
   }
 
   init(): void {
-    console.log("----------- init:", this.engine.target === this.value);
     // eslint-disable-next-line @typescript-eslint/no-this-alias
     const that = this;
     if (that.engine.target === this.value) return;
 
     function execEvent(type: string) {
       return (data: ITarget) => {
-        console.log("-=-=-=-=-:", type);
         that.$emit(EVENT.INPUT, data);
         that.$emit(type, data);
       };
@@ -182,6 +179,10 @@ export default class Editor extends BaseView {
     this.engine.on(EVENT.UPDATE_CONFIG, execEvent(EVENT.UPDATE_CONFIG));
     this.engine.on(EVENT.SAVE, execEvent(EVENT.SAVE));
     this.engine.on(EVENT.SHARE, execEvent(EVENT.SHARE));
+  }
+
+  handleEditorClick() {
+    this.engine.activeNode(["null"]);
   }
 
   handleEditorSettingChange(es: ISetting): void {

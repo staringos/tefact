@@ -2,7 +2,7 @@
   <div
     :class="`editor-page-canvas ${direction}-side`"
     :style="style"
-    @click="engine.resetActive"
+    @click="handlePageClick"
   >
     <div class="section section-add" v-if="!sections || sections.length < 1">
       <AddButton :index="0" :pageId="pageId" show></AddButton>
@@ -17,7 +17,7 @@
       :isMobile="isMobile"
       :amount="sections.length"
       :active="activeNodeId === section.id"
-      @onActiveChange="handleActiveChange(section.id)"
+      @activeChange="handleActiveChange(section.id)"
     ></PageSection>
   </div>
 </template>
@@ -46,6 +46,10 @@ export default class Page extends BaseView {
   @Prop(Boolean) isMobile!: boolean;
 
   style = {};
+
+  get activeNodeIds() {
+    return this.engine.activeNodeIds;
+  }
 
   get direction() {
     return this.page.direction;
@@ -76,6 +80,10 @@ export default class Page extends BaseView {
 
   handleActiveChange(active: string) {
     this.engine.activeNode([active]);
+  }
+
+  handlePageClick() {
+    this.engine.resetActive();
   }
 
   handleKeyDown(e: any) {

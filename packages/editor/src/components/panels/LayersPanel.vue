@@ -45,7 +45,7 @@
 </style>
 <script lang="ts">
 import { Component, Watch } from "vue-property-decorator";
-import BasePanel from "@/components/panels/BasePanel.vue";
+import BasePanel from "TEFACT_EDITOR/components/panels/BasePanel.vue";
 import { IBaseNode, BaseView } from "@tefact/core";
 
 type LayerMenuItem = {

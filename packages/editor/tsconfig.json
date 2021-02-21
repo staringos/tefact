@@ -22,6 +22,9 @@
       "@tefact/core": [
         "../core/src"
       ],
+      "TEFACT_EDITOR/*": [
+        "./src/*"
+      ],
       "@/*": [
         "./src/*"
       ],

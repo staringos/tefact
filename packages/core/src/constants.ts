@@ -23,6 +23,7 @@ export const EVENT = {
   OPEN_FORM_EDITOR: "open_form_editor",
   TO_ADD_TARGET: "to_add_target",
   FORM_DATA: "form_data",
+  BACK: "back",
   SAVE: "save"
 }
 

@@ -30,10 +30,13 @@
 </template>
 <script lang="ts">
 import { Component } from "vue-property-decorator";
-import { FORM_NODE_LIST, PAGE_NODE_LIST } from "@/components/features";
+import {
+  FORM_NODE_LIST,
+  PAGE_NODE_LIST
+} from "TEFACT_EDITOR/components/features";
 import { Shape, BaseView, DRAGGING_TYPE } from "@tefact/core";
 import draggable from "vuedraggable";
-import BasePanel from "@/components/panels/BasePanel.vue";
+import BasePanel from "TEFACT_EDITOR/components/panels/BasePanel.vue";
 import { IBaseNode, NodeListConfig } from "@tefact/core";
 
 const EditorNodesDetails = {
@@ -85,7 +88,6 @@ export default class NodeList extends BaseView {
 
   handleClone(e: any) {
     if (!e) return;
-    console.log("e:", e);
     this.engine.dragging(this.list[e.oldIndex].nodeData, DRAGGING_TYPE.ADD);
   }
 
@@ -99,7 +101,7 @@ export default class NodeList extends BaseView {
       return;
     }
 
-    let parentId = undefined;
+    let parentId = undefined as any;
 
     if (this.activeNodeId) {
       if (this.activeNodeType === "section") parentId = this.activeNodeId;

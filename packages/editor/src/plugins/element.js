@@ -1,4 +1,4 @@
-import Vue from "vue";
+import { Vue } from "vue-property-decorator";
 import {
   Button,
   Popover,
@@ -28,7 +28,7 @@ import {
   CarouselItem,
   Checkbox,
   CheckboxGroup,
-  FormItem
+  FormItem,
 } from "element-ui";
 
 Vue.use(Table);

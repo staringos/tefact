@@ -33,68 +33,70 @@ export default class NodeContextMenu extends BaseView {
   // @editor.Action copyNode
   // @editor.Action reOrderNode
 
-  options = [
-    {
-      name: "置顶",
-      icon: "tefact-icon tf-icon-vertical-align-top",
-      class: "",
-      type: "top",
-      onClick: () => {
-        this.engine.reOrderNode(this.nodeId, this.sectionId, "top");
-        this.$emit("hide");
+  get options() {
+    return [
+      {
+        name: "置顶",
+        icon: "tefact-icon tf-icon-vertical-align-top",
+        class: "",
+        type: "top",
+        onClick: () => {
+          this.engine.reOrderNode(this.nodeId, this.sectionId, "top");
+          this.$emit("hide");
+        },
       },
-    },
-    {
-      name: "置底",
-      icon: "tefact-icon tf-icon-vertical-align-bottom",
-      class: "",
-      type: "bottom",
-      onClick: () => {
-        this.engine.reOrderNode(this.nodeId, this.sectionId, "bottom");
-        this.$emit("hide");
+      {
+        name: "置底",
+        icon: "tefact-icon tf-icon-vertical-align-bottom",
+        class: "",
+        type: "bottom",
+        onClick: () => {
+          this.engine.reOrderNode(this.nodeId, this.sectionId, "bottom");
+          this.$emit("hide");
+        },
       },
-    },
-    {
-      name: "上移一个",
-      icon: "tefact-icon el-icon-top",
-      class: "",
-      type: "up",
-      onClick: () => {
-        this.engine.reOrderNode(this.nodeId, this.sectionId, "up");
-        this.$emit("hide");
+      {
+        name: "上移一个",
+        icon: "tefact-icon el-icon-top",
+        class: "",
+        type: "up",
+        onClick: () => {
+          this.engine.reOrderNode(this.nodeId, this.sectionId, "up");
+          this.$emit("hide");
+        },
       },
-    },
-    {
-      name: "下移一个",
-      icon: "tefact-icon el-icon-bottom",
-      class: "",
-      type: "down",
-      onClick: () => {
-        this.engine.reOrderNode(this.nodeId, this.sectionId, "down");
-        this.$emit("hide");
+      {
+        name: "下移一个",
+        icon: "tefact-icon el-icon-bottom",
+        class: "",
+        type: "down",
+        onClick: () => {
+          this.engine.reOrderNode(this.nodeId, this.sectionId, "down");
+          this.$emit("hide");
+        },
       },
-    },
-    {
-      name: "复制",
-      icon: "tefact-icon tf-icon-clipboard",
-      class: "",
-      type: "copy",
-      onClick: () => {
-        this.engine.copyNode(this.nodeId);
-        this.$emit("hide");
+      {
+        name: "复制",
+        icon: "tefact-icon tf-icon-clipboard",
+        class: "",
+        type: "copy",
+        onClick: () => {
+          this.engine.copyNode(this.nodeId);
+          this.$emit("hide");
+        },
       },
-    },
-    {
-      name: "删除",
-      icon: "el-icon-delete",
-      class: "el-icon-delete",
-      type: "delete",
-      onClick: () => {
-        this.engine.deleteNode(this.nodeId);
-        this.$emit("hide");
+      {
+        name: "删除",
+        icon: "el-icon-delete",
+        class: "el-icon-delete",
+        type: "delete",
+        onClick: () => {
+          this.engine.deleteNode(this.nodeId);
+          this.$emit("hide");
+        },
       },
-    },
-  ];
+    ];
+  }
 
   get style() {
     if (!this.pos) return null;

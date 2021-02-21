@@ -13,8 +13,8 @@
 </style>
 <script lang="ts">
 import { Vue, Component, Prop } from "vue-property-decorator";
-import LayersPanel from "@/components/panels/LayersPanel.vue";
-import NodeListPanel from "@/components/panels/NodeListPanel.vue";
+import LayersPanel from "TEFACT_EDITOR/components/panels/LayersPanel.vue";
+import NodeListPanel from "TEFACT_EDITOR/components/panels/NodeListPanel.vue";
 import { TargetFeatureType } from "@tefact/core";
 
 @Component({

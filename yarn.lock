@@ -2020,16 +2020,6 @@
   resolved "https://registry.npm.taobao.org/@soda/get-current-script/download/@soda/get-current-script-1.0.2.tgz#a53515db25d8038374381b73af20bb4f2e508d87"
   integrity sha1-pTUV2yXYA4N0OBtzryC7Ty5QjYc=
 
-"@tefact/utils@^0.0.1":
-  name "@Tefact/utils"
-  version "0.0.1"
-  resolved "https://npm.pkg.github.com/download/@tefact/utils/0.0.1/208dfaccbcdeb2b16d5d31145b0de9a0439c6beff22f7adc28908495175829e5#d2edc4a008eb9c4a448f3774bee6788098efd6b9"
-  integrity sha512-5mYc3jzNbwMtaiAfZaLZiCjMwRKpOUCP8aD5ZwMCpCrS+ugb49ndqP2szqk+Kp9F5sqMYEKbTZdAFPy5FlIaRw==
-  dependencies:
-    "@types/uuid" "^8.3.0"
-    lodash "^4.17.20"
-    uuid "^8.3.2"
-
 "@types/anymatch@*":
   version "1.3.1"
   resolved "https://registry.npm.taobao.org/@types/anymatch/download/@types/anymatch-1.3.1.tgz?cache=0&sync_timestamp=1605052185590&other_urls=https%3A%2F%2Fregistry.npm.taobao.org%2F%40types%2Fanymatch%2Fdownload%2F%40types%2Fanymatch-1.3.1.tgz#336badc1beecb9dacc38bea2cf32adf627a8421a"

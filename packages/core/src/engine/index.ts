@@ -3,10 +3,13 @@ import Engine from "./engine";
 
 @Component
 export class BaseView extends Vue {
-  engine: Engine = Vue.observable(Engine.instance());
+  engine: Engine = Engine.instance();
 
   get activeNodeType() { return this.activatedNode?.type }
-  get activeNodeId() { return this.engine.activeNodeIds?.[0] }
+  get activeNodeId() {
+    if (this.engine.activeNodeIds.length === 0) return null
+    return this.engine.activeNodeIds?.[0]
+  }
   get activatedNode() { return this.engine.activatedNode; }
   get currentTarget() { return this.engine.target; }
   get featureType() { return this.engine.featureType; }

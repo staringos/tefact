@@ -220,7 +220,7 @@ export default class SectionNode extends BaseView {
   handleSectionClick(e: Event) {
     if (this.active) return;
     e.stopPropagation();
-    this.$emit("onActiveChange", this.section.id);
+    this.$emit("activeChange", this.section.id);
   }
 
   static NODE = {

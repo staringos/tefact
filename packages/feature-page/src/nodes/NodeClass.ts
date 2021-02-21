@@ -1,10 +1,10 @@
-import { Vue, Component, Prop } from 'vue-property-decorator';
+import { Component, Prop } from 'vue-property-decorator';
 import { BaseView, IBaseNode } from "@tefact/core"
 
 @Component
 export default class NodeClass<T extends IBaseNode> extends BaseView {
   @Prop() public sectionId!: string
-  @Prop() public node!: T
+  @Prop() public node!: IBaseNode
   @Prop() public preview!: boolean
 
   get nodeData() {

@@ -6,7 +6,7 @@
     "url": "https://github.com/tefact/tefact-engine.git",
     "directory": "packages/editor"
   },
-  "main": "lib/index.umd.min.js",
+  "main": "src/index.ts",
   "publishConfig": {
     "registry": "https://npm.pkg.github.com/"
   },

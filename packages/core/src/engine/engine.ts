@@ -99,8 +99,8 @@ export default class Engine extends EventEmitter<string, ITarget> implements IEn
     this.activeNodeIds.push(id);
   }
 
-  public resetActive = () => {
-    this.activeNodeIds = [] as Array<string>;
+  public resetActive() {
+    this.activeNodeIds = [];
   }
 
   public add(config: IBaseNode, index = -1) {
@@ -147,7 +147,7 @@ export default class Engine extends EventEmitter<string, ITarget> implements IEn
   }
 
   public save() {
-    this.emit(EVENT.ADD, this.target);
+    this.emit(EVENT.SAVE, this.target);
   }
 
   public share() {
@@ -156,7 +156,7 @@ export default class Engine extends EventEmitter<string, ITarget> implements IEn
 
   public static instance(target?: ITarget, setting: ISetting = DEFAULT_SETTING): Engine {
     if (!Engine._engineInstance) {
-      Engine._engineInstance = new Engine(target, setting)
+      Engine._engineInstance = Vue.observable(new Engine(target, setting)) as Engine;
     } else {
       if (target && target !== Engine._engineInstance.target
         || setting && setting !== Engine._engineInstance.setting) {
@@ -268,5 +268,9 @@ export default class Engine extends EventEmitter<string, ITarget> implements IEn
         nodes[index] = tmp
         break
     }
+  }
+
+  public back() {
+    this.emit(EVENT.BACK)
   }
 }

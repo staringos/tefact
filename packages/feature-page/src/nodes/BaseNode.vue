@@ -84,7 +84,7 @@ export default class BaseNode extends BaseView {
   @Prop() preview!: boolean;
   @Prop() isShape!: boolean;
   @Prop() sectionId!: string;
-  @Prop() active!: string;
+  @Prop() active!: boolean;
   @Prop() index!: number;
   @Prop() sectionConfig!: any;
 

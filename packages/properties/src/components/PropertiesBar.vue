@@ -51,8 +51,8 @@ export default class PropertiesContainer extends BaseView {
   }
 
   get nodeType(): string {
-    if (this.activatedNode) {
-      return this.activatedNode.type;
+    if (this.engine.activatedNode) {
+      return this.engine.activatedNode.type;
     }
 
     return "page";
