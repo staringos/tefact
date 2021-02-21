@@ -271,6 +271,6 @@ export default class Engine extends EventEmitter<string, ITarget> implements IEn
   }
 
   public back() {
-    this.emit(EVENT.BACK)
+    this.emit(EVENT.BACK);
   }
 }

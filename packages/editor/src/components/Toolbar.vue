@@ -1,6 +1,6 @@
 <template>
   <div class="editor-toolbar">
-    <i class="el-icon-arrow-left" @click="engine.back()"></i>
+    <i class="el-icon-arrow-left" @click="handleGoBack"></i>
     <div class="page-title" @click="handleOpenModify">
       {{ target.title }}
       <i class="el-icon-edit"></i>
@@ -88,6 +88,10 @@ export default class Toolbar extends BaseView {
   }
 
   handleOpenModify() {}
+
+  handleGoBack() {
+    return this.engine.back();
+  }
 
   handleSelectDevices(device: DeviceType) {
     this.engine.changeSettingItem("device", device);
