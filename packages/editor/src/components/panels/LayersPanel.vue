@@ -2,13 +2,17 @@
   <BasePanel class="layers-panel" title="图层">
     <el-tree
       class="layers-panel-tree"
+      ref="tree"
       :data="data"
       node-key="id"
       :expand-on-click-node="false"
-      @current-change="handleCurrentChange"
-      ref="tree"
+      :allow-drop="allowDrop"
+      :allow-drag="allowDrag"
+      draggable
       default-expand-all
       highlight-current
+      @current-change="handleCurrentChange"
+      @node-drop="handleNodeDrop"
     >
       <span class="custom-tree-node" slot-scope="{ node, data }">
         <span>{{ node.label }}</span>
@@ -47,6 +51,7 @@
 import { Component, Watch } from "vue-property-decorator";
 import BasePanel from "TEFACT_EDITOR/components/panels/BasePanel.vue";
 import { IBaseNode, BaseView } from "@tefact/core";
+import cloneDeep from "lodash/cloneDeep";
 
 type LayerMenuItem = {
   id?: string;
@@ -55,8 +60,17 @@ type LayerMenuItem = {
   children?: Array<LayerMenuItem>;
 };
 
+function wrapChildren(data) {
+  return data.map((cur) => {
+    if (cur.children && cur.children.length > 0) {
+      cur.data.children = wrapChildren(cur.children);
+    }
+    return cur.data;
+  });
+}
+
 @Component({
-  components: { BasePanel }
+  components: { BasePanel },
 })
 export default class LayersPanel extends BaseView {
   data = [] as Array<LayerMenuItem>;
@@ -68,18 +82,19 @@ export default class LayersPanel extends BaseView {
     const isForm = this.featureType === "form";
     const nodes = this.currentTarget?.config?.children;
     if (!nodes) return;
-    nodes.forEach(cur => {
+    nodes.forEach((cur) => {
       let children = [] as Array<IBaseNode>;
 
       if (!isForm) {
         children =
-          cur.children?.map(node => {
+          cur.children?.map((node) => {
             return {
               id: node.id,
               label: node.type,
               active: node.id === activeId,
               sectionId: cur.id,
-              type: node.type
+              data: node,
+              type: node.type,
             } as any;
           }) || [];
       }
@@ -88,14 +103,14 @@ export default class LayersPanel extends BaseView {
         label: isForm ? cur.type : "段落",
         type: isForm ? cur.type : "section",
         active: cur.id === activeId,
-        children
+        data: cur,
+        children,
       } as LayerMenuItem);
     });
 
     this.data = newData;
   }
 
-  // @Watch("currentSectionIdGetter")
   handleCurrentChange(node: IBaseNode) {
     this.engine.activeNode([node.id]);
   }
@@ -110,6 +125,32 @@ export default class LayersPanel extends BaseView {
     this.watchChange();
   }
 
+  allowDrag() {
+    return true;
+  }
+
+  allowDrop(draggingNode: any, dropNode: any, type: string) {
+    const dragType = draggingNode.data.type;
+    const dropType = dropNode.data.type;
+    if (dragType === "section" && type !== "inner") {
+      return false;
+    }
+
+    if (dragType !== "section" && dropType !== "section") {
+      return false;
+    }
+
+    if (dropType === "section" && (type === "next" || type === "prev")) {
+      return false;
+    }
+
+    if (dropType !== "section" && dragType === "section") {
+      return false;
+    }
+
+    return true;
+  }
+
   watchChange() {
     const cur = this.activeNodeId;
     if (!cur) return;
@@ -117,6 +158,11 @@ export default class LayersPanel extends BaseView {
   }
 
   handlePlus() {}
+
+  handleNodeDrop() {
+    return this.engine.replaceChildren(wrapChildren(cloneDeep(this.data)));
+  }
+
   async handleRemove(node: IBaseNode) {
     this.engine.deleteNode(node.id);
   }

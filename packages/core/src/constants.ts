@@ -24,6 +24,7 @@ export const EVENT = {
   TO_ADD_TARGET: "to_add_target",
   FORM_DATA: "form_data",
   BACK: "back",
+  MOVE: "move",
   SAVE: "save"
 }
 

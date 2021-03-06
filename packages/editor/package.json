@@ -23,6 +23,7 @@
     "@tefact/feature-form": "^0.0.3-alpha.6",
     "@tefact/feature-page": "^0.0.3-alpha.6",
     "@tefact/properties": "^0.0.3-alpha.6",
+    "@tefact/ui": "^0.0.3-alpha.6",
     "@types/lodash": "^4.14.168",
     "core-js": "^3.6.5",
     "csstype": "^3.0.6",

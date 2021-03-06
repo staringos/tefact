@@ -29,12 +29,20 @@
     </div>
 
     <div class="right-button">
-      <el-button-group>
+      <el-button
+        :type="setting.grid ? 'primary' : 'default'"
+        size="mini"
+        @click="handleSettingChange('grid', !setting.grid)"
+      >
+        <i :class="`tefact-icon tf-icon-grid-line`"></i>
+      </el-button>
+
+      <el-button-group size="mini">
         <el-button
           v-for="(device, i) in deviceList"
           :key="i"
           :type="engine.setting.device === device.value ? 'primary' : 'default'"
-          size="small"
+          size="mini"
           @click="handleSelectDevices(device.value)"
         >
           <i :class="`tefact-icon ${device.icon}`"></i>
@@ -96,6 +104,10 @@ export default class Toolbar extends BaseView {
   handleSelectDevices(device: DeviceType) {
     this.engine.changeSettingItem("device", device);
   }
+
+  handleSettingChange(key: string, value: any) {
+    this.engine.changeSettingItem(key, value);
+  }
 }
 </script>
 <style lang="scss">
@@ -138,6 +150,13 @@ export default class Toolbar extends BaseView {
 
   .right-button {
     float: right;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    button {
+      margin-right: 5px;
+    }
   }
 }
 

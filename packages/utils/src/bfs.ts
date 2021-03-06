@@ -11,6 +11,7 @@ type BFSFindResult<T> = {
 interface IBFSInstance<T> {
   find(): BFSFindResult<T>;
   delete(): Array<T>;
+  move(toNodeId: string): Array<T>;
   addChild(node: IBaseNode): Array<T>;
   copy(): Array<T>;
 }
@@ -21,23 +22,31 @@ export default function BFS<T extends {
 }>(list: Array<T>, id: string | number): IBFSInstance<T> {
   const { index, target, parent } = BFSFind(list, id);
 
+  function deleteItem() {
+    parent.splice(index, 1)
+    return list;
+  }
+
   return {
+    move(toNodeId: string) {
+      deleteItem();
+      const newParent = BFS(list, toNodeId).find().target;
+      if (!newParent) return -1;
+      if (newParent.children) {
+        newParent.children.push(target)
+      } else {
+        newParent.children = [target];
+      }
+    },
     addChild(node: IBaseNode) {
       if (!target || !target.children) return list;
-      // const newNode = cloneDeep(node);
-      // newNode.id = generateId();
-
-      console.log("parent:", parent);
       target.children.push(node as any);
       return list;
     },
     find(): BFSFindResult<T> {
       return { index, target, parent };
     },
-    delete() {
-      parent.splice(index, 1)
-      return list;
-    },
+    delete: deleteItem,
     copy() {
       if (!target) return list;
       target.id = generateId();

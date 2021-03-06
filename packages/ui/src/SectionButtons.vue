@@ -49,8 +49,7 @@ export default class SectionButtons extends BaseView {
   @Prop(Object) section!: IBaseNode;
 
   handleAdd() {
-    if (this.pageType === "page")
-      this.engine.add(PageProperties.defaultPageSections(), this.index + 1);
+    this.engine.add(PageProperties.defaultPageSections(), this.index + 1);
   }
 
   handleDelete() {

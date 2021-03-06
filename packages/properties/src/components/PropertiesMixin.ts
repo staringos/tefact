@@ -24,7 +24,6 @@ export default class PropertiesMixin extends BaseView {
 
   @Watch('node', { deep: true, immediate: true })
   public onNodeChange() {
-    console.log("node change:", this.node);
     this.init()
   }
 

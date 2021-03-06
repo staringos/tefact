@@ -8,7 +8,7 @@
     :x="tmpNode.pos.x"
     :y="tmpNode.pos.y"
     :parent="false"
-    :debug="false"
+    :debug="true"
     :min-width="2"
     :min-height="2"
     :isConflictCheck="false"
@@ -16,6 +16,7 @@
     :snapTolerance="10"
     :draggable="!preview"
     :resizable="!preview"
+    :grid="[20, 20]"
     @resizing="handleResize"
     preventDeactivation
     @click.native.stop
@@ -103,6 +104,8 @@ export default class BaseNode extends BaseView {
     result["z-index"] = this.index;
 
     if (this.isShape) delete result[`background-color`];
+    result.position = "absolute";
+    result["z-index"] = this.index;
     return result;
   }
 
@@ -124,11 +127,7 @@ export default class BaseNode extends BaseView {
     const config = this.node.pos;
     if (config.x === x && config.y === y && config.w === w && config.h === h)
       return;
-
-    const node = cloneDeep(this.node);
-    node.pos = { ...this.node.pos, x, y, w, h };
-
-    this.engine.updateNode(node);
+    this.engine.updateNodePos(this.node.id, { ...this.node.pos, x, y, w, h });
   }
 
   handleResize(x: number, y: number, w: number, h: number) {
@@ -155,10 +154,7 @@ export default class BaseNode extends BaseView {
   handleDragStop(x: number, y: number) {
     const config = this.node.pos;
     if (config.x === x && config.y === y) return;
-
-    const node = cloneDeep(this.node);
-    node.pos = { ...this.node.pos, x, y };
-    this.engine.updateNode(node);
+    this.engine.updateNodePos(this.node.id, { ...this.node.pos, x, y });
   }
 
   handleDragging(x: number, y: number) {

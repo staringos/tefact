@@ -32,7 +32,7 @@
 import { Component } from "vue-property-decorator";
 import {
   FORM_NODE_LIST,
-  PAGE_NODE_LIST
+  PAGE_NODE_LIST,
 } from "TEFACT_EDITOR/components/features";
 import { Shape, BaseView, DRAGGING_TYPE } from "@tefact/core";
 import draggable from "vuedraggable";
@@ -43,30 +43,30 @@ const EditorNodesDetails = {
   shape: {
     title: "图形",
     hasGoBack: true,
-    list: Shape.SHAPE_NODE_LIST
+    list: Shape.SHAPE_NODE_LIST,
   },
   form: {
     title: "表单",
     hasGoBack: false,
-    list: FORM_NODE_LIST
+    list: FORM_NODE_LIST,
   },
   page: {
     title: null,
     hasGoBack: false,
-    list: PAGE_NODE_LIST
+    list: PAGE_NODE_LIST,
   },
   default: {
     title: null,
     hasGoBack: false,
-    list: PAGE_NODE_LIST
-  }
+    list: PAGE_NODE_LIST,
+  },
 } as Record<string, NodeListConfig>;
 
 @Component({
   components: {
     BasePanel,
-    draggable
-  }
+    draggable,
+  },
 })
 export default class NodeList extends BaseView {
   curDraggingNode: any | null = null;

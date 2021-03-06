@@ -1,86 +1,101 @@
 <template>
-  <draggable
+  <div
     :class="`page-section ${!preview ? 'hover-style' : ''} ${
       active && !preview ? 'active' : ''
     }`"
-    :group="{
-      name: 'form-item',
-      pull: engine.draggingType === 'add' ? 'clone' : 'move',
-      put: true,
-    }"
     :style="style"
-    @click.native="handleSectionClick"
-    @end="handleDragEnd"
-    @add="handleAdd"
   >
-    <component
-      v-for="node in section.children"
-      :key="node.id"
-      :node="node"
-      :sectionId="section.id"
-      :is="node.type"
-      :preview="preview"
-      :sectionConfig="section"
-      :active="engine.activeNodeIds.indexOf(node.id) > -1"
-      @onRefLineChange="handleRefLineChange"
-      @update:active="(active) => handleActiveUpdate(node.id, active)"
-      @contextmenu.native="handleContextMenuShow($event, true, node.id)"
-      @showBorder="handleBorderLine"
-      @hideBorder="handleHideBorder"
-    ></component>
-
-    <NodeContextMenu
-      :nodeId="contextNodeId"
-      :sectionId="section.id"
-      :visible="contextMenuVisible"
-      :pos="contextPos"
-      @hide="handleContextMenuShow"
-    />
-
-    <SectionButtons
-      :pageId="pageId"
-      :isMobile="isMobile"
-      pageType="page"
-      :hasAdd="true"
-      v-if="active && !preview"
-      :index="index"
-      :amount="amount"
-      :section="section"
-    />
-
-    <!-- Assist Line -->
-    <span
-      class="ref-line v-line"
-      v-for="(item, i) in vLine"
-      :key="i + 'v'"
-      v-show="item.display && !preview"
-      :style="{
-        left: item.position,
-        top: item.origin,
-        height: item.lineLength,
+    <div
+      class="page-section-content"
+      :group="{
+        name: 'form-item',
+        pull: engine.draggingType === 'add' ? 'clone' : 'move',
+        put: true,
       }"
-    ></span>
-    <span
-      class="ref-line h-line"
-      v-for="(item, i) in hLine"
-      :key="i + 'h'"
-      v-show="item.display && !preview"
-      :style="{ top: item.position, left: item.origin, width: item.lineLength }"
-    ></span>
+      :list="[]"
+      :style="bgStyle"
+      @click="handleSectionClick"
+      @start="handleDragStart"
+      @end="handleDragEnd"
+      @add="handleAdd"
+      @change="handleChange"
+    >
+      <component
+        v-for="node in section.children"
+        :key="node.id"
+        :node="node"
+        :sectionId="section.id"
+        :is="node.type"
+        :preview="preview"
+        :sectionConfig="section"
+        :active="engine.activeNodeIds.indexOf(node.id) > -1"
+        @onRefLineChange="handleRefLineChange"
+        @update:active="(active) => handleActiveUpdate(node.id, active)"
+        @contextmenu.native="handleContextMenuShow($event, true, node.id)"
+        @showBorder="handleBorderLine"
+        @hideBorder="handleHideBorder"
+      ></component>
 
-    <span
-      class="ref-line border-line h-line"
-      v-if="hBorderLineStyle"
-      :style="hBorderLineStyle"
-    ></span>
+      <!--      <transition-group>-->
+      <!--      </transition-group>-->
 
-    <span
-      class="ref-line border-line v-line"
-      v-if="vBorderLineStyle"
-      :style="vBorderLineStyle"
-    ></span>
-    <!-- Assist Line END -->
-  </draggable>
+      <NodeContextMenu
+        :nodeId="contextNodeId"
+        :sectionId="section.id"
+        :visible="contextMenuVisible"
+        :pos="contextPos"
+        @hide="handleContextMenuShow"
+      />
+
+      <SectionButtons
+        :pageId="pageId"
+        :isMobile="isMobile"
+        pageType="page"
+        :hasAdd="true"
+        v-if="active && !preview"
+        :index="index"
+        :amount="amount"
+        :section="section"
+      />
+
+      <!-- Assist Line -->
+      <span
+        class="ref-line v-line"
+        v-for="(item, i) in vLine"
+        :key="i + 'v'"
+        v-show="item.display && !preview"
+        :style="{
+          left: item.position,
+          top: item.origin,
+          height: item.lineLength,
+        }"
+      ></span>
+      <span
+        class="ref-line h-line"
+        v-for="(item, i) in hLine"
+        :key="i + 'h'"
+        v-show="item.display && !preview"
+        :style="{
+          top: item.position,
+          left: item.origin,
+          width: item.lineLength,
+        }"
+      ></span>
+
+      <span
+        class="ref-line border-line h-line"
+        v-if="hBorderLineStyle"
+        :style="hBorderLineStyle"
+      ></span>
+
+      <span
+        class="ref-line border-line v-line"
+        v-if="vBorderLineStyle"
+        :style="vBorderLineStyle"
+      ></span>
+      <!-- Assist Line END -->
+    </div>
+  </div>
 </template>
 <script lang="ts">
 import { Component, Prop, Watch } from "vue-property-decorator";
@@ -129,8 +144,18 @@ export default class SectionNode extends BaseView {
   hBorderLineStyle: any = null;
   vBorderLineStyle: any = null;
 
+  get bgStyle() {
+    const res = {};
+    if (this.setting.grid && !this.preview) {
+      res.background =
+        "linear-gradient(-90deg, rgba(0, 0, 0, 0.1) 1px, transparent 1px) 0% 0% / 20px 20px, linear-gradient(rgba(0, 0, 0, 0.1) 1px, transparent 1px) 0% 0% / 20px 20px";
+    }
+
+    return res;
+  }
+
   get style() {
-    return transformStyle(this.section);
+    return transformStyle(this.section, this.setting);
   }
 
   @Watch("currentNodesIdsGetter")
@@ -140,20 +165,18 @@ export default class SectionNode extends BaseView {
     }
   }
 
+  handleChange(e) {}
+
   handleAdd(e: any) {
-    console.log("section !:", this.engine.draggingNode, e);
-    console.log("x:" + e.offsetX + " y:" + e.offsetY);
     if (!this.engine.draggingNode) return;
 
     const newNode = cloneDeep(this.engine.draggingNode);
-    // newNode.pos = {};
     this.engine.addNode(newNode, this.section.id);
   }
 
-  handleDragEnd() {
-    console.log("go!:", this.engine.draggingNode, this.section.id);
-    // if (this.engine.draggingType === DRAGGING_TYPE.ADD) {
-  }
+  handleDragStart() {}
+
+  handleDragEnd() {}
 
   handleHideBorder() {
     this.hBorderLineStyle = null;
@@ -248,7 +271,15 @@ export default class SectionNode extends BaseView {
   min-height: 100px;
   position: relative;
   box-sizing: border-box;
-  border: 1px solid transparent;
+  // border: 1px solid transparent;
+
+  .page-section-content {
+    width: 100%;
+    height: 100%;
+    position: relative;
+    box-sizing: border-box;
+    flex: 1;
+  }
 
   .border-line {
     &.h-line {

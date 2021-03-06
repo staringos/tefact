@@ -4,9 +4,11 @@ import cloneDeep from 'lodash/cloneDeep'
 import { IEngine, ITarget, IBaseNode, EVENT, ISetting } from "@tefact/core";
 import set from 'lodash/set'
 import findIndex from 'lodash/findIndex'
+import merge from "lodash/merge"
 import { BFS } from "@tefact/utils"
 import { Vue } from "vue-property-decorator"
 import { generateId } from "@tefact/utils"
+import { INodeStyle, IPos } from "../types"
 
 type IFlattenNode = {
   parentId?: string | number
@@ -103,6 +105,11 @@ export default class Engine extends EventEmitter<string, ITarget> implements IEn
     this.activeNodeIds = [];
   }
 
+  public replaceChildren(children: Array<IBaseNode>) {
+    Vue.set(this.target.config, "children", children);
+    this.emit(EVENT.UPDATE, this.target);
+  }
+
   public add(config: IBaseNode, index = -1) {
     if (!this.target) return;
 
@@ -146,6 +153,24 @@ export default class Engine extends EventEmitter<string, ITarget> implements IEn
     this.emit(EVENT.UPDATE_CONFIG, this.target);
   }
 
+  public updateNodePos(id: string, pos: IPos) {
+    if (!this._allNodesMap) return;
+    this._allNodesMap[id].pos = pos;
+    this.emit(EVENT.UPDATE_CONFIG, this.target);
+  }
+
+  public updateNodeStyle(id: string, style: INodeStyle) {
+    if (!this._allNodesMap) return;
+    this._allNodesMap[id].style = style;
+    this.emit(EVENT.UPDATE_CONFIG, this.target);
+  }
+
+  public updateNodeData(id: string, data: any) {
+    if (!this._allNodesMap) return;
+    this._allNodesMap[id].data = data;
+    this.emit(EVENT.UPDATE_CONFIG, this.target);
+  }
+
   public save() {
     this.emit(EVENT.SAVE, this.target);
   }
@@ -172,7 +197,15 @@ export default class Engine extends EventEmitter<string, ITarget> implements IEn
   }
 
   public changeSetting(setting: ISetting) {
-    this.setting = Vue.observable(setting);
+    this.setting = Vue.observable(merge(DEFAULT_SETTING, setting));
+  }
+
+  public moveNode(nodeId: string, newParentId: string) {
+    if (!this.target) return;
+    const config = this.target.config;
+    if (!config.children) return;
+    config.children = BFS(config.children, nodeId).move(newParentId) as any;
+    this.emit(EVENT.UPDATE, this.target);
   }
 
   public deleteNode(id: string) {

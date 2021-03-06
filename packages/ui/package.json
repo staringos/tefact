@@ -29,6 +29,7 @@
   },
   "dependencies": {
     "@tefact/core": "^0.0.3-alpha.5",
+    "vuedraggable": "^2.24.3",
     "element-ui": "^2.15.0",
     "vue": "^2.6.12",
     "vue-property-decorator": "^9.1.2"
