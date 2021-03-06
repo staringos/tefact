@@ -95,7 +95,9 @@ export default class Toolbar extends BaseView {
     this.showPreviewer = false;
   }
 
-  handleOpenModify() {}
+  handleOpenModify() {
+    return this.engine.openModify();
+  }
 
   handleGoBack() {
     return this.engine.back();

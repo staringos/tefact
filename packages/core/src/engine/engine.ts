@@ -255,7 +255,7 @@ export default class Engine extends EventEmitter<string, ITarget> implements IEn
     Vue.set(this.target?.config, "children", newChildren);
   }
 
-  public reOrderNode (nodeId: string, parentId: string, type: string) {
+  public reOrderNode(nodeId: string, parentId: string, type: string) {
     const parentNode = this.target?.config?.children?.filter((cur: IBaseNode) => cur.id === parentId)[0];
     if (!parentNode) return
     const nodes = parentNode.children
@@ -301,6 +301,10 @@ export default class Engine extends EventEmitter<string, ITarget> implements IEn
         nodes[index] = tmp
         break
     }
+  }
+
+  public openModify() {
+    this.emit(EVENT.OPEN_MODIFIER, this.target);
   }
 
   public back() {
