@@ -187,7 +187,7 @@ export default class Editor extends BaseView {
   }
 
   handleEditorSettingChange(es: ISetting): void {
-    console.log("es:", es);
+    console.log("e:", es);
     //   this.setting = es;
   }
 }

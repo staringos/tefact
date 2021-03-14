@@ -115,7 +115,7 @@ export default class BaseNode extends BaseView {
   }
 
   handleKeydown(e: any) {
-    console.log("handleKeydown e:", e);
+    console.log("handleKeydown:", e);
   }
 
   // 辅助线回调事件
