@@ -1,10 +1,8 @@
-import Vue from 'vue'
-import { IEngine } from '@tefact/core'
-import Engine from './index'
+import Vue from "vue";
+import { IEngine } from "@tefact/core";
+import Engine from './index';
 
-type DecoratorOption = {
-
-}
+type DecoratorOption = {}
 
 export type VueClass<V> = { new (...args: any[]): V & Vue } & typeof Vue
 
