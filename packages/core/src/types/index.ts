@@ -60,6 +60,7 @@ export interface ISetting {
   formList?: Array<ITarget>;
   theme: "default";
   i18n: "zh-CN";
+  shareHandler: Function;
 }
 
 export interface IEngine {
@@ -88,4 +89,10 @@ export type NodeConfig = {
   icon: string
   type: string
   nodeData: IBaseNode
+}
+
+export type ShareDataType = {
+  pageId: string;
+  type: "free" | "password" | "login";
+  pageType: "page" | "form" | "h5";
 }

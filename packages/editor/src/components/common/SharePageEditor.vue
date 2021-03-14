@@ -60,15 +60,15 @@
   </el-popover>
 </template>
 <script>
-import { Vue, Component, Prop, Watch } from "vue-property-decorator";
-import { DefaultShare } from "@tefact/core";
+import { Component, Prop, Watch } from "vue-property-decorator";
+import { BaseView, DefaultShare } from "@tefact/core";
 import cloneDeep from "lodash/cloneDeep";
 import QRCode from "qrcode";
 
 @Component({
   components: {},
 })
-export default class SharePageEditor extends Vue {
+export default class SharePageEditor extends BaseView {
   form = cloneDeep(DefaultShare);
   share = null;
   visible = false;
@@ -105,7 +105,7 @@ export default class SharePageEditor extends Vue {
   }
 
   async handleShare() {
-    const res = await this.sharePage({
+    const res = await this.engine.share({
       pageId: this.page.id,
       type: this.form.type,
       pageType: this.pageType,

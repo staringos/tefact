@@ -33,6 +33,7 @@
         :type="setting.grid ? 'primary' : 'default'"
         size="mini"
         @click="handleSettingChange('grid', !setting.grid)"
+        v-if="featureType === 'page'"
       >
         <i :class="`tefact-icon tf-icon-grid-line`"></i>
       </el-button>

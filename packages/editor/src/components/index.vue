@@ -10,10 +10,9 @@
             class="phone-bg"
             :src="require('../assets/images/GooglePhone.png')"
           />
-
           <div v-if="!isMobile" class="page-pad">
             <Page
-              v-if="!isForm"
+              v-if="!engine.isForm"
               :page="currentTarget"
               :pageId="pageId"
               :isMobile="isMobile"

@@ -57,11 +57,12 @@ type LayerMenuItem = {
   id?: string;
   label?: string;
   type?: string;
+  data?: IBaseNode;
   children?: Array<LayerMenuItem>;
 };
 
-function wrapChildren(data) {
-  return data.map((cur) => {
+function wrapChildren(data: Array<LayerMenuItem>) {
+  return data.map((cur: LayerMenuItem) => {
     if (cur.children && cur.children.length > 0) {
       cur.data.children = wrapChildren(cur.children);
     }

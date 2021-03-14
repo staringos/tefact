@@ -8,7 +8,7 @@ import merge from "lodash/merge"
 import { BFS } from "@tefact/utils"
 import { Vue } from "vue-property-decorator"
 import { generateId } from "@tefact/utils"
-import { INodeStyle, IPos } from "../types"
+import { INodeStyle, IPos, ShareDataType } from "../types"
 
 type IFlattenNode = {
   parentId?: string | number
@@ -175,8 +175,8 @@ export default class Engine extends EventEmitter<string, ITarget> implements IEn
     this.emit(EVENT.SAVE, this.target);
   }
 
-  public share() {
-    this.emit(EVENT.SHARE, this.target);
+  public share(shareData: ShareDataType) {
+    return this.setting.shareHandler(shareData);
   }
 
   public static instance(target?: ITarget, setting: ISetting = DEFAULT_SETTING): Engine {
