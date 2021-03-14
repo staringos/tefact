@@ -22,7 +22,7 @@ export const EVENT = {
   SHARE: "share",
   OPEN_FORM_EDITOR: "open_form_editor",
   TO_ADD_TARGET: "to_add_target",
-  FORM_DATA: "form_data",
+  SUBMIT: "submit",
   OPEN_MODIFIER: "openModifier",
   BACK: "back",
   MOVE: "move",

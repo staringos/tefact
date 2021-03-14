@@ -198,7 +198,7 @@ export default class Form extends BaseView {
         return;
       }
 
-      this.$emit(EVENT.FORM_DATA, {
+      this.$emit(EVENT.SUBMIT, {
         data: {
           data: this.tmpValue,
           submitter_info: getSystemInfo(),
