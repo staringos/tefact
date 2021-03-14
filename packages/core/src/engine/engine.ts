@@ -42,7 +42,7 @@ function _flattenNodes(target: ITarget) {
 export default class Engine extends EventEmitter<string, ITarget> implements IEngine {
   private constructor(target?: ITarget, setting: ISetting = DEFAULT_SETTING) {
     super();
-    return this.init(target, setting)
+    return this.init(target, setting);
   }
 
   public activeNodeIds: Array<string> = [];
