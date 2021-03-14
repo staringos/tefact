@@ -3,7 +3,7 @@
     "packages/*"
   ],
   "useWorkspaces": true,
-  "version": "0.0.3-alpha.6",
+  "version": "0.0.3-aplha.7",
   "command": {
     "publish": {
       "message": "chore(release): publish",
