@@ -1,19 +1,11 @@
 {
   "name": "@tefact/ui",
-  "version": "0.0.1-alpha.1",
+  "version": "0.0.1-alpha.0",
   "description": "> TODO: description",
   "author": "GeorgeZou <zousongqi@foxmail.com>",
   "homepage": "https://github.com/Tefact/tefact-engine#readme",
   "license": "ISC",
   "main": "src/index.ts",
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/tefact/tefact-engine.git",
-    "directory": "packages/ui"
-  },
-  "publishConfig": {
-    "registry": "https://npm.pkg.github.com/"
-  },
   "directories": {
     "lib": "src",
     "test": "__tests__"
@@ -28,11 +20,11 @@
     "url": "https://github.com/tefact/tefact-engine/issues"
   },
   "dependencies": {
-    "@tefact/core": "^0.0.1-alpha.1",
+    "@tefact/core": "^0.0.1-alpha.0",
     "element-ui": "^2.15.0",
     "vue": "^2.6.12",
     "vue-property-decorator": "^9.1.2",
     "vuedraggable": "^2.24.3"
   },
-  "gitHead": "42ae279bdd8171db1dc5cfa9854da72eadbc0f2b"
+  "gitHead": "5f26f88f123c9bcf5a966c5d97223977c9cf03da"
 }

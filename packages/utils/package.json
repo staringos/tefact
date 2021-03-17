@@ -1,15 +1,12 @@
 {
   "name": "@tefact/utils",
-  "version": "0.0.1-alpha.1",
+  "version": "0.0.1-alpha.0",
   "description": "> TODO: description",
   "author": "GeorgeZou <zousongqi@foxmail.com>",
   "repository": {
     "type": "git",
     "url": "https://github.com/tefact/tefact-engine.git",
     "directory": "packages/utils"
-  },
-  "publishConfig": {
-    "registry": "https://npm.pkg.github.com/"
   },
   "homepage": "",
   "license": "ISC",
@@ -32,5 +29,5 @@
   "devDependencies": {
     "@types/lodash": "^4.14.168"
   },
-  "gitHead": "42ae279bdd8171db1dc5cfa9854da72eadbc0f2b"
+  "gitHead": "5f26f88f123c9bcf5a966c5d97223977c9cf03da"
 }
