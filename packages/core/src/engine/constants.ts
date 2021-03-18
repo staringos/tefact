@@ -8,6 +8,7 @@ export const DEFAULT_SETTING: ISetting = {
   device: "pc",
   theme: "default",
   i18n: "zh-CN",
+  shareHandler: () => {},
 }
 
 export interface Share {

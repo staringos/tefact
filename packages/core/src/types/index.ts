@@ -56,11 +56,12 @@ export type DeviceType = "pc" | "mobile";
 export interface ISetting {
   device: DeviceType;
   uploadUrl: string;
+  grid?: boolean;
   customHeader?: Record<string, any>;
   formList?: Array<ITarget>;
   theme: "default";
   i18n: "zh-CN";
-  shareHandler: Function;
+  shareHandler: any;
 }
 
 export interface IEngine {
@@ -71,7 +72,7 @@ export interface IEngine {
   update(path: string, value: any): void;
   updateNode(config: IBaseNode): void;
   save(config: IBaseNode): void;
-  share(config: IBaseNode): void;
+  share(config: ShareDataType): any;
 }
 
 /* class decorator */

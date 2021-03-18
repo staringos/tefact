@@ -64,7 +64,8 @@ type LayerMenuItem = {
 function wrapChildren(data: Array<LayerMenuItem>) {
   return data.map((cur: LayerMenuItem) => {
     if (cur.children && cur.children.length > 0) {
-      cur.data.children = wrapChildren(cur.children);
+      if (!cur.data) cur.data = {} as any;
+      if (cur.data) cur.data.children = wrapChildren(cur.children) as any;
     }
     return cur.data;
   });
@@ -84,7 +85,7 @@ export default class LayersPanel extends BaseView {
     const nodes = this.currentTarget?.config?.children;
     if (!nodes) return;
     nodes.forEach((cur) => {
-      let children = [] as Array<IBaseNode>;
+      let children = [] as Array<LayerMenuItem>;
 
       if (!isForm) {
         children =
@@ -161,7 +162,8 @@ export default class LayersPanel extends BaseView {
   handlePlus() {}
 
   handleNodeDrop() {
-    return this.engine.replaceChildren(wrapChildren(cloneDeep(this.data)));
+    const node = wrapChildren(cloneDeep(this.data)) as any;
+    return this.engine.replaceChildren(node);
   }
 
   async handleRemove(node: IBaseNode) {

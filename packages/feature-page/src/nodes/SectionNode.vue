@@ -145,8 +145,8 @@ export default class SectionNode extends BaseView {
   vBorderLineStyle: any = null;
 
   get bgStyle() {
-    const res = {};
-    if (this.setting.grid && !this.preview) {
+    const res = {} as any;
+    if (this.setting && this.setting.grid && !this.preview) {
       res.background =
         "linear-gradient(-90deg, rgba(0, 0, 0, 0.1) 1px, transparent 1px) 0% 0% / 20px 20px, linear-gradient(rgba(0, 0, 0, 0.1) 1px, transparent 1px) 0% 0% / 20px 20px";
     }
@@ -155,7 +155,7 @@ export default class SectionNode extends BaseView {
   }
 
   get style() {
-    return transformStyle(this.section, this.setting);
+    return transformStyle(this.section);
   }
 
   @Watch("currentNodesIdsGetter")
@@ -165,7 +165,7 @@ export default class SectionNode extends BaseView {
     }
   }
 
-  handleChange(e) {}
+  handleChange() {}
 
   handleAdd(e: any) {
     if (!this.engine.draggingNode) return;
