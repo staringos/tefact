@@ -4,7 +4,6 @@ export * from "./engine/constants";
 export * from "./constants";
 export * from "./engine/nodes";
 export * from "./types";
-
 export * as Shape from "./engine/shapes";
 
 export default Engine;
