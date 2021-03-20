@@ -22,7 +22,7 @@ idna==2.8
 idna-ssl==1.1.0
 inapppy==2.4.1
 itsdangerous==1.1.0
-Jinja2==2.10.1
+Jinja2==2.11.3
 jmespath==0.9.4
 MarkupSafe==1.1.1
 marshmallow==2.19.5
