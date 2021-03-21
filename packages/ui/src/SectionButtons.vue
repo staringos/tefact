@@ -36,7 +36,7 @@
 <script lang="ts">
 import { Component, Prop } from "vue-property-decorator";
 import { BaseView, IBaseNode } from "@tefact/core";
-import { PageProperties } from "../../feature-page/src/config";
+import { Properties as PageProperties } from "@tefact/feature-page";
 
 @Component
 export default class SectionButtons extends BaseView {
