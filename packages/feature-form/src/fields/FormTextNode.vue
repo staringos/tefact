@@ -1,10 +1,15 @@
 <template>
   <div class="form-node-wrapper" :style="style">
-    {{ node.text }}
+    {{ node.data ? node.data.text : "" }}
   </div>
 </template>
 <style lang="scss">
 @import "./style.scss";
+.form-node-wrapper {
+  display: flex;
+  flex: 1;
+  width: 100%;
+}
 </style>
 <script lang="ts">
 import { Vue, Component } from "vue-property-decorator";
@@ -29,8 +34,10 @@ export default class FormTextNode extends Vue {
   static DEFAULT = {
     id: "",
     style: {},
-    text: "文本描述",
-    itemType: "style",
+    data: {
+      text: "文本描述",
+      itemType: "style",
+    },
     type: "FormTextNode",
   };
 

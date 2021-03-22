@@ -1,12 +1,13 @@
 <template>
   <div class="form-node-wrapper">
-    <img :src="node.link" :style="style" />
+    <img :src="node.data ? node.data.link : ''" :style="style" />
   </div>
 </template>
 <style lang="scss">
 @import "./style.scss";
 .form-node-wrapper {
   position: relative;
+  padding: 0;
 }
 </style>
 <script lang="ts">
@@ -19,7 +20,9 @@ import { FormProperties } from "../config";
 })
 export default class FormImageNode extends Vue {
   get style() {
-    const { isFullWidth, imageStyle } = (this as any).config;
+    if (!(this as any).node.data) return {};
+
+    const { isFullWidth, imageStyle } = (this as any).node.data;
     const res = {
       width: imageStyle?.width + "px",
       height: imageStyle?.height + "px",
@@ -48,28 +51,28 @@ export default class FormImageNode extends Vue {
                   type: "ImageUploadRow",
                   params: {
                     title: "图片",
-                    path: "link",
+                    path: "data.link",
                   },
                 },
                 {
                   type: "NumberRow",
                   params: {
                     title: "宽度",
-                    path: "imageStyle.width",
+                    path: "data.imageStyle.width",
                   },
                 },
                 {
                   type: "NumberRow",
                   params: {
                     title: "高度",
-                    path: "imageStyle.height",
+                    path: "data.imageStyle.height",
                   },
                 },
                 {
                   type: "SwitchRow",
                   params: {
                     title: "适应宽度",
-                    path: "isFullWidth",
+                    path: "data.isFullWidth",
                   },
                 },
               ],
@@ -83,13 +86,15 @@ export default class FormImageNode extends Vue {
   static DEFAULT = {
     id: "",
     style: {},
-    imageStyle: {
-      height: 100,
-    },
-    isFullWidth: true,
-    link: "/images/image.png",
-    itemType: "style",
     type: "FormImageNode",
+    data: {
+      isFullWidth: true,
+      link: "/images/image.png",
+      itemType: "style",
+      imageStyle: {
+        height: 100,
+      },
+    },
   };
 
   static NODE = {

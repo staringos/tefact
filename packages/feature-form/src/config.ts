@@ -14,7 +14,7 @@ export class FormProperties {
               type: 'TextRow',
               params: {
                 title: "描述文字",
-                path: "config.text"
+                path: "data.text"
               }
             }]
           }

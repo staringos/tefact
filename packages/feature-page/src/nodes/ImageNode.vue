@@ -12,7 +12,7 @@
       class="uploader"
       v-if="!preview"
       :action="setting.uploadUrl"
-      :headers="setting.moreHeader"
+      :headers="setting.customHeader"
       :show-file-list="false"
       :on-success="handleUpdate"
       drag
@@ -145,6 +145,7 @@ export default class ImageNode extends NodeClass<IBaseNode> {
   }
 
   handleUpdate(e: Array<string>) {
+    console.log("success:", e);
     const node = cloneDeep(this.node);
     (node.data as any).url = "https://" + e[0];
     this.engine.updateNode(node);
