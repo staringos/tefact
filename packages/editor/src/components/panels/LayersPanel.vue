@@ -52,6 +52,13 @@ import { Component, Watch } from "vue-property-decorator";
 import BasePanel from "TEFACT_EDITOR/components/panels/BasePanel.vue";
 import { IBaseNode, BaseView } from "@tefact/core";
 import cloneDeep from "lodash/cloneDeep";
+import {
+  FORM_NODE_LIST,
+  PAGE_NODE_LIST,
+} from "TEFACT_EDITOR/components/features";
+
+console.log("FORM_NODE_LIST:", FORM_NODE_LIST);
+console.log("PAGE_NODE_LIST:", PAGE_NODE_LIST);
 
 type LayerMenuItem = {
   id?: string;
@@ -83,6 +90,8 @@ export default class LayersPanel extends BaseView {
     const activeId = this.activatedNode?.id;
     const isForm = this.featureType === "form";
     const nodes = this.currentTarget?.config?.children;
+    const Dictionary = isForm ? FORM_NODE_LIST : PAGE_NODE_LIST;
+
     if (!nodes) return;
     nodes.forEach((cur) => {
       let children = [] as Array<LayerMenuItem>;
@@ -92,7 +101,7 @@ export default class LayersPanel extends BaseView {
           cur.children?.map((node) => {
             return {
               id: node.id,
-              label: node.type,
+              label: Dictionary[node.type].title,
               active: node.id === activeId,
               sectionId: cur.id,
               data: node,
