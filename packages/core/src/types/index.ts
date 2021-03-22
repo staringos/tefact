@@ -1,6 +1,7 @@
 import * as CSS from "csstype";
 
 export type TargetFeatureType = "page" | "form";
+export type TargetDisplayType = "page" | "form" | "h5swift" | "h5page";
 
 export interface IPosition {
   x: number;
@@ -12,6 +13,7 @@ export interface ITarget {
   title: string;
   direction?: "horizontal" | "vertical";
   featureType: TargetFeatureType;
+  displayType?: TargetDisplayType;
   config: ITargetConfig;
 }
 

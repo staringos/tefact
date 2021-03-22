@@ -57,9 +57,6 @@ import {
   PAGE_NODE_LIST,
 } from "TEFACT_EDITOR/components/features";
 
-console.log("FORM_NODE_LIST:", FORM_NODE_LIST);
-console.log("PAGE_NODE_LIST:", PAGE_NODE_LIST);
-
 type LayerMenuItem = {
   id?: string;
   label?: string;
@@ -73,6 +70,8 @@ function wrapChildren(data: Array<LayerMenuItem>) {
     if (cur.children && cur.children.length > 0) {
       if (!cur.data) cur.data = {} as any;
       if (cur.data) cur.data.children = wrapChildren(cur.children) as any;
+    } else {
+      cur.data.children = cur.children;
     }
     return cur.data;
   });
@@ -111,7 +110,7 @@ export default class LayersPanel extends BaseView {
       }
       newData.push({
         id: cur.id,
-        label: isForm ? cur.type : "段落",
+        label: isForm ? Dictionary[cur.type].title : "段落",
         type: isForm ? cur.type : "section",
         active: cur.id === activeId,
         data: cur,

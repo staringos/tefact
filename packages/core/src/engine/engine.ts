@@ -8,7 +8,7 @@ import merge from "lodash/merge"
 import { BFS } from "@tefact/utils"
 import { Vue } from "vue-property-decorator"
 import { generateId } from "@tefact/utils"
-import { INodeStyle, IPos, ShareDataType } from "../types"
+import { INodeStyle, IPos, ShareDataType, TargetDisplayType } from "../types"
 
 type IFlattenNode = {
   parentId?: string | number
@@ -75,7 +75,10 @@ export default class Engine extends EventEmitter<string, ITarget> implements IEn
       this._refreshAllNodeMap();
     }
 
-    if (setting) this.changeSetting(setting)
+    if (target || this.target) {
+      const displayType = (target || this.target).displayType;
+      if (setting && displayType) this.changeSetting(displayType, setting);
+    }
     return this;
   }
 
@@ -196,8 +199,11 @@ export default class Engine extends EventEmitter<string, ITarget> implements IEn
     Vue.set(this.setting, key, value);
   }
 
-  public changeSetting(setting: ISetting) {
-    this.setting = Vue.observable(merge(DEFAULT_SETTING, setting));
+  public changeSetting(displayType: TargetDisplayType, setting: ISetting) {
+    const tmpSetting = Vue.observable(merge(DEFAULT_SETTING, setting));
+    tmpSetting.device = displayType !== "page" ? "mobile" : "pc";
+    this.setting = tmpSetting;
+    return this.setting;
   }
 
   public moveNode(nodeId: string, newParentId: string) {

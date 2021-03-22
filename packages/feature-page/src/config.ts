@@ -3,13 +3,18 @@ import { IProperties } from "@tefact/properties"
 import { IBaseNode } from "@tefact/core"
 
 export class PageProperties {
-  static defaultPageSections(): IBaseNode {
+  static defaultPageSections(displayType: string = "page"): IBaseNode {
+    let w = "100%";
+    let h = 500 as number | string;
+
+    if (displayType === "h5page" || displayType === "h5swift") h = 667;
+
     return {
       id: "",
       type: "section",
       pos: {
-        h: 500,
-        w: "100%",
+        h,
+        w,
         x: 0,
         y: 0,
       },

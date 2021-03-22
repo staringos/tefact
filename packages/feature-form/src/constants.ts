@@ -53,3 +53,9 @@ export const DEFAULT = {
     ]
   }
 }
+
+export const getDefault = (displayType: string) => {
+  if (displayType === "form") {
+    return DEFAULT;
+  }
+}
