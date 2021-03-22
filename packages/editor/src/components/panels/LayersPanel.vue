@@ -71,7 +71,9 @@ function wrapChildren(data: Array<LayerMenuItem>) {
       if (!cur.data) cur.data = {} as any;
       if (cur.data) cur.data.children = wrapChildren(cur.children) as any;
     } else {
-      cur.data.children = [] as Array<LayerMenuItem>;
+      if (cur.data) {
+        cur.data.children = [] as Array<IBaseNode>;
+      }
     }
     return cur.data;
   });
