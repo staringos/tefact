@@ -146,7 +146,7 @@ export class FormProperties {
                   selectOptions: [
                     { value: 'submit', label: '提交' },
                     { value: 'clear', label: '重置' },
-                    { value: 'link', label: '连接' },
+                    { value: 'link', label: '链接' },
                   ]
                 }
               }, {
@@ -155,12 +155,12 @@ export class FormProperties {
                   title: "样式",
                   path: "styleType",
                   selectOptions: [
-                    { value: 'primary', label: 'Primary' },
-                    { value: 'info', label: 'Info' },
-                    { value: 'warning', label: 'Warning' },
-                    { value: 'danger', label: 'Danger' },
-                    { value: 'text', label: 'Text' },
-                    { value: 'success', label: 'Success' },
+                    { value: 'primary', label: '首要' },
+                    { value: 'info', label: '信息' },
+                    { value: 'warning', label: '提示' },
+                    { value: 'danger', label: '错误' },
+                    { value: 'text', label: '文字' },
+                    { value: 'success', label: '成功' },
                     { value: 'default', label: '默认' },
                   ]
                 }

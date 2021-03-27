@@ -1,5 +1,5 @@
 <template>
-  <BasePanel class="layers-panel" title="图层">
+  <BasePanel class="layers-panel" title="页面内容">
     <el-tree
       class="layers-panel-tree"
       ref="tree"

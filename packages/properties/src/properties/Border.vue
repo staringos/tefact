@@ -47,7 +47,7 @@
 @import "./properties";
 
 .border-width {
-  width: 50px;
+  width: 30px;
   margin-left: 8px;
 }
 </style>

@@ -10,7 +10,7 @@
       <div class="share-block">
         <span class="share-title">分享权限</span>
         <div class="share-content">
-          <el-radio v-model="form.type" label="free">无权限</el-radio>
+          <el-radio v-model="form.type" label="free">公开</el-radio>
           <el-radio v-model="form.type" label="password">密码</el-radio>
           <el-radio v-model="form.type" label="login">登录访问</el-radio>
         </div>
@@ -120,7 +120,7 @@ export default class SharePageEditor extends BaseView {
   }
 
   async handleCopy() {
-    let message = `链接：${this.address}`;
+    let message = `${this.address}`;
 
     if (this.share.type === "password") {
       message += `密码：${this.share.password}`;
