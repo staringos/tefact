@@ -70,7 +70,7 @@ export default class Engine extends EventEmitter<string, ITarget> implements IEn
 
   public init(target?: ITarget, setting?: ISetting) {
     if (target) {
-      this.target = Vue.observable(cloneDeep(target));
+      Vue.set(this, "target", Vue.observable(cloneDeep(target)));
       this._targetBackup = target;
       this._refreshAllNodeMap();
     }
@@ -149,6 +149,15 @@ export default class Engine extends EventEmitter<string, ITarget> implements IEn
 
   public updateNode(config: IBaseNode) {
     if (!this._allNodesMap) return;
+
+    const oldTarget = this._allNodesMap[config.id] as Record<string, any>;
+
+    for(let key in config) {
+      if (config.hasOwnProperty(key)) {
+        oldTarget[key] = (config as Record<string, any>)[key] as any;
+      }
+    }
+
     this._allNodesMap[config.id].style = config.style;
     this._allNodesMap[config.id].pos = config.pos;
     this._allNodesMap[config.id].data = config.data;

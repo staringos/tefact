@@ -38,31 +38,31 @@ export class FormProperties {
               type: 'TextRow',
               params: {
                 title: "字段名",
-                path: "config.label"
+                path: "label"
               }
             }, {
               type: type,
               params: {
                 title: "默认值",
-                path: "config.default"
+                path: "default"
               }
             }, {
               type: 'TextRow',
               params: {
                 title: "描述",
-                path: "config.desc"
+                path: "desc"
               }
             }, {
               type: 'TextRow',
               params: {
                 title: "提示",
-                path: "config.placeholder"
+                path: "placeholder"
               }
             }, {
               type: 'SwitchRow',
               params: {
                 title: "是否必填",
-                path: "config.notNull"
+                path: "notNull"
               }
             }]
           }

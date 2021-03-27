@@ -6,6 +6,7 @@
       v-model="tmpText"
       size="small"
       @blur="handleChange(tmpText)"
+      @keydown.enter="handleChange(tmpText)"
       placeholder="请输入内容"
     ></el-input>
     <el-input-number

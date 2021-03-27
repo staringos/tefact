@@ -151,7 +151,7 @@ export default class Form extends BaseView {
   }
 
   get sections() {
-    return this.form?.config?.children || null;
+    return this.form?.config?.children;
   }
 
   @Watch("tmpValue", { deep: true })
