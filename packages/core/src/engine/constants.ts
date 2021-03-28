@@ -1,5 +1,5 @@
 import { ISetting } from "../types";
-import { BaseNodeStyle } from "./nodes"
+import { BaseNodeStyle } from "./nodes";
 
 export const DEFAULT_SETTING: ISetting = {
   uploadUrl: "/core/upload-files/tefact-saas",
