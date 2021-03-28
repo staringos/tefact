@@ -1,5 +1,6 @@
 import { Component, Vue } from "vue-property-decorator";
 import Engine from "./engine";
+import { ISetting } from "../types"
 
 @Component
 export class BaseView extends Vue {
@@ -16,7 +17,7 @@ export class BaseView extends Vue {
   get isForm() {
     return this.engine.isForm;
   }
-  get setting() {
+  get setting(): ISetting {
     return this.engine.setting;
   }
 

@@ -55,6 +55,8 @@ export interface IBaseNode {
 
 export type DeviceType = "pc" | "mobile";
 
+type TargetHandler = (id: string) => Promise<ITarget> | null;
+
 export interface ISetting {
   device: DeviceType;
   uploadUrl: string;
@@ -63,6 +65,8 @@ export interface ISetting {
   formList?: Array<ITarget>;
   theme: "default";
   i18n: "zh-CN";
+  formDataSubmitHandler?: (data: any) => Promise<boolean>;
+  getTargetByIdHandler?: TargetHandler;
   shareHandler: any;
 }
 

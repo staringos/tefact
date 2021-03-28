@@ -43,11 +43,13 @@
     </div>
   </BaseProperties>
 </template>
+
 <style lang="scss">
 @import "./properties";
 
 .border-width {
   width: 30px;
+  max-width: 30px;
   margin-left: 8px;
 }
 </style>

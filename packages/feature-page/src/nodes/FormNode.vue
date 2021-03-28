@@ -7,8 +7,13 @@
     :preview="preview"
     class="form-node"
   >
-    <Form v-if="selected" :form="form" :preview="preview" />
-    <div v-if="!selected && !preview" class="form-unselect">
+    <Form
+      v-if="form"
+      :form="form"
+      :preview="preview"
+      @submit="setting.formDataSubmitHandler"
+    />
+    <div v-if="!form && !preview" class="form-unselect">
       <el-button
         type="primary"
         size="mini"
@@ -48,14 +53,8 @@
 import { Component, Watch } from "vue-property-decorator";
 import BaseNode from "./BaseNode.vue";
 import NodeClass from "./NodeClass";
-import Form, { DefaultForm } from "@tefact/feature-form";
-import cloneDeep from "lodash/cloneDeep";
-// import {
-//   EVENT_EDITOR_SWITCH_TAB,
-//   getBaseNodeConfig,
-//   PageProperties,
-// } from "~/utils/constants/Editor";
-import { FreeNodeData, getBaseNode, IBaseNode } from "@tefact/core";
+import Form from "@tefact/feature-form";
+import { FreeNodeData, getBaseNode, IBaseNode, ITarget } from "@tefact/core";
 import { PageProperties } from "../config";
 import { EVENT_INSIDE } from "@tefact/core";
 
@@ -64,11 +63,7 @@ import { EVENT_INSIDE } from "@tefact/core";
 })
 export default class FormNode extends NodeClass<IBaseNode> {
   editor: any = null;
-  form = cloneDeep(DefaultForm);
-
-  // @system.Getter uploadUrl;
-  // @editor.Action modifyNode;
-  // @editor.Action getFormById;
+  form: ITarget | null = null;
 
   get selected() {
     return !!this.nodeData.formId;
@@ -81,8 +76,12 @@ export default class FormNode extends NodeClass<IBaseNode> {
 
   @Watch("node.data.formId", { immediate: true })
   async handleFormIdChange() {
-    // TODO good way to get form list
-    // this.form = await this.getFormById({ id: (this.node as any).data.formId });
+    this.getData();
+  }
+
+  async getData() {
+    if (!this.nodeData.formId) return null;
+    this.form = await this.engine.getTargetById(this.nodeData.formId);
   }
 
   static DEFAULT = {

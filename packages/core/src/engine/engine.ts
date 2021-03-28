@@ -208,9 +208,11 @@ export default class Engine extends EventEmitter<string, ITarget> implements IEn
     Vue.set(this.setting, key, value);
   }
 
-  public changeSetting(displayType: TargetDisplayType, setting: ISetting) {
+  public changeSetting(displayType: TargetDisplayType | null, setting: ISetting) {
     const tmpSetting = Vue.observable(merge(DEFAULT_SETTING, setting));
-    tmpSetting.device = displayType !== "page" ? "mobile" : "pc";
+    if (displayType) {
+      tmpSetting.device = displayType !== "page" ? "mobile" : "pc";
+    }
     this.setting = tmpSetting;
     return this.setting;
   }
@@ -316,6 +318,14 @@ export default class Engine extends EventEmitter<string, ITarget> implements IEn
         nodes[index] = tmp
         break
     }
+  }
+
+  getTargetById(id: string): Promise<ITarget> | null {
+    if (!this.setting.getTargetByIdHandler) {
+      return null;
+    }
+
+    return this.setting.getTargetByIdHandler(id);
   }
 
   public openModify() {

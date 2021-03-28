@@ -30,7 +30,7 @@ import PageSection from "./nodes/SectionNode.vue";
 import AddButton from "./components/AddButton.vue";
 import cloneDeep from "lodash/cloneDeep";
 import { transformStyle } from "@tefact/utils";
-import { BaseView, ITarget } from "@tefact/core";
+import { BaseView, ISetting, ITarget } from "@tefact/core";
 
 @Component({
   components: {
@@ -41,6 +41,7 @@ import { BaseView, ITarget } from "@tefact/core";
 export default class Page extends BaseView {
   @Prop() pageId!: string;
   @Prop() page!: ITarget;
+  @Prop() editorSetting!: ISetting;
   @Prop({ type: String, default: "pc" }) device!: string;
   @Prop(Boolean) preview!: boolean;
   @Prop(Boolean) isMobile!: boolean;
@@ -92,7 +93,10 @@ export default class Page extends BaseView {
         if (this.preview) return;
         this.engine.deleteNode(this.activeNodeId as string);
     }
+  }
 
+  beforeMount() {
+    this.engine.changeSetting(null, this.editorSetting);
   }
 
   mounted() {

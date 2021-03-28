@@ -12,7 +12,7 @@
         <div class="share-content">
           <el-radio v-model="form.type" label="free">公开</el-radio>
           <el-radio v-model="form.type" label="password">密码</el-radio>
-          <el-radio v-model="form.type" label="login">登录访问</el-radio>
+          <!--          <el-radio v-model="form.type" label="login">登录访问</el-radio>-->
         </div>
       </div>
       <div class="share-block" v-if="share">
