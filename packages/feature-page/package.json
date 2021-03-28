@@ -1,6 +1,6 @@
 {
   "name": "@tefact/feature-page",
-  "version": "0.0.1-alpha.11",
+  "version": "0.0.1-alpha.13",
   "description": "> TODO: description",
   "author": "GeorgeZou <zousongqi@foxmail.com>",
   "homepage": "",
@@ -25,10 +25,10 @@
     "test": "echo \"Error: run tests from root\" && exit 1"
   },
   "dependencies": {
-    "@tefact/core": "^0.0.1-alpha.11",
-    "@tefact/feature-form": "^0.0.1-alpha.11",
-    "@tefact/properties": "^0.0.1-alpha.11",
-    "@tefact/ui": "^0.0.1-alpha.11",
+    "@tefact/core": "^0.0.1-alpha.13",
+    "@tefact/feature-form": "^0.0.1-alpha.13",
+    "@tefact/properties": "^0.0.1-alpha.13",
+    "@tefact/ui": "^0.0.1-alpha.13",
     "@tefact/utils": "^0.0.1-alpha.2",
     "resize-detector": "^0.2.2",
     "vue": "^2.6.12",
