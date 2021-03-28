@@ -52,7 +52,6 @@ export default class Form extends PropertiesClass {
 
   handleDataChange() {
     if (!this.tmpNode || !this.tmpNode.data) return;
-    this.tmpNode.formId = this.tmpNode.formId;
     this.$nextTick(() => {
       this.handleSave();
     })
