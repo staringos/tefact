@@ -10,9 +10,9 @@
           size="small"
         ></el-color-picker>
         <el-select
-          class="resolu-form-item"
+          class="resolu-form-item border-style"
           v-model="tmpNode.style['border-style']"
-          placeholder="边框样式"
+          placeholder="样式"
           size="small"
           @change="handleSave"
         >
@@ -35,7 +35,7 @@
         <div class="resolu-label">圆角</div>
         <input
           type="number"
-          class="properties-input border-width"
+          class="properties-input"
           v-model.number="tmpNode.style['border-radius']"
           @blur="handleSave"
         />px
@@ -44,13 +44,25 @@
   </BaseProperties>
 </template>
 
-<style lang="scss">
+<style lang="scss" scoped>
 @import "./properties";
 
 .border-width {
   width: 30px;
   max-width: 30px;
   margin-left: 8px;
+}
+.border-style {
+  margin-left: 5px;
+
+  ::v-deep .el-input__inner {
+    padding-left: 5px;
+    padding-right: 20px;
+  }
+
+  ::v-deep .el-input__icon {
+    width: 20px;
+  }
 }
 </style>
 <script lang="ts">

@@ -11,7 +11,7 @@
       v-if="form"
       :form="form"
       :preview="preview"
-      @submit="setting.formDataSubmitHandler"
+      @submit="setting.onFormDataSubmit"
     />
     <div v-if="!form && !preview" class="form-unselect">
       <el-button
@@ -72,7 +72,9 @@ export default class FormNode extends NodeClass<IBaseNode> {
   handleChoose() {
     this.engine.emit(EVENT_INSIDE.SWITCH_PROPERTIES_TAB, "1");
   }
-  handleAdd() {}
+  handleAdd() {
+    this.engine.targetAdd();
+  }
 
   @Watch("node.data.formId", { immediate: true })
   async handleFormIdChange() {

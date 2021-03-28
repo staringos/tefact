@@ -1,4 +1,4 @@
-import { Component, Prop, Watch } from 'vue-property-decorator'
+import { Vue, Component, Prop, Watch } from 'vue-property-decorator'
 import cloneDeep from 'lodash/cloneDeep'
 import { BaseNodeStyle, BaseView, DefaultNodeData, IBaseNode } from '@tefact/core'
 
@@ -12,7 +12,7 @@ export default class PropertiesMixin extends BaseView {
 
   public init() {
     if (!this.node) return
-    let tmpNode = cloneDeep(this.node) as IBaseNode
+    let tmpNode = Vue.observable(cloneDeep(this.node)) as IBaseNode
     if (!tmpNode && DefaultNodeData[this.featureType])
       tmpNode = DefaultNodeData[this.featureType] as IBaseNode;
 

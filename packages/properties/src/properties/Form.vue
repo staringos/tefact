@@ -20,7 +20,7 @@
       </div>
       <div class="resolu-row">
         <div class="resolu-label"></div>
-        <el-button size="mini" @click="handleEdit" :disabled="!this.formId"
+        <el-button size="mini" @click="handleEdit" :disabled="!tmpNode.data.formId"
           >编辑表单</el-button
         >
         <el-button type="primary" size="mini" @click="handleAdd"
@@ -46,31 +46,25 @@ import { ITarget } from "@tefact/core";
 export default class Form extends PropertiesClass {
   formList = [] as Array<ITarget>;
 
-  // @editor.Action getFormList;
-  // @app.Getter currentAppIdGetter;
-  // @app.Getter currentApp;
-  // @app.Getter currentOrgIdGetter;
-
   get formId() {
-    return get(this.tmpNode, "data.formId");
+    return this.tmpNode.data?.formId;
   }
 
   handleDataChange() {
     if (!this.tmpNode || !this.tmpNode.data) return;
-    this.handleSave();
+    this.tmpNode.formId = this.tmpNode.formId;
+    this.$nextTick(() => {
+      this.handleSave();
+    })
   }
 
   handleEdit() {
     if (!this.formId) return;
-    this.engine.openTargetEditor(this.formId);
-    // window.open(
-    //   `/app/light/form/${this.currentAppIdGetter}/${this.formId}/editor`
-    // );
+    this.engine.targetEdit(this.formId);
   }
 
   handleAdd() {
-    this.engine.toAddTarget();
-    // window.open(`/light/${this.currentApp.id}`);
+    this.engine.targetAdd()
   }
 
   async initData() {

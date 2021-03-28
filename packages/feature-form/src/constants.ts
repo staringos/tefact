@@ -20,7 +20,7 @@ export const DefaultSecondButton: FormButton = {
 }
 
 export const DefaultFormItem: IFormNode = {
-  id: "",
+  id: "DEFAULT_FORM_ITEM_123",
   key: 'username',
   type: 'InputNode',
   style: {} as INodeStyle,

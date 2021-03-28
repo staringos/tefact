@@ -158,9 +158,9 @@ export default class Engine extends EventEmitter<string, ITarget> implements IEn
       }
     }
 
-    this._allNodesMap[config.id].style = config.style;
-    this._allNodesMap[config.id].pos = config.pos;
-    this._allNodesMap[config.id].data = config.data;
+    // this._allNodesMap[config.id].style = config.style;
+    // this._allNodesMap[config.id].pos = config.pos;
+    // this._allNodesMap[config.id].data = config.data;
 
     this.emit(EVENT.UPDATE_CONFIG, this.target);
   }
@@ -188,7 +188,7 @@ export default class Engine extends EventEmitter<string, ITarget> implements IEn
   }
 
   public share(shareData: ShareDataType) {
-    return this.setting.shareHandler(shareData);
+    return this.setting.onShare(shareData);
   }
 
   public static instance(target?: ITarget, setting: ISetting = DEFAULT_SETTING): Engine {
@@ -241,12 +241,12 @@ export default class Engine extends EventEmitter<string, ITarget> implements IEn
     this.emit(EVENT.UPDATE, this.target);
   }
 
-  public openTargetEditor(targetId: string) {
-    this.emit(EVENT.OPEN_FORM_EDITOR, targetId);
+  public targetEdit(targetId: string) {
+    this.emit(EVENT.EDIT_TARGET, targetId);
   }
 
-  public toAddTarget() {
-    this.emit(EVENT.TO_ADD_TARGET);
+  public targetAdd() {
+    this.emit(EVENT.ADD_TARGET);
   }
 
   public resetNodeOrder(nodeId: string, index: number) {

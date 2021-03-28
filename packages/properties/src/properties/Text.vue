@@ -6,11 +6,13 @@
         <el-color-picker
           v-model="tmpNode.style['color']"
           @change="handleSave"
+          size="small"
           show-alpha
         ></el-color-picker>
         <input
           type="number"
-          class="properties-input border-width"
+          style="margin-left: 10px; max-width: 80px;"
+          class="properties-input"
           v-model.number="tmpNode.style['font-size']"
           @blur="handleSave"
         />px

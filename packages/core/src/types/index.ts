@@ -65,9 +65,9 @@ export interface ISetting {
   formList?: Array<ITarget>;
   theme: "default";
   i18n: "zh-CN";
-  formDataSubmitHandler?: (data: any) => Promise<boolean>;
+  onFormDataSubmit?: (data: any) => Promise<boolean>;
   getTargetByIdHandler?: TargetHandler;
-  shareHandler: any;
+  onShare: any;
 }
 
 export interface IEngine {
