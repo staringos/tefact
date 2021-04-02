@@ -147,14 +147,24 @@ export default class Engine extends EventEmitter<string, ITarget> implements IEn
     this.emit(EVENT.UPDATE, set(this.target, path, value));
   }
 
-  public updateNode(config: IBaseNode) {
+  public updateNode(config: any) {
     if (!this._allNodesMap) return;
+    const isPage = config.config && config.featureType;
 
-    const oldTarget = this._allNodesMap[config.id] as Record<string, any>;
+    let oldTarget;
 
-    for(let key in config) {
-      if (config.hasOwnProperty(key)) {
-        oldTarget[key] = (config as Record<string, any>)[key] as any;
+    // modify page config
+    if (isPage) {
+      oldTarget = this.target.config;
+    } else {
+      oldTarget = this._allNodesMap[config.id] as Record<string, any>;
+    }
+
+    const newConfig = isPage ? config.config : config;
+
+    for (let key in newConfig) {
+      if (newConfig.hasOwnProperty(key)) {
+        oldTarget[key] = (newConfig as Record<string, any>)[key] as any;
       }
     }
 

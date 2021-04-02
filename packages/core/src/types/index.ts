@@ -27,6 +27,7 @@ export type FreeNodeData = Record<string, any>;
 
 export interface ITargetConfig {
   style: INodeStyle;
+  pos?: IPos;
   data: INodeData & FreeNodeData;
   viewMode: "adapt" | "fixed";
   children: IBaseNode[];

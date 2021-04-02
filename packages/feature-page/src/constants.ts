@@ -14,6 +14,9 @@ export const DEFAULT = {
   "config": {
     "viewMode": "adapt",
     "style": {},
+    "pos": {
+      "w": 1200
+    },
     "children": [
       {
         "id": "1",
@@ -58,6 +61,9 @@ export const DEFAULT_H5_PAGE = {
   "config": {
     "viewMode": "adapt",
     "style": {},
+    "pos": {
+      "w": 375
+    },
     "children": [
       {
         "id": "1",
@@ -102,6 +108,9 @@ export const DEFAULT_H5_SWIFT = {
   "config": {
     "viewMode": "adapt",
     "style": {},
+    "pos": {
+      "w": 375
+    },
     "children": [
       {
         "id": "1",

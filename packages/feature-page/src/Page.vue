@@ -46,7 +46,7 @@ export default class Page extends BaseView {
   @Prop(Boolean) preview!: boolean;
   @Prop(Boolean) isMobile!: boolean;
 
-  style = {};
+  style = {} as Record<string, any>;
 
   get activeNodeIds() {
     return this.engine.activeNodeIds;
@@ -60,16 +60,18 @@ export default class Page extends BaseView {
     return this.page.config.children;
   }
 
-  @Watch("page.config")
+  @Watch("page.config", { immediate: true })
   refreshStyle() {
-    const { style, viewMode } = this.page.config;
+    const { style, viewMode, pos } = this.page.config;
     const res = cloneDeep(style) as any;
     if (viewMode === "adapt" && this.$el && this.preview) {
       const $el = this.$el;
       let realWidth = 100;
       if ($el.parentElement)
         realWidth = $el.parentElement.getBoundingClientRect().width;
-      const setWidth = style.width as number;
+
+      const type = (this.page as any).display_type;
+      const setWidth = (pos?.w || (type.indexOf('h5') !== -1 ? 375 : 1200)) as number;
 
       if (setWidth && setWidth > 0) {
         res["transform"] = `scale(${realWidth / setWidth})`;
