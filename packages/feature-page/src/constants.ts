@@ -12,7 +12,7 @@ export const DEFAULT = {
   "title": "这是一个新页面",
   "featureType": "page",
   "config": {
-    "viewMode": "fixed",
+    "viewMode": "adapt",
     "style": {},
     "children": [
       {
@@ -52,11 +52,11 @@ export const DEFAULT = {
 }
 
 export const DEFAULT_H5_PAGE = {
-  "title": "这是一个翻页h5",
+  "title": "这是一个长页h5",
   "featureType": "page",
   "displayType": "h5page",
   "config": {
-    "viewMode": "fixed",
+    "viewMode": "adapt",
     "style": {},
     "children": [
       {
@@ -94,12 +94,13 @@ export const DEFAULT_H5_PAGE = {
     ]
   }
 }
+
 export const DEFAULT_H5_SWIFT = {
   "title": "这是一个翻页H5",
   "featureType": "page",
   "displayType": "h5swift",
   "config": {
-    "viewMode": "fixed",
+    "viewMode": "adapt",
     "style": {},
     "children": [
       {
