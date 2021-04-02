@@ -6,7 +6,8 @@
   <a href="http://saas.staringos.com">Usage</a> | 
   <a href="https://staringos.com/docs">Documents</a> | 
   <a href="https://staringos.com/docs/join-us">Community</a> | 
-  <a href="https://staringos.com/docs/join-us">Support</a>
+  <a href="https://staringos.com/docs/join-us">Support</a> |
+  <a href="https://staringos.com/docs/join-us">中文文档</a>
 </div>
 
 <br />
@@ -21,11 +22,9 @@
 
 </div>
 
-# Tefact Engine
+# Tefact Engine [![Community](https://img.shields.io/discord/733027681184251937.svg?style=flat&label=Join%20Community&color=7289DA)](https://discord.gg/7V5vnHW2)
 
-Make your `Website`、`Mobile Page` and `Form` without code.
-
-[中文文档](./README-CN.md)
+No Code platform use GUI editor to generate `HTML Page` and `Form`.
 
 ## Getting Start
 
@@ -41,7 +40,7 @@ Import styles to your css or less file:
 import "@tefact/editor/lib/index.css"
 ```
 
-Import Editor to you
+Import Editor to you.
 
 ```vue
 <template>
@@ -82,7 +81,7 @@ You can use `getDefaultFeature` in `@tefact/editor` to generate default target d
 
 #### Parameters
 
-- Target: the edit target
+- value: the edit target
 - editorSetting: Setting of editor
 
 #### Event
@@ -142,3 +141,19 @@ export default Vue.extends({
 })
 </script>
 ```
+
+### Join Community or Get Support
+
+## 获取技术支持
+
+关注 `真科技Tefact` 微信公众号，回复 `技术支持` 加入微信群，获取 1v1 人工技术支持.
+
+![qrcode](./docs/images/qrcode.jpg)
+
+## Contributing
+
+[CONTRIBUTING](./CONTRIBUTING.md)
+
+#### Discord
+
+[![Community](https://img.shields.io/discord/733027681184251937.svg?style=flat&label=Join%20Community&color=7289DA)](https://discord.gg/7V5vnHW2)
