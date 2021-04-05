@@ -1,6 +1,6 @@
 {
   "name": "@tefact/core",
-  "version": "0.0.1-alpha.16",
+  "version": "0.0.1-0.0.1-alpha.17.0",
   "description": "> TODO: description",
   "author": "GeorgeZou <zousongqi@foxmail.com>",
   "repository": {
@@ -24,7 +24,7 @@
     "test": "echo \"Error: run tests from root\" && exit 1"
   },
   "dependencies": {
-    "@tefact/utils": "^0.0.1-alpha.16",
+    "@tefact/utils": "^0.0.1-0.0.1-alpha.17.0",
     "csstype": "^3.0.6",
     "eventemitter3": "^4.0.7",
     "lodash": "^4.17.20",
