@@ -18,7 +18,9 @@ export class PageProperties {
         x: 0,
         y: 0,
       },
-      style: {},
+      style: {
+        "background-color": "white"
+      },
       data: {},
       // section_type: 'editor',
       // page_id: null,
@@ -26,7 +28,19 @@ export class PageProperties {
     }
   }
 
-  static defaultProperties(title: string, dataComponents?: Array<IPropertiesComponents> | null, basicComponents?: Array<IPropertiesComponents>) {
+  static defaultProperties(
+    title: string,
+    dataComponents?: Array<IPropertiesComponents> | null,
+    basicComponents?: Array<IPropertiesComponents> | null,
+    noTextProperties = false
+  ) {
+    const more = [] as Array<any>;
+    if (!noTextProperties) {
+      more.push(
+        { type: 'TextProperties', params: {} }
+      )
+    }
+
     const res = {
       title,
       hasTab: true,
@@ -37,7 +51,7 @@ export class PageProperties {
             { type: 'PositionProperties', params: {} },
             { type: 'BackgroundProperties', params: {} },
             { type: 'BorderProperties', params: {} },
-            { type: 'TextProperties', params: {} }
+            ...more
           ],
         },
       ],

@@ -37,16 +37,16 @@ export const DEFAULT = {
           "id": "12",
           "type": "TextNode",
           "pos": {
-            "x": 10,
-            "y": 10,
-            "width": 100,
-            "height": 100
+            "x": 20,
+            "y": 20,
+            "w": 100,
+            "h": 100
           },
           "style": {
             "color": "#333"
           },
           "data": {
-            "target": "这是一段文字呀"
+            "target": "请输入文字"
           }
         }]
       }
@@ -84,16 +84,16 @@ export const DEFAULT_H5_PAGE = {
           "id": "12",
           "type": "TextNode",
           "pos": {
-            "x": 10,
-            "y": 10,
-            "width": 100,
-            "height": 100
+            "x": 20,
+            "y": 20,
+            "w": 100,
+            "h": 100
           },
           "style": {
             "color": "#333"
           },
           "data": {
-            "target": "这是一段文字呀"
+            "target": "请输入文字"
           }
         }]
       }
@@ -131,16 +131,16 @@ export const DEFAULT_H5_SWIFT = {
           "id": "12",
           "type": "TextNode",
           "pos": {
-            "x": 10,
-            "y": 10,
-            "width": 100,
-            "height": 100
+            "x": 20,
+            "y": 20,
+            "w": 100,
+            "h": 100
           },
           "style": {
             "color": "#333"
           },
           "data": {
-            "target": "这是一段文字呀"
+            "target": "请输入文字"
           }
         }]
       }

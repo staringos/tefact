@@ -108,6 +108,6 @@ export default class FormNode extends NodeClass<IBaseNode> {
         title: "内容设置",
       },
     },
-  ]);
+  ], null, true);
 }
 </script>
