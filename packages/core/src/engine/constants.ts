@@ -19,7 +19,7 @@ export interface Share {
 
 export const DefaultShare: Share = {
   page_id: null,
-  type: 'password',
+  type: 'free',
   password: null
 }
 

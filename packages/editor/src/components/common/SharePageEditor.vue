@@ -1,7 +1,7 @@
 <template>
   <el-popover
     placement="top"
-    width="330"
+    width="360"
     class="share-popover"
     v-model="visible"
   >
@@ -145,18 +145,21 @@ export default class SharePageEditor extends BaseView {
 
   .share-title {
     width: 60px;
+    padding-right: 10px;
   }
 
   .share-content {
     flex: 1;
     display: flex;
+    padding-top: 2px;
 
     .address {
       flex: 1;
     }
 
     .password {
-      width: 68px;
+      width: 72px;
+      margin-left: 5px;
     }
   }
 }

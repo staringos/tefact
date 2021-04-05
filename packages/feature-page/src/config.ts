@@ -110,7 +110,7 @@ export class PageProperties {
                     title: "高度",
                     type: "number",
                     suffix: "px",
-                    path: "config.h"
+                    path: "pos.h"
                   }
                 }]
               }

@@ -140,6 +140,7 @@ export default class Editor extends BaseView {
   @Prop() editorSetting?: ISetting;
 
   pageId: string | null = null;
+  isInitEvent = false;
 
   get isMobile(): boolean {
     return this.setting?.device === "mobile";
@@ -164,15 +165,18 @@ export default class Editor extends BaseView {
     // eslint-disable-next-line @typescript-eslint/no-this-alias
     const that = this;
     if (that.engine.target === this.value) return;
+    this.engine = Engine.instance(this.value, this.editorSetting);
+
+    if (that.isInitEvent) return;
 
     function execEvent(type: string, noInput = false) {
+      that.isInitEvent = true;
       return (data: ITarget) => {
         !noInput && that.$emit(EVENT.INPUT, data);
         that.$emit(type, data);
       };
     }
 
-    this.engine = Engine.instance(this.value, this.editorSetting);
     this.engine.on(EVENT.ADD, execEvent(EVENT.ADD));
     this.engine.on(EVENT.UPDATE, execEvent(EVENT.UPDATE));
     this.engine.on(EVENT.UPDATE_CONFIG, execEvent(EVENT.UPDATE_CONFIG));
@@ -182,6 +186,10 @@ export default class Editor extends BaseView {
     this.engine.on(EVENT.BACK, execEvent(EVENT.BACK, true));
     this.engine.on(EVENT.ADD_TARGET, execEvent(EVENT.ADD_TARGET));
     this.engine.on(EVENT.EDIT_TARGET, execEvent(EVENT.EDIT_TARGET));
+  }
+
+  beforeDestroy() {
+    this.engine.removeAllListeners();
   }
 
   handleEditorClick() {
