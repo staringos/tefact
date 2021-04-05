@@ -13,8 +13,7 @@
 </template>
 <script lang="ts">
 import { Component, Prop, Vue, Watch } from "vue-property-decorator";
-import isNumber from "lodash/isnumber";
-import toNumber from "lodash/toNumber";
+import { isNumber, toNumber } from "@tefact/utils";
 
 @Component
 export default class PropertyInput extends Vue {
@@ -33,12 +32,12 @@ export default class PropertyInput extends Vue {
     const value = toNumber(this.tmpValue);
 
     if (isNumber(this.min) && value < this.min) {
-      Vue.set(this, "tmpValue", this.min);
+      Vue.set(this, "tmpValue", this.min + 1);
       this.handleInput();
     }
 
     if (isNumber(this.max) && value > this.max) {
-      Vue.set(this, "tmpValue", this.max);
+      Vue.set(this, "tmpValue", this.max - 1);
       this.handleInput();
     }
   }
