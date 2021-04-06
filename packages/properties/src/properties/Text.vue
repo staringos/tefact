@@ -116,7 +116,7 @@ export default class TextProperties extends PropertiesClass {
   }
 
   handleChangeGenerate(key: string) {
-    const that = this;
+    const that = this as any;
     return (value: string) => {
       that.handleStyleChange(key, value);
     };

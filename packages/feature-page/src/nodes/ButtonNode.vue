@@ -9,7 +9,7 @@
   >
     <el-button
       class="button-node-main"
-      :style="{ width: config.w, height: config.h }"
+      :style="{ width: config.pos.w, height: config.pos.h, ...config.style }"
       v-bind="nodeData"
       @click="handleClick"
       >{{ nodeData.text }}</el-button
