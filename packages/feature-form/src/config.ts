@@ -114,14 +114,14 @@ export class FormProperties {
                 type: 'NumberRow',
                 params: {
                   title: "页面宽度",
-                  unit: "px",
+                  suffix: "px",
                   path: "config.style.width"
                 }
               }, {
                 type: 'NumberRow',
                 params: {
                   title: "标签宽度",
-                  unit: "px",
+                  suffix: "px",
                   path: "config.labelWidth"
                 }
               }]

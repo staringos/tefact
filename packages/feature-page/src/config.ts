@@ -98,7 +98,7 @@ export class PageProperties {
                   type: 'NumberRow',
                   params: {
                     title: "页面宽度",
-                    unit: "px",
+                    suffix: "px",
                     path: "config.style.width"
                   }
                 }]
@@ -119,7 +119,7 @@ export class PageProperties {
               type: 'RowsProperties', params: {
                 title: '样式设置',
                 rows: [{
-                  type: 'TextRow',
+                  type: 'NumberRow',
                   params: {
                     title: "高度",
                     type: "number",
