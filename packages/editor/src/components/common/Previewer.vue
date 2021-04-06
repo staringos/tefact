@@ -11,8 +11,8 @@
       :page="page"
       :isSharePage="false"
       :vendor="{}"
-      @submit="$emit('submit', $event)"
       :getTargetById="setting.getTargetByIdHandler"
+      @submit="$emit('submit', $event)"
     />
   </el-dialog>
 </template>

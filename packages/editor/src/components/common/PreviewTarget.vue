@@ -103,6 +103,7 @@
         top: 60px;
         z-index: 20;
         left: calc(50% - 187.5px);
+        background-color: #f5f5f5;
       }
 
       ::v-deep.editor-page-canvas.column-side {
@@ -217,8 +218,7 @@ export default class SharePage extends Vue {
   }
 
   async handleAddTargetData(e) {
-    await this.addTargetData(e);
-    this.$router.push("/s/p/success");
+    this.$emit("submit", e);
   }
 
   @Watch("page", { immediate: true })
@@ -226,6 +226,9 @@ export default class SharePage extends Vue {
     if (!this.$el) return false;
     const width = this.$el.getBoundingClientRect().width;
     this.isMobileInDesktop = width > 600 && this.isMobile;
+
+    if (!this.page?.share?.key) return false;
+
     this.link = this.isSharePage
       ? location.href
       : getSharePageLink(this.page?.share?.key);

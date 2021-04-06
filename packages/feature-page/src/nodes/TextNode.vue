@@ -50,8 +50,6 @@ import BaseNode from "./BaseNode.vue";
 import { FreeNodeData, getBaseNode, IBaseNode } from "@tefact/core";
 import { PageProperties } from "../config";
 
-// const editor = namespace("editor");
-
 @Component({
   components: { BaseNode },
 })
@@ -66,6 +64,7 @@ export default class TextNode extends NodeClass<IBaseNode> {
   get textContextStyle() {
     const { style } = this.node;
     return {
+      // ...transformStyle(this.node),
       "justify-content": style["justify-content"],
       "align-items": style["align-items"],
     };

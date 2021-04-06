@@ -54,6 +54,7 @@
       :page="target"
       :isForm="engine.isForm"
       :show="showPreviewer"
+      @submit="setting.onFormDataSubmit"
       @cancel="handlePreviewerHide"
     />
   </div>
