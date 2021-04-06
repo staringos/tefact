@@ -125,7 +125,7 @@ export default class CarouselNode extends NodeClass<IBaseNode> {
           {
             type: "TextRow",
             params: {
-              title: "图片",
+              title: "图片链接",
               path: "image",
             },
           },
