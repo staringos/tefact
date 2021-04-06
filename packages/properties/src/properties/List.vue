@@ -13,7 +13,7 @@
     <div class="list-wrapper">
       <el-table
         class="list-table"
-        :data="items"
+        :data="get(this.tmpNode, this.path)"
         size="mini"
         style="width: 100%"
         v-if="tmpNode"
@@ -74,11 +74,8 @@ export default class ListProperties extends PropertiesClass {
   @Prop([String]) title;
   @Prop([String]) path;
 
+  get = get;
   editData = null;
-
-  get items() {
-    return get(this.tmpNode, this.path);
-  }
 
   get columns() {
     const columns = [];
