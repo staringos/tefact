@@ -51,8 +51,7 @@
       </div>
       <div class="resolu-row">
         <div class="resolu-label">对齐</div>
-        {{tmpNode.style['justify-content']}}
-        <el-radio-group :value="tmpNode.style['justify-content']" size="mini" @input="handleChange">
+        <el-radio-group :value="tmpNode.style['justify-content']" size="mini" @input="handleChangeGenerate('justify-content')($event)">
           <el-radio-button label="flex-start">
             <i class="tefact-icon tf-icon-youduiqi"></i>
           </el-radio-button>
@@ -63,71 +62,20 @@
             <i class="tefact-icon tf-icon-zuoduiqi"></i>
           </el-radio-button>
         </el-radio-group>
-<!--        <el-button-group>-->
-<!--          <el-button-->
-<!--            :type="-->
-<!--              tmpNode.style['justify-content'] === 'flex-start'-->
-<!--                ? 'primary'-->
-<!--                : 'default'-->
-<!--            "-->
-<!--            icon="tefact-icon tf-icon-youduiqi"-->
-<!--            size="mini"-->
-<!--            @click="handleStyleChange('justify-content', 'flex-start')"-->
-<!--          ></el-button>-->
-<!--          <el-button-->
-<!--            :type="-->
-<!--              tmpNode.style['justify-content'] === 'center'-->
-<!--                ? 'primary'-->
-<!--                : 'default'-->
-<!--            "-->
-<!--            icon="tefact-icon tf-icon-zhongduiqi"-->
-<!--            size="mini"-->
-<!--            @click="handleStyleChange('justify-content', 'center')"-->
-<!--          ></el-button>-->
-<!--          <el-button-->
-<!--            :type="-->
-<!--              tmpNode.style['justify-content'] === 'flex-end'-->
-<!--                ? 'primary'-->
-<!--                : 'default'-->
-<!--            "-->
-<!--            icon="tefact-icon tf-icon-zuoduiqi"-->
-<!--            size="mini"-->
-<!--            @click="handleStyleChange('justify-content', 'flex-end')"-->
-<!--          ></el-button>-->
-<!--        </el-button-group>-->
       </div>
       <div class="resolu-row">
         <div class="resolu-label"></div>
-        <el-button-group>
-          <el-button
-            :type="
-              tmpNode.style['align-items'] === 'flex-start'
-                ? 'primary'
-                : 'default'
-            "
-            icon="tefact-icon tf-icon-vertical-align-top"
-            size="mini"
-            @click="handleStyleChange('align-items', 'flex-start')"
-          ></el-button>
-          <el-button
-            :type="
-              tmpNode.style['align-items'] === 'center' ? 'primary' : 'default'
-            "
-            icon="tefact-icon tf-icon-vertical-align-middle"
-            size="mini"
-            @click="handleStyleChange('align-items', 'center')"
-          ></el-button>
-          <el-button
-            :type="
-              tmpNode.style['align-items'] === 'flex-end'
-                ? 'primary'
-                : 'default'
-            "
-            icon="tefact-icon tf-icon-vertical-align-bottom"
-            size="mini"
-            @click="handleStyleChange('align-items', 'flex-end')"
-          ></el-button>
-        </el-button-group>
+        <el-radio-group :value="tmpNode.style['align-items']" size="mini" @input="handleChangeGenerate('align-items')($event)">
+          <el-radio-button label="flex-start">
+            <i class="tefact-icon tf-icon-vertical-align-top"></i>
+          </el-radio-button>
+          <el-radio-button label="center">
+            <i class="tefact-icon tf-icon-vertical-align-middle"></i>
+          </el-radio-button>
+          <el-radio-button label="flex-end">
+            <i class="tefact-icon tf-icon-vertical-align-bottom"></i>
+          </el-radio-button>
+        </el-radio-group>
       </div>
     </div>
   </BaseProperties>
@@ -167,8 +115,11 @@ export default class TextProperties extends PropertiesClass {
     return false;
   }
 
-  handleChange(value: string) {
-    this.handleStyleChange('justify-content', value);
+  handleChangeGenerate(key: string) {
+    const that = this;
+    return (value: string) => {
+      that.handleStyleChange(key, value);
+    };
   }
 }
 </script>
