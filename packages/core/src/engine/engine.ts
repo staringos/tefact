@@ -201,6 +201,10 @@ export default class Engine extends EventEmitter<string, ITarget> implements IEn
     return this.setting.onShare(shareData);
   }
 
+  public cancelShare() {
+    return this.emit(EVENT.SHARE_CANCEL, this.target.id);
+  }
+
   public static instance(target?: ITarget, setting: ISetting = DEFAULT_SETTING): Engine {
     if (!Engine._engineInstance) {
       Engine._engineInstance = Vue.observable(new Engine(target, setting)) as Engine;

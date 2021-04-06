@@ -171,9 +171,9 @@ export default class Editor extends BaseView {
 
     function execEvent(type: string, noInput = false) {
       that.isInitEvent = true;
-      return (data: ITarget) => {
-        !noInput && that.$emit(EVENT.INPUT, data);
-        that.$emit(type, data);
+      return (...params: any) => {
+        !noInput && that.$emit(EVENT.INPUT, ...params);
+        that.$emit(type, ...params);
       };
     }
 
@@ -182,6 +182,7 @@ export default class Editor extends BaseView {
     this.engine.on(EVENT.UPDATE_CONFIG, execEvent(EVENT.UPDATE_CONFIG));
     this.engine.on(EVENT.SAVE, execEvent(EVENT.SAVE));
     this.engine.on(EVENT.SHARE, execEvent(EVENT.SHARE));
+    this.engine.on(EVENT.SHARE_CANCEL, execEvent(EVENT.SHARE_CANCEL, true));
     this.engine.on(EVENT.OPEN_MODIFIER, execEvent(EVENT.OPEN_MODIFIER, true));
     this.engine.on(EVENT.BACK, execEvent(EVENT.BACK, true));
     this.engine.on(EVENT.ADD_TARGET, execEvent(EVENT.ADD_TARGET));

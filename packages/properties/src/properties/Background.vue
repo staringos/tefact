@@ -65,8 +65,9 @@ export default class Background extends PropertiesClass {
   handleDeleteBackground() {
     const style = (this as any).tmpNode.style;
 
-    delete style["background-image"];
-    delete style["background-size"];
+    style["background-image"] = null;
+    style["background-size"] = null;
+    this.tmpInput = null;
     this.handleSave();
   }
 }

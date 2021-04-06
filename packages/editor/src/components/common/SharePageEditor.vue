@@ -48,11 +48,11 @@
         </div>
       </div>
       <div style="text-align: right; margin: 0">
-        <el-button size="mini" type="text" v-if="share" @click="visible = false"
+        <el-button size="mini" type="text" v-if="share" @click="handleCancelShare"
           >取消分享</el-button
         >
         <el-button type="primary" size="mini" @click="handleShare"
-          >分享</el-button
+          >{{share ? "修改" : ""}}分享</el-button
         >
       </div>
     </div>
@@ -64,6 +64,7 @@ import { Component, Prop, Watch } from "vue-property-decorator";
 import { BaseView, DefaultShare } from "@tefact/core";
 import cloneDeep from "lodash/cloneDeep";
 import QRCode from "qrcode";
+import getSharePageLink from "../../utils/getSharePageLink";
 
 @Component({
   components: {},
@@ -88,20 +89,19 @@ export default class SharePageEditor extends BaseView {
     }
   }
 
-  // @Watch("page", { immediate: true, deep: true })
+  @Watch("page", { immediate: true, deep: true })
   handlePageChange() {
-    if (this.page.share) {
-      this.share = this.page.share;
-      this.form = cloneDeep(this.page.share);
-    }
+    this.share = this.page.share;
+    this.form = this.share ? cloneDeep(this.share) : cloneDeep(DefaultShare);
   }
 
   get address() {
     if (!this.share) return "";
-    const host = window.location.host;
-    const protocol = window.location.protocol;
-    // return `https://saas.tefact.com/s/p/${this.share.key}`;
-    return `${protocol}//${host}/s/p/${this.share.key}`;
+    // const host = window.location.host;
+    // const protocol = window.location.protocol;
+    // // return `https://saas.tefact.com/s/p/${this.share.key}`;
+    // return `${protocol}//${host}/s/p/${this.share.key}`;
+    return getSharePageLink(this.share.key);
   }
 
   async handleShare() {
@@ -111,6 +111,10 @@ export default class SharePageEditor extends BaseView {
       pageType: this.pageType,
     });
     this.share = res.data;
+  }
+
+  async handleCancelShare() {
+    return this.engine.cancelShare();
   }
 
   @Watch("address", { immediate: true })

@@ -6,13 +6,14 @@
     :before-close="() => $emit('cancel')"
     fullscreen
   >
-    <div class="page-container" v-if="page">
-      <div class="header"></div>
-      <div class="content">
-        <Page v-if="!isForm" :page="page" :pageId="page.id" :preview="true" />
-        <Form v-else :form="page" :preview="true" />
-      </div>
-    </div>
+    <PreviewTarget
+      v-if="page"
+      :page="page"
+      :isSharePage="false"
+      :vendor="{}"
+      @submit="$emit('submit', $event)"
+      :getTargetById="setting.getTargetByIdHandler"
+    />
   </el-dialog>
 </template>
 <style lang="scss" scoped>
@@ -36,8 +37,7 @@
 
 .page-container {
   overflow: hidden;
-  box-shadow: 0 6px 20px 5px rgba(40, 120, 255, 0.1),
-    0 16px 24px 2px rgba(0, 0, 0, 0.05);
+  box-shadow: 0 6px 20px 5px rgba(40, 120, 255, 0.1), 0 16px 24px 2px rgba(0, 0, 0, 0.05);
   display: flex;
   flex: 1;
   flex-direction: column;
@@ -55,17 +55,16 @@
 }
 </style>
 <script lang="ts">
-import { Vue, Component, Prop } from "vue-property-decorator";
-import Page from "@tefact/feature-page";
-import Form from "@tefact/feature-form";
-import { ITarget } from "@tefact/core";
+import { Component, Prop } from "vue-property-decorator";
+import PreviewTarget from "./PreviewTarget.vue";
+import { BaseView, ITarget } from "@tefact/core";
 
 @Component({
-  components: { Page, Form }
+  components: { PreviewTarget },
 })
-export default class Previewer extends Vue {
+export default class Previewer extends BaseView {
   @Prop() page!: ITarget;
-  @Prop(Boolean) isForm!: boolean;
-  @Prop(Boolean) show!: boolean;
+  @Prop() getTargetById;
+  @Prop(Boolean) show!: Boolean;
 }
 </script>

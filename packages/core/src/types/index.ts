@@ -15,6 +15,7 @@ export interface ITarget {
   featureType: TargetFeatureType;
   displayType?: TargetDisplayType;
   config: ITargetConfig;
+  share?: ShareInfo; // the target share information
 }
 
 export interface INodeStyle extends CSS.PropertiesHyphen<string | number, number> {}
@@ -69,6 +70,12 @@ export interface ISetting {
   onFormDataSubmit?: (data: any) => Promise<boolean>;
   getTargetByIdHandler?: TargetHandler;
   onShare: any;
+}
+
+export interface ShareInfo {
+  key: string;
+  password: string;
+  id: string;
 }
 
 export interface IEngine {
