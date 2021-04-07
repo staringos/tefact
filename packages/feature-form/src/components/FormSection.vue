@@ -10,16 +10,31 @@
     @hover.stop
     @mouseover.stop
   >
+<!--    <el-form-item-->
+<!--      size="small"-->
+<!--      :labelWidth="`${form.config.labelWidth}px`"-->
+<!--      :label="section.label"-->
+<!--      :prop="section.id"-->
+<!--      :required="section.notNull"-->
+<!--      v-if="!isFreeFormItem"-->
+<!--    >-->
+<!--      <slot></slot>-->
+<!--      <span class="desc">{{ section.desc }}</span>-->
+<!--    </el-form-item>-->
     <el-form-item
-      size="small"
-      :labelWidth="`${form.config.labelWidth}px`"
-      :label="section.label"
-      :prop="section.id"
-      :required="section.notNull"
-      v-if="!isFreeFormItem"
+        class="form-item-wrapper"
+        size="small"
+        labelWidth="10px"
+        label=""
+        :prop="section.id"
+        :required="section.notNull"
+        v-if="!isFreeFormItem"
     >
+      <div class="form-item-header">
+        <p class="form-item-label">{{ section.label }}</p>
+        <p class="form-item-desc" v-if="section.desc">{{ section.desc }}</p>
+      </div>
       <slot></slot>
-      <span class="desc">{{ section.desc }}</span>
     </el-form-item>
     <div class="free-form-item" v-else>
       <slot></slot>
@@ -51,6 +66,25 @@
 
   ::v-deep.el-form-item__content {
     margin-left: 10px !important;
+  }
+
+  .form-item-wrapper {
+    display: flex;
+    flex-direction: column;
+
+    ::v-deep.el-form-item__content {
+      flex-direction: column;
+    }
+
+    .form-item-header {
+      .form-item-label {
+        font-size: 14px;
+      }
+
+      .form-item-desc {
+        font-size: 12px;
+      }
+    }
   }
 
   .free-form-item {
