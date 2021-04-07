@@ -28,6 +28,7 @@ export default class NumberNode extends Vue {
   static NODE = {
     icon: "tf-icon-number",
     type: "NumberNode",
+    category: "表单组件",
     title: "数字",
     nodeData: NumberNode.DEFAULT,
   };

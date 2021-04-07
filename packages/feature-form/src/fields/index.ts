@@ -41,7 +41,12 @@ Object.keys(nodes).forEach((key) => {
   if (node.NODE) NODES[key] = node.NODE
 })
 
+const NODE_CATEGORIES = [
+  "表单组件", "展示组件"
+];
+
 export {
   PROPERTIES,
-  NODES
+  NODES,
+  NODE_CATEGORIES
 }

@@ -39,6 +39,7 @@ export default class MoneyNode extends Vue {
   static NODE = {
     icon: "tf-icon-money",
     type: "MoneyNode",
+    category: "表单组件",
     title: "价格",
     nodeData: MoneyNode.DEFAULT,
   };

@@ -67,6 +67,7 @@ export default class InputNode extends BaseView {
   static NODE = {
     icon: "tf-icon-image",
     type: "ImageNode",
+    category: "表单组件",
     title: "上传图片",
     nodeData: InputNode.DEFAULT,
   };

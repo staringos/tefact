@@ -60,6 +60,7 @@ export default class RadioNode extends Vue {
   static NODE = {
     icon: "tf-icon-radio",
     type: "RadioNode",
+    category: "表单组件",
     title: "单选框",
     nodeData: RadioNode.DEFAULT,
   };

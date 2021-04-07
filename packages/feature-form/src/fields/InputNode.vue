@@ -26,6 +26,7 @@ export default class InputNode extends Vue {
   static NODE = {
     icon: "tf-icon-input",
     type: "InputNode",
+    category: "表单组件",
     title: "文字",
     nodeData: InputNode.DEFAULT,
   };

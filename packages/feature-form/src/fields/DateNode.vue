@@ -49,6 +49,7 @@ export default class DateNode extends Vue {
   static NODE = {
     icon: "tf-icon-date",
     type: "DateNode",
+    category: "表单组件",
     title: "日期",
     nodeData: DateNode.DEFAULT,
   };

@@ -100,6 +100,7 @@ export default class FormImageNode extends Vue {
   static NODE = {
     icon: "tf-icon-image",
     type: "FormImageNode",
+    category: "展示组件",
     title: "图片",
     nodeData: FormImageNode.DEFAULT,
   };

@@ -96,7 +96,10 @@ export function StaticImplements<T>() {
 
 export type NodeListConfig = {
   title: string | null;
-  list: Record<string, NodeConfig>
+  list: Array<NodeConfig>;
+  // list: Record<string, NodeConfig>;
+  categories?: Array<string>;
+  classifiedList?: Record<string, Record<string, NodeConfig>>;
 }
 
 export type NodeConfig = {

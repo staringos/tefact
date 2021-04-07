@@ -6,26 +6,40 @@
     @back="handleGoBack"
     @click.stop
   >
-    <draggable
-      class="editor-node-list"
-      :group="{ name: 'form-item', pull: 'clone', put: false }"
-      :sort="false"
-      :list="list"
-      @clone="handleClone"
-      @change="handleChange"
-      @end="handleDragEnd"
-    >
+    <NodeList v-if="!hasCategory" :list="list" :subNodeType="subNodeType" />
+<!--    <draggable-->
+<!--      class="editor-node-list"-->
+<!--      v-if="hasCategory"-->
+<!--      :group="{ name: 'form-item', pull: 'clone', put: false }"-->
+<!--      :sort="false"-->
+<!--      :list="list"-->
+<!--      @clone="handleClone"-->
+<!--      @change="handleChange"-->
+<!--      @end="handleDragEnd"-->
+<!--    >-->
+<!--      <div-->
+<!--        class="node-item"-->
+<!--        :node="node"-->
+<!--        v-for="(node, i) in editorDetails.list"-->
+<!--        :key="i"-->
+<!--        @click="handleSelect(node.nodeData)"-->
+<!--      >-->
+<!--        <i :class="`tefact-icon ${node.icon}`"></i>-->
+<!--        <span>{{ node.title }}</span>-->
+<!--      </div>-->
+<!--    </draggable>-->
+    <template v-else>
       <div
-        class="node-item"
-        :node="node"
-        v-for="(node, i) in editorDetails.list"
+        class="classified-node-list"
+        v-for="(category, i) in editorDetails.categories"
         :key="i"
-        @click="handleSelect(node.nodeData)"
       >
-        <i :class="`tefact-icon ${node.icon}`"></i>
-        <span>{{ node.title }}</span>
+        <div class="classified-node-header">
+          {{category}}
+        </div>
+        <NodeList v-if="editorDetails.classifiedList" :list="editorDetails.classifiedList[category]" :subNodeType="subNodeType" />
       </div>
-    </draggable>
+    </template>
   </BasePanel>
 </template>
 <script lang="ts">
@@ -33,85 +47,77 @@ import { Component } from "vue-property-decorator";
 import {
   FORM_NODE_LIST,
   PAGE_NODE_LIST,
+  FORM_NODE_CATEGORIES,
 } from "TEFACT_EDITOR/components/features";
-import { Shape, BaseView, DRAGGING_TYPE } from "@tefact/core";
-import draggable from "vuedraggable";
+import { Shape, BaseView } from "@tefact/core";
 import BasePanel from "TEFACT_EDITOR/components/panels/BasePanel.vue";
-import { NodeListConfig } from "@tefact/core";
-import type { IBaseNode } from "@tefact/core";
+import type { NodeListConfig } from "@tefact/core";
+import groupBy from "lodash/groupBy";
+import NodeList from "../common/NodeList.vue"
 
 const EditorNodesDetails = {
   shape: {
     title: "图形",
     hasGoBack: true,
-    list: Shape.SHAPE_NODE_LIST,
+    list: Object.values(Shape.SHAPE_NODE_LIST),
   },
   form: {
     title: "表单",
     hasGoBack: false,
-    list: FORM_NODE_LIST,
+    categories: FORM_NODE_CATEGORIES,
+    list: Object.values(FORM_NODE_LIST),
   },
   page: {
     title: null,
     hasGoBack: false,
-    list: PAGE_NODE_LIST,
+    list: Object.values(PAGE_NODE_LIST),
   },
   default: {
     title: null,
     hasGoBack: false,
-    list: PAGE_NODE_LIST,
+    list: Object.values(PAGE_NODE_LIST),
   },
 } as Record<string, NodeListConfig>;
 
 @Component({
   components: {
-    BasePanel,
-    draggable,
+    NodeList,
+    BasePanel
   },
 })
-export default class NodeList extends BaseView {
+export default class NodeListPanel extends BaseView {
   curDraggingNode: any | null = null;
   subNodeType: string | null = null;
 
   get editorDetails(): NodeListConfig {
-    if (this.subNodeType) return EditorNodesDetails[this.subNodeType];
-    return (
-      EditorNodesDetails[this.currentTarget.featureType] ||
-      EditorNodesDetails.default
-    );
+    let curDetails: NodeListConfig | null = null;
+    if (this.subNodeType) {
+      curDetails = EditorNodesDetails[this.subNodeType];
+    } else {
+      curDetails = (
+          EditorNodesDetails[this.currentTarget.featureType] ||
+          EditorNodesDetails.default
+      );
+    }
+
+    if (curDetails.categories) {
+      const res = groupBy(Object.values(curDetails.list), "category");
+      curDetails.classifiedList = res as any;
+    }
+
+    return curDetails;
+  }
+
+  get hasCategory(): boolean {
+    if (!this.editorDetails) return false;
+    if (!this.editorDetails.categories) return false;
+    return this.editorDetails.categories.length > 0;
   }
 
   get list() {
-    return Object.values(this.editorDetails.list);
+    return this.editorDetails.list;
   }
 
-  handleChange() {}
-
-  handleClone(e: any) {
-    if (!e) return;
-    this.engine.dragging(this.list[e.oldIndex].nodeData, DRAGGING_TYPE.ADD);
-  }
-
-  handleDragEnd() {
-    this.engine.cleanDragging();
-  }
-
-  handleSelect(nodeData: IBaseNode) {
-    if (nodeData.type === "ShapeNode" && this.subNodeType !== "shape") {
-      this.subNodeType = "shape";
-      return;
-    }
-
-    let parentId = undefined as any;
-
-    if (this.activeNodeId) {
-      if (this.activeNodeType === "section") parentId = this.activeNodeId;
-      else parentId = this.engine.activatedNodeParentId;
-    }
-
-    if (this.featureType === "form") return this.engine.add(nodeData, -1);
-    this.engine.addNode(nodeData, parentId);
-  }
 
   handleGoBack() {
     this.subNodeType = null;
@@ -171,6 +177,12 @@ export default class NodeList extends BaseView {
         border: 1px solid $editor-node-border-color;
       }
     }
+  }
+
+  .classified-node-header {
+    text-align: center;
+    font-size: 12px;
+    margin-top: 10px;
   }
 }
 </style>
