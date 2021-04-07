@@ -1,7 +1,8 @@
 import { Vue, Component, Prop, Watch } from 'vue-property-decorator'
 import cloneDeep from 'lodash/cloneDeep'
 import isEqual from 'lodash/isEqual'
-import { BaseNodeStyle, BaseView, DefaultNodeData, IBaseNode } from '@tefact/core'
+import { BaseNodeStyle, BaseView, DefaultNodeData } from '@tefact/core'
+import type { IBaseNode } from '@tefact/core'
 
 @Component
 export default class PropertiesMixin extends BaseView {

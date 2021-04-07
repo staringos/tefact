@@ -64,7 +64,8 @@
 import { Component, Prop } from "vue-property-decorator";
 import SharePageEditor from "TEFACT_EDITOR/components/common/SharePageEditor.vue";
 import Previewer from "TEFACT_EDITOR/components/common/Previewer.vue";
-import { BaseView, ITarget, DeviceType } from "@tefact/core";
+import { BaseView, DeviceType } from "@tefact/core";
+import type { ITarget } from "@tefact/core";
 
 @Component({
   components: { Previewer, SharePageEditor },

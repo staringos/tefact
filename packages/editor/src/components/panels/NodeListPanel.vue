@@ -37,7 +37,8 @@ import {
 import { Shape, BaseView, DRAGGING_TYPE } from "@tefact/core";
 import draggable from "vuedraggable";
 import BasePanel from "TEFACT_EDITOR/components/panels/BasePanel.vue";
-import { IBaseNode, NodeListConfig } from "@tefact/core";
+import { NodeListConfig } from "@tefact/core";
+import type { IBaseNode } from "@tefact/core";
 
 const EditorNodesDetails = {
   shape: {

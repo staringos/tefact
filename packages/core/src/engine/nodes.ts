@@ -1,4 +1,4 @@
-import { IBaseNode, INodeStyle } from "../types";
+import type { IBaseNode, INodeStyle } from "../types";
 import isNumber from "lodash/isNumber";
 import cloneDeep from "lodash/cloneDeep";
 

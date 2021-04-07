@@ -180,7 +180,7 @@
 <script lang="ts">
 import { Vue, Component, Prop, Watch } from "vue-property-decorator";
 import QRCode from "qrcode";
-import { ITarget } from "@tefact/core";
+import type { ITarget } from "@tefact/core";
 import Page from "@tefact/feature-page";
 import Form from "@tefact/feature-form";
 import getSharePageLink from "../../utils/getSharePageLink";

@@ -1,7 +1,8 @@
 import EventEmitter from 'eventemitter3'
 import { DEFAULT_SETTING } from './constants'
 import cloneDeep from 'lodash/cloneDeep'
-import { IEngine, ITarget, IBaseNode, EVENT, ISetting } from "@tefact/core";
+import type { IEngine, ITarget, IBaseNode, ISetting } from "@tefact/core";
+import { EVENT } from "@tefact/core";
 import set from 'lodash/set'
 import findIndex from 'lodash/findIndex'
 import merge from "lodash/merge"

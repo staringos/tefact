@@ -25,7 +25,7 @@
 </style>
 <script lang="ts">
 import { Vue, Component, Prop } from "vue-property-decorator";
-import { IDraggingTree } from "./DraggingTree.vue";
+import type { IDraggingTree } from "./DraggingTree.vue";
 
 @Component({
   components: {

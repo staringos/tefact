@@ -27,7 +27,7 @@ import { Component } from "vue-property-decorator";
 // import List from "../../../../../components/entities/List.vue";
 import NodeClass from "./NodeClass";
 import BaseNode from "./BaseNode.vue";
-import { IBaseNode } from "@tefact/core";
+import type { IBaseNode } from "@tefact/core";
 
 @Component({
   components: {

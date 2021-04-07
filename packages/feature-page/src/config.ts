@@ -1,6 +1,6 @@
-import { IPropertiesComponents } from "@tefact/properties"
-import { IProperties } from "@tefact/properties"
-import { IBaseNode } from "@tefact/core"
+import type { IPropertiesComponents } from "@tefact/properties"
+import type { IProperties } from "@tefact/properties"
+import type { IBaseNode } from "@tefact/core"
 
 export class PageProperties {
   static defaultPageSections(displayType: string = "page"): IBaseNode {

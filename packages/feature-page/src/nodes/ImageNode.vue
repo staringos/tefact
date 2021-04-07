@@ -119,7 +119,8 @@ import { Component } from "vue-property-decorator";
 import cloneDeep from "lodash/cloneDeep";
 import BaseNode from "./BaseNode.vue";
 import NodeClass from "./NodeClass";
-import { FreeNodeData, getBaseNode, IBaseNode } from "@tefact/core";
+import { FreeNodeData, getBaseNode } from "@tefact/core";
+import type { IBaseNode } from "@tefact/core";
 import { PageProperties } from "../config";
 
 // const editor = namespace("editor");

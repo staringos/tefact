@@ -1,6 +1,6 @@
 import cloneDeep from 'lodash/cloneDeep'
 import isNumber from 'lodash/isNumber'
-import { IBaseNode, ITargetConfig } from "@tefact/core"
+import type { IBaseNode, ITargetConfig } from "@tefact/core"
 
 const ParamLengthReg = /width|height|size|radius/
 const NotParamLengthReg = /background-size/

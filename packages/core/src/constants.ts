@@ -1,4 +1,4 @@
-import { IBaseNode, INodeStyle, ITarget } from './index'
+import type { IBaseNode, INodeStyle, ITarget } from './index'
 
 export const DefaultTarget: ITarget = {
   id: "",

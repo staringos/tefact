@@ -57,7 +57,8 @@
 <script lang="ts">
 import { Component, Prop } from "vue-property-decorator";
 import PreviewTarget from "./PreviewTarget.vue";
-import { BaseView, ITarget } from "@tefact/core";
+import { BaseView } from "@tefact/core";
+import type { ITarget } from "@tefact/core";
 
 @Component({
   components: { PreviewTarget },

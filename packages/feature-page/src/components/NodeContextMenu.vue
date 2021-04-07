@@ -18,7 +18,8 @@
 </template>
 <script lang="ts">
 import { Component, Prop, Watch } from "vue-property-decorator";
-import { BaseView, IPosition } from "@tefact/core";
+import { BaseView } from "@tefact/core";
+import type { IPosition } from "@tefact/core";
 
 // const editor = namespace("editor");
 

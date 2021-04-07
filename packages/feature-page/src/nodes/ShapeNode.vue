@@ -39,7 +39,8 @@ import { Component, Prop } from "vue-property-decorator";
 import NodeClass from "./NodeClass";
 import BaseNode from "./BaseNode.vue";
 import shapes from "../shapes";
-import { getBaseNode, IBaseNode } from "@tefact/core";
+import { getBaseNode } from "@tefact/core";
+import type { IBaseNode } from "@tefact/core";
 import { PageProperties } from "../config";
 
 // const editor = namespace("editor");

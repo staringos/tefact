@@ -30,7 +30,8 @@ import PageSection from "./nodes/SectionNode.vue";
 import AddButton from "./components/AddButton.vue";
 import cloneDeep from "lodash/cloneDeep";
 import { transformStyle } from "@tefact/utils";
-import { BaseView, ISetting, ITarget } from "@tefact/core";
+import { BaseView } from "@tefact/core";
+import type { ISetting, ITarget } from "@tefact/core";
 
 @Component({
   components: {

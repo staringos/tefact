@@ -129,7 +129,8 @@ import Form from "@tefact/feature-form";
 import Toolbar from "TEFACT_EDITOR/components/Toolbar.vue";
 import PropertiesBar from "@tefact/properties";
 import NodesBar from "TEFACT_EDITOR/components/NodesBar.vue";
-import Engine, { BaseView, ISetting, ITarget, EVENT } from "@tefact/core";
+import Engine, { BaseView, EVENT } from "@tefact/core";
+import type { ISetting, ITarget } from "@tefact/core";
 
 @Component({
   components: { NodesBar, Toolbar, PropertiesBar, Page, Form },

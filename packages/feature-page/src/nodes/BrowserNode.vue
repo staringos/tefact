@@ -33,7 +33,8 @@
 import { Component } from "vue-property-decorator";
 import BaseNode from "./BaseNode.vue";
 import NodeClass from "./NodeClass";
-import { getBaseNode, IBaseNode } from "@tefact/core";
+import { getBaseNode } from "@tefact/core";
+import type { IBaseNode } from "@tefact/core";
 import { PageProperties } from "../config";
 
 @Component({

@@ -1,4 +1,4 @@
-import { SHAPE_NODE_LIST } from "@tefact/core/src/engine/shapes";
+import { SHAPE_NODE_LIST } from "./engine/shapes";
 import Engine from "./engine";
 export { BaseView } from "./engine";
 export * from "./engine/constants";
