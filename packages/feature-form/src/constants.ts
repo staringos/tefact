@@ -26,6 +26,7 @@ export const DefaultFormItem: IFormNode = {
   type: 'InputNode',
   style: {} as INodeStyle,
   pos: {
+    h: 0,
     w: "100%",
     x: 0,
     y: 0
