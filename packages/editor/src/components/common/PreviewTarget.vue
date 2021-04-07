@@ -3,14 +3,14 @@
     :class="`page-content ${this.isMobileInDesktop ? 'desktop-mobile' : ''}`"
   >
     <Page
-      v-if="!isMobileInDesktop && page"
+      v-if="!isMobileInDesktop && page.feature_type === 'page' && page"
       :page="page"
       :pageId="page.id"
       :preview="true"
       :editorSetting="setting"
     />
     <Form
-      v-if="!isMobileInDesktop && page"
+      v-if="!isMobileInDesktop && page.feature_type === 'form' && page"
       :form="page"
       :pageId="page.id"
       :preview="true"
