@@ -23,9 +23,11 @@
 
 # Tefact Engine [![Community](https://img.shields.io/discord/733027681184251937.svg?style=flat&label=Join%20Community&color=7289DA)](https://discord.gg/7V5vnHW2)
 
-开源无代码编辑器，使用图形化界面生成 网站、H5和表单.
+星搭开源无代码编辑器，使用图形化界面生成 网站、H5和表单. 无需任何代码生成应用程序！
 
 <a href="./README.md">[English Docs]</a>
+
+<img src="./docs/assets/images/show.gif" align="center">
 
 依赖:
 

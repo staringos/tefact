@@ -21,9 +21,9 @@
 
 </div>
 
-# Tefact Engine [![Community](https://img.shields.io/discord/733027681184251937.svg?style=flat&label=Join%20Community&color=7289DA)](https://discord.gg/7V5vnHW2)
+# Tefact [![Community](https://img.shields.io/discord/733027681184251937.svg?style=flat&label=Join%20Community&color=7289DA)](https://discord.gg/7V5vnHW2)
 
-No Code platform use GUI editor to generate `HTML Page` and `Form`.
+Lightweight no-code editor for `website`、`H5 page` and `Form`. Build your application without code!
 
 <a href="./README-CN.md">[中文文档]</a>
 
