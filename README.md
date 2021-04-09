@@ -7,7 +7,7 @@
   <a href="https://staringos.com/docs">Documents</a> | 
   <a href="https://staringos.com/docs/join-us">Community</a> | 
   <a href="https://staringos.com/docs/join-us">Support</a> |
-  <a href="https://staringos.com/docs/join-us">中文文档</a>
+  <a href="./README-CN.md">中文文档</a>
 </div>
 
 <br />
@@ -144,11 +144,7 @@ export default Vue.extends({
 
 ### Join Community or Get Support
 
-## 获取技术支持
-
-关注 `真科技Tefact` 微信公众号，回复 `技术支持` 加入微信群，获取 1v1 人工技术支持.
-
-![qrcode](./docs/images/qrcode.jpg)
+![qrcode](./docs/images/wechat-qrcode.jpg)
 
 ## Contributing
 
