@@ -1,13 +1,12 @@
 <div align="center">
-  <img src="./docs/assets/images/logo-banner.png">
+  <img src="./docs/assets/images/logo-banner-2.png">
 </div>
 <div align="center">
   <a href="https://staringos.com">网站</a> | 
   <a href="http://saas.staringos.com">案例</a> | 
   <a href="https://staringos.com/docs">文档</a> | 
   <a href="https://staringos.com/docs/join-us">社区</a> | 
-  <a href="https://staringos.com/docs/join-us">支持</a> |
-  <a href="./README.md">English Docs</a>
+  <a href="https://staringos.com/docs/join-us">支持</a>
 </div>
 
 <br />
@@ -25,6 +24,14 @@
 # Tefact Engine [![Community](https://img.shields.io/discord/733027681184251937.svg?style=flat&label=Join%20Community&color=7289DA)](https://discord.gg/7V5vnHW2)
 
 开源无代码编辑器，使用图形化界面生成 网站、H5和表单.
+
+<a href="./README.md">[English Docs]</a>
+
+依赖:
+
+- [Vue 2.x](https://github.com/vuejs/vue)
+- [ElementUI](https://github.com/ElemeFE/element)
+- [Sass](https://github.com/sass/sass)
 
 ## Getting Start
 

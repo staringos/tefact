@@ -1,13 +1,12 @@
 <div align="center">
-  <img src="./docs/assets/images/logo-banner.png">
+  <img src="./docs/assets/images/logo-banner-2.png">
 </div>
 <div align="center">
   <a href="https://staringos.com">Website</a> | 
   <a href="http://saas.staringos.com">Usage</a> | 
   <a href="https://staringos.com/docs">Documents</a> | 
   <a href="https://staringos.com/docs/join-us">Community</a> | 
-  <a href="https://staringos.com/docs/join-us">Support</a> |
-  <a href="./README-CN.md">中文文档</a>
+  <a href="https://staringos.com/docs/join-us">Support</a>
 </div>
 
 <br />
@@ -26,9 +25,19 @@
 
 No Code platform use GUI editor to generate `HTML Page` and `Form`.
 
+<a href="./README-CN.md">[中文文档]</a>
+
+<img src="./docs/assets/images/show.gif" align="center">
+
+Dependencies:
+
+- [Vue 2.x](https://github.com/vuejs/vue)
+- [ElementUI](https://github.com/ElemeFE/element)
+- [Sass](https://github.com/sass/sass)
+
 ## Getting Start
 
-Install dependency
+Install dependency:
 
 ```shell script
 yarn add @tefact/editor
@@ -38,6 +47,20 @@ Import styles to your css or less file:
 
 ```vue
 import "@tefact/editor/lib/index.css"
+```
+
+Add `@tefact` package to your webpack transport.
+
+`webpack.config.js` or `nuxt.config.js`
+
+```json
+{
+    "build": {
+        "transpile": [
+          /@tefact\/*/
+        ],
+    }
+}
 ```
 
 Import Editor to you.
