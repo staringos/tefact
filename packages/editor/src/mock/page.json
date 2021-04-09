@@ -1,0 +1,74 @@
+{
+  "title": "这是一个新页面",
+  "featureType": "page",
+  "config": {
+    "viewMode": "fixed",
+    "style": {},
+    "children": [
+      {
+        "id": "1",
+        "type": "section",
+        "style": {
+          "background-color": "#fff"
+        },
+        "data": {
+          "target": ""
+        },
+        "pos": {
+          "w": 1200,
+          "h": 500,
+          "x": 0,
+          "y": 0
+        },
+        "children": [{
+          "id": "12",
+          "type": "TextNode",
+          "pos": {
+            "x": 10,
+            "y": 10,
+            "width": 100,
+            "height": 100
+          },
+          "style": {
+            "color": "#333"
+          },
+          "data": {
+            "target": "这是一段文字呀"
+          }
+        }]
+      },
+      {
+        "id": "11",
+        "type": "section",
+        "pos": {
+          "x": 10,
+          "y": 10,
+          "width": 100,
+          "height": 100
+        },
+        "style": {
+          "background-color": "#333"
+        },
+        "data": {
+          "target": "这是一段文字呀"
+        },
+        "children": [{
+          "id": "122",
+          "type": "TextNode",
+          "pos": {
+            "x": 10,
+            "y": 10,
+            "width": 100,
+            "height": 100
+          },
+          "style": {
+            "color": "#fff"
+          },
+          "data": {
+            "target": "这是一段文字呀呀呀"
+          }
+        }]
+      }
+    ]
+  }
+}

@@ -1,0 +1,41 @@
+{
+  "name": "@tefact/feature-form",
+  "version": "0.0.1-alpha.15",
+  "description": "> TODO: description",
+  "author": "GeorgeZou <zousongqi@foxmail.com>",
+  "homepage": "",
+  "license": "ISC",
+  "main": "./src/index.ts",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/tefact/tefact-engine.git",
+    "directory": "packages/feature-form"
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "directories": {
+    "lib": "src",
+    "test": "__tests__"
+  },
+  "files": [
+    "src"
+  ],
+  "scripts": {
+    "test": "echo \"Error: run tests from root\" && exit 1"
+  },
+  "dependencies": {
+    "@tefact/core": "^0.0.1-alpha.15",
+    "@tefact/properties": "^0.0.1-alpha.15",
+    "@tefact/ui": "^0.0.1-alpha.15",
+    "@tefact/utils": "^0.0.1-alpha.2",
+    "lodash": "^4.17.20",
+    "vue": "^2.6.12",
+    "vue-property-decorator": "^9.1.2",
+    "vuedraggable": "^2.24.3"
+  },
+  "devDependencies": {
+    "typescript": "^4.1.3"
+  },
+  "gitHead": "7afe9ddc7994d2bc34c85c09f8e9a032dbc39650"
+}

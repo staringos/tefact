@@ -1,0 +1,24 @@
+{
+  "title": "这是一个新表单",
+  "featureType": "form",
+  "config": {
+    "viewMode": "fixed",
+    "style": {},
+    "children": [
+      {
+        "id": "1",
+        "type": "InputNode",
+        "label": "文本框",
+        "style": {
+          "background-color": "#fff"
+        },
+        "data": {
+          "target": ""
+        },
+        "pos": {
+          "h": 50
+        }
+      }
+    ]
+  }
+}

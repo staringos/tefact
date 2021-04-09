@@ -1,0 +1,36 @@
+{
+  "name": "@tefact/utils",
+  "version": "0.0.1-alpha.2",
+  "description": "> TODO: description",
+  "author": "GeorgeZou <zousongqi@foxmail.com>",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/tefact/tefact-engine.git",
+    "directory": "packages/utils"
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "homepage": "",
+  "license": "ISC",
+  "main": "./src/index.ts",
+  "directories": {
+    "lib": "src",
+    "test": "__tests__"
+  },
+  "files": [
+    "src"
+  ],
+  "scripts": {
+    "test": "echo \"Error: run tests from root\" && exit 1"
+  },
+  "dependencies": {
+    "@types/uuid": "^8.3.0",
+    "lodash": "^4.17.20",
+    "uuid": "^8.3.2"
+  },
+  "devDependencies": {
+    "@types/lodash": "^4.14.168"
+  },
+  "gitHead": "7afe9ddc7994d2bc34c85c09f8e9a032dbc39650"
+}

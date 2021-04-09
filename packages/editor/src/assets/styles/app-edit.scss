@@ -1,0 +1,11 @@
+.app-editor-page {
+  display: flex;
+  flex-direction: row;
+  height: 100%;
+  flex: 1;
+
+  .page-item {
+    display: flex;
+    flex: 1;
+  }
+}
