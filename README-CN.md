@@ -143,7 +143,9 @@ export default Vue.extends({
 
 ### 加入社区
 
-![qrcode](./docs/assets/images/wechat-qrcode.jpg)
+微信扫码加入星搭微信群
+
+<img src="./docs/assets/images/wechat-group.png" width="200" />
 
 ## 贡献代码
 

@@ -142,9 +142,11 @@ export default Vue.extends({
 </script>
 ```
 
-### Join Community or Get Support
+### Join Community
 
-![qrcode](./docs/assets/images/wechat-qrcode.jpg)
+Scan with wechat, join our group.
+
+![qrcode](./docs/assets/images/wechat-group.jpg)
 
 ## Contributing
 
