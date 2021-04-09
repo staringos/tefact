@@ -27,7 +27,7 @@
 
 <a href="./README.md">[English Docs]</a>
 
-<img src="./docs/assets/images/show.gif" align="center">
+<img src="./docs/assets/images/show.gif" align="center" width="80%">
 
 依赖:
 
@@ -150,16 +150,18 @@ export default Vue.extends({
 </script>
 ```
 
-### 加入社区
-
-微信扫码加入星搭微信群
-
-<img src="./docs/assets/images/wechat-group.png" width="200" />
-
 ## 贡献代码
+
+优秀的开源社区需要大家的共同努力，欢迎 PRs 和 Issues. 
 
 [CONTRIBUTING](./CONTRIBUTING.md)
 
-#### Discord
+### 加入社区
+
+微信扫码加入星搭微信群:
+
+<img src="./docs/assets/images/wechat-group.jpg" width="200" />
+
+### Discord
 
 [![Community](https://img.shields.io/discord/733027681184251937.svg?style=flat&label=Join%20Community&color=7289DA)](https://discord.gg/7V5vnHW2)

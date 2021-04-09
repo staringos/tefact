@@ -14,14 +14,14 @@
 <div align="center">
 
 [![license](https://img.shields.io/badge/license-MIT-brightgreen.svg?style=flat)](https://github.com/Tefact/tefact-saas)
-[![Actions Status](https://github.com/tefact/tefact-saas/workflows/deploy/badge.svg)](https://github.com/tefact/tefact-saas/actions)
 [![Release Version](https://img.shields.io/badge/release-0.0.1-green.svg)](https://github.com/Tefact/tefact-saas/releases)
-[![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg)](https://github.com/Tefact/tefact-saas/pulls)
 [![Total alerts](https://img.shields.io/lgtm/alerts/g/Tefact/tefact-saas.svg?logo=lgtm&logoWidth=18)](https://lgtm.com/projects/g/Tefact/tefact-saas/alerts/)
+[![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg)](https://github.com/Tefact/tefact-saas/pulls)
+[![Community](https://img.shields.io/discord/733027681184251937.svg?style=flat&label=Join%20Community&color=7289DA)](https://discord.gg/7V5vnHW2)
 
 </div>
 
-# Tefact [![Community](https://img.shields.io/discord/733027681184251937.svg?style=flat&label=Join%20Community&color=7289DA)](https://discord.gg/7V5vnHW2)
+# Tefact
 
 Lightweight no-code editor for `website`、`H5 page` and `Form`. Build your application without code!
 
@@ -165,15 +165,17 @@ export default Vue.extends({
 </script>
 ```
 
+## Contributing
+
+PRs & Issues are all welcome, feel free to ask question or submit your code.
+
+[CONTRIBUTING](./CONTRIBUTING.md)
+
 ### Join Community
 
 Scan with wechat, join our group.
 
-![qrcode](./docs/assets/images/wechat-group.jpg)
-
-## Contributing
-
-[CONTRIBUTING](./CONTRIBUTING.md)
+<img src="./docs/assets/images/wechat-group.jpg" width="200">
 
 #### Discord
 
