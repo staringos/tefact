@@ -36,7 +36,7 @@ yarn add @tefact/editor
 
 引入样式文件
 
-```vue
+```ts
 import "@tefact/editor/lib/index.css"
 ```
 
@@ -143,7 +143,7 @@ export default Vue.extends({
 
 ### 加入社区
 
-![qrcode](./docs/images/wechat-qrcode.jpg)
+![qrcode](./docs/assets/images/wechat-qrcode.jpg)
 
 ## 贡献代码
 

@@ -144,7 +144,7 @@ export default Vue.extends({
 
 ### Join Community or Get Support
 
-![qrcode](./docs/images/wechat-qrcode.jpg)
+![qrcode](./docs/assets/images/wechat-qrcode.jpg)
 
 ## Contributing
 
