@@ -63,10 +63,14 @@ export default class Background extends PropertiesClass {
   }
 
   handleDeleteBackground() {
-    const style = (this as any).tmpNode.style;
+    this.tmpNode.style = {
+      ...this.tmpNode.style,
+      "background-image": null,
+      "background-size": null,
+    }
 
-    Vue.set(style, "background-image", null);
-    Vue.set(style, "background-size", null);
+    // Vue.set(style, "background-image", "");
+    // Vue.set(style, "background-size", "");
     this.tmpInput = null;
     this.handleSave();
   }
