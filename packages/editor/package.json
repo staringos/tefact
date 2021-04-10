@@ -1,6 +1,6 @@
 {
   "name": "@tefact/editor",
-  "version": "0.0.1-alpha.21",
+  "version": "0.0.1-alpha.22",
   "repository": {
     "type": "git",
     "url": "https://github.com/tefact/tefact-engine.git",
@@ -20,9 +20,9 @@
   },
   "dependencies": {
     "@tefact/core": "^0.0.1-alpha.21",
-    "@tefact/feature-form": "^0.0.1-alpha.21",
-    "@tefact/feature-page": "^0.0.1-alpha.21",
-    "@tefact/properties": "^0.0.1-alpha.21",
+    "@tefact/feature-form": "^0.0.1-alpha.22",
+    "@tefact/feature-page": "^0.0.1-alpha.22",
+    "@tefact/properties": "^0.0.1-alpha.22",
     "@tefact/ui": "^0.0.1-alpha.21",
     "@types/lodash": "^4.14.168",
     "core-js": "^3.6.5",
