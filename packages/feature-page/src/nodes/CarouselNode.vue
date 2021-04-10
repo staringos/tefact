@@ -69,7 +69,7 @@ export default class CarouselNode extends NodeClass<IBaseNode> {
   editor: any = null;
 
   static DEFAULT = {
-    ...getBaseNode(),
+    ...getBaseNode(300, 260),
     type: "CarouselNode",
     data: {
       list: [

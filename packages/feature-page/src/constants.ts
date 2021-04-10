@@ -13,6 +13,7 @@ export const DEFAULT = {
   "featureType": "page",
   "config": {
     "viewMode": "adapt",
+    // "pageFixedWidth": 1200,
     "style": {},
     "pos": {
       "w": 1200
@@ -28,7 +29,6 @@ export const DEFAULT = {
           "target": ""
         },
         "pos": {
-          "w": 1200,
           "h": 500,
           "x": 0,
           "y": 0

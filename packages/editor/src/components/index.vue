@@ -10,7 +10,7 @@
             class="phone-bg"
             :src="require('../assets/images/GooglePhone.png')"
           />
-          <div v-if="!isMobile" class="page-pad">
+          <div v-if="!isMobile" class="page-pad" :style="{ width: pageWidth }">
             <Page
               v-if="!engine.isForm"
               :page="currentTarget"
@@ -142,6 +142,10 @@ export default class Editor extends BaseView {
 
   pageId: string | null = null;
   isInitEvent = false;
+
+  get pageWidth() {
+    return this.currentTarget?.config?.pos?.w;
+  }
 
   get isMobile(): boolean {
     return this.setting?.device === "mobile";

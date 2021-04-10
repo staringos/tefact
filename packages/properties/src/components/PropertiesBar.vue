@@ -8,15 +8,17 @@
           :key="i"
         >
           <el-collapse :value="tab.components.map((component, i) => i)">
-            <component
-              v-for="(component, i) in tab.components"
-              :key="i"
-              :index="i"
-              :is="component.type"
-              :nodeType="nodeType"
-              v-bind="component.params"
-              :node="nodeData"
-            ></component>
+            <template v-for="(component, i) in tab.components">
+              <component
+                v-if="component.params.showInDisplayType ? component.params.showInDisplayType.indexOf(currentTarget.displayType) !== -1 : true"
+                :key="i"
+                :index="i"
+                :is="component.type"
+                :nodeType="nodeType"
+                v-bind="component.params"
+                :node="nodeData"
+              ></component>
+            </template>
           </el-collapse>
         </el-tab-pane>
       </el-tabs>

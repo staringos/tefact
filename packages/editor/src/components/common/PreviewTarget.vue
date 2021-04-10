@@ -48,7 +48,7 @@
           <img :src="qrcode" />
           <p class="sub-description">手机扫码获取页面</p>
         </div>
-        <div class="musk" v-if="!page.share">
+        <div class="musk" v-if="!page.share && !isSharePage">
           <p class="text">请分享后查看...</p>
         </div>
       </div>
@@ -225,9 +225,9 @@ export default class SharePage extends Vue {
   async init() {
     if (!this.$el) return false;
     const width = this.$el.getBoundingClientRect().width;
-    this.isMobileInDesktop = width > 600 && this.isMobile;
+    this.isMobileInDesktop = width > 700 && this.isMobile;
 
-    if (!this.page?.share?.key) return false;
+    if (!this.page?.share?.key && !this.isSharePage) return false;
 
     this.link = this.isSharePage
       ? location.href

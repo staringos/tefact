@@ -82,8 +82,10 @@ export class PageProperties {
             { type: 'BackgroundProperties', params: {} },
             { type: 'BorderProperties', params: {} },
             {
-              type: 'RowsProperties', params: {
+              type: 'RowsProperties',
+              params: {
                 title: '布局设置',
+                showInDisplayType: ['page'],
                 rows: [{
                   type: 'SelectRow',
                   params: {
@@ -95,11 +97,16 @@ export class PageProperties {
                     ]
                   }
                 }, {
+                  type: 'NoticeRow',
+                  params: {
+                    label: "适配模式调整需在预览时才会生效，编辑状态都是固定模式"
+                  }
+                }, {
                   type: 'NumberRow',
                   params: {
                     title: "页面宽度",
                     suffix: "px",
-                    path: "config.style.width"
+                    path: "config.pos.w"
                   }
                 }]
               }

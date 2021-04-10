@@ -62,6 +62,8 @@ export default class Page extends BaseView {
   }
 
   @Watch("page.config", { immediate: true })
+  @Watch("page.config.pos.w")
+  @Watch("page.config.viewMode")
   refreshStyle() {
     const { style, viewMode, pos } = this.page.config;
     const res = cloneDeep(style) as any;
@@ -71,15 +73,24 @@ export default class Page extends BaseView {
       if ($el.parentElement)
         realWidth = $el.parentElement.getBoundingClientRect().width;
 
-      const type = (this.page as any).display_type;
+      const type = (this.page as any).displayType;
       const setWidth = (pos?.w || (type.indexOf('h5') !== -1 ? 375 : 1200)) as number;
 
       if (setWidth && setWidth > 0) {
-        res["transform"] = `scale(${realWidth / setWidth})`;
+        const scale = realWidth / setWidth;
+        res["transform"] = `scale(${scale})`;
+
+        if (scale > 1) {
+          res["transform-origin"] = `center  top`;
+        } else {
+          res["transform-origin"] = `left top`;
+        }
       }
     }
 
-    this.style = transformStyle({ ...this.page.config, style: res });
+    const newPos = cloneDeep(pos);
+
+    this.style = transformStyle({ ...this.page.config, pos: newPos, style: res });
   }
 
   handleActiveChange(active: string) {
@@ -123,6 +134,10 @@ export default class Page extends BaseView {
   box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.12), 0 0 6px 0 rgba(0, 0, 0, 0.04);
   transform-origin: center top;
   margin-bottom: 20px;
+
+  &::-webkit-scrollbar {
+    display: block;
+  }
 
   &.column-side {
     overflow-x: hidden;

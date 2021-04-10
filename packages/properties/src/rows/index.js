@@ -5,6 +5,7 @@ import TextAreaRow from "./TextAreaRow.vue";
 import NumberRow from "./NumberRow.vue";
 import DateRow from "./DateRow.vue";
 import ImageUploadRow from "./ImageUploadRow.vue";
+import NoticeRow from "./NoticeRow.vue";
 
 export default {
   SelectRow,
@@ -14,4 +15,5 @@ export default {
   NumberRow,
   DateRow,
   ImageUploadRow,
+  NoticeRow,
 };
