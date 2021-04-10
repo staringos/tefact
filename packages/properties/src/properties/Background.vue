@@ -67,7 +67,7 @@ export default class Background extends PropertiesClass {
       ...this.tmpNode.style,
       "background-image": null,
       "background-size": null,
-    }
+    } as any;
 
     // Vue.set(style, "background-image", "");
     // Vue.set(style, "background-size", "");

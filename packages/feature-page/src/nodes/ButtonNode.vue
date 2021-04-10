@@ -9,7 +9,7 @@
   >
     <el-button
       class="button-node-main"
-      :style="{ width: config.pos.w, height: config.pos.h, ...config.style }"
+      :style="style"
       v-bind="nodeData"
       @click="handleClick"
       >{{ nodeData.text }}</el-button
@@ -43,6 +43,16 @@ import { PageProperties } from "../config";
 })
 export default class ButtonNode extends NodeClass<IBaseNode> {
   editor: any = null;
+
+  get style() {
+    const { config } = this;
+    const res = { width: config.pos.w, height: config.pos.h, ...config.style } as any;
+
+    if (this.config.data.round) {
+      delete res["border-radius"];
+    }
+    return res;
+  }
 
   handleClick() {
     if (this.nodeData.link) {
@@ -78,12 +88,12 @@ export default class ButtonNode extends NodeClass<IBaseNode> {
               title: "类型",
               path: "data.type",
               selectOptions: [
-                { value: "primary", label: "Primary" },
-                { value: "info", label: "Info" },
-                { value: "warning", label: "Warning" },
-                { value: "danger", label: "Danger" },
-                { value: "text", label: "Text" },
-                { value: "success", label: "Success" },
+                { value: "primary", label: "主要" },
+                { value: "info", label: "普通" },
+                { value: "warning", label: "警告" },
+                { value: "danger", label: "错误" },
+                { value: "text", label: "文字" },
+                { value: "success", label: "成功" },
               ],
             },
           },

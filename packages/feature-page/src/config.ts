@@ -99,7 +99,7 @@ export class PageProperties {
                 }, {
                   type: 'NoticeRow',
                   params: {
-                    label: "适配模式调整需在预览时才会生效，编辑状态都是固定模式"
+                    label: "适配模式需在预览时查看效果，编辑器中都是固定模式"
                   }
                 }, {
                   type: 'NumberRow',
