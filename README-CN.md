@@ -35,7 +35,7 @@
 - [ElementUI](https://github.com/ElemeFE/element)
 - [Sass](https://github.com/sass/sass)
 
-## Getting Start
+## 开始使用
 
 安装依赖
 
