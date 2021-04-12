@@ -50,7 +50,8 @@
 <script lang="ts">
 import { Component, Watch } from "vue-property-decorator";
 import BasePanel from "TEFACT_EDITOR/components/panels/BasePanel.vue";
-import { IBaseNode, BaseView } from "@tefact/core";
+import { BaseView } from "@tefact/core";
+import type { IBaseNode } from "@tefact/core";
 import cloneDeep from "lodash/cloneDeep";
 import {
   FORM_NODE_LIST,

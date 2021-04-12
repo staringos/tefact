@@ -1,6 +1,6 @@
-import { IPropertiesComponents } from "@tefact/properties"
-import { IProperties } from "@tefact/properties"
-import { IBaseNode } from "@tefact/core"
+import type { IPropertiesComponents } from "@tefact/properties"
+import type { IProperties } from "@tefact/properties"
+import type { IBaseNode } from "@tefact/core"
 
 export class PageProperties {
   static defaultPageSections(displayType: string = "page"): IBaseNode {
@@ -18,7 +18,9 @@ export class PageProperties {
         x: 0,
         y: 0,
       },
-      style: {},
+      style: {
+        "background-color": "white"
+      },
       data: {},
       // section_type: 'editor',
       // page_id: null,
@@ -26,7 +28,19 @@ export class PageProperties {
     }
   }
 
-  static defaultProperties(title: string, dataComponents?: Array<IPropertiesComponents> | null, basicComponents?: Array<IPropertiesComponents>) {
+  static defaultProperties(
+    title: string,
+    dataComponents?: Array<IPropertiesComponents> | null,
+    basicComponents?: Array<IPropertiesComponents> | null,
+    noTextProperties = false
+  ) {
+    const more = [] as Array<any>;
+    if (!noTextProperties) {
+      more.push(
+        { type: 'TextProperties', params: {} }
+      )
+    }
+
     const res = {
       title,
       hasTab: true,
@@ -37,7 +51,7 @@ export class PageProperties {
             { type: 'PositionProperties', params: {} },
             { type: 'BackgroundProperties', params: {} },
             { type: 'BorderProperties', params: {} },
-            { type: 'TextProperties', params: {} }
+            ...more
           ],
         },
       ],
@@ -68,8 +82,10 @@ export class PageProperties {
             { type: 'BackgroundProperties', params: {} },
             { type: 'BorderProperties', params: {} },
             {
-              type: 'RowsProperties', params: {
+              type: 'RowsProperties',
+              params: {
                 title: '布局设置',
+                showInDisplayType: ['page'],
                 rows: [{
                   type: 'SelectRow',
                   params: {
@@ -81,11 +97,16 @@ export class PageProperties {
                     ]
                   }
                 }, {
+                  type: 'NoticeRow',
+                  params: {
+                    label: "适配模式需在预览时查看效果，编辑器中都是固定模式"
+                  }
+                }, {
                   type: 'NumberRow',
                   params: {
                     title: "页面宽度",
-                    unit: "px",
-                    path: "config.style.width"
+                    suffix: "px",
+                    path: "config.pos.w"
                   }
                 }]
               }
@@ -105,12 +126,12 @@ export class PageProperties {
               type: 'RowsProperties', params: {
                 title: '样式设置',
                 rows: [{
-                  type: 'TextRow',
+                  type: 'NumberRow',
                   params: {
                     title: "高度",
                     type: "number",
                     suffix: "px",
-                    path: "config.h"
+                    path: "pos.h"
                   }
                 }]
               }

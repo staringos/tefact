@@ -1,5 +1,5 @@
 import { Vue, Component, Prop } from 'vue-property-decorator'
-import { IBaseNode } from "@tefact/core"
+import type { IBaseNode } from "@tefact/core"
 
 @Component
 export default class ShapeMixin extends Vue {

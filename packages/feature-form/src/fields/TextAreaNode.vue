@@ -30,6 +30,7 @@ export default class TextAreaNode extends Vue {
   static NODE = {
     icon: "tf-icon-textarea",
     type: "TextAreaNode",
+    category: "表单组件",
     title: "多行文本",
     nodeData: TextAreaNode.DEFAULT,
   };

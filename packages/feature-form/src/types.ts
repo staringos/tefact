@@ -1,4 +1,4 @@
-import { IBaseNode, ITarget, ITargetConfig } from "@tefact/core"
+import type { IBaseNode, ITarget, ITargetConfig } from "@tefact/core"
 
 export interface FormRulesModel {
   required: boolean;

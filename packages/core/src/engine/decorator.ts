@@ -1,5 +1,5 @@
 import Vue from "vue";
-import { IEngine } from "@tefact/core";
+import type { IEngine } from "@tefact/core";
 import Engine from './index';
 
 type DecoratorOption = {};

@@ -1,6 +1,6 @@
 import generateId from "./generateId";
 import cloneDeep from "lodash/cloneDeep";
-import { IBaseNode } from "@tefact/core";
+import type { IBaseNode } from "@tefact/core";
 
 type BFSFindResult<T> = {
   index: number;

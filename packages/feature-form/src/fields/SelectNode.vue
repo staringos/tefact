@@ -77,6 +77,7 @@ export default class SelectNode extends Vue {
     icon: "tf-icon-select",
     type: "SelectNode",
     title: "下拉框",
+    category: "表单组件",
     nodeData: SelectNode.DEFAULT,
   };
 }

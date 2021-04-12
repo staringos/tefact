@@ -66,6 +66,7 @@ export default class CheckboxNode extends Vue {
   static NODE = {
     icon: "tf-icon-checkbox",
     type: "CheckboxNode",
+    category: "表单组件",
     title: "复选框",
     nodeData: CheckboxNode.DEFAULT,
   };

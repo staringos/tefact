@@ -75,7 +75,8 @@ import VueDraggableResizable from "vue-draggable-resizable-gorkys";
 import cloneDeep from "lodash/cloneDeep";
 import isNumber from "lodash/isNumber";
 import { transformStyle } from "@tefact/utils";
-import { BaseView, IBaseNode, INodePos } from "@tefact/core";
+import { BaseView } from "@tefact/core";
+import type { IBaseNode, INodePos } from "@tefact/core";
 
 @Component({
   components: { VueDraggableResizable },

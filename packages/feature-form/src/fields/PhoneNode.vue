@@ -49,6 +49,7 @@ export default class PhoneNode extends Vue {
   static NODE = {
     icon: "tf-icon-phone",
     type: "PhoneNode",
+    category: "表单组件",
     title: "手机号",
     nodeData: PhoneNode.DEFAULT,
   };

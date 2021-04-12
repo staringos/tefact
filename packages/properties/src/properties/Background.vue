@@ -26,7 +26,7 @@
 @import "./properties.scss";
 </style>
 <script lang="ts">
-import { Component, Watch } from "vue-property-decorator";
+import { Vue, Component, Watch } from "vue-property-decorator";
 import BaseProperties from "./Base.vue";
 import PropertiesMixin from "../components/PropertiesMixin";
 import PropertiesClass from "../components/PropertiesClass";
@@ -63,10 +63,15 @@ export default class Background extends PropertiesClass {
   }
 
   handleDeleteBackground() {
-    const style = (this as any).tmpNode.style;
+    this.tmpNode.style = {
+      ...this.tmpNode.style,
+      "background-image": null,
+      "background-size": null,
+    } as any;
 
-    delete style["background-image"];
-    delete style["background-size"];
+    // Vue.set(style, "background-image", "");
+    // Vue.set(style, "background-size", "");
+    this.tmpInput = null;
     this.handleSave();
   }
 }

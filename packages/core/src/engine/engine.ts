@@ -1,7 +1,8 @@
 import EventEmitter from 'eventemitter3'
 import { DEFAULT_SETTING } from './constants'
 import cloneDeep from 'lodash/cloneDeep'
-import { IEngine, ITarget, IBaseNode, EVENT, ISetting } from "@tefact/core";
+import type { IEngine, ITarget, IBaseNode, ISetting } from "@tefact/core";
+import { EVENT } from "@tefact/core";
 import set from 'lodash/set'
 import findIndex from 'lodash/findIndex'
 import merge from "lodash/merge"
@@ -199,6 +200,10 @@ export default class Engine extends EventEmitter<string, ITarget> implements IEn
 
   public share(shareData: ShareDataType) {
     return this.setting.onShare(shareData);
+  }
+
+  public cancelShare() {
+    return this.emit(EVENT.SHARE_CANCEL, this.target.id);
   }
 
   public static instance(target?: ITarget, setting: ISetting = DEFAULT_SETTING): Engine {

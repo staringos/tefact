@@ -32,6 +32,7 @@ export default class StarNode extends Vue {
   static NODE = {
     icon: "tf-icon-star",
     type: "StarNode",
+    category: "表单组件",
     title: "评分",
     nodeData: StarNode.DEFAULT,
   };

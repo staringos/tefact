@@ -4,33 +4,37 @@
       <div class="resolu-row" v-if="!onlySize">
         <div class="resolu-label">位置</div>
         <div class="content">
-          <input
+          <PropertyNumberInput
             type="number"
             class="properties-input half"
             v-model.number="tmpNode.pos.x"
-            @blur="handleSave"
+            :min="1"
+            @save="handleSave"
           />
-          <input
+          <PropertyNumberInput
             type="number"
             class="properties-input half"
             v-model.number="tmpNode.pos.y"
-            @blur="handleSave"
+            :min="1"
+            @save="handleSave"
           />
         </div>
       </div>
       <div class="resolu-row">
         <div class="resolu-label">大小</div>
-        <input
+        <PropertyNumberInput
           type="number"
           class="properties-input half"
           v-model.number="tmpNode.pos.w"
-          @blur="handleSave"
+          :min="1"
+          @save="handleSave"
         />
-        <input
+        <PropertyNumberInput
           type="number"
           class="properties-input half"
           v-model.number="tmpNode.pos.h"
-          @blur="handleSave"
+          :min="1"
+          @save="handleSave"
         />
       </div>
     </div>
@@ -44,9 +48,10 @@ import { Component, Prop } from "vue-property-decorator";
 import BaseProperties from "./Base.vue";
 import PropertiesMixin from "../components/PropertiesMixin";
 import PropertiesClass from "../components/PropertiesClass";
+import { PropertyNumberInput } from "@tefact/ui";
 
 @Component({
-  components: { BaseProperties },
+  components: { BaseProperties, PropertyNumberInput },
   mixins: [PropertiesMixin],
 })
 export default class PositionProperties extends PropertiesClass {

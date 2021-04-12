@@ -15,6 +15,7 @@ export interface ITarget {
   featureType: TargetFeatureType;
   displayType?: TargetDisplayType;
   config: ITargetConfig;
+  share?: ShareInfo; // the target share information
 }
 
 export interface INodeStyle extends CSS.PropertiesHyphen<string | number, number> {}
@@ -71,6 +72,12 @@ export interface ISetting {
   onShare: any;
 }
 
+export interface ShareInfo {
+  key: string;
+  password: string;
+  id: string;
+}
+
 export interface IEngine {
   target?: ITarget;
   setting?: ISetting;
@@ -89,7 +96,10 @@ export function StaticImplements<T>() {
 
 export type NodeListConfig = {
   title: string | null;
-  list: Record<string, NodeConfig>
+  list: Array<NodeConfig>;
+  // list: Record<string, NodeConfig>;
+  categories?: Array<string>;
+  classifiedList?: Record<string, Record<string, NodeConfig>>;
 }
 
 export type NodeConfig = {

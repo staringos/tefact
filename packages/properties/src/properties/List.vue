@@ -13,7 +13,7 @@
     <div class="list-wrapper">
       <el-table
         class="list-table"
-        :data="items"
+        :data="get(this.tmpNode, this.path)"
         size="mini"
         style="width: 100%"
         v-if="tmpNode"
@@ -53,7 +53,7 @@
 }
 </style>
 <script>
-import { Component, Prop } from "vue-property-decorator";
+import { Vue, Component, Prop } from "vue-property-decorator";
 import BaseProperties from "./Base.vue";
 import PropertiesMixin from "../components/PropertiesMixin";
 import PropertiesClass from "../components/PropertiesClass";
@@ -74,11 +74,8 @@ export default class ListProperties extends PropertiesClass {
   @Prop([String]) title;
   @Prop([String]) path;
 
+  get = get;
   editData = null;
-
-  get items() {
-    return get(this.tmpNode, this.path);
-  }
 
   get columns() {
     const columns = [];
@@ -111,7 +108,8 @@ export default class ListProperties extends PropertiesClass {
 
   handleEdit(data) {
     if (isNumber(data.i)) {
-      set(this.tmpNode, this.path + `[${data.i}]`, data);
+      const level = get(this.tmpNode, this.path);
+      Vue.set(level, data.i, data);
     } else {
       get(this.tmpNode, this.path).push(data);
     }

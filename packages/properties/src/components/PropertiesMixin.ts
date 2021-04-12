@@ -1,6 +1,8 @@
 import { Vue, Component, Prop, Watch } from 'vue-property-decorator'
 import cloneDeep from 'lodash/cloneDeep'
-import { BaseNodeStyle, BaseView, DefaultNodeData, IBaseNode } from '@tefact/core'
+import isEqual from 'lodash/isEqual'
+import { BaseNodeStyle, BaseView, DefaultNodeData } from '@tefact/core'
+import type { IBaseNode } from '@tefact/core'
 
 @Component
 export default class PropertiesMixin extends BaseView {
@@ -11,7 +13,7 @@ export default class PropertiesMixin extends BaseView {
   public tmpNode: IBaseNode | undefined
 
   public init() {
-    if (!this.node) return
+    if (!this.node || isEqual(this.node, this.tmpNode)) return
     let tmpNode = Vue.observable(cloneDeep(this.node)) as IBaseNode
     if (!tmpNode && DefaultNodeData[this.featureType])
       tmpNode = DefaultNodeData[this.featureType] as IBaseNode;
@@ -34,9 +36,11 @@ export default class PropertiesMixin extends BaseView {
   }
 
   public handleStyleChange(key: string, value: string | number) {
-    if (!this.style || !this.tmpNode) return
-    (this.tmpNode.style as any)[key] = value
-    this.handleSave()
+    if (!this.tmpNode) return;
+    Vue.set(this.tmpNode.style, key, value);
+    this.$nextTick(() => {
+      this.handleSave();
+    });
   }
 
   public handleSave() {

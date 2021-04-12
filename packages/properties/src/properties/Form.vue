@@ -37,7 +37,7 @@ import PropertiesClass from "../components/PropertiesClass";
 import BaseProperties from "./Base.vue";
 import PropertiesMixin from "../components/PropertiesMixin";
 import get from "lodash/get";
-import { ITarget } from "@tefact/core";
+import type { ITarget } from "@tefact/core";
 
 @Component({
   components: { BaseProperties },

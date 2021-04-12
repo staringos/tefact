@@ -1,4 +1,4 @@
-import { IBaseNode, INodeStyle, ITarget } from './index'
+import type { IBaseNode, INodeStyle, ITarget } from './index'
 
 export const DefaultTarget: ITarget = {
   id: "",
@@ -20,6 +20,7 @@ export const EVENT = {
   UPDATE: "update",
   UPDATE_CONFIG: "update_config",
   SHARE: "share",
+  SHARE_CANCEL: "shareCancel",
   EDIT_TARGET: "editTarget",
   ADD_TARGET: "addTarget",
   SUBMIT: "submit",

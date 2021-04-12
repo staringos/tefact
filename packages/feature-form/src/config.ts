@@ -97,36 +97,36 @@ export class FormProperties {
         components: [
           { type: 'BackgroundProperties', params: {} },
           { type: 'BorderProperties', params: {} },
-          {
-            type: 'RowsProperties', params: {
-              title: '布局设置',
-              rows: [{
-                type: 'SelectRow',
-                params: {
-                  title: "布局模式",
-                  path: "config.viewMode",
-                  selectOptions: [
-                    {value: 'fixed', label: '固定'},
-                    {value: 'adapt', label: '适配'},
-                  ]
-                }
-              }, {
-                type: 'NumberRow',
-                params: {
-                  title: "页面宽度",
-                  unit: "px",
-                  path: "config.style.width"
-                }
-              }, {
-                type: 'NumberRow',
-                params: {
-                  title: "标签宽度",
-                  unit: "px",
-                  path: "config.labelWidth"
-                }
-              }]
-            }
-          },
+          // {
+          //   type: 'RowsProperties', params: {
+          //     title: '布局设置',
+          //     rows: [{
+          //       type: 'SelectRow',
+          //       params: {
+          //         title: "布局模式",
+          //         path: "config.viewMode",
+          //         selectOptions: [
+          //           {value: 'fixed', label: '固定'},
+          //           {value: 'adapt', label: '适配'},
+          //         ]
+          //       }
+          //     }, {
+          //       type: 'NumberRow',
+          //       params: {
+          //         title: "页面宽度",
+          //         suffix: "px",
+          //         path: "config.style.width"
+          //       }
+          //     }, {
+          //       type: 'NumberRow',
+          //       params: {
+          //         title: "标签宽度",
+          //         suffix: "px",
+          //         path: "config.labelWidth"
+          //       }
+          //     }]
+          //   }
+          // },
           {
             type: 'ListProperties',
             params: {

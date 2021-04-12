@@ -2,8 +2,10 @@
 
 @import url("//at.alicdn.com/t/font_1758286_1j1qk01qk9w.css");
 
-::-webkit-scrollbar {
-  display: none;
+*:not(.editor-page-canvas, .inner, .editor-container) {
+  &::-webkit-scrollbar {
+    display: none;
+  }
 }
 
 html, body, div, li, ul, h1, h2, h3, h4, h5, p {

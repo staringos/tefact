@@ -24,9 +24,9 @@
 }
 </style>
 <script lang="ts">
-import { Vue, Component, Prop } from "vue-property-decorator";
+import { Component, Prop } from "vue-property-decorator";
 import { BaseView } from "@tefact/core";
-import { NodeList } from "../index";
+import { Properties as PageProperties } from "@tefact/feature-page";
 
 // const editor = namespace("editor");
 
@@ -39,7 +39,7 @@ export default class AddButton extends BaseView {
   // @editor.Action addPageSection;
 
   handleAddPageSection() {
-    this.engine.add(NodeList.section.nodeData, this.index);
+    this.engine.add(PageProperties.defaultPageSections(this.engine.target.displayType), this.index);
   }
 }
 </script>

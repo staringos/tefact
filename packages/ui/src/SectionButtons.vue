@@ -35,7 +35,8 @@
 </template>
 <script lang="ts">
 import { Component, Prop } from "vue-property-decorator";
-import { BaseView, IBaseNode } from "@tefact/core";
+import { BaseView } from "@tefact/core";
+import type { IBaseNode } from "@tefact/core";
 import { Properties as PageProperties } from "@tefact/feature-page";
 
 @Component

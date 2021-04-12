@@ -47,10 +47,9 @@ import { Component, Prop } from "vue-property-decorator";
 import cloneDeep from "lodash/cloneDeep";
 import NodeClass from "./NodeClass";
 import BaseNode from "./BaseNode.vue";
-import { FreeNodeData, getBaseNode, IBaseNode } from "@tefact/core";
+import { FreeNodeData, getBaseNode } from "@tefact/core";
+import type { IBaseNode } from "@tefact/core";
 import { PageProperties } from "../config";
-
-// const editor = namespace("editor");
 
 @Component({
   components: { BaseNode },
@@ -64,8 +63,9 @@ export default class TextNode extends NodeClass<IBaseNode> {
   editing = false;
 
   get textContextStyle() {
-    const { style } = this.node;
+    const { style } = this.node as any;
     return {
+      // ...transformStyle(this.node),
       "justify-content": style["justify-content"],
       "align-items": style["align-items"],
     };

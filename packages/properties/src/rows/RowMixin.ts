@@ -2,7 +2,8 @@ import { Component, Prop, Watch } from "vue-property-decorator"
 import get from "lodash/get"
 import set from "lodash/set"
 import cloneDeep from "lodash/cloneDeep"
-import { BaseNodeStyle, DefaultNodeData, IBaseNode, BaseView } from "@tefact/core"
+import { BaseNodeStyle, DefaultNodeData, BaseView } from "@tefact/core"
+import type { IBaseNode } from "@tefact/core"
 import { IPropertiesRow } from "../types"
 
 @Component

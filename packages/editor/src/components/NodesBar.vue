@@ -15,7 +15,7 @@
 import { Vue, Component, Prop } from "vue-property-decorator";
 import LayersPanel from "TEFACT_EDITOR/components/panels/LayersPanel.vue";
 import NodeListPanel from "TEFACT_EDITOR/components/panels/NodeListPanel.vue";
-import { TargetFeatureType } from "@tefact/core";
+import type { TargetFeatureType } from "@tefact/core";
 
 @Component({
   components: { NodeListPanel, LayersPanel }

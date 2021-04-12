@@ -10,7 +10,7 @@
             class="phone-bg"
             :src="require('../assets/images/GooglePhone.png')"
           />
-          <div v-if="!isMobile" class="page-pad">
+          <div v-if="!isMobile" class="page-pad" :style="{ width: pageWidth }">
             <Page
               v-if="!engine.isForm"
               :page="currentTarget"
@@ -129,7 +129,8 @@ import Form from "@tefact/feature-form";
 import Toolbar from "TEFACT_EDITOR/components/Toolbar.vue";
 import PropertiesBar from "@tefact/properties";
 import NodesBar from "TEFACT_EDITOR/components/NodesBar.vue";
-import Engine, { BaseView, ISetting, ITarget, EVENT } from "@tefact/core";
+import Engine, { BaseView, EVENT } from "@tefact/core";
+import type { ISetting, ITarget } from "@tefact/core";
 
 @Component({
   components: { NodesBar, Toolbar, PropertiesBar, Page, Form },
@@ -140,6 +141,11 @@ export default class Editor extends BaseView {
   @Prop() editorSetting?: ISetting;
 
   pageId: string | null = null;
+  isInitEvent = false;
+
+  get pageWidth() {
+    return this.currentTarget?.config?.pos?.w;
+  }
 
   get isMobile(): boolean {
     return this.setting?.device === "mobile";
@@ -164,24 +170,32 @@ export default class Editor extends BaseView {
     // eslint-disable-next-line @typescript-eslint/no-this-alias
     const that = this;
     if (that.engine.target === this.value) return;
+    this.engine = Engine.instance(this.value, this.editorSetting);
+
+    if (that.isInitEvent) return;
 
     function execEvent(type: string, noInput = false) {
-      return (data: ITarget) => {
-        !noInput && that.$emit(EVENT.INPUT, data);
-        that.$emit(type, data);
+      that.isInitEvent = true;
+      return (...params: any) => {
+        !noInput && that.$emit(EVENT.INPUT, ...params);
+        that.$emit(type, ...params);
       };
     }
 
-    this.engine = Engine.instance(this.value, this.editorSetting);
     this.engine.on(EVENT.ADD, execEvent(EVENT.ADD));
     this.engine.on(EVENT.UPDATE, execEvent(EVENT.UPDATE));
     this.engine.on(EVENT.UPDATE_CONFIG, execEvent(EVENT.UPDATE_CONFIG));
     this.engine.on(EVENT.SAVE, execEvent(EVENT.SAVE));
     this.engine.on(EVENT.SHARE, execEvent(EVENT.SHARE));
+    this.engine.on(EVENT.SHARE_CANCEL, execEvent(EVENT.SHARE_CANCEL, true));
     this.engine.on(EVENT.OPEN_MODIFIER, execEvent(EVENT.OPEN_MODIFIER, true));
     this.engine.on(EVENT.BACK, execEvent(EVENT.BACK, true));
     this.engine.on(EVENT.ADD_TARGET, execEvent(EVENT.ADD_TARGET));
     this.engine.on(EVENT.EDIT_TARGET, execEvent(EVENT.EDIT_TARGET));
+  }
+
+  beforeDestroy() {
+    this.engine.removeAllListeners();
   }
 
   handleEditorClick() {

@@ -54,7 +54,8 @@ import { Component, Watch } from "vue-property-decorator";
 import BaseNode from "./BaseNode.vue";
 import NodeClass from "./NodeClass";
 import Form from "@tefact/feature-form";
-import { FreeNodeData, getBaseNode, IBaseNode, ITarget } from "@tefact/core";
+import { FreeNodeData, getBaseNode } from "@tefact/core";
+import type { IBaseNode, ITarget } from "@tefact/core";
 import { PageProperties } from "../config";
 import { EVENT_INSIDE } from "@tefact/core";
 
@@ -108,6 +109,6 @@ export default class FormNode extends NodeClass<IBaseNode> {
         title: "内容设置",
       },
     },
-  ]);
+  ], null, true);
 }
 </script>

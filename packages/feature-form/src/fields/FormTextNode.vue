@@ -44,6 +44,7 @@ export default class FormTextNode extends Vue {
   static NODE = {
     icon: "tf-icon-Text",
     type: "FormTextNode",
+    category: "展示组件",
     title: "文本描述",
     nodeData: FormTextNode.DEFAULT,
   };

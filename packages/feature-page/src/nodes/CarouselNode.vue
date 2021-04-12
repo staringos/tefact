@@ -58,7 +58,8 @@
 import { Component } from "vue-property-decorator";
 import BaseNode from "./BaseNode.vue";
 import NodeClass from "./NodeClass";
-import { getBaseNode, IBaseNode } from "@tefact/core";
+import { getBaseNode } from "@tefact/core";
+import type { IBaseNode } from "@tefact/core";
 import { PageProperties } from "../config";
 
 @Component({
@@ -68,7 +69,7 @@ export default class CarouselNode extends NodeClass<IBaseNode> {
   editor: any = null;
 
   static DEFAULT = {
-    ...getBaseNode(),
+    ...getBaseNode(300, 260),
     type: "CarouselNode",
     data: {
       list: [
@@ -125,7 +126,7 @@ export default class CarouselNode extends NodeClass<IBaseNode> {
           {
             type: "TextRow",
             params: {
-              title: "图片",
+              title: "图片链接",
               path: "image",
             },
           },
