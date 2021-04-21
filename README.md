@@ -1,13 +1,12 @@
 <div align="center">
-  <img src="./docs/assets/images/logo-banner.png">
+  <img src="./docs/assets/images/logo-banner-2.png">
 </div>
 <div align="center">
   <a href="https://staringos.com">Website</a> | 
   <a href="http://saas.staringos.com">Usage</a> | 
   <a href="https://staringos.com/docs">Documents</a> | 
   <a href="https://staringos.com/docs/join-us">Community</a> | 
-  <a href="https://staringos.com/docs/join-us">Support</a> |
-  <a href="https://staringos.com/docs/join-us">中文文档</a>
+  <a href="https://staringos.com/docs/join-us">Support</a>
 </div>
 
 <br />
@@ -15,20 +14,30 @@
 <div align="center">
 
 [![license](https://img.shields.io/badge/license-MIT-brightgreen.svg?style=flat)](https://github.com/Tefact/tefact-saas)
-[![Actions Status](https://github.com/tefact/tefact-saas/workflows/deploy/badge.svg)](https://github.com/tefact/tefact-saas/actions)
 [![Release Version](https://img.shields.io/badge/release-0.0.1-green.svg)](https://github.com/Tefact/tefact-saas/releases)
-[![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg)](https://github.com/Tefact/tefact-saas/pulls)
 [![Total alerts](https://img.shields.io/lgtm/alerts/g/Tefact/tefact-saas.svg?logo=lgtm&logoWidth=18)](https://lgtm.com/projects/g/Tefact/tefact-saas/alerts/)
+[![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg)](https://github.com/Tefact/tefact-saas/pulls)
+[![Community](https://img.shields.io/discord/733027681184251937.svg?style=flat&label=Join%20Community&color=7289DA)](https://discord.gg/7V5vnHW2)
 
 </div>
 
-# Tefact Engine [![Community](https://img.shields.io/discord/733027681184251937.svg?style=flat&label=Join%20Community&color=7289DA)](https://discord.gg/7V5vnHW2)
+# Tefact
 
-No Code platform use GUI editor to generate `HTML Page` and `Form`.
+Lightweight no-code editor for `website`、`H5 page` and `Form`. Build your application without code!
+
+<a href="./README-CN.md">[中文文档]</a>
+
+<img src="./docs/assets/images/show.gif" align="center">
+
+Dependencies:
+
+- [Vue 2.x](https://github.com/vuejs/vue)
+- [ElementUI](https://github.com/ElemeFE/element)
+- [Sass](https://github.com/sass/sass)
 
 ## Getting Start
 
-Install dependency
+Install dependency:
 
 ```shell script
 yarn add @tefact/editor
@@ -38,6 +47,20 @@ Import styles to your css or less file:
 
 ```vue
 import "@tefact/editor/lib/index.css"
+```
+
+Add `@tefact` package to your webpack transport.
+
+`webpack.config.js` or `nuxt.config.js`
+
+```json
+{
+    "build": {
+        "transpile": [
+          /@tefact\/*/
+        ],
+    }
+}
 ```
 
 Import Editor to you.
@@ -142,17 +165,17 @@ export default Vue.extends({
 </script>
 ```
 
-### Join Community or Get Support
-
-## 获取技术支持
-
-关注 `真科技Tefact` 微信公众号，回复 `技术支持` 加入微信群，获取 1v1 人工技术支持.
-
-![qrcode](./docs/images/qrcode.jpg)
-
 ## Contributing
 
+PRs & Issues are all welcome, feel free to ask question or submit your code.
+
 [CONTRIBUTING](./CONTRIBUTING.md)
+
+### Join Community
+
+Scan with wechat, join our group.
+
+<img src="./docs/assets/images/wechat-group.jpg" width="200">
 
 #### Discord
 
