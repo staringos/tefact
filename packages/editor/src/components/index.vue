@@ -3,7 +3,8 @@
     <div class="editor-container">
       <Toolbar :target="currentTarget || form"></Toolbar>
       <div class="editor-main">
-        <NodesBar :editorType="editorType" />
+<!--        <NodesBar :editorType="editorType" />-->
+        <LeftArea :editorType="editorType" />
         <div class="editor-container">
           <img
             v-if="isMobile"
@@ -131,9 +132,10 @@ import PropertiesBar from "@tefact/properties";
 import NodesBar from "TEFACT_EDITOR/components/NodesBar.vue";
 import Engine, { BaseView, EVENT } from "@tefact/core";
 import type { ISetting, ITarget } from "@tefact/core";
+import LeftArea from "TEFACT_EDITOR/components/LeftArea.vue";
 
 @Component({
-  components: { NodesBar, Toolbar, PropertiesBar, Page, Form },
+  components: { LeftArea, NodesBar, Toolbar, PropertiesBar, Page, Form },
   // mixins: [BaseView]
 })
 export default class Editor extends BaseView {
