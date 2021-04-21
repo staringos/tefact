@@ -8,6 +8,13 @@
 
     <div class="tool-list">
       <el-button
+          type="info"
+          icon="el-icon-set-up"
+          size="small"
+          @click="handleDatasetDialog"
+        >数据项</el-button
+      >
+      <el-button
         type="info"
         icon="el-icon-receiving"
         size="small"
@@ -57,6 +64,7 @@
       @submit="setting.onFormDataSubmit"
       @cancel="handlePreviewerHide"
     />
+    <DatasetDialog v-model="datasetDialogVisible"></DatasetDialog>
   </div>
 </template>
 <style lang="scss"></style>
@@ -66,9 +74,10 @@ import SharePageEditor from "TEFACT_EDITOR/components/common/SharePageEditor.vue
 import Previewer from "TEFACT_EDITOR/components/common/Previewer.vue";
 import { BaseView, DeviceType } from "@tefact/core";
 import type { ITarget } from "@tefact/core";
+import DatasetDialog from "TEFACT_EDITOR/components/dataset/DatasetDialog.vue";
 
 @Component({
-  components: { Previewer, SharePageEditor },
+  components: {DatasetDialog, Previewer, SharePageEditor },
 })
 export default class Toolbar extends BaseView {
   @Prop() target?: ITarget;
@@ -76,6 +85,7 @@ export default class Toolbar extends BaseView {
   showPreviewer = false;
   appId: string | null = null;
   dialogVisible = false;
+  datasetDialogVisible = false;
 
   deviceList = [
     { icon: "tf-icon-pc", name: "PC", value: "pc" },
@@ -112,6 +122,10 @@ export default class Toolbar extends BaseView {
 
   handleSettingChange(key: string, value: any) {
     this.engine.changeSettingItem(key, value);
+  }
+
+  handleDatasetDialog() {
+    this.datasetDialogVisible = true
   }
 }
 </script>

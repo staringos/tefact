@@ -31,6 +31,7 @@ import Properties from "../properties";
 import { PROPERTIES_CONFIGS } from "../config";
 import { BaseView } from "@tefact/core";
 import { EVENT_INSIDE } from "@tefact/core";
+import { FixedTabs } from "../config.ts";
 
 // const editor = namespace('editor')
 
@@ -58,6 +59,10 @@ export default class PropertiesContainer extends BaseView {
     }
 
     return "page";
+  }
+
+  get tabs() {
+    return [ ...this.config.tabs, ...FixedTabs ]
   }
 
   get config() {

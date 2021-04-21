@@ -3,7 +3,8 @@
     <el-tabs class="tabs" v-model="activeModel" tab-position="left" type="border-card" style="height: 200px;">
       <el-tab-pane label="零件"></el-tab-pane>
       <el-tab-pane label="页面"></el-tab-pane>
-      <el-tab-pane label="数据"></el-tab-pane>
+      <el-tab-pane label="资源"></el-tab-pane>
+      <el-tab-pane label="JSON"></el-tab-pane>
     </el-tabs>
     <div class="left-area-content" v-show="!isCollapse">
       <NodesBar v-if="activeModel === '0'" :editorType="editorType" />
@@ -41,6 +42,7 @@ export default class LeftArea extends Vue {
     max-width: 30px;
     height: 100% !important;
     background: white;
+    border-top: 0;
 
     ::v-deep.el-tabs__header {
       width: 100%;
