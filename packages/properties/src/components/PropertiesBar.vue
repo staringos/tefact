@@ -28,10 +28,9 @@
 <script lang="ts">
 import { Component, Prop, Watch } from "vue-property-decorator";
 import Properties from "../properties";
-import { PROPERTIES_CONFIGS } from "../config";
+import { PROPERTIES_CONFIGS, FixedTabs } from "../config";
 import { BaseView } from "@tefact/core";
 import { EVENT_INSIDE } from "@tefact/core";
-import { FixedTabs } from "../config.ts";
 
 // const editor = namespace('editor')
 
