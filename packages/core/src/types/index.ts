@@ -59,6 +59,19 @@ export type DeviceType = "pc" | "mobile";
 
 type TargetHandler = (id: string) => Promise<ITarget> | null;
 
+export interface IFile {
+    create_time: number;
+    deletable:  boolean;
+    id: string;
+    name: string;
+    path: string;
+    size: number;
+    tag: null
+    type: number;
+    update_time: number;
+    user_id: string;
+}
+
 export interface ISetting {
   device: DeviceType;
   uploadUrl: string;
@@ -67,9 +80,11 @@ export interface ISetting {
   formList?: Array<ITarget>;
   theme: "default";
   i18n: "zh-CN";
-  onFormDataSubmit?: (data: any) => Promise<boolean>;
   getTargetByIdHandler?: TargetHandler;
+  onFormDataSubmit?: (data: any) => Promise<boolean>;
   onShare: any;
+  onGetFileList?: () => Promise<Array<IFile>>,
+  onDeleteFile?: (id: string) => boolean,
 }
 
 export interface ShareInfo {
