@@ -1,15 +1,44 @@
 <template>
   <el-dialog
-      title="数据项管理"
-      :visible.sync="value"
-      class="page-previewer"
-      :before-close="() => $emit('cancel')"
-      width="70%"
+    title="数据项管理"
+    :visible.sync="value"
+    class="dataset-dialog"
+    :before-close="handleClose"
+    width="70%"
   >
     <div class="dataset-wrapper">
-      <el-tree class="dataset-tree" :data="data" :props="defaultProps" @node-click="handleNodeClick"></el-tree>
+      <el-tree
+        class="dataset-tree"
+        :data="data"
+        :props="defaultProps"
+        @current-change="handleCurrentChange"
+        default-expand-all
+      >
+        <span
+          class="tree-operations"
+          slot-scope="{ node, data }"
+          @click.stop="handleNodeClick(node, data)"
+        >
+          <span class="title">{{ node.label }}</span>
+          <span class="btns">
+            <el-button
+              type="text"
+              icon="el-icon-plus"
+              circle
+              size="mini"
+              v-if="node.level === 1"
+              @click="() => handleAddDataset(node, data)"
+            ></el-button>
+          </span>
+        </span>
+      </el-tree>
       <div class="dataset-modify">
-        <el-form v-if="currentDataset" ref="form" :model="form" label-width="80px">
+        <el-form
+          v-if="currentDataset"
+          ref="form"
+          :model="form"
+          label-width="80px"
+        >
           <el-form-item label="名称">
             <el-input v-model="form.name"></el-input>
           </el-form-item>
@@ -41,57 +70,120 @@
     </div>
   </el-dialog>
 </template>
+<style lang="scss" scoped>
+$border: #f5f5f5;
+.dataset-dialog {
+  .dataset-wrapper {
+    display: flex;
+    min-height: 300px;
+
+    .dataset-tree {
+      width: 200px;
+      background-color: $border;
+
+      ::v-deep.tree-operations {
+        width: 100%;
+        flex: 1;
+        display: inline-block;
+
+        .title {
+          line-height: 28px;
+        }
+
+        .btns {
+          width: 50px;
+          float: right;
+        }
+      }
+    }
+    .dataset-modify {
+      flex: 1;
+      border-top: 1px solid $border;
+      border-right: 1px solid $border;
+      border-bottom: 1px solid $border;
+      padding: 20px;
+    }
+  }
+}
+</style>
 <script lang="ts">
-import { Component, Prop } from "vue-property-decorator"
+import { Component, Prop } from "vue-property-decorator";
 import Previewer from "../common/Previewer.vue";
 import SharePageEditor from "../common/SharePageEditor.vue";
-import {BaseView} from "../../../../core";
+import { BaseView } from "../../../../core";
 
 @Component({
   components: { Previewer, SharePageEditor },
 })
 export default class DataSetDialog extends BaseView {
-  @Prop(Boolean) value
+  @Prop(Boolean) value;
 
-  defaultProps = {}
-  currentDataset = null
+  defaultProps = {};
+  currentDataset = null;
 
-  data = [{
-    label: '全局数据项',
-    children: [{
-      label: '二级 1-1',
-      children: [{
-        label: '三级 1-1-1'
-      }]
-    }]
-  }, {
-    label: '页面1 数据项',
-    children: [{
-      label: '二级 2-1',
-      children: [{
-        label: '三级 2-1-1'
-      }]
-    }, {
-      label: '二级 2-2',
-      children: [{
-        label: '三级 2-2-1'
-      }]
-    }]
-  }, {
-    label: '页面2 数据项',
-    children: [{
-      label: '二级 3-1',
-      children: [{
-        label: '三级 3-1-1'
-      }]
-    }, {
-      label: '二级 3-2',
-      children: [{
-        label: '三级 3-2-1'
-      }]
-    }]
-  }];
+  data = [
+    {
+      label: "全局数据项",
+      children: [
+        {
+          label: "二级 1-1",
+        },
+      ],
+    },
+    {
+      label: "页面1 数据项",
+      children: [
+        {
+          label: "二级 2-1",
+          children: [
+            {
+              label: "三级 2-1-1",
+            },
+          ],
+        },
+        {
+          label: "二级 2-2",
+          children: [
+            {
+              label: "三级 2-2-1",
+            },
+          ],
+        },
+      ],
+    },
+    {
+      label: "页面2 数据项",
+      children: [
+        {
+          label: "二级 3-1",
+          children: [
+            {
+              label: "三级 3-1-1",
+            },
+          ],
+        },
+        {
+          label: "二级 3-2",
+          children: [
+            {
+              label: "三级 3-2-1",
+            },
+          ],
+        },
+      ],
+    },
+  ];
 
-  handleNodeClick() {}
+  handleNodeClick(node: any, data: any) {
+    console.log("node, data:", node, data);
+  }
+  handleCurrentChange() {}
+  handleAddDataset(node: any, data: any) {
+    console.log("node, data:", node, data);
+  }
+
+  handleClose() {
+    this.$emit("input", false);
+  }
 }
 </script>

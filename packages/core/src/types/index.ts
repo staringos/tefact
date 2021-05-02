@@ -65,6 +65,7 @@ export interface ISetting {
   grid?: boolean;
   customHeader?: Record<string, any>;
   formList?: Array<ITarget>;
+  targetList?: Array<ITarget>;
   theme: "default";
   i18n: "zh-CN";
   onFormDataSubmit?: (data: any) => Promise<boolean>;
