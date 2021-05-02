@@ -7,27 +7,6 @@
     @click.stop
   >
     <NodeList v-if="!hasCategory" :list="list" :subNodeType="subNodeType" />
-<!--    <draggable-->
-<!--      class="editor-node-list"-->
-<!--      v-if="hasCategory"-->
-<!--      :group="{ name: 'form-item', pull: 'clone', put: false }"-->
-<!--      :sort="false"-->
-<!--      :list="list"-->
-<!--      @clone="handleClone"-->
-<!--      @change="handleChange"-->
-<!--      @end="handleDragEnd"-->
-<!--    >-->
-<!--      <div-->
-<!--        class="node-item"-->
-<!--        :node="node"-->
-<!--        v-for="(node, i) in editorDetails.list"-->
-<!--        :key="i"-->
-<!--        @click="handleSelect(node.nodeData)"-->
-<!--      >-->
-<!--        <i :class="`tefact-icon ${node.icon}`"></i>-->
-<!--        <span>{{ node.title }}</span>-->
-<!--      </div>-->
-<!--    </draggable>-->
     <template v-else>
       <div
         class="classified-node-list"

@@ -61,6 +61,5 @@ export default class NodeList extends BaseView {
     if (this.featureType === "form") return this.engine.add(nodeData, -1);
     this.engine.addNode(nodeData, parentId);
   }
-
 }
 </script>

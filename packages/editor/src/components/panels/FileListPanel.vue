@@ -1,7 +1,7 @@
 <template>
   <BasePanel class="config-panel" title="配置">
     <ul class="file-list">
-      <li class="file-item" v-for="(item) in list" :key="item.id">
+      <li class="file-item" v-for="(item) in list" :key="item.id" @click="handleClick(item)">
         <img :src="`https://${item.path + '?imageView2/0/w/70'}`" />
         <i class="el-icon-delete"></i>
       </li>
@@ -56,6 +56,8 @@
 import { Vue, Component } from 'vue-property-decorator'
 import BasePanel from "TEFACT_EDITOR/components/panels/BasePanel.vue";
 import {BaseView, IFile} from "@tefact/core";
+import { FORM_NODE_LIST, PAGE_NODE_LIST } from "TEFACT_EDITOR/components/features"
+import cloneDeep from "lodash/cloneDeep";
 
 @Component({
   components: {
@@ -64,6 +66,27 @@ import {BaseView, IFile} from "@tefact/core";
 })
 export default class FileListPanel extends BaseView {
   list = [] as Array<IFile>;
+
+  handleClick(cur) {
+    let nodeData = null;
+
+    let parentId = undefined as any;
+
+    if (this.activeNodeId) {
+      if (this.activeNodeType === "section") parentId = this.activeNodeId;
+      else parentId = this.engine.activatedNodeParentId;
+    }
+
+    if (this.currentTarget.featureType === 'page') {
+      nodeData = cloneDeep(PAGE_NODE_LIST.ImageNode.nodeData);
+      nodeData.data.url = `https://${cur.path}`;
+      this.engine.addNode(nodeData, parentId);
+    } else {
+      nodeData = cloneDeep(FORM_NODE_LIST.FormImageNode.nodeData);
+      nodeData.data.link = `https://${cur.path}`;
+      this.engine.add(nodeData, -1);
+    }
+  }
 
   async mounted() {
     if (!this.setting.onGetFileList) return;
