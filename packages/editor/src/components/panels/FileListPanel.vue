@@ -55,7 +55,7 @@
 <script lang="ts">
 import { Vue, Component } from 'vue-property-decorator'
 import BasePanel from "TEFACT_EDITOR/components/panels/BasePanel.vue";
-import {BaseView, IFile} from "@tefact/core";
+import { BaseView, IBaseNode, IFile } from "@tefact/core";
 import { FORM_NODE_LIST, PAGE_NODE_LIST } from "TEFACT_EDITOR/components/features"
 import cloneDeep from "lodash/cloneDeep";
 
@@ -68,7 +68,7 @@ export default class FileListPanel extends BaseView {
   list = [] as Array<IFile>;
 
   handleClick(cur) {
-    let nodeData = null;
+    let nodeData = null as null | IBaseNode;
 
     let parentId = undefined as any;
 
@@ -78,11 +78,11 @@ export default class FileListPanel extends BaseView {
     }
 
     if (this.currentTarget.featureType === 'page') {
-      nodeData = cloneDeep(PAGE_NODE_LIST.ImageNode.nodeData);
+      nodeData = cloneDeep(PAGE_NODE_LIST.ImageNode.nodeData) as IBaseNode;
       nodeData.data.url = `https://${cur.path}`;
       this.engine.addNode(nodeData, parentId);
     } else {
-      nodeData = cloneDeep(FORM_NODE_LIST.FormImageNode.nodeData);
+      nodeData = cloneDeep(FORM_NODE_LIST.FormImageNode.nodeData) as IBaseNode;
       nodeData.data.link = `https://${cur.path}`;
       this.engine.add(nodeData, -1);
     }
