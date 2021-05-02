@@ -84,6 +84,7 @@ export interface ISetting {
   getTargetByIdHandler?: TargetHandler;
   onFormDataSubmit?: (data: any) => Promise<boolean>;
   onShare: any;
+  onGetTargetList?: () => Promise<Array<ITarget>>;
   onGetFileList?: () => Promise<Array<IFile>>,
   onDeleteFile?: (id: string) => boolean,
 }
