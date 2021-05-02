@@ -9,6 +9,7 @@
     <div class="left-area-content" v-show="!isCollapse">
       <NodesBar v-if="activeModel === '0'" :editorType="editorType" />
       <PagePanel v-if="activeModel === '1'" :editorType="editorType" />
+      <FileListPanel v-if="activeModel === '2'" :editorType="editorType" />
       <ConfigPreviewPanel v-if="activeModel === '3'" :editorType="editorType" />
     </div>
     <CollapseButton v-model="isCollapse" />
@@ -20,9 +21,10 @@ import NodesBar from "TEFACT_EDITOR/components/NodesBar.vue";
 import { CollapseButton } from "@tefact/ui";
 import PagePanel from "TEFACT_EDITOR/components/panels/PagePanel.vue";
 import ConfigPreviewPanel from "TEFACT_EDITOR/components/panels/ConfigPreviewPanel.vue";
+import FileListPanel from "TEFACT_EDITOR/components/panels/FileListPanel.vue";
 
 @Component({
-  components: {ConfigPreviewPanel, PagePanel, NodesBar, CollapseButton }
+  components: { FileListPanel, ConfigPreviewPanel, PagePanel, NodesBar, CollapseButton }
 })
 export default class LeftArea extends Vue {
   @Prop() editorType;
