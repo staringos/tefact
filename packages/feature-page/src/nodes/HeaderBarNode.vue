@@ -8,7 +8,7 @@
     <div class="left-area">
       <SlotArea :preview="preview" />
     </div>
-    <div class="title-area">{{title}}</div>
+    <div class="title-area">{{nodeData.title}}</div>
     <div class="right-area">
       <SlotArea :preview="preview" />
     </div>
@@ -66,9 +66,9 @@ export default class HeaderBarNode extends NodeClass<IBaseNode> {
       y: null,
     },
     data: {
-      dataPath: null
+      title: "首页"
     } as FreeNodeData,
-  } as IBaseNode;
+  } as any;
 
   static NODE = {
     icon: "tf-icon-tab1",
@@ -83,55 +83,19 @@ export default class HeaderBarNode extends NodeClass<IBaseNode> {
     {
       type: "RowsProperties",
       params: {
-        title: "按钮设置",
+        title: "导航设置",
         rows: [
-          {
-            type: "SelectRow",
-            params: {
-              title: "类型",
-              path: "data.type",
-              selectOptions: [
-                { value: "primary", label: "主要" },
-                { value: "info", label: "普通" },
-                { value: "warning", label: "警告" },
-                { value: "danger", label: "错误" },
-                { value: "text", label: "文字" },
-                { value: "success", label: "成功" },
-              ],
-            },
-          },
           {
             type: "TextRow",
             params: {
-              title: "按钮文字",
-              path: "data.text",
+              title: "标题",
+              path: "data.title",
             },
-          },
-          {
-            type: "SwitchRow",
-            params: {
-              title: "朴素按钮",
-              path: "data.plain",
-            },
-          },
-          {
-            type: "SwitchRow",
-            params: {
-              title: "圆角",
-              path: "data.round",
-            },
-          },
-          {
-            type: "SwitchRow",
-            params: {
-              title: "圆形",
-              path: "data.circle",
-            },
-          },
+          }
         ],
       },
     },
-  ]);
+  ], ["PositionProperties", "TextProperties"]);
 
 }
 </script>

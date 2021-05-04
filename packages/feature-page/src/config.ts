@@ -32,13 +32,18 @@ export class PageProperties {
     title: string,
     dataComponents?: Array<IPropertiesComponents> | null,
     basicComponents?: Array<IPropertiesComponents> | null,
-    noTextProperties = false
+    exclude: Array<string> = []
   ) {
-    const more = [] as Array<any>;
-    if (!noTextProperties) {
-      more.push(
-        { type: 'TextProperties', params: {} }
-      )
+    let more = [
+      { type: 'PositionProperties', params: {} },
+      { type: 'BackgroundProperties', params: {} },
+      { type: 'BorderProperties', params: {} },
+      { type: 'TextProperties', params: {} }
+    ] as Array<any>;
+    if (exclude && exclude.length > 0) {
+      more = more.filter(cur => {
+        return exclude.indexOf(cur.type) === -1
+      });
     }
 
     const res = {
@@ -48,9 +53,6 @@ export class PageProperties {
         {
           title: '基本信息',
           components: [
-            { type: 'PositionProperties', params: {} },
-            { type: 'BackgroundProperties', params: {} },
-            { type: 'BorderProperties', params: {} },
             ...more
           ],
         },

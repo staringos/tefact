@@ -6,17 +6,10 @@
     :node="node"
   >
     <ul>
-      <li>
-        <i class="el-icon el-icon-s-home"></i>
-        <span>首页</span>
-      </li>
-      <li>
-        <i class="el-icon el-icon-s-home"></i>
-        <span>首页</span>
-      </li>
-      <li>
-        <i class="el-icon el-icon-s-home"></i>
-        <span>首页</span>
+      <li v-for="(tab, i) in nodeData.tabs" :key="i">
+        <i v-if="!tab.icon.startsWith('https')" :class="`el-icon ${tab.icon}`"></i>
+        <img v-else :src="tab.icon" />
+        <span>{{ tab.name }}</span>
       </li>
     </ul>
   </SlotWrapper>
@@ -86,7 +79,21 @@ export default class TabBarNode extends NodeClass<IBaseNode> {
       y: null,
     },
     data: {
-      dataPath: null
+      tabs: [
+        {
+          icon: 'el-icon-s-home',
+          link: 'el-icon-s-home',
+          name: '首页'
+        }, {
+          icon: 'el-icon-s-home',
+          link: 'el-icon-s-home',
+          name: '新闻'
+        }, {
+          icon: 'el-icon-s-home',
+          link: 'el-icon-s-home',
+          name: '我的'
+        }
+      ]
     } as FreeNodeData,
   } as IBaseNode;
 
@@ -99,58 +106,37 @@ export default class TabBarNode extends NodeClass<IBaseNode> {
     nodeData: TabBarNode.DEFAULT,
   };
 
-  static PROPERTIES = PageProperties.defaultProperties("底部导航栏", null, [
+  static PROPERTIES = PageProperties.defaultProperties("底部导航栏", [
     {
-      type: "RowsProperties",
+      type: "ListProperties",
       params: {
-        title: "按钮设置",
+        title: "导航设置",
+        path: "data.tabs",
         rows: [
           {
-            type: "SelectRow",
+            type: "TextRow",
             params: {
-              title: "类型",
-              path: "data.type",
-              selectOptions: [
-                { value: "primary", label: "主要" },
-                { value: "info", label: "普通" },
-                { value: "warning", label: "警告" },
-                { value: "danger", label: "错误" },
-                { value: "text", label: "文字" },
-                { value: "success", label: "成功" },
-              ],
+              title: "标题",
+              path: "name",
             },
           },
           {
             type: "TextRow",
             params: {
-              title: "按钮文字",
-              path: "data.text",
+              title: "图标",
+              path: "icon",
             },
           },
           {
-            type: "SwitchRow",
+            type: "TextRow",
             params: {
-              title: "朴素按钮",
-              path: "data.plain",
+              title: "链接",
+              path: "link",
             },
-          },
-          {
-            type: "SwitchRow",
-            params: {
-              title: "圆角",
-              path: "data.round",
-            },
-          },
-          {
-            type: "SwitchRow",
-            params: {
-              title: "圆形",
-              path: "data.circle",
-            },
-          },
+          }
         ],
-      },
-    },
-  ]);
+      }
+    }
+  ], null, ["PositionProperties", "TextProperties"]);
 }
 </script>

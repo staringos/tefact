@@ -7,6 +7,8 @@ import set from 'lodash/set'
 import findIndex from 'lodash/findIndex'
 import findKey from 'lodash/findKey'
 import merge from "lodash/merge"
+import keyBy from "lodash/keyBy"
+import values from "lodash/values"
 import { BFS } from "@tefact/utils"
 import { Vue } from "vue-property-decorator"
 import { generateId } from "@tefact/utils"
@@ -88,7 +90,17 @@ export default class Engine extends EventEmitter<string, ITarget> implements IEn
   }
 
   private _refreshAllNodeMap() {
-    this._allNodesMap = _flattenNodes(this.target);
+    const allNodesMap = _flattenNodes(this.target);
+    let slots = {};
+
+    if (this.target.config) {
+      slots = keyBy(values(this.target.config.slots), 'id')
+    }
+
+    this._allNodesMap = {
+      ...allNodesMap,
+      ...slots
+    };
   }
 
   public dragging(node: IBaseNode, type: string) {
@@ -173,8 +185,9 @@ export default class Engine extends EventEmitter<string, ITarget> implements IEn
     if (!this.target) return;
     const config = this.target.config;
     const slots = cloneDeep(config.slots);
-
     const key = findKey(slots, function(o) { return o.id === nodeId; });
+
+    if (!key) return;
     delete slots[key];
     Vue.set(config, "slots", slots);
 

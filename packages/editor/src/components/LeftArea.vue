@@ -4,7 +4,7 @@
       <el-tab-pane label="零件"></el-tab-pane>
       <el-tab-pane label="页面"></el-tab-pane>
       <el-tab-pane label="资源"></el-tab-pane>
-      <el-tab-pane label="JSON"></el-tab-pane>
+      <el-tab-pane label="配置"></el-tab-pane>
     </el-tabs>
     <div class="left-area-content" v-show="!isCollapse">
       <NodesBar v-if="activeModel === '0'" :editorType="editorType" />
