@@ -1,13 +1,10 @@
 <template>
-<!--  <BaseNode-->
-<!--      v-bind="$attrs"-->
-<!--      v-on="$listeners"-->
-<!--      :node="node"-->
-<!--      :sectionId="sectionId"-->
-<!--      :preview="preview"-->
-<!--      class="button-node"-->
-<!--  >-->
-  <div :class="{ 'tab-bar-container': true, 'tab-bar-editing': !preview }">
+  <SlotWrapper
+    v-bind="$attrs"
+    v-on="$listeners"
+    :className="{ 'tab-bar-container': true, 'tab-bar-editing': !preview }"
+    :node="node"
+  >
     <ul>
       <li>
         <i class="el-icon el-icon-s-home"></i>
@@ -22,7 +19,7 @@
         <span>首页</span>
       </li>
     </ul>
-  </div>
+  </SlotWrapper>
 </template>
 <style lang="scss" scoped>
 .tab-bar-container {
@@ -70,9 +67,10 @@ import shapes from "../shapes";
 import type { IBaseNode } from "@tefact/core";
 import { FreeNodeData, getBaseNode } from "@tefact/core";
 import { PageProperties } from "../config";
+import SlotWrapper from "../components/SlotWrapper.vue"
 
 @Component({
-  components: { BaseNode, ...shapes },
+  components: { SlotWrapper, BaseNode, ...shapes },
 })
 export default class TabBarNode extends NodeClass<IBaseNode> {
   @Prop() preview;
@@ -80,6 +78,13 @@ export default class TabBarNode extends NodeClass<IBaseNode> {
   static DEFAULT = {
     ...getBaseNode(),
     type: "TabBarNode",
+    style: {},
+    pos: {
+      w: null,
+      h: null,
+      x: null,
+      y: null,
+    },
     data: {
       dataPath: null
     } as FreeNodeData,
@@ -147,6 +152,5 @@ export default class TabBarNode extends NodeClass<IBaseNode> {
       },
     },
   ]);
-
 }
 </script>

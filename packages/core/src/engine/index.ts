@@ -7,6 +7,7 @@ export class BaseView extends Vue {
   engine: Engine = Engine.instance();
 
   get activeNodeType() { return this.activatedNode?.type }
+  get activeNodePosition() { return this.engine.activeNodePosition }
   get activeNodeId() {
     if (this.engine.activeNodeIds.length === 0) return null
     return this.engine.activeNodeIds?.[0]

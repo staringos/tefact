@@ -1,5 +1,10 @@
 <template>
-  <div class="header-bar-node">
+  <SlotWrapper
+    :className="{'header-bar-node': true}"
+    v-bind="$attrs"
+    v-on="$listeners"
+    :node="node"
+  >
     <div class="left-area">
       <SlotArea :preview="preview" />
     </div>
@@ -7,7 +12,7 @@
     <div class="right-area">
       <SlotArea :preview="preview" />
     </div>
-  </div>
+  </SlotWrapper>
 </template>
 <style lang="scss" scoped>
 .header-bar-node {
@@ -41,9 +46,10 @@ import SlotArea from "../components/SlotArea.vue"
 import NodeClass from "../nodes/NodeClass"
 import { FreeNodeData, getBaseNode, IBaseNode } from "@tefact/core"
 import { PageProperties } from "../config"
+import SlotWrapper from "../components/SlotWrapper.vue"
 
 @Component({
-  components: { SlotArea }
+  components: { SlotWrapper, SlotArea }
 })
 export default class HeaderBarNode extends NodeClass<IBaseNode> {
   title = "首页"
@@ -52,6 +58,13 @@ export default class HeaderBarNode extends NodeClass<IBaseNode> {
   static DEFAULT = {
     ...getBaseNode(),
     type: "HeaderBarNode",
+    style: {},
+    pos: {
+      w: null,
+      h: null,
+      x: null,
+      y: null,
+    },
     data: {
       dataPath: null
     } as FreeNodeData,

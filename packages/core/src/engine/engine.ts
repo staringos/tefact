@@ -5,6 +5,7 @@ import type { IEngine, ITarget, IBaseNode, ISetting } from "@tefact/core";
 import { EVENT } from "@tefact/core";
 import set from 'lodash/set'
 import findIndex from 'lodash/findIndex'
+import findKey from 'lodash/findKey'
 import merge from "lodash/merge"
 import { BFS } from "@tefact/utils"
 import { Vue } from "vue-property-decorator"
@@ -48,6 +49,7 @@ export default class Engine extends EventEmitter<string, ITarget> implements IEn
   }
 
   public activeNodeIds: Array<string> = [];
+  public activeNodePosition: string | null = null;
   public target!: ITarget;
   public setting: ISetting = Vue.observable(DEFAULT_SETTING);
 
@@ -99,8 +101,14 @@ export default class Engine extends EventEmitter<string, ITarget> implements IEn
     this._draggingType = null;
   }
 
-  public activeNode(ids: Array<string>) {
-    this.activeNodeIds = ids;
+  public activeNode(ids: Array<string>, position = "node") {
+    Vue.set(this, "activeNodeIds", ids);
+
+    if (ids && ids[0]) {
+      this.activeNodePosition = position;
+    } else {
+      this.activeNodePosition = null;
+    }
   }
 
   public moreActive(id: string) {
@@ -159,6 +167,18 @@ export default class Engine extends EventEmitter<string, ITarget> implements IEn
     this.emit(EVENT.ADD, this.target);
 
     this.activeNode([newNode.id])
+  }
+
+  public deleteSlot(nodeId: string) {
+    if (!this.target) return;
+    const config = this.target.config;
+    const slots = cloneDeep(config.slots);
+
+    const key = findKey(slots, function(o) { return o.id === nodeId; });
+    delete slots[key];
+    Vue.set(config, "slots", slots);
+
+    this.emit(EVENT.UPDATE, this.target);
   }
 
   public update(path: string, value: any) {

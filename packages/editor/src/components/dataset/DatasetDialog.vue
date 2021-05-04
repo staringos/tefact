@@ -27,7 +27,7 @@
               circle
               size="mini"
               v-if="node.level === 1"
-              @click="() => handleAddDataset(node, data)"
+              @click.stop="() => handleAddDataset(node, data)"
             ></el-button>
             <el-button
                 type="text"
@@ -35,7 +35,7 @@
                 circle
                 size="mini"
                 v-if="node.level === 2"
-                @click="() => handleDeleteDataset(node, data)"
+                @click.stop="() => handleDeleteDataset(node, data)"
             ></el-button>
           </span>
         </span>
@@ -198,6 +198,7 @@ export default class DataSetDialog extends BaseView {
   handleCurrentChange(node, data) {
     if (node.level === 1) {
       this.isEditing = false;
+      return;
     }
 
     this.isEditing = true;
@@ -230,6 +231,7 @@ export default class DataSetDialog extends BaseView {
       form.bind_type = 'target';
       form.target_id = data.data.id;
     }
+
     this.form = form;
   }
 

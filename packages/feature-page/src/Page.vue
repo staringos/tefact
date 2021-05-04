@@ -128,7 +128,11 @@ export default class Page extends BaseView {
     switch (e.key) {
       case "Backspace":
         if (this.preview) return;
-        this.engine.deleteNode(this.activeNodeId as string);
+        if (this.activeNodePosition === 'slot') {
+          this.engine.deleteSlot(this.activeNodeId as string);
+        } else {
+          this.engine.deleteNode(this.activeNodeId as string);
+        }
     }
   }
 
