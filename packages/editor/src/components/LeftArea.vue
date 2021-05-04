@@ -29,7 +29,7 @@ import FileListPanel from "TEFACT_EDITOR/components/panels/FileListPanel.vue";
 export default class LeftArea extends Vue {
   @Prop() editorType;
 
-  activeModel = "1";
+  activeModel = "0";
   isCollapse = false;
 }
 </script>

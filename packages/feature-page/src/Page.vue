@@ -1,24 +1,28 @@
 <template>
-  <div
-    :class="`editor-page-canvas ${direction}-side`"
-    :style="style"
-    @click="handlePageClick"
-  >
-    <div class="section section-add" v-if="!sections || sections.length < 1">
-      <AddButton :index="0" :pageId="pageId" show></AddButton>
+  <div :class="{'page-canvas-container': true, 'tab-bar-page': hasTabBar, 'header-bar-page': hasHeaderBar}">
+    <HeaderBarNode v-if="hasTabBar" :preview="preview"></HeaderBarNode>
+    <div
+        :class="`editor-page-canvas ${direction}-side`"
+        :style="style"
+        @click="handlePageClick"
+    >
+      <div class="section section-add" v-if="!sections || sections.length < 1">
+        <AddButton :index="0" :pageId="pageId" show></AddButton>
+      </div>
+      <PageSection
+          v-for="(section, i) in sections"
+          :key="section.id"
+          :index="i"
+          :section="section"
+          :pageId="pageId"
+          :preview="preview"
+          :isMobile="isMobile"
+          :amount="sections.length"
+          :active="activeNodeId === section.id"
+          @activeChange="handleActiveChange(section.id)"
+      ></PageSection>
     </div>
-    <PageSection
-      v-for="(section, i) in sections"
-      :key="section.id"
-      :index="i"
-      :section="section"
-      :pageId="pageId"
-      :preview="preview"
-      :isMobile="isMobile"
-      :amount="sections.length"
-      :active="activeNodeId === section.id"
-      @activeChange="handleActiveChange(section.id)"
-    ></PageSection>
+    <TabBarNode v-if="hasTabBar" :preview="preview"></TabBarNode>
   </div>
 </template>
 <script lang="ts">
@@ -27,16 +31,20 @@ import { addListener, removeListener } from "resize-detector";
 
 import "vue-draggable-resizable-gorkys/dist/VueDraggableResizable.css";
 import PageSection from "./nodes/SectionNode.vue";
+import TabBarNode from "./nodes/TabBarNode.vue";
 import AddButton from "./components/AddButton.vue";
 import cloneDeep from "lodash/cloneDeep";
 import { transformStyle } from "@tefact/utils";
 import { BaseView } from "@tefact/core";
 import type { ISetting, ITarget } from "@tefact/core";
+import HeaderBarNode from "./nodes/HeaderBarNode.vue"
 
 @Component({
   components: {
+    HeaderBarNode,
     AddButton,
     PageSection,
+    TabBarNode,
   },
 })
 export default class Page extends BaseView {
@@ -59,6 +67,14 @@ export default class Page extends BaseView {
 
   get sections() {
     return this.page.config.children;
+  }
+
+  get hasTabBar() {
+    return this.currentTarget?.displayType?.indexOf('h5') !== -1;
+  }
+
+  get hasHeaderBar() {
+    return this.currentTarget?.displayType?.indexOf('h5') !== -1;
   }
 
   @Watch("page.config", { immediate: true })
@@ -127,6 +143,23 @@ export default class Page extends BaseView {
 </script>
 
 <style lang="scss" scoped>
+
+.page-canvas-container {
+  width: 100%;
+  display: flex;
+  flex: 1;
+  height: 100%;
+  overflow: auto;
+
+  &.tab-bar-page {
+    margin-bottom: 50px;
+  }
+
+  &.header-bar-page {
+    margin-top: 50px;
+  }
+}
+
 .editor-page-canvas {
   // display: flex;
   flex-direction: column;
@@ -134,6 +167,7 @@ export default class Page extends BaseView {
   box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.12), 0 0 6px 0 rgba(0, 0, 0, 0.04);
   transform-origin: center top;
   margin-bottom: 20px;
+  position: relative;
 
   &::-webkit-scrollbar {
     display: block;

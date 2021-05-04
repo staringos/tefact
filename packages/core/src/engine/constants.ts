@@ -33,3 +33,16 @@ export const DefaultNodeData = {
     style: { ...BaseNodeStyle },
   }
 } as Record<string, any>
+
+export const DefaultDataset = {
+  name: "",
+  union: "",
+  type: 'custom',
+  bind_type: 'app',
+  data_type: 'string',
+  datasource_id: undefined,
+  data_table_id: undefined,
+  application_id: undefined,
+  target_id: undefined,
+  data: "",
+}

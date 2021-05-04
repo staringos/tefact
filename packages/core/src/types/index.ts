@@ -14,6 +14,7 @@ export interface ITarget {
   direction?: "horizontal" | "vertical";
   featureType: TargetFeatureType;
   displayType?: TargetDisplayType;
+  application_id?: string;
   config: ITargetConfig;
   share?: ShareInfo; // the target share information
 }
@@ -32,6 +33,7 @@ export interface ITargetConfig {
   data: INodeData & FreeNodeData;
   viewMode: "adapt" | "fixed";
   children: IBaseNode[];
+  slots?: Record<string, IBaseNode>;
 }
 
 export interface IPos {
@@ -53,6 +55,21 @@ export interface IBaseNode {
   style: INodeStyle;
   data: FreeNodeData;
   children?: IBaseNode[];
+  slots?: Record<string, IBaseNode>;
+}
+
+export interface IDataSet {
+  id: string;
+  name: string;
+  union: string;
+  type: 'custom' | 'datasource';
+  bind_type: 'app' | 'target';
+  data_type: 'string' | 'number' | 'array' | 'object';
+  datasource_id?: string;
+  data_table_id?: string;
+  application_id?: string;
+  target_id?: string;
+  data: any;
 }
 
 export type DeviceType = "pc" | "mobile";
@@ -79,14 +96,24 @@ export interface ISetting {
   customHeader?: Record<string, any>;
   formList?: Array<ITarget>;
   targetList?: Array<ITarget>;
+  datasetList?: Array<IDataSet>;
   theme: "default";
   i18n: "zh-CN";
   getTargetByIdHandler?: TargetHandler;
   onFormDataSubmit?: (data: any) => Promise<boolean>;
+
+  // target
   onShare: any;
   onGetTargetList?: () => Promise<Array<ITarget>>;
-  onGetFileList?: () => Promise<Array<IFile>>,
-  onDeleteFile?: (id: string) => boolean,
+
+  // file
+  onGetFileList?: () => Promise<Array<IFile>>;
+  onDeleteFile?: (id: string) => boolean;
+
+  // data set
+  onGetDataSet?: () => Promise<Array<IDataSet>>;
+  onModifyDataSet?: (dataSet: IDataSet) => Promise<boolean>;
+  onDeleteDataSet?: (id: String) => Promise<boolean>;
 }
 
 export interface ShareInfo {
