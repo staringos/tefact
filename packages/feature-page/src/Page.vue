@@ -34,6 +34,7 @@ import PageSection from "./nodes/SectionNode.vue";
 import TabBarNode from "./nodes/TabBarNode.vue";
 import AddButton from "./components/AddButton.vue";
 import cloneDeep from "lodash/cloneDeep";
+import get from "lodash/get";
 import { transformStyle } from "@tefact/utils";
 import { BaseView } from "@tefact/core";
 import type { ISetting, ITarget } from "@tefact/core";
@@ -133,6 +134,23 @@ export default class Page extends BaseView {
         } else {
           this.engine.deleteNode(this.activeNodeId as string);
         }
+        return;
+      case "ArrowLeft":
+        if (!this.activatedNode || this.activeNodePosition !== 'node') return;
+        e.preventDefault();
+        return this.engine.updateNodeByKey("pos.x", get(this.activatedNode, "pos.x") - 1);
+      case "ArrowRight":
+        if (!this.activatedNode || this.activeNodePosition !== 'node') return;
+        e.preventDefault();
+        return this.engine.updateNodeByKey("pos.x", get(this.activatedNode, "pos.x") + 1);
+      case "ArrowUp":
+        if (!this.activatedNode || this.activeNodePosition !== 'node') return;
+        e.preventDefault();
+        return this.engine.updateNodeByKey("pos.y", get(this.activatedNode, "pos.y") - 1);
+      case "ArrowDown":
+        if (!this.activatedNode || this.activeNodePosition !== 'node') return;
+        e.preventDefault();
+        return this.engine.updateNodeByKey("pos.y", get(this.activatedNode, "pos.y") + 1);
     }
   }
 

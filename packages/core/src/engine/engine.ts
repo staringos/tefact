@@ -199,6 +199,13 @@ export default class Engine extends EventEmitter<string, ITarget> implements IEn
     this.emit(EVENT.UPDATE, set(this.target, path, value));
   }
 
+  public updateNodeByKey(key: string, value: any) {
+    if (!this.activatedNode) return;
+    const newNode = this.activatedNode
+    set(newNode, key, value)
+    this.updateNode(newNode);
+  }
+
   public updateNode(config: any) {
     if (!this._allNodesMap) return;
     const isPage = config.config && config.featureType;

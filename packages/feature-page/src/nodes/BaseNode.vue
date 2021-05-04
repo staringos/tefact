@@ -16,11 +16,10 @@
     :snapTolerance="10"
     :draggable="!preview"
     :resizable="!preview"
-    :grid="[20, 20]"
+    :active="active"
     @resizing="handleResize"
     preventDeactivation
     @click.native.stop
-    :active="active"
     @refLineParams="getRefLineParams"
     @update:active="$emit('update:active', $event)"
     @dragging="handleDragging"
@@ -91,6 +90,14 @@ export default class BaseNode extends BaseView {
   @Prop() sectionConfig!: any;
 
   tmpNode: IBaseNode | null = null;
+
+  get grid() {
+    if (this.currentTarget.displayType.indexOf("h5") === -1) {
+      return [5, 5];
+    }
+
+    return [20, 20];
+  }
 
   @Watch("node", { deep: true, immediate: true })
   handleNodeConfigChange() {
