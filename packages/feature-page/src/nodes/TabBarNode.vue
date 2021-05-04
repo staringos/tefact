@@ -95,7 +95,7 @@ export default class TabBarNode extends NodeClass<IBaseNode> {
         }
       ]
     } as FreeNodeData,
-  } as IBaseNode;
+  } as any;
 
   static NODE = {
     icon: "tf-icon-tab",

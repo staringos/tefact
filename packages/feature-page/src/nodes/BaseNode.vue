@@ -91,13 +91,13 @@ export default class BaseNode extends BaseView {
 
   tmpNode: IBaseNode | null = null;
 
-  get grid() {
-    if (this.currentTarget.displayType.indexOf("h5") === -1) {
-      return [5, 5];
-    }
-
-    return [20, 20];
-  }
+  // get grid() {
+  //   if (this.currentTarget.displayType.indexOf("h5") === -1) {
+  //     return [5, 5];
+  //   }
+  //
+  //   return [20, 20];
+  // }
 
   @Watch("node", { deep: true, immediate: true })
   handleNodeConfigChange() {

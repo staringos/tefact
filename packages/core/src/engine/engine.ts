@@ -187,7 +187,7 @@ export default class Engine extends EventEmitter<string, ITarget> implements IEn
     const slots = cloneDeep(config.slots);
     const key = findKey(slots, function(o) { return o.id === nodeId; });
 
-    if (!key) return;
+    if (!key || !slots) return;
     delete slots[key];
     Vue.set(config, "slots", slots);
 
