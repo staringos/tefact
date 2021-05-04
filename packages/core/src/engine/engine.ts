@@ -10,6 +10,7 @@ import { BFS } from "@tefact/utils"
 import { Vue } from "vue-property-decorator"
 import { generateId } from "@tefact/utils"
 import { INodeStyle, IPos, ShareDataType, TargetDisplayType } from "../types"
+import { DefaultTarget } from "../constants"
 
 type IFlattenNode = {
   parentId?: string | number
@@ -70,14 +71,15 @@ export default class Engine extends EventEmitter<string, ITarget> implements IEn
   }
 
   public init(target?: ITarget, setting?: ISetting) {
-    if (target) {
-      Vue.set(this, "target", Vue.observable(cloneDeep(target)));
-      this._targetBackup = target;
-      this._refreshAllNodeMap();
-    }
+    if (!target) return this;
+    let mergedTarget = merge(DefaultTarget, target);
 
-    if (target || this.target) {
-      const displayType = (target || this.target).displayType;
+    Vue.set(this, "target", Vue.observable(cloneDeep(mergedTarget)));
+    this._targetBackup = mergedTarget;
+    this._refreshAllNodeMap();
+
+    if (mergedTarget || this.target) {
+      const displayType = (mergedTarget || this.target).displayType;
       if (setting && displayType) this.changeSetting(displayType, setting);
     }
     return this;
@@ -140,6 +142,19 @@ export default class Engine extends EventEmitter<string, ITarget> implements IEn
     BFS(newConfig.children, parentId).addChild(newNode);
     this._refreshAllNodeMap();
     this.emit(EVENT.ADD, this.target);
+    this.activeNode([newNode.id])
+  }
+
+  public addSlot(name: string, config: IBaseNode) {
+    if (!this.target) return;
+    const newNode = cloneDeep(config);
+    newNode.id = generateId();
+    newNode.slotName = name;
+    const newConfig = this.target?.config;
+
+    Vue.set(newConfig.slots, name, newNode);
+    this.emit(EVENT.ADD, this.target);
+
     this.activeNode([newNode.id])
   }
 

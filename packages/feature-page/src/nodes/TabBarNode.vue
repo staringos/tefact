@@ -1,4 +1,12 @@
 <template>
+<!--  <BaseNode-->
+<!--      v-bind="$attrs"-->
+<!--      v-on="$listeners"-->
+<!--      :node="node"-->
+<!--      :sectionId="sectionId"-->
+<!--      :preview="preview"-->
+<!--      class="button-node"-->
+<!--  >-->
   <div :class="{ 'tab-bar-container': true, 'tab-bar-editing': !preview }">
     <ul>
       <li>
@@ -60,12 +68,85 @@ import NodeClass from "./NodeClass";
 import BaseNode from "./BaseNode.vue";
 import shapes from "../shapes";
 import type { IBaseNode } from "@tefact/core";
+import { FreeNodeData, getBaseNode } from "@tefact/core";
+import { PageProperties } from "../config";
 
 @Component({
   components: { BaseNode, ...shapes },
 })
 export default class TabBarNode extends NodeClass<IBaseNode> {
   @Prop() preview;
+
+  static DEFAULT = {
+    ...getBaseNode(),
+    type: "TabBarNode",
+    data: {
+      dataPath: null
+    } as FreeNodeData,
+  } as IBaseNode;
+
+  static NODE = {
+    icon: "tf-icon-tab",
+    type: "TabBarNode",
+    position: "slot",
+    slot: "TabBar",
+    title: "底部导航",
+    nodeData: TabBarNode.DEFAULT,
+  };
+
+  static PROPERTIES = PageProperties.defaultProperties("底部导航栏", null, [
+    {
+      type: "RowsProperties",
+      params: {
+        title: "按钮设置",
+        rows: [
+          {
+            type: "SelectRow",
+            params: {
+              title: "类型",
+              path: "data.type",
+              selectOptions: [
+                { value: "primary", label: "主要" },
+                { value: "info", label: "普通" },
+                { value: "warning", label: "警告" },
+                { value: "danger", label: "错误" },
+                { value: "text", label: "文字" },
+                { value: "success", label: "成功" },
+              ],
+            },
+          },
+          {
+            type: "TextRow",
+            params: {
+              title: "按钮文字",
+              path: "data.text",
+            },
+          },
+          {
+            type: "SwitchRow",
+            params: {
+              title: "朴素按钮",
+              path: "data.plain",
+            },
+          },
+          {
+            type: "SwitchRow",
+            params: {
+              title: "圆角",
+              path: "data.round",
+            },
+          },
+          {
+            type: "SwitchRow",
+            params: {
+              title: "圆形",
+              path: "data.circle",
+            },
+          },
+        ],
+      },
+    },
+  ]);
 
 }
 </script>

@@ -21,6 +21,10 @@ export class BaseView extends Vue {
     return this.engine.setting;
   }
 
+  get targetSlots() {
+    return this.currentTarget.config.slots || {}
+  }
+
   getFormList() {
     return this.setting.formList;
   }

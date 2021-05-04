@@ -38,12 +38,87 @@
 <script lang="ts">
 import { Vue, Component, Prop } from 'nuxt-property-decorator'
 import SlotArea from "../components/SlotArea.vue"
+import NodeClass from "../nodes/NodeClass"
+import { FreeNodeData, getBaseNode, IBaseNode } from "@tefact/core"
+import { PageProperties } from "../config"
 
 @Component({
   components: { SlotArea }
 })
-export default class AppItem extends Vue {
+export default class HeaderBarNode extends NodeClass<IBaseNode> {
   title = "首页"
   @Prop() preview
+
+  static DEFAULT = {
+    ...getBaseNode(),
+    type: "HeaderBarNode",
+    data: {
+      dataPath: null
+    } as FreeNodeData,
+  } as IBaseNode;
+
+  static NODE = {
+    icon: "tf-icon-tab1",
+    type: "HeaderBarNode",
+    position: "slot",
+    slot: "HeaderBar",
+    title: "顶部导航",
+    nodeData: HeaderBarNode.DEFAULT,
+  };
+
+  static PROPERTIES = PageProperties.defaultProperties("顶部导航", null, [
+    {
+      type: "RowsProperties",
+      params: {
+        title: "按钮设置",
+        rows: [
+          {
+            type: "SelectRow",
+            params: {
+              title: "类型",
+              path: "data.type",
+              selectOptions: [
+                { value: "primary", label: "主要" },
+                { value: "info", label: "普通" },
+                { value: "warning", label: "警告" },
+                { value: "danger", label: "错误" },
+                { value: "text", label: "文字" },
+                { value: "success", label: "成功" },
+              ],
+            },
+          },
+          {
+            type: "TextRow",
+            params: {
+              title: "按钮文字",
+              path: "data.text",
+            },
+          },
+          {
+            type: "SwitchRow",
+            params: {
+              title: "朴素按钮",
+              path: "data.plain",
+            },
+          },
+          {
+            type: "SwitchRow",
+            params: {
+              title: "圆角",
+              path: "data.round",
+            },
+          },
+          {
+            type: "SwitchRow",
+            params: {
+              title: "圆形",
+              path: "data.circle",
+            },
+          },
+        ],
+      },
+    },
+  ]);
+
 }
 </script>

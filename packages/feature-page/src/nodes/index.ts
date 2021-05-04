@@ -8,6 +8,8 @@ import BrowserNode from './BrowserNode.vue'
 import FormNode from './FormNode.vue'
 import ShapeNode from './ShapeNode.vue'
 import SectionNode from './SectionNode.vue'
+import TabBarNode from './TabBarNode.vue'
+import HeaderBarNode from './HeaderBarNode.vue'
 import { PageProperties } from "../config"
 import { IProperties } from "@tefact/properties"
 import { NodeConfig } from "@tefact/core"
@@ -22,6 +24,8 @@ const nodes = {
   CarouselNode,
   BrowserNode,
   ShapeNode,
+  TabBarNode,
+  HeaderBarNode,
   FormNode
 } as Record<string, any>
 

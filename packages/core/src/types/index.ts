@@ -56,6 +56,7 @@ export interface IBaseNode {
   data: FreeNodeData;
   children?: IBaseNode[];
   slots?: Record<string, IBaseNode>;
+  slotName: string;
 }
 
 export interface IDataSet {

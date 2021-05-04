@@ -13,7 +13,7 @@
         :node="node"
         v-for="(node, i) in list"
         :key="i"
-        @click="handleSelect(node.nodeData)"
+        @click="handleSelect(node)"
     >
       <i :class="`tefact-icon ${node.icon}`"></i>
       <span>{{ node.title }}</span>
@@ -45,7 +45,8 @@ export default class NodeList extends BaseView {
     this.engine.cleanDragging();
   }
 
-  handleSelect(nodeData: IBaseNode) {
+  handleSelect(node) {
+    const { nodeData } = node;
     if (nodeData.type === "ShapeNode" && this.subNodeType !== "shape") {
       this.subNodeType = "shape";
       return;
@@ -56,6 +57,10 @@ export default class NodeList extends BaseView {
     if (this.activeNodeId) {
       if (this.activeNodeType === "section") parentId = this.activeNodeId;
       else parentId = this.engine.activatedNodeParentId;
+    }
+
+    if (node.position === 'slot') {
+      return this.engine.addSlot(node.slot, nodeData);
     }
 
     if (this.featureType === "form") return this.engine.add(nodeData, -1);

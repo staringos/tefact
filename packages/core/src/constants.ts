@@ -10,7 +10,8 @@ export const DefaultTarget: ITarget = {
       target: ""
     },
     viewMode: "adapt",
-    children: [] as IBaseNode[]
+    children: [] as IBaseNode[],
+    slots: {}
   },
 }
 

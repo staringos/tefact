@@ -1,6 +1,6 @@
 <template>
   <div :class="{'page-canvas-container': true, 'tab-bar-page': hasTabBar, 'header-bar-page': hasHeaderBar}">
-    <HeaderBarNode v-if="hasTabBar" :preview="preview"></HeaderBarNode>
+    <SlotPosition :slots="slots" name="HeaderBar" />
     <div
         :class="`editor-page-canvas ${direction}-side`"
         :style="style"
@@ -22,7 +22,7 @@
           @activeChange="handleActiveChange(section.id)"
       ></PageSection>
     </div>
-    <TabBarNode v-if="hasTabBar" :preview="preview"></TabBarNode>
+    <SlotPosition :slots="slots" name="TabBar" />
   </div>
 </template>
 <script lang="ts">
@@ -38,9 +38,11 @@ import { transformStyle } from "@tefact/utils";
 import { BaseView } from "@tefact/core";
 import type { ISetting, ITarget } from "@tefact/core";
 import HeaderBarNode from "./nodes/HeaderBarNode.vue"
+import SlotPosition from "./components/SlotPosition.vue"
 
 @Component({
   components: {
+    SlotPosition,
     HeaderBarNode,
     AddButton,
     PageSection,
@@ -70,11 +72,16 @@ export default class Page extends BaseView {
   }
 
   get hasTabBar() {
-    return this.currentTarget?.displayType?.indexOf('h5') !== -1;
+    return !!this.slots["TabBar"];
   }
 
   get hasHeaderBar() {
-    return this.currentTarget?.displayType?.indexOf('h5') !== -1;
+    return !!this.slots["HeaderBar"];
+
+  }
+
+  get slots() {
+    return this.currentTarget?.config?.slots || {};
   }
 
   @Watch("page.config", { immediate: true })
