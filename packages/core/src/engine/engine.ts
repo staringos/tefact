@@ -152,6 +152,9 @@ export default class Engine extends EventEmitter<string, ITarget> implements IEn
     newNode.slotName = name;
     const newConfig = this.target?.config;
 
+    if (!newConfig) return;
+    if (!newConfig.slots) newConfig.slots = {};
+
     Vue.set(newConfig.slots, name, newNode);
     this.emit(EVENT.ADD, this.target);
 
