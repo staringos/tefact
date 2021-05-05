@@ -2,15 +2,17 @@
   <div class="left-area">
     <el-tabs class="tabs" v-model="activeModel" tab-position="left" type="border-card" style="height: 200px;">
       <el-tab-pane label="零件"></el-tab-pane>
+      <el-tab-pane label="组件"></el-tab-pane>
       <el-tab-pane label="页面"></el-tab-pane>
       <el-tab-pane label="资源"></el-tab-pane>
       <el-tab-pane label="配置"></el-tab-pane>
     </el-tabs>
     <div class="left-area-content" v-show="!isCollapse">
       <NodesBar v-if="activeModel === '0'" :editorType="editorType" />
-      <PagePanel v-if="activeModel === '1'" :editorType="editorType" />
-      <FileListPanel v-if="activeModel === '2'" :editorType="editorType" />
-      <ConfigPreviewPanel v-if="activeModel === '3'" :editorType="editorType" />
+      <WidgetPanel v-if="activeModel === '1'" :editorType="editorType" />
+      <PagePanel v-if="activeModel === '2'" :editorType="editorType" />
+      <FileListPanel v-if="activeModel === '3'" :editorType="editorType" />
+      <ConfigPreviewPanel v-if="activeModel === '4'" :editorType="editorType" />
     </div>
     <CollapseButton v-model="isCollapse" />
   </div>
@@ -22,9 +24,10 @@ import { CollapseButton } from "@tefact/ui";
 import PagePanel from "TEFACT_EDITOR/components/panels/PagePanel.vue";
 import ConfigPreviewPanel from "TEFACT_EDITOR/components/panels/ConfigPreviewPanel.vue";
 import FileListPanel from "TEFACT_EDITOR/components/panels/FileListPanel.vue";
+import WidgetPanel from "TEFACT_EDITOR/components/panels/WidgetPanel.vue"
 
 @Component({
-  components: { FileListPanel, ConfigPreviewPanel, PagePanel, NodesBar, CollapseButton }
+  components: { WidgetPanel, FileListPanel, ConfigPreviewPanel, PagePanel, NodesBar, CollapseButton }
 })
 export default class LeftArea extends Vue {
   @Prop() editorType;

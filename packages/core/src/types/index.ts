@@ -91,6 +91,10 @@ export interface IFile {
 }
 
 export interface ISetting {
+  app?: {
+    id: string;
+    type: string
+  };
   device: DeviceType;
   uploadUrl: string;
   grid?: boolean;
@@ -105,6 +109,7 @@ export interface ISetting {
 
   // target
   onShare: any;
+  onPublish?: any;
   onGetTargetList?: () => Promise<Array<ITarget>>;
 
   // file

@@ -28,7 +28,8 @@ export const EVENT = {
   OPEN_MODIFIER: "openModifier",
   BACK: "back",
   MOVE: "move",
-  SAVE: "save"
+  SAVE: "save",
+  GOTO: "goto"
 }
 
 export const DRAGGING_TYPE = {

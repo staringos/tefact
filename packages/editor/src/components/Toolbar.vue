@@ -28,11 +28,20 @@
         @click="handlePreviewer"
         >预览</el-button
       >
-      <SharePageEditor :page="target" :pageType="featureType">
+      <SharePageEditor v-if="!setting.app.type || setting.app.type === '0' || setting.app.type === 'normal'" :page="target" :pageType="featureType">
         <el-button type="info" icon="el-icon-share" size="small"
           >分享</el-button
         >
       </SharePageEditor>
+
+      <el-button
+        v-if="setting.app.type === 'mini-program'"
+        type="info"
+        icon="el-icon-upload"
+        size="small"
+        @click="handlePublish"
+        >发布应用</el-button
+      >
     </div>
 
     <div class="right-button">
@@ -77,7 +86,7 @@ import type { ITarget } from "@tefact/core";
 import DatasetDialog from "TEFACT_EDITOR/components/dataset/DatasetDialog.vue";
 
 @Component({
-  components: {DatasetDialog, Previewer, SharePageEditor },
+  components: { DatasetDialog, Previewer, SharePageEditor },
 })
 export default class Toolbar extends BaseView {
   @Prop() target?: ITarget;
@@ -122,6 +131,11 @@ export default class Toolbar extends BaseView {
 
   handleSettingChange(key: string, value: any) {
     this.engine.changeSettingItem(key, value);
+  }
+
+  handlePublish() {
+    if (!this.setting.onPublish) return;
+    this.setting.onPublish();
   }
 
   handleDatasetDialog() {

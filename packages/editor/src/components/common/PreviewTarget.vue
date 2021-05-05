@@ -192,6 +192,7 @@ import getSharePageLink from "../../utils/getSharePageLink";
   },
 })
 export default class SharePage extends Vue {
+  @Prop() app;
   @Prop() addTargetData;
   @Prop() getTargetById;
   @Prop(Boolean) isSharePage!: boolean;
@@ -204,6 +205,7 @@ export default class SharePage extends Vue {
 
   get setting() {
     return {
+      app: this.app,
       getTargetByIdHandler: async (id: string) => {
         const vendor = this.vendor[id];
         if (vendor) return vendor;

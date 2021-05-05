@@ -52,7 +52,7 @@ export default class SlotPosition extends BaseView {
   }
 
   get node() {
-    return get(this.slots, this.name)
+    return get(this.slots, this.name);
   }
 
   handleActiveUpdate(id: string, active: boolean) {

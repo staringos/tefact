@@ -89,6 +89,11 @@ export default class Engine extends EventEmitter<string, ITarget> implements IEn
     return this;
   }
 
+  load(target: ITarget, setting: ISetting) {
+    if (this.target) return;
+    this.init(target, setting);
+  }
+
   private _refreshAllNodeMap() {
     const allNodesMap = _flattenNodes(this.target);
     let slots = {};
@@ -399,6 +404,22 @@ export default class Engine extends EventEmitter<string, ITarget> implements IEn
     }
 
     return this.setting.getTargetByIdHandler(id);
+  }
+
+  /**
+   * Jump to page
+   * @param type target | link
+   * @param params link or target id
+   */
+  public goto(type: string, params: string) {
+    // this.emit(EVENT.GOTO, type, params);
+    switch (type) {
+      case 'link':
+        location.href = tab.link;
+        return;
+      case 'page':
+        location.href = `/app/${this.target.application_id}/entry/mini-program/${params}`;
+    }
   }
 
   public openModify() {

@@ -6,6 +6,7 @@ import NumberRow from "./NumberRow.vue";
 import DateRow from "./DateRow.vue";
 import ImageUploadRow from "./ImageUploadRow.vue";
 import NoticeRow from "./NoticeRow.vue";
+import TargetSelectRow from "./TargetSelectRow.vue";
 
 export default {
   SelectRow,
@@ -16,4 +17,5 @@ export default {
   DateRow,
   ImageUploadRow,
   NoticeRow,
+  TargetSelectRow,
 };

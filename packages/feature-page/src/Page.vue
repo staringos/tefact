@@ -1,6 +1,6 @@
 <template>
   <div :class="{'page-canvas-container': true, 'tab-bar-page': hasTabBar, 'header-bar-page': hasHeaderBar}">
-    <SlotPosition :slots="slots" name="HeaderBar" />
+    <SlotPosition :slots="slots" name="HeaderBar" :preview="preview" />
     <div
         :class="`editor-page-canvas ${direction}-side`"
         :style="style"
@@ -22,7 +22,7 @@
           @activeChange="handleActiveChange(section.id)"
       ></PageSection>
     </div>
-    <SlotPosition :slots="slots" name="TabBar" />
+    <SlotPosition :slots="slots" name="TabBar" :preview="preview" />
   </div>
 </template>
 <script lang="ts">
@@ -82,7 +82,7 @@ export default class Page extends BaseView {
   }
 
   get slots() {
-    return this.currentTarget?.config?.slots || {};
+    return this.page?.config?.slots || {};
   }
 
   @Watch("page.config", { immediate: true })
@@ -161,6 +161,7 @@ export default class Page extends BaseView {
   mounted() {
     window.addEventListener("keydown", this.handleKeyDown);
     this.refreshStyle();
+    this.engine.load(this.page, this.setting);
     addListener((this as any).$el, this.refreshStyle);
   }
 

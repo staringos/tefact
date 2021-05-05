@@ -1,17 +1,19 @@
 <template>
   <div class="modify-form" v-if="editData">
-    <component
-      v-for="(row, i) in rows"
-      :key="i"
-      :index="i"
-      :is="row.type"
-      :nodeType="nodeType"
-      :node="tmpData"
-      v-bind="row.params"
-      :isDirectModify="true"
-      @modify="handleModify"
-      :row="row"
-    ></component>
+    <template v-for="(row, i) in rows">
+      <component
+        v-if="row.condition ? row.condition(tmpData) : true"
+        :key="i"
+        :index="i"
+        :is="row.type"
+        :nodeType="nodeType"
+        :node="tmpData"
+        v-bind="row.params"
+        :isDirectModify="true"
+        @modify="handleModify"
+        :row="row"
+      ></component>
+    </template>
     <el-button size="small" type="primary" @click="$emit('confirm', tmpData)"
       >确定</el-button
     >

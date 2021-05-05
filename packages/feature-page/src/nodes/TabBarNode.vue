@@ -6,7 +6,7 @@
     :node="node"
   >
     <ul>
-      <li v-for="(tab, i) in nodeData.tabs" :key="i">
+      <li v-for="(tab, i) in nodeData.tabs" :key="i" @click="handleSwitch(tab)">
         <i v-if="!tab.icon.startsWith('https')" :class="`el-icon ${tab.icon}`"></i>
         <img v-else :src="tab.icon" />
         <span>{{ tab.name }}</span>
@@ -128,15 +128,49 @@ export default class TabBarNode extends NodeClass<IBaseNode> {
             },
           },
           {
+            type: "SelectRow",
+            require: true,
+            params: {
+              title: "类型",
+              path: "type",
+              selectOptions: [
+                { value: "jump", label: "跳转链接" },
+                { value: "page", label: "页面" },
+              ],
+            },
+          },
+          {
             type: "TextRow",
+            condition: (cur) => {
+              return cur.type === "jump"
+            },
             params: {
               title: "链接",
               path: "link",
             },
+          },
+          {
+            type: "TargetSelectRow",
+            condition: (cur) => {
+              return cur.type && cur.type !== "jump"
+            },
+            params: {
+              title: "页面",
+              path: "pageId",
+              targetFeatureType: "page"
+            } as any,
           }
         ],
       }
     }
   ], null, ["PositionProperties", "TextProperties"]);
+
+  handleSwitch(tab) {
+    if (!this.preview) {
+      return this.$message.warning("编辑状态下，不可跳转");
+    }
+
+    this.engine.goto(tab.type, tab.type === 'link' ? tab.link : tab.pageId);
+  }
 }
 </script>

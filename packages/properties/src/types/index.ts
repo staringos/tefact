@@ -6,11 +6,14 @@ export interface ISelectItem {
 export interface IPropertiesRowParams {
   title: string;
   path: string;
+  targetFeatureType?: string;
   selectOptions?: Array<ISelectItem>
 }
 
 export interface IPropertiesRow {
   type: string;
+  require?: boolean;
+  condition?: (cur: any) => boolean;
   params: IPropertiesRowParams
 }
 

@@ -194,6 +194,7 @@ export default class Editor extends BaseView {
     this.engine.on(EVENT.BACK, execEvent(EVENT.BACK, true));
     this.engine.on(EVENT.ADD_TARGET, execEvent(EVENT.ADD_TARGET));
     this.engine.on(EVENT.EDIT_TARGET, execEvent(EVENT.EDIT_TARGET));
+    this.engine.on(EVENT.GOTO, execEvent(EVENT.GOTO));
   }
 
   beforeDestroy() {
