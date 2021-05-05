@@ -415,7 +415,7 @@ export default class Engine extends EventEmitter<string, ITarget> implements IEn
     // this.emit(EVENT.GOTO, type, params);
     switch (type) {
       case 'link':
-        location.href = tab.link;
+        location.href = params;
         return;
       case 'page':
         location.href = `/app/${this.target.application_id}/entry/mini-program/${params}`;
