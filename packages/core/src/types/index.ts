@@ -120,6 +120,22 @@ export interface ISetting {
   onGetDataSet?: () => Promise<Array<IDataSet>>;
   onModifyDataSet?: (dataSet: IDataSet) => Promise<boolean>;
   onDeleteDataSet?: (id: String) => Promise<boolean>;
+
+  // widget
+  onGetWidgetList?: () => Promise<Array<IWidget>>;
+  onDeleteWidget?: () => Promise<boolean>;
+  onAddWidget?: (widget: IWidget) => Promise<boolean>;
+}
+
+export interface IWidget {
+  name: string;
+  org_id?: string;
+  head_image?: string;
+  from_target_id?: string;
+  from_node_id?: string;
+  app_id?: string;
+  create_user_id?: string;
+  config: IBaseNode;
 }
 
 export interface ShareInfo {

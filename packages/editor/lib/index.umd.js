@@ -5662,7 +5662,7 @@ InputNodevue_type_script_lang_ts_InputNode = InputNode_1 = Object(external_tslib
 })], InputNodevue_type_script_lang_ts_InputNode);
 /* harmony default export */ var InputNodevue_type_script_lang_ts_ = (InputNodevue_type_script_lang_ts_InputNode);
 // CONCATENATED MODULE: ../feature-form/src/fields/InputNode.vue?vue&type=script&lang=ts&
- /* harmony default export */ var fields_InputNodevue_type_script_lang_ts_ = (InputNodevue_type_script_lang_ts_); 
+ /* harmony default export */ var fields_InputNodevue_type_script_lang_ts_ = (InputNodevue_type_script_lang_ts_);
 // EXTERNAL MODULE: ../feature-form/src/fields/InputNode.vue?vue&type=style&index=0&lang=scss&
 var InputNodevue_type_style_index_0_lang_scss_ = __webpack_require__("021e");
 
@@ -5686,7 +5686,7 @@ var component = Object(componentNormalizer["a" /* default */])(
   null,
   null,
   null
-  
+
 )
 
 /* harmony default export */ var fields_InputNode = (component.exports);
@@ -5738,7 +5738,7 @@ NumberNodevue_type_script_lang_ts_NumberNode = NumberNode_1 = Object(external_ts
 })], NumberNodevue_type_script_lang_ts_NumberNode);
 /* harmony default export */ var NumberNodevue_type_script_lang_ts_ = (NumberNodevue_type_script_lang_ts_NumberNode);
 // CONCATENATED MODULE: ../feature-form/src/fields/NumberNode.vue?vue&type=script&lang=ts&
- /* harmony default export */ var fields_NumberNodevue_type_script_lang_ts_ = (NumberNodevue_type_script_lang_ts_); 
+ /* harmony default export */ var fields_NumberNodevue_type_script_lang_ts_ = (NumberNodevue_type_script_lang_ts_);
 // EXTERNAL MODULE: ../feature-form/src/fields/NumberNode.vue?vue&type=style&index=0&lang=scss&
 var NumberNodevue_type_style_index_0_lang_scss_ = __webpack_require__("7edf");
 
@@ -5759,7 +5759,7 @@ var NumberNode_component = Object(componentNormalizer["a" /* default */])(
   null,
   null,
   null
-  
+
 )
 
 /* harmony default export */ var fields_NumberNode = (NumberNode_component.exports);
@@ -5832,7 +5832,7 @@ DateNodevue_type_script_lang_ts_DateNode = DateNode_1 = Object(external_tslib_["
 })], DateNodevue_type_script_lang_ts_DateNode);
 /* harmony default export */ var DateNodevue_type_script_lang_ts_ = (DateNodevue_type_script_lang_ts_DateNode);
 // CONCATENATED MODULE: ../feature-form/src/fields/DateNode.vue?vue&type=script&lang=ts&
- /* harmony default export */ var fields_DateNodevue_type_script_lang_ts_ = (DateNodevue_type_script_lang_ts_); 
+ /* harmony default export */ var fields_DateNodevue_type_script_lang_ts_ = (DateNodevue_type_script_lang_ts_);
 // EXTERNAL MODULE: ../feature-form/src/fields/DateNode.vue?vue&type=style&index=0&lang=scss&
 var DateNodevue_type_style_index_0_lang_scss_ = __webpack_require__("4647");
 
@@ -5853,7 +5853,7 @@ var DateNode_component = Object(componentNormalizer["a" /* default */])(
   null,
   null,
   null
-  
+
 )
 
 /* harmony default export */ var fields_DateNode = (DateNode_component.exports);
@@ -5930,7 +5930,7 @@ RadioNodevue_type_script_lang_ts_RadioNode = RadioNode_1 = Object(external_tslib
 })], RadioNodevue_type_script_lang_ts_RadioNode);
 /* harmony default export */ var RadioNodevue_type_script_lang_ts_ = (RadioNodevue_type_script_lang_ts_RadioNode);
 // CONCATENATED MODULE: ../feature-form/src/fields/RadioNode.vue?vue&type=script&lang=ts&
- /* harmony default export */ var fields_RadioNodevue_type_script_lang_ts_ = (RadioNodevue_type_script_lang_ts_); 
+ /* harmony default export */ var fields_RadioNodevue_type_script_lang_ts_ = (RadioNodevue_type_script_lang_ts_);
 // EXTERNAL MODULE: ../feature-form/src/fields/RadioNode.vue?vue&type=style&index=0&lang=scss&
 var RadioNodevue_type_style_index_0_lang_scss_ = __webpack_require__("b190");
 
@@ -5951,7 +5951,7 @@ var RadioNode_component = Object(componentNormalizer["a" /* default */])(
   null,
   null,
   null
-  
+
 )
 
 /* harmony default export */ var fields_RadioNode = (RadioNode_component.exports);
@@ -6003,7 +6003,7 @@ TextAreaNodevue_type_script_lang_ts_TextAreaNode = TextAreaNode_1 = Object(exter
 })], TextAreaNodevue_type_script_lang_ts_TextAreaNode);
 /* harmony default export */ var TextAreaNodevue_type_script_lang_ts_ = (TextAreaNodevue_type_script_lang_ts_TextAreaNode);
 // CONCATENATED MODULE: ../feature-form/src/fields/TextAreaNode.vue?vue&type=script&lang=ts&
- /* harmony default export */ var fields_TextAreaNodevue_type_script_lang_ts_ = (TextAreaNodevue_type_script_lang_ts_); 
+ /* harmony default export */ var fields_TextAreaNodevue_type_script_lang_ts_ = (TextAreaNodevue_type_script_lang_ts_);
 // EXTERNAL MODULE: ../feature-form/src/fields/TextAreaNode.vue?vue&type=style&index=0&lang=scss&
 var TextAreaNodevue_type_style_index_0_lang_scss_ = __webpack_require__("8d57");
 
@@ -6024,7 +6024,7 @@ var TextAreaNode_component = Object(componentNormalizer["a" /* default */])(
   null,
   null,
   null
-  
+
 )
 
 /* harmony default export */ var fields_TextAreaNode = (TextAreaNode_component.exports);
@@ -6109,7 +6109,7 @@ SelectNodevue_type_script_lang_ts_SelectNode = SelectNode_1 = Object(external_ts
 })], SelectNodevue_type_script_lang_ts_SelectNode);
 /* harmony default export */ var SelectNodevue_type_script_lang_ts_ = (SelectNodevue_type_script_lang_ts_SelectNode);
 // CONCATENATED MODULE: ../feature-form/src/fields/SelectNode.vue?vue&type=script&lang=ts&
- /* harmony default export */ var fields_SelectNodevue_type_script_lang_ts_ = (SelectNodevue_type_script_lang_ts_); 
+ /* harmony default export */ var fields_SelectNodevue_type_script_lang_ts_ = (SelectNodevue_type_script_lang_ts_);
 // EXTERNAL MODULE: ../feature-form/src/fields/SelectNode.vue?vue&type=style&index=0&lang=scss&
 var SelectNodevue_type_style_index_0_lang_scss_ = __webpack_require__("c0ca");
 
@@ -6130,7 +6130,7 @@ var SelectNode_component = Object(componentNormalizer["a" /* default */])(
   null,
   null,
   null
-  
+
 )
 
 /* harmony default export */ var fields_SelectNode = (SelectNode_component.exports);
@@ -6213,7 +6213,7 @@ CheckboxNodevue_type_script_lang_ts_CheckboxNode = CheckboxNode_1 = Object(exter
 })], CheckboxNodevue_type_script_lang_ts_CheckboxNode);
 /* harmony default export */ var CheckboxNodevue_type_script_lang_ts_ = (CheckboxNodevue_type_script_lang_ts_CheckboxNode);
 // CONCATENATED MODULE: ../feature-form/src/fields/CheckboxNode.vue?vue&type=script&lang=ts&
- /* harmony default export */ var fields_CheckboxNodevue_type_script_lang_ts_ = (CheckboxNodevue_type_script_lang_ts_); 
+ /* harmony default export */ var fields_CheckboxNodevue_type_script_lang_ts_ = (CheckboxNodevue_type_script_lang_ts_);
 // EXTERNAL MODULE: ../feature-form/src/fields/CheckboxNode.vue?vue&type=style&index=0&lang=scss&
 var CheckboxNodevue_type_style_index_0_lang_scss_ = __webpack_require__("3f57");
 
@@ -6234,7 +6234,7 @@ var CheckboxNode_component = Object(componentNormalizer["a" /* default */])(
   null,
   null,
   null
-  
+
 )
 
 /* harmony default export */ var fields_CheckboxNode = (CheckboxNode_component.exports);
@@ -6305,7 +6305,7 @@ PhoneNodevue_type_script_lang_ts_PhoneNode = PhoneNode_1 = Object(external_tslib
 })], PhoneNodevue_type_script_lang_ts_PhoneNode);
 /* harmony default export */ var PhoneNodevue_type_script_lang_ts_ = (PhoneNodevue_type_script_lang_ts_PhoneNode);
 // CONCATENATED MODULE: ../feature-form/src/fields/PhoneNode.vue?vue&type=script&lang=ts&
- /* harmony default export */ var fields_PhoneNodevue_type_script_lang_ts_ = (PhoneNodevue_type_script_lang_ts_); 
+ /* harmony default export */ var fields_PhoneNodevue_type_script_lang_ts_ = (PhoneNodevue_type_script_lang_ts_);
 // EXTERNAL MODULE: ../feature-form/src/fields/PhoneNode.vue?vue&type=style&index=0&lang=scss&
 var PhoneNodevue_type_style_index_0_lang_scss_ = __webpack_require__("3f9d");
 
@@ -6326,7 +6326,7 @@ var PhoneNode_component = Object(componentNormalizer["a" /* default */])(
   null,
   null,
   null
-  
+
 )
 
 /* harmony default export */ var fields_PhoneNode = (PhoneNode_component.exports);
@@ -6378,7 +6378,7 @@ StarNodevue_type_script_lang_ts_StarNode = StarNode_1 = Object(external_tslib_["
 })], StarNodevue_type_script_lang_ts_StarNode);
 /* harmony default export */ var StarNodevue_type_script_lang_ts_ = (StarNodevue_type_script_lang_ts_StarNode);
 // CONCATENATED MODULE: ../feature-form/src/fields/StarNode.vue?vue&type=script&lang=ts&
- /* harmony default export */ var fields_StarNodevue_type_script_lang_ts_ = (StarNodevue_type_script_lang_ts_); 
+ /* harmony default export */ var fields_StarNodevue_type_script_lang_ts_ = (StarNodevue_type_script_lang_ts_);
 // EXTERNAL MODULE: ../feature-form/src/fields/StarNode.vue?vue&type=style&index=0&id=337ed0da&lang=scss&scoped=true&
 var StarNodevue_type_style_index_0_id_337ed0da_lang_scss_scoped_true_ = __webpack_require__("02f1");
 
@@ -6399,7 +6399,7 @@ var StarNode_component = Object(componentNormalizer["a" /* default */])(
   null,
   "337ed0da",
   null
-  
+
 )
 
 /* harmony default export */ var fields_StarNode = (StarNode_component.exports);
@@ -6460,7 +6460,7 @@ MoneyNodevue_type_script_lang_ts_MoneyNode = MoneyNode_1 = Object(external_tslib
 })], MoneyNodevue_type_script_lang_ts_MoneyNode);
 /* harmony default export */ var MoneyNodevue_type_script_lang_ts_ = (MoneyNodevue_type_script_lang_ts_MoneyNode);
 // CONCATENATED MODULE: ../feature-form/src/fields/MoneyNode.vue?vue&type=script&lang=ts&
- /* harmony default export */ var fields_MoneyNodevue_type_script_lang_ts_ = (MoneyNodevue_type_script_lang_ts_); 
+ /* harmony default export */ var fields_MoneyNodevue_type_script_lang_ts_ = (MoneyNodevue_type_script_lang_ts_);
 // EXTERNAL MODULE: ../feature-form/src/fields/MoneyNode.vue?vue&type=style&index=0&lang=scss&
 var MoneyNodevue_type_style_index_0_lang_scss_ = __webpack_require__("ef97");
 
@@ -6481,7 +6481,7 @@ var MoneyNode_component = Object(componentNormalizer["a" /* default */])(
   null,
   null,
   null
-  
+
 )
 
 /* harmony default export */ var fields_MoneyNode = (MoneyNode_component.exports);
@@ -6545,7 +6545,7 @@ ImageNodevue_type_script_lang_ts_InputNode = ImageNodevue_type_script_lang_ts_In
 })], ImageNodevue_type_script_lang_ts_InputNode);
 /* harmony default export */ var ImageNodevue_type_script_lang_ts_ = (ImageNodevue_type_script_lang_ts_InputNode);
 // CONCATENATED MODULE: ../feature-form/src/fields/ImageNode.vue?vue&type=script&lang=ts&
- /* harmony default export */ var fields_ImageNodevue_type_script_lang_ts_ = (ImageNodevue_type_script_lang_ts_); 
+ /* harmony default export */ var fields_ImageNodevue_type_script_lang_ts_ = (ImageNodevue_type_script_lang_ts_);
 // EXTERNAL MODULE: ../feature-form/src/fields/ImageNode.vue?vue&type=style&index=0&id=70708527&lang=scss&scoped=true&
 var ImageNodevue_type_style_index_0_id_70708527_lang_scss_scoped_true_ = __webpack_require__("e296");
 
@@ -6566,7 +6566,7 @@ var ImageNode_component = Object(componentNormalizer["a" /* default */])(
   null,
   "70708527",
   null
-  
+
 )
 
 /* harmony default export */ var ImageNode = (ImageNode_component.exports);
@@ -6635,7 +6635,7 @@ FormTextNodevue_type_script_lang_ts_FormTextNode = FormTextNode_1 = Object(exter
 })], FormTextNodevue_type_script_lang_ts_FormTextNode);
 /* harmony default export */ var FormTextNodevue_type_script_lang_ts_ = (FormTextNodevue_type_script_lang_ts_FormTextNode);
 // CONCATENATED MODULE: ../feature-form/src/fields/FormTextNode.vue?vue&type=script&lang=ts&
- /* harmony default export */ var fields_FormTextNodevue_type_script_lang_ts_ = (FormTextNodevue_type_script_lang_ts_); 
+ /* harmony default export */ var fields_FormTextNodevue_type_script_lang_ts_ = (FormTextNodevue_type_script_lang_ts_);
 // EXTERNAL MODULE: ../feature-form/src/fields/FormTextNode.vue?vue&type=style&index=0&lang=scss&
 var FormTextNodevue_type_style_index_0_lang_scss_ = __webpack_require__("738c");
 
@@ -6656,7 +6656,7 @@ var FormTextNode_component = Object(componentNormalizer["a" /* default */])(
   null,
   null,
   null
-  
+
 )
 
 /* harmony default export */ var fields_FormTextNode = (FormTextNode_component.exports);
@@ -6774,7 +6774,7 @@ FormImageNodevue_type_script_lang_ts_FormImageNode = FormImageNode_1 = Object(ex
 })], FormImageNodevue_type_script_lang_ts_FormImageNode);
 /* harmony default export */ var FormImageNodevue_type_script_lang_ts_ = (FormImageNodevue_type_script_lang_ts_FormImageNode);
 // CONCATENATED MODULE: ../feature-form/src/fields/FormImageNode.vue?vue&type=script&lang=ts&
- /* harmony default export */ var fields_FormImageNodevue_type_script_lang_ts_ = (FormImageNodevue_type_script_lang_ts_); 
+ /* harmony default export */ var fields_FormImageNodevue_type_script_lang_ts_ = (FormImageNodevue_type_script_lang_ts_);
 // EXTERNAL MODULE: ../feature-form/src/fields/FormImageNode.vue?vue&type=style&index=0&lang=scss&
 var FormImageNodevue_type_style_index_0_lang_scss_ = __webpack_require__("5e05");
 
@@ -6795,7 +6795,7 @@ var FormImageNode_component = Object(componentNormalizer["a" /* default */])(
   null,
   null,
   null
-  
+
 )
 
 /* harmony default export */ var fields_FormImageNode = (FormImageNode_component.exports);
@@ -7204,7 +7204,7 @@ var SectionNodevue_type_template_id_5b09faa7_scoped_true_render = function () {v
       name: 'form-item',
       pull: _vm.engine.draggingType === 'add' ? 'clone' : 'move',
       put: true,
-    },"list":[]},on:{"click":_vm.handleSectionClick,"start":_vm.handleDragStart,"end":_vm.handleDragEnd,"add":_vm.handleAdd,"change":_vm.handleChange}},[_vm._l((_vm.section.children),function(node){return _c(node.type,{key:node.id,tag:"component",attrs:{"node":node,"sectionId":_vm.section.id,"preview":_vm.preview,"sectionConfig":_vm.section,"active":_vm.engine.activeNodeIds.indexOf(node.id) > -1},on:{"onRefLineChange":_vm.handleRefLineChange,"update:active":function (active) { return _vm.handleActiveUpdate(node.id, active); },"showBorder":_vm.handleBorderLine,"hideBorder":_vm.handleHideBorder},nativeOn:{"contextmenu":function($event){return _vm.handleContextMenuShow($event, true, node.id)}}})}),_c('NodeContextMenu',{attrs:{"nodeId":_vm.contextNodeId,"sectionId":_vm.section.id,"visible":_vm.contextMenuVisible,"pos":_vm.contextPos},on:{"hide":_vm.handleContextMenuShow}}),(_vm.active && !_vm.preview)?_c('SectionButtons',{attrs:{"pageId":_vm.pageId,"isMobile":_vm.isMobile,"pageType":"page","hasAdd":true,"index":_vm.index,"amount":_vm.amount,"section":_vm.section}}):_vm._e(),_vm._l((_vm.vLine),function(item,i){return _c('span',{directives:[{name:"show",rawName:"v-show",value:(item.display && !_vm.preview),expression:"item.display && !preview"}],key:i + 'v',staticClass:"ref-line v-line",style:({
+    },"list":[]},on:{"click":_vm.handleSectionClick,"start":_vm.handleDragStart,"end":_vm.handleDragEnd,"add":_vm.handleAdd,"change":_vm.handleChange}},[_vm._l((_vm.section.children),function(node){return _c(node.type,{key:node.id,tag:"component",attrs:{"node":node,"sectionId":_vm.section.id,"preview":_vm.preview,"sectionConfig":_vm.section,"active":_vm.engine.activeNodeIds.indexOf(node.id) > -1},on:{"onRefLineChange":_vm.handleRefLineChange,"update:active":function (active) { return _vm.handleActiveUpdate(node.id, active); },"showBorder":_vm.handleBorderLine,"hideBorder":_vm.handleHideBorder},nativeOn:{"contextmenu":function($event){return _vm.handleContextMenuShow($event, true, node.id)}}})}),_c('NodeContextMenu',{attrs:{"nodeId":_vm.contextNodeId,"sectionId":_vm.section.id,"visible":_vm.contextMenuVisible,"pos":_vm.contextPos},on:{"hide":_vm.handleContextMenuShow}}),(_vm.active && !_vm.preview)?_c('SectionButtons',{attrs:{"pageId":_vm.pageId,"isMobile":_vm.isMobile,"pageType":"page","hasAdd":true,"index":_vm.index,"amount":_vm.amount,"section":_vm.section}}):_vm._e(),_vm._l((_vm.vLine),function(item, i){return _c('span',{directives:[{name:"show",rawName:"v-show",value:(item.display && !_vm.preview),expression:"item.display && !preview"}],key:i + 'v',staticClass:"ref-line v-line",style:({
         left: item.position,
         top: item.origin,
         height: item.lineLength,
@@ -7272,7 +7272,7 @@ Object(external_tslib_["__decorate"])([Object(lib["b" /* Prop */])([Boolean])], 
 AddButtonvue_type_script_lang_ts_AddButton = Object(external_tslib_["__decorate"])([lib["a" /* Component */]], AddButtonvue_type_script_lang_ts_AddButton);
 /* harmony default export */ var AddButtonvue_type_script_lang_ts_ = (AddButtonvue_type_script_lang_ts_AddButton);
 // CONCATENATED MODULE: ../feature-page/src/components/AddButton.vue?vue&type=script&lang=ts&
- /* harmony default export */ var components_AddButtonvue_type_script_lang_ts_ = (AddButtonvue_type_script_lang_ts_); 
+ /* harmony default export */ var components_AddButtonvue_type_script_lang_ts_ = (AddButtonvue_type_script_lang_ts_);
 // EXTERNAL MODULE: ../feature-page/src/components/AddButton.vue?vue&type=style&index=0&id=0f567822&lang=scss&scoped=true&
 var AddButtonvue_type_style_index_0_id_0f567822_lang_scss_scoped_true_ = __webpack_require__("0cc6");
 
@@ -7296,7 +7296,7 @@ var component = Object(componentNormalizer["a" /* default */])(
   null,
   "0f567822",
   null
-  
+
 )
 
 /* harmony default export */ var components_AddButton = (component.exports);
@@ -7545,7 +7545,7 @@ BaseNodevue_type_script_lang_ts_BaseNode = Object(external_tslib_["__decorate"])
 })], BaseNodevue_type_script_lang_ts_BaseNode);
 /* harmony default export */ var BaseNodevue_type_script_lang_ts_ = (BaseNodevue_type_script_lang_ts_BaseNode);
 // CONCATENATED MODULE: ../feature-page/src/nodes/BaseNode.vue?vue&type=script&lang=ts&
- /* harmony default export */ var nodes_BaseNodevue_type_script_lang_ts_ = (BaseNodevue_type_script_lang_ts_); 
+ /* harmony default export */ var nodes_BaseNodevue_type_script_lang_ts_ = (BaseNodevue_type_script_lang_ts_);
 // EXTERNAL MODULE: ../feature-page/src/nodes/BaseNode.vue?vue&type=style&index=0&lang=scss&
 var BaseNodevue_type_style_index_0_lang_scss_ = __webpack_require__("c638");
 
@@ -7566,7 +7566,7 @@ var BaseNode_component = Object(componentNormalizer["a" /* default */])(
   null,
   null,
   null
-  
+
 )
 
 /* harmony default export */ var nodes_BaseNode = (BaseNode_component.exports);
@@ -7819,7 +7819,7 @@ TextNodevue_type_script_lang_ts_TextNode = TextNode_1 = Object(external_tslib_["
 })], TextNodevue_type_script_lang_ts_TextNode);
 /* harmony default export */ var TextNodevue_type_script_lang_ts_ = (TextNodevue_type_script_lang_ts_TextNode);
 // CONCATENATED MODULE: ../feature-page/src/nodes/TextNode.vue?vue&type=script&lang=ts&
- /* harmony default export */ var nodes_TextNodevue_type_script_lang_ts_ = (TextNodevue_type_script_lang_ts_); 
+ /* harmony default export */ var nodes_TextNodevue_type_script_lang_ts_ = (TextNodevue_type_script_lang_ts_);
 // EXTERNAL MODULE: ../feature-page/src/nodes/TextNode.vue?vue&type=style&index=0&id=7392bd0e&lang=scss&scoped=true&
 var TextNodevue_type_style_index_0_id_7392bd0e_lang_scss_scoped_true_ = __webpack_require__("2bda");
 
@@ -7840,7 +7840,7 @@ var TextNode_component = Object(componentNormalizer["a" /* default */])(
   null,
   "7392bd0e",
   null
-  
+
 )
 
 /* harmony default export */ var nodes_TextNode = (TextNode_component.exports);
@@ -7932,7 +7932,7 @@ ImageNodevue_type_script_lang_ts_ImageNode = ImageNode_1 = Object(external_tslib
 })], ImageNodevue_type_script_lang_ts_ImageNode);
 /* harmony default export */ var ImageNodevue_type_script_lang_ts_ = (ImageNodevue_type_script_lang_ts_ImageNode);
 // CONCATENATED MODULE: ../feature-page/src/nodes/ImageNode.vue?vue&type=script&lang=ts&
- /* harmony default export */ var nodes_ImageNodevue_type_script_lang_ts_ = (ImageNodevue_type_script_lang_ts_); 
+ /* harmony default export */ var nodes_ImageNodevue_type_script_lang_ts_ = (ImageNodevue_type_script_lang_ts_);
 // EXTERNAL MODULE: ../feature-page/src/nodes/ImageNode.vue?vue&type=style&index=0&id=0d3dad3a&lang=scss&scoped=true&
 var ImageNodevue_type_style_index_0_id_0d3dad3a_lang_scss_scoped_true_ = __webpack_require__("e0e0");
 
@@ -7953,7 +7953,7 @@ var ImageNode_component = Object(componentNormalizer["a" /* default */])(
   null,
   "0d3dad3a",
   null
-  
+
 )
 
 /* harmony default export */ var nodes_ImageNode = (ImageNode_component.exports);
@@ -8003,7 +8003,7 @@ TableNodevue_type_script_lang_ts_TableNode = Object(external_tslib_["__decorate"
 })], TableNodevue_type_script_lang_ts_TableNode);
 /* harmony default export */ var TableNodevue_type_script_lang_ts_ = (TableNodevue_type_script_lang_ts_TableNode);
 // CONCATENATED MODULE: ../feature-page/src/nodes/TableNode.vue?vue&type=script&lang=ts&
- /* harmony default export */ var nodes_TableNodevue_type_script_lang_ts_ = (TableNodevue_type_script_lang_ts_); 
+ /* harmony default export */ var nodes_TableNodevue_type_script_lang_ts_ = (TableNodevue_type_script_lang_ts_);
 // EXTERNAL MODULE: ../feature-page/src/nodes/TableNode.vue?vue&type=style&index=0&lang=scss&
 var TableNodevue_type_style_index_0_lang_scss_ = __webpack_require__("6117");
 
@@ -8024,7 +8024,7 @@ var TableNode_component = Object(componentNormalizer["a" /* default */])(
   null,
   null,
   null
-  
+
 )
 
 /* harmony default export */ var nodes_TableNode = (TableNode_component.exports);
@@ -8156,7 +8156,7 @@ ButtonNodevue_type_script_lang_ts_ButtonNode = ButtonNode_1 = Object(external_ts
 })], ButtonNodevue_type_script_lang_ts_ButtonNode);
 /* harmony default export */ var ButtonNodevue_type_script_lang_ts_ = (ButtonNodevue_type_script_lang_ts_ButtonNode);
 // CONCATENATED MODULE: ../feature-page/src/nodes/ButtonNode.vue?vue&type=script&lang=ts&
- /* harmony default export */ var nodes_ButtonNodevue_type_script_lang_ts_ = (ButtonNodevue_type_script_lang_ts_); 
+ /* harmony default export */ var nodes_ButtonNodevue_type_script_lang_ts_ = (ButtonNodevue_type_script_lang_ts_);
 // EXTERNAL MODULE: ../feature-page/src/nodes/ButtonNode.vue?vue&type=style&index=0&id=eeb6159a&lang=scss&scoped=true&
 var ButtonNodevue_type_style_index_0_id_eeb6159a_lang_scss_scoped_true_ = __webpack_require__("80c3");
 
@@ -8177,7 +8177,7 @@ var ButtonNode_component = Object(componentNormalizer["a" /* default */])(
   null,
   "eeb6159a",
   null
-  
+
 )
 
 /* harmony default export */ var nodes_ButtonNode = (ButtonNode_component.exports);
@@ -8258,7 +8258,7 @@ CardNodevue_type_script_lang_ts_CardNode = CardNode_1 = Object(external_tslib_["
 })], CardNodevue_type_script_lang_ts_CardNode);
 /* harmony default export */ var CardNodevue_type_script_lang_ts_ = (CardNodevue_type_script_lang_ts_CardNode);
 // CONCATENATED MODULE: ../feature-page/src/nodes/CardNode.vue?vue&type=script&lang=ts&
- /* harmony default export */ var nodes_CardNodevue_type_script_lang_ts_ = (CardNodevue_type_script_lang_ts_); 
+ /* harmony default export */ var nodes_CardNodevue_type_script_lang_ts_ = (CardNodevue_type_script_lang_ts_);
 // EXTERNAL MODULE: ../feature-page/src/nodes/CardNode.vue?vue&type=style&index=0&id=350678e2&lang=scss&scoped=true&
 var CardNodevue_type_style_index_0_id_350678e2_lang_scss_scoped_true_ = __webpack_require__("a7f8");
 
@@ -8279,7 +8279,7 @@ var CardNode_component = Object(componentNormalizer["a" /* default */])(
   null,
   "350678e2",
   null
-  
+
 )
 
 /* harmony default export */ var nodes_CardNode = (CardNode_component.exports);
@@ -8387,7 +8387,7 @@ CarouselNodevue_type_script_lang_ts_CarouselNode = CarouselNode_1 = Object(exter
 })], CarouselNodevue_type_script_lang_ts_CarouselNode);
 /* harmony default export */ var CarouselNodevue_type_script_lang_ts_ = (CarouselNodevue_type_script_lang_ts_CarouselNode);
 // CONCATENATED MODULE: ../feature-page/src/nodes/CarouselNode.vue?vue&type=script&lang=ts&
- /* harmony default export */ var nodes_CarouselNodevue_type_script_lang_ts_ = (CarouselNodevue_type_script_lang_ts_); 
+ /* harmony default export */ var nodes_CarouselNodevue_type_script_lang_ts_ = (CarouselNodevue_type_script_lang_ts_);
 // EXTERNAL MODULE: ../feature-page/src/nodes/CarouselNode.vue?vue&type=style&index=0&id=7b5e859a&lang=scss&scoped=true&
 var CarouselNodevue_type_style_index_0_id_7b5e859a_lang_scss_scoped_true_ = __webpack_require__("5ff1");
 
@@ -8408,7 +8408,7 @@ var CarouselNode_component = Object(componentNormalizer["a" /* default */])(
   null,
   "7b5e859a",
   null
-  
+
 )
 
 /* harmony default export */ var nodes_CarouselNode = (CarouselNode_component.exports);
@@ -8490,7 +8490,7 @@ BrowserNodevue_type_script_lang_ts_BrowserNode = BrowserNode_1 = Object(external
 })], BrowserNodevue_type_script_lang_ts_BrowserNode);
 /* harmony default export */ var BrowserNodevue_type_script_lang_ts_ = (BrowserNodevue_type_script_lang_ts_BrowserNode);
 // CONCATENATED MODULE: ../feature-page/src/nodes/BrowserNode.vue?vue&type=script&lang=ts&
- /* harmony default export */ var nodes_BrowserNodevue_type_script_lang_ts_ = (BrowserNodevue_type_script_lang_ts_); 
+ /* harmony default export */ var nodes_BrowserNodevue_type_script_lang_ts_ = (BrowserNodevue_type_script_lang_ts_);
 // EXTERNAL MODULE: ../feature-page/src/nodes/BrowserNode.vue?vue&type=style&index=0&id=b27d0e9c&lang=scss&scoped=true&
 var BrowserNodevue_type_style_index_0_id_b27d0e9c_lang_scss_scoped_true_ = __webpack_require__("68a7");
 
@@ -8511,7 +8511,7 @@ var BrowserNode_component = Object(componentNormalizer["a" /* default */])(
   null,
   "b27d0e9c",
   null
-  
+
 )
 
 /* harmony default export */ var nodes_BrowserNode = (BrowserNode_component.exports);
@@ -8674,7 +8674,7 @@ FormNodevue_type_script_lang_ts_FormNode = FormNode_1 = Object(external_tslib_["
 })], FormNodevue_type_script_lang_ts_FormNode);
 /* harmony default export */ var FormNodevue_type_script_lang_ts_ = (FormNodevue_type_script_lang_ts_FormNode);
 // CONCATENATED MODULE: ../feature-page/src/nodes/FormNode.vue?vue&type=script&lang=ts&
- /* harmony default export */ var nodes_FormNodevue_type_script_lang_ts_ = (FormNodevue_type_script_lang_ts_); 
+ /* harmony default export */ var nodes_FormNodevue_type_script_lang_ts_ = (FormNodevue_type_script_lang_ts_);
 // EXTERNAL MODULE: ../feature-page/src/nodes/FormNode.vue?vue&type=style&index=0&id=458360d3&lang=scss&scoped=true&
 var FormNodevue_type_style_index_0_id_458360d3_lang_scss_scoped_true_ = __webpack_require__("c06a");
 
@@ -8695,7 +8695,7 @@ var FormNode_component = Object(componentNormalizer["a" /* default */])(
   null,
   "458360d3",
   null
-  
+
 )
 
 /* harmony default export */ var nodes_FormNode = (FormNode_component.exports);
@@ -8783,7 +8783,7 @@ Rectvue_type_script_lang_ts_RectShape = Object(external_tslib_["__decorate"])([O
 })], Rectvue_type_script_lang_ts_RectShape);
 /* harmony default export */ var Rectvue_type_script_lang_ts_ = (Rectvue_type_script_lang_ts_RectShape);
 // CONCATENATED MODULE: ../feature-page/src/shapes/Rect.vue?vue&type=script&lang=ts&
- /* harmony default export */ var shapes_Rectvue_type_script_lang_ts_ = (Rectvue_type_script_lang_ts_); 
+ /* harmony default export */ var shapes_Rectvue_type_script_lang_ts_ = (Rectvue_type_script_lang_ts_);
 // CONCATENATED MODULE: ../feature-page/src/shapes/Rect.vue
 
 
@@ -8800,7 +8800,7 @@ var Rect_component = Object(componentNormalizer["a" /* default */])(
   null,
   null,
   null
-  
+
 )
 
 /* harmony default export */ var Rect = (Rect_component.exports);
@@ -8838,7 +8838,7 @@ Heartvue_type_script_lang_ts_StarShape = Object(external_tslib_["__decorate"])([
 })], Heartvue_type_script_lang_ts_StarShape);
 /* harmony default export */ var Heartvue_type_script_lang_ts_ = (Heartvue_type_script_lang_ts_StarShape);
 // CONCATENATED MODULE: ../feature-page/src/shapes/Heart.vue?vue&type=script&lang=ts&
- /* harmony default export */ var shapes_Heartvue_type_script_lang_ts_ = (Heartvue_type_script_lang_ts_); 
+ /* harmony default export */ var shapes_Heartvue_type_script_lang_ts_ = (Heartvue_type_script_lang_ts_);
 // CONCATENATED MODULE: ../feature-page/src/shapes/Heart.vue
 
 
@@ -8855,7 +8855,7 @@ var Heart_component = Object(componentNormalizer["a" /* default */])(
   null,
   null,
   null
-  
+
 )
 
 /* harmony default export */ var Heart = (Heart_component.exports);
@@ -8893,7 +8893,7 @@ Circlevue_type_script_lang_ts_CircleShape = Object(external_tslib_["__decorate"]
 })], Circlevue_type_script_lang_ts_CircleShape);
 /* harmony default export */ var Circlevue_type_script_lang_ts_ = (Circlevue_type_script_lang_ts_CircleShape);
 // CONCATENATED MODULE: ../feature-page/src/shapes/Circle.vue?vue&type=script&lang=ts&
- /* harmony default export */ var shapes_Circlevue_type_script_lang_ts_ = (Circlevue_type_script_lang_ts_); 
+ /* harmony default export */ var shapes_Circlevue_type_script_lang_ts_ = (Circlevue_type_script_lang_ts_);
 // CONCATENATED MODULE: ../feature-page/src/shapes/Circle.vue
 
 
@@ -8910,7 +8910,7 @@ var Circle_component = Object(componentNormalizer["a" /* default */])(
   null,
   null,
   null
-  
+
 )
 
 /* harmony default export */ var Circle = (Circle_component.exports);
@@ -8948,7 +8948,7 @@ Trianglevue_type_script_lang_ts_TriangleShape = Object(external_tslib_["__decora
 })], Trianglevue_type_script_lang_ts_TriangleShape);
 /* harmony default export */ var Trianglevue_type_script_lang_ts_ = (Trianglevue_type_script_lang_ts_TriangleShape);
 // CONCATENATED MODULE: ../feature-page/src/shapes/Triangle.vue?vue&type=script&lang=ts&
- /* harmony default export */ var shapes_Trianglevue_type_script_lang_ts_ = (Trianglevue_type_script_lang_ts_); 
+ /* harmony default export */ var shapes_Trianglevue_type_script_lang_ts_ = (Trianglevue_type_script_lang_ts_);
 // CONCATENATED MODULE: ../feature-page/src/shapes/Triangle.vue
 
 
@@ -8965,7 +8965,7 @@ var Triangle_component = Object(componentNormalizer["a" /* default */])(
   null,
   null,
   null
-  
+
 )
 
 /* harmony default export */ var Triangle = (Triangle_component.exports);
@@ -9003,7 +9003,7 @@ Starvue_type_script_lang_ts_StarShape = Object(external_tslib_["__decorate"])([O
 })], Starvue_type_script_lang_ts_StarShape);
 /* harmony default export */ var Starvue_type_script_lang_ts_ = (Starvue_type_script_lang_ts_StarShape);
 // CONCATENATED MODULE: ../feature-page/src/shapes/Star.vue?vue&type=script&lang=ts&
- /* harmony default export */ var shapes_Starvue_type_script_lang_ts_ = (Starvue_type_script_lang_ts_); 
+ /* harmony default export */ var shapes_Starvue_type_script_lang_ts_ = (Starvue_type_script_lang_ts_);
 // CONCATENATED MODULE: ../feature-page/src/shapes/Star.vue
 
 
@@ -9020,7 +9020,7 @@ var Star_component = Object(componentNormalizer["a" /* default */])(
   null,
   null,
   null
-  
+
 )
 
 /* harmony default export */ var Star = (Star_component.exports);
@@ -9070,7 +9070,7 @@ Linevue_type_script_lang_ts_StarShape = Object(external_tslib_["__decorate"])([O
 })], Linevue_type_script_lang_ts_StarShape);
 /* harmony default export */ var Linevue_type_script_lang_ts_ = (Linevue_type_script_lang_ts_StarShape);
 // CONCATENATED MODULE: ../feature-page/src/shapes/Line.vue?vue&type=script&lang=ts&
- /* harmony default export */ var shapes_Linevue_type_script_lang_ts_ = (Linevue_type_script_lang_ts_); 
+ /* harmony default export */ var shapes_Linevue_type_script_lang_ts_ = (Linevue_type_script_lang_ts_);
 // CONCATENATED MODULE: ../feature-page/src/shapes/Line.vue
 
 
@@ -9087,7 +9087,7 @@ var Line_component = Object(componentNormalizer["a" /* default */])(
   null,
   null,
   null
-  
+
 )
 
 /* harmony default export */ var Line = (Line_component.exports);
@@ -9164,7 +9164,7 @@ ShapeNodevue_type_script_lang_ts_ShapeNode = ShapeNode_1 = Object(external_tslib
 })], ShapeNodevue_type_script_lang_ts_ShapeNode);
 /* harmony default export */ var ShapeNodevue_type_script_lang_ts_ = (ShapeNodevue_type_script_lang_ts_ShapeNode);
 // CONCATENATED MODULE: ../feature-page/src/nodes/ShapeNode.vue?vue&type=script&lang=ts&
- /* harmony default export */ var nodes_ShapeNodevue_type_script_lang_ts_ = (ShapeNodevue_type_script_lang_ts_); 
+ /* harmony default export */ var nodes_ShapeNodevue_type_script_lang_ts_ = (ShapeNodevue_type_script_lang_ts_);
 // EXTERNAL MODULE: ../feature-page/src/nodes/ShapeNode.vue?vue&type=style&index=0&id=31b5f9f8&lang=scss&scoped=true&
 var ShapeNodevue_type_style_index_0_id_31b5f9f8_lang_scss_scoped_true_ = __webpack_require__("0476");
 
@@ -9185,7 +9185,7 @@ var ShapeNode_component = Object(componentNormalizer["a" /* default */])(
   null,
   "31b5f9f8",
   null
-  
+
 )
 
 /* harmony default export */ var nodes_ShapeNode = (ShapeNode_component.exports);
@@ -9370,7 +9370,7 @@ Object(external_tslib_["__decorate"])([Object(lib["d" /* Watch */])("visible")],
 NodeContextMenuvue_type_script_lang_ts_NodeContextMenu = Object(external_tslib_["__decorate"])([Object(lib["a" /* Component */])({})], NodeContextMenuvue_type_script_lang_ts_NodeContextMenu);
 /* harmony default export */ var NodeContextMenuvue_type_script_lang_ts_ = (NodeContextMenuvue_type_script_lang_ts_NodeContextMenu);
 // CONCATENATED MODULE: ../feature-page/src/components/NodeContextMenu.vue?vue&type=script&lang=ts&
- /* harmony default export */ var components_NodeContextMenuvue_type_script_lang_ts_ = (NodeContextMenuvue_type_script_lang_ts_); 
+ /* harmony default export */ var components_NodeContextMenuvue_type_script_lang_ts_ = (NodeContextMenuvue_type_script_lang_ts_);
 // EXTERNAL MODULE: ../feature-page/src/components/NodeContextMenu.vue?vue&type=style&index=0&id=f0826904&lang=scss&scoped=true&
 var NodeContextMenuvue_type_style_index_0_id_f0826904_lang_scss_scoped_true_ = __webpack_require__("b4fc");
 
@@ -9391,7 +9391,7 @@ var NodeContextMenu_component = Object(componentNormalizer["a" /* default */])(
   null,
   "f0826904",
   null
-  
+
 )
 
 /* harmony default export */ var components_NodeContextMenu = (NodeContextMenu_component.exports);
@@ -9611,7 +9611,7 @@ SectionNodevue_type_script_lang_ts_SectionNode = Object(external_tslib_["__decor
 })], SectionNodevue_type_script_lang_ts_SectionNode);
 /* harmony default export */ var SectionNodevue_type_script_lang_ts_ = (SectionNodevue_type_script_lang_ts_SectionNode);
 // CONCATENATED MODULE: ../feature-page/src/nodes/SectionNode.vue?vue&type=script&lang=ts&
- /* harmony default export */ var nodes_SectionNodevue_type_script_lang_ts_ = (SectionNodevue_type_script_lang_ts_); 
+ /* harmony default export */ var nodes_SectionNodevue_type_script_lang_ts_ = (SectionNodevue_type_script_lang_ts_);
 // EXTERNAL MODULE: ../feature-page/src/nodes/SectionNode.vue?vue&type=style&index=0&id=5b09faa7&lang=scss&scoped=true&
 var SectionNodevue_type_style_index_0_id_5b09faa7_lang_scss_scoped_true_ = __webpack_require__("1fd3");
 
@@ -9632,7 +9632,7 @@ var SectionNode_component = Object(componentNormalizer["a" /* default */])(
   null,
   "5b09faa7",
   null
-  
+
 )
 
 /* harmony default export */ var nodes_SectionNode = (SectionNode_component.exports);
@@ -9772,7 +9772,7 @@ Pagevue_type_script_lang_ts_Page = Object(external_tslib_["__decorate"])([Object
 })], Pagevue_type_script_lang_ts_Page);
 /* harmony default export */ var Pagevue_type_script_lang_ts_ = (Pagevue_type_script_lang_ts_Page);
 // CONCATENATED MODULE: ../feature-page/src/Page.vue?vue&type=script&lang=ts&
- /* harmony default export */ var src_Pagevue_type_script_lang_ts_ = (Pagevue_type_script_lang_ts_); 
+ /* harmony default export */ var src_Pagevue_type_script_lang_ts_ = (Pagevue_type_script_lang_ts_);
 // EXTERNAL MODULE: ../feature-page/src/Page.vue?vue&type=style&index=0&id=b74d6770&lang=scss&scoped=true&
 var Pagevue_type_style_index_0_id_b74d6770_lang_scss_scoped_true_ = __webpack_require__("d2be");
 
@@ -9793,7 +9793,7 @@ var Page_component = Object(componentNormalizer["a" /* default */])(
   null,
   "b74d6770",
   null
-  
+
 )
 
 /* harmony default export */ var src_Page = (Page_component.exports);
@@ -15281,7 +15281,7 @@ FormSectionvue_type_script_lang_ts_FormSection = Object(external_tslib_["__decor
 })], FormSectionvue_type_script_lang_ts_FormSection);
 /* harmony default export */ var FormSectionvue_type_script_lang_ts_ = (FormSectionvue_type_script_lang_ts_FormSection);
 // CONCATENATED MODULE: ../feature-form/src/components/FormSection.vue?vue&type=script&lang=ts&
- /* harmony default export */ var components_FormSectionvue_type_script_lang_ts_ = (FormSectionvue_type_script_lang_ts_); 
+ /* harmony default export */ var components_FormSectionvue_type_script_lang_ts_ = (FormSectionvue_type_script_lang_ts_);
 // EXTERNAL MODULE: ../feature-form/src/components/FormSection.vue?vue&type=style&index=0&id=3239be24&lang=scss&scoped=true&
 var FormSectionvue_type_style_index_0_id_3239be24_lang_scss_scoped_true_ = __webpack_require__("802c");
 
@@ -15305,7 +15305,7 @@ var component = Object(componentNormalizer["a" /* default */])(
   null,
   "3239be24",
   null
-  
+
 )
 
 /* harmony default export */ var components_FormSection = (component.exports);
@@ -15569,7 +15569,7 @@ Formvue_type_script_lang_ts_Form = Object(external_tslib_["__decorate"])([Object
 })], Formvue_type_script_lang_ts_Form);
 /* harmony default export */ var Formvue_type_script_lang_ts_ = (Formvue_type_script_lang_ts_Form);
 // CONCATENATED MODULE: ../feature-form/src/Form.vue?vue&type=script&lang=ts&
- /* harmony default export */ var src_Formvue_type_script_lang_ts_ = (Formvue_type_script_lang_ts_); 
+ /* harmony default export */ var src_Formvue_type_script_lang_ts_ = (Formvue_type_script_lang_ts_);
 // EXTERNAL MODULE: ../feature-form/src/Form.vue?vue&type=style&index=0&id=1dc2a0ee&lang=scss&scoped=true&
 var Formvue_type_style_index_0_id_1dc2a0ee_lang_scss_scoped_true_ = __webpack_require__("acdf");
 
@@ -15590,7 +15590,7 @@ var Form_component = Object(componentNormalizer["a" /* default */])(
   null,
   "1dc2a0ee",
   null
-  
+
 )
 
 /* harmony default export */ var src_Form = __webpack_exports__["a"] = (Form_component.exports);
@@ -17728,7 +17728,7 @@ Object(external_tslib_["__decorate"])([Object(lib["b" /* Prop */])()], Basevue_t
 Basevue_type_script_lang_ts_BaseProperties = Object(external_tslib_["__decorate"])([lib["a" /* Component */]], Basevue_type_script_lang_ts_BaseProperties);
 /* harmony default export */ var Basevue_type_script_lang_ts_ = (Basevue_type_script_lang_ts_BaseProperties);
 // CONCATENATED MODULE: ../properties/src/properties/Base.vue?vue&type=script&lang=ts&
- /* harmony default export */ var properties_Basevue_type_script_lang_ts_ = (Basevue_type_script_lang_ts_); 
+ /* harmony default export */ var properties_Basevue_type_script_lang_ts_ = (Basevue_type_script_lang_ts_);
 // EXTERNAL MODULE: ../properties/src/properties/Base.vue?vue&type=style&index=0&lang=scss&
 var Basevue_type_style_index_0_lang_scss_ = __webpack_require__("f78c");
 
@@ -17752,7 +17752,7 @@ var component = Object(componentNormalizer["a" /* default */])(
   null,
   null,
   null
-  
+
 )
 
 /* harmony default export */ var Base = (component.exports);
@@ -17931,7 +17931,7 @@ Textvue_type_script_lang_ts_TextProperties = Object(external_tslib_["__decorate"
 })], Textvue_type_script_lang_ts_TextProperties);
 /* harmony default export */ var Textvue_type_script_lang_ts_ = (Textvue_type_script_lang_ts_TextProperties);
 // CONCATENATED MODULE: ../properties/src/properties/Text.vue?vue&type=script&lang=ts&
- /* harmony default export */ var properties_Textvue_type_script_lang_ts_ = (Textvue_type_script_lang_ts_); 
+ /* harmony default export */ var properties_Textvue_type_script_lang_ts_ = (Textvue_type_script_lang_ts_);
 // EXTERNAL MODULE: ../properties/src/properties/Text.vue?vue&type=style&index=0&lang=scss&
 var Textvue_type_style_index_0_lang_scss_ = __webpack_require__("8cc6");
 
@@ -17952,7 +17952,7 @@ var Text_component = Object(componentNormalizer["a" /* default */])(
   null,
   null,
   null
-  
+
 )
 
 /* harmony default export */ var Text = (Text_component.exports);
@@ -18048,7 +18048,7 @@ Backgroundvue_type_script_lang_ts_Background = Object(external_tslib_["__decorat
 })], Backgroundvue_type_script_lang_ts_Background);
 /* harmony default export */ var Backgroundvue_type_script_lang_ts_ = (Backgroundvue_type_script_lang_ts_Background);
 // CONCATENATED MODULE: ../properties/src/properties/Background.vue?vue&type=script&lang=ts&
- /* harmony default export */ var properties_Backgroundvue_type_script_lang_ts_ = (Backgroundvue_type_script_lang_ts_); 
+ /* harmony default export */ var properties_Backgroundvue_type_script_lang_ts_ = (Backgroundvue_type_script_lang_ts_);
 // EXTERNAL MODULE: ../properties/src/properties/Background.vue?vue&type=style&index=0&lang=scss&
 var Backgroundvue_type_style_index_0_lang_scss_ = __webpack_require__("c9e2");
 
@@ -18069,7 +18069,7 @@ var Background_component = Object(componentNormalizer["a" /* default */])(
   null,
   null,
   null
-  
+
 )
 
 /* harmony default export */ var properties_Background = (Background_component.exports);
@@ -18129,7 +18129,7 @@ Bordervue_type_script_lang_ts_BorderProperties = Object(external_tslib_["__decor
 })], Bordervue_type_script_lang_ts_BorderProperties);
 /* harmony default export */ var Bordervue_type_script_lang_ts_ = (Bordervue_type_script_lang_ts_BorderProperties);
 // CONCATENATED MODULE: ../properties/src/properties/Border.vue?vue&type=script&lang=ts&
- /* harmony default export */ var properties_Bordervue_type_script_lang_ts_ = (Bordervue_type_script_lang_ts_); 
+ /* harmony default export */ var properties_Bordervue_type_script_lang_ts_ = (Bordervue_type_script_lang_ts_);
 // EXTERNAL MODULE: ../properties/src/properties/Border.vue?vue&type=style&index=0&lang=scss&
 var Bordervue_type_style_index_0_lang_scss_ = __webpack_require__("6e9b");
 
@@ -18150,7 +18150,7 @@ var Border_component = Object(componentNormalizer["a" /* default */])(
   null,
   null,
   null
-  
+
 )
 
 /* harmony default export */ var Border = (Border_component.exports);
@@ -18270,7 +18270,7 @@ Formvue_type_script_lang_ts_Form = Object(external_tslib_["__decorate"])([Object
 })], Formvue_type_script_lang_ts_Form);
 /* harmony default export */ var Formvue_type_script_lang_ts_ = (Formvue_type_script_lang_ts_Form);
 // CONCATENATED MODULE: ../properties/src/properties/Form.vue?vue&type=script&lang=ts&
- /* harmony default export */ var properties_Formvue_type_script_lang_ts_ = (Formvue_type_script_lang_ts_); 
+ /* harmony default export */ var properties_Formvue_type_script_lang_ts_ = (Formvue_type_script_lang_ts_);
 // CONCATENATED MODULE: ../properties/src/properties/Form.vue
 
 
@@ -18287,7 +18287,7 @@ var Form_component = Object(componentNormalizer["a" /* default */])(
   null,
   "5851a1ad",
   null
-  
+
 )
 
 /* harmony default export */ var properties_Form = (Form_component.exports);
@@ -18327,7 +18327,7 @@ Imagevue_type_script_lang_ts_ImageProperties = Object(external_tslib_["__decorat
 })], Imagevue_type_script_lang_ts_ImageProperties);
 /* harmony default export */ var Imagevue_type_script_lang_ts_ = (Imagevue_type_script_lang_ts_ImageProperties);
 // CONCATENATED MODULE: ../properties/src/properties/Image.vue?vue&type=script&lang=ts&
- /* harmony default export */ var properties_Imagevue_type_script_lang_ts_ = (Imagevue_type_script_lang_ts_); 
+ /* harmony default export */ var properties_Imagevue_type_script_lang_ts_ = (Imagevue_type_script_lang_ts_);
 // CONCATENATED MODULE: ../properties/src/properties/Image.vue
 
 
@@ -18344,7 +18344,7 @@ var Image_component = Object(componentNormalizer["a" /* default */])(
   null,
   null,
   null
-  
+
 )
 
 /* harmony default export */ var Image = (Image_component.exports);
@@ -18453,7 +18453,7 @@ var BaseRowvue_type_script_lang_js_BaseRows = (_dec = Object(lib["a" /* Componen
 })), _class2)) || _class);
 
 // CONCATENATED MODULE: ../properties/src/rows/BaseRow.vue?vue&type=script&lang=js&
- /* harmony default export */ var BaseRowvue_type_script_lang_js_ = (BaseRowvue_type_script_lang_js_BaseRows); 
+ /* harmony default export */ var BaseRowvue_type_script_lang_js_ = (BaseRowvue_type_script_lang_js_BaseRows);
 // EXTERNAL MODULE: ../properties/src/rows/BaseRow.vue?vue&type=style&index=0&id=f98b0778&lang=scss&scoped=true&
 var BaseRowvue_type_style_index_0_id_f98b0778_lang_scss_scoped_true_ = __webpack_require__("af10");
 
@@ -18474,7 +18474,7 @@ var BaseRow_component = Object(componentNormalizer["a" /* default */])(
   null,
   "f98b0778",
   null
-  
+
 )
 
 /* harmony default export */ var BaseRow = (BaseRow_component.exports);
@@ -18664,7 +18664,7 @@ var SelectRowvue_type_script_lang_js_SelectResolu = (SelectRowvue_type_script_la
 })), SelectRowvue_type_script_lang_js_class2)) || SelectRowvue_type_script_lang_js_class);
 
 // CONCATENATED MODULE: ../properties/src/rows/SelectRow.vue?vue&type=script&lang=js&
- /* harmony default export */ var SelectRowvue_type_script_lang_js_ = (SelectRowvue_type_script_lang_js_SelectResolu); 
+ /* harmony default export */ var SelectRowvue_type_script_lang_js_ = (SelectRowvue_type_script_lang_js_SelectResolu);
 // CONCATENATED MODULE: ../properties/src/rows/SelectRow.vue
 
 
@@ -18681,7 +18681,7 @@ var SelectRow_component = Object(componentNormalizer["a" /* default */])(
   null,
   null,
   null
-  
+
 )
 
 /* harmony default export */ var SelectRow = (SelectRow_component.exports);
@@ -18733,7 +18733,7 @@ var SwitchRowvue_type_script_lang_js_SwitchRow = (SwitchRowvue_type_script_lang_
 }(lib["c" /* Vue */])) || SwitchRowvue_type_script_lang_js_class);
 
 // CONCATENATED MODULE: ../properties/src/rows/SwitchRow.vue?vue&type=script&lang=js&
- /* harmony default export */ var SwitchRowvue_type_script_lang_js_ = (SwitchRowvue_type_script_lang_js_SwitchRow); 
+ /* harmony default export */ var SwitchRowvue_type_script_lang_js_ = (SwitchRowvue_type_script_lang_js_SwitchRow);
 // CONCATENATED MODULE: ../properties/src/rows/SwitchRow.vue
 
 
@@ -18750,7 +18750,7 @@ var SwitchRow_component = Object(componentNormalizer["a" /* default */])(
   null,
   null,
   null
-  
+
 )
 
 /* harmony default export */ var rows_SwitchRow = (SwitchRow_component.exports);
@@ -18844,7 +18844,7 @@ var TextRowvue_type_script_lang_js_TextRow = (TextRowvue_type_script_lang_js_dec
 })), TextRowvue_type_script_lang_js_class2)) || TextRowvue_type_script_lang_js_class);
 
 // CONCATENATED MODULE: ../properties/src/rows/TextRow.vue?vue&type=script&lang=js&
- /* harmony default export */ var TextRowvue_type_script_lang_js_ = (TextRowvue_type_script_lang_js_TextRow); 
+ /* harmony default export */ var TextRowvue_type_script_lang_js_ = (TextRowvue_type_script_lang_js_TextRow);
 // CONCATENATED MODULE: ../properties/src/rows/TextRow.vue
 
 
@@ -18861,7 +18861,7 @@ var TextRow_component = Object(componentNormalizer["a" /* default */])(
   null,
   null,
   null
-  
+
 )
 
 /* harmony default export */ var rows_TextRow = (TextRow_component.exports);
@@ -18912,7 +18912,7 @@ var TextAreaRowvue_type_script_lang_js_TextAreaRow = (TextAreaRowvue_type_script
 }(lib["c" /* Vue */])) || TextAreaRowvue_type_script_lang_js_class);
 
 // CONCATENATED MODULE: ../properties/src/rows/TextAreaRow.vue?vue&type=script&lang=js&
- /* harmony default export */ var TextAreaRowvue_type_script_lang_js_ = (TextAreaRowvue_type_script_lang_js_TextAreaRow); 
+ /* harmony default export */ var TextAreaRowvue_type_script_lang_js_ = (TextAreaRowvue_type_script_lang_js_TextAreaRow);
 // CONCATENATED MODULE: ../properties/src/rows/TextAreaRow.vue
 
 
@@ -18929,7 +18929,7 @@ var TextAreaRow_component = Object(componentNormalizer["a" /* default */])(
   null,
   null,
   null
-  
+
 )
 
 /* harmony default export */ var rows_TextAreaRow = (TextAreaRow_component.exports);
@@ -19003,7 +19003,7 @@ var NumberRowvue_type_script_lang_js_NumberRow = (NumberRowvue_type_script_lang_
 })), NumberRowvue_type_script_lang_js_class2)) || NumberRowvue_type_script_lang_js_class);
 
 // CONCATENATED MODULE: ../properties/src/rows/NumberRow.vue?vue&type=script&lang=js&
- /* harmony default export */ var NumberRowvue_type_script_lang_js_ = (NumberRowvue_type_script_lang_js_NumberRow); 
+ /* harmony default export */ var NumberRowvue_type_script_lang_js_ = (NumberRowvue_type_script_lang_js_NumberRow);
 // EXTERNAL MODULE: ../properties/src/rows/NumberRow.vue?vue&type=style&index=0&id=1a5f6935&lang=scss&scoped=true&
 var NumberRowvue_type_style_index_0_id_1a5f6935_lang_scss_scoped_true_ = __webpack_require__("d257");
 
@@ -19024,7 +19024,7 @@ var NumberRow_component = Object(componentNormalizer["a" /* default */])(
   null,
   "1a5f6935",
   null
-  
+
 )
 
 /* harmony default export */ var rows_NumberRow = (NumberRow_component.exports);
@@ -19096,7 +19096,7 @@ var DateRowvue_type_script_lang_js_DateRow = (DateRowvue_type_script_lang_js_dec
 })), DateRowvue_type_script_lang_js_class2)) || DateRowvue_type_script_lang_js_class);
 
 // CONCATENATED MODULE: ../properties/src/rows/DateRow.vue?vue&type=script&lang=js&
- /* harmony default export */ var DateRowvue_type_script_lang_js_ = (DateRowvue_type_script_lang_js_DateRow); 
+ /* harmony default export */ var DateRowvue_type_script_lang_js_ = (DateRowvue_type_script_lang_js_DateRow);
 // CONCATENATED MODULE: ../properties/src/rows/DateRow.vue
 
 
@@ -19113,7 +19113,7 @@ var DateRow_component = Object(componentNormalizer["a" /* default */])(
   null,
   null,
   null
-  
+
 )
 
 /* harmony default export */ var rows_DateRow = (DateRow_component.exports);
@@ -19164,7 +19164,7 @@ ImageUploadRowvue_type_script_lang_ts_ImageUploadRow = Object(external_tslib_["_
 })], ImageUploadRowvue_type_script_lang_ts_ImageUploadRow);
 /* harmony default export */ var ImageUploadRowvue_type_script_lang_ts_ = (ImageUploadRowvue_type_script_lang_ts_ImageUploadRow);
 // CONCATENATED MODULE: ../properties/src/rows/ImageUploadRow.vue?vue&type=script&lang=ts&
- /* harmony default export */ var rows_ImageUploadRowvue_type_script_lang_ts_ = (ImageUploadRowvue_type_script_lang_ts_); 
+ /* harmony default export */ var rows_ImageUploadRowvue_type_script_lang_ts_ = (ImageUploadRowvue_type_script_lang_ts_);
 // EXTERNAL MODULE: ../properties/src/rows/ImageUploadRow.vue?vue&type=style&index=0&id=48ee435a&lang=scss&scoped=true&
 var ImageUploadRowvue_type_style_index_0_id_48ee435a_lang_scss_scoped_true_ = __webpack_require__("b6c3");
 
@@ -19185,7 +19185,7 @@ var ImageUploadRow_component = Object(componentNormalizer["a" /* default */])(
   null,
   "48ee435a",
   null
-  
+
 )
 
 /* harmony default export */ var rows_ImageUploadRow = (ImageUploadRow_component.exports);
@@ -19283,7 +19283,7 @@ var Rowsvue_type_script_lang_js_SelectProperties = (Rowsvue_type_script_lang_js_
 })), Rowsvue_type_script_lang_js_class2)) || Rowsvue_type_script_lang_js_class);
 
 // CONCATENATED MODULE: ../properties/src/properties/Rows.vue?vue&type=script&lang=js&
- /* harmony default export */ var Rowsvue_type_script_lang_js_ = (Rowsvue_type_script_lang_js_SelectProperties); 
+ /* harmony default export */ var Rowsvue_type_script_lang_js_ = (Rowsvue_type_script_lang_js_SelectProperties);
 // CONCATENATED MODULE: ../properties/src/properties/Rows.vue
 
 
@@ -19300,7 +19300,7 @@ var Rows_component = Object(componentNormalizer["a" /* default */])(
   null,
   null,
   null
-  
+
 )
 
 /* harmony default export */ var Rows = (Rows_component.exports);
@@ -19436,7 +19436,7 @@ var FormEditvue_type_script_lang_js_FormEdit = (FormEditvue_type_script_lang_js_
 }), Object(applyDecoratedDescriptor["a" /* default */])(FormEditvue_type_script_lang_js_class2.prototype, "handleDataChange", [_dec5], Object.getOwnPropertyDescriptor(FormEditvue_type_script_lang_js_class2.prototype, "handleDataChange"), FormEditvue_type_script_lang_js_class2.prototype)), FormEditvue_type_script_lang_js_class2)) || FormEditvue_type_script_lang_js_class);
 
 // CONCATENATED MODULE: ../properties/src/components/FormEdit.vue?vue&type=script&lang=js&
- /* harmony default export */ var FormEditvue_type_script_lang_js_ = (FormEditvue_type_script_lang_js_FormEdit); 
+ /* harmony default export */ var FormEditvue_type_script_lang_js_ = (FormEditvue_type_script_lang_js_FormEdit);
 // CONCATENATED MODULE: ../properties/src/components/FormEdit.vue
 
 
@@ -19453,7 +19453,7 @@ var FormEdit_component = Object(componentNormalizer["a" /* default */])(
   null,
   null,
   null
-  
+
 )
 
 /* harmony default export */ var components_FormEdit = (FormEdit_component.exports);
@@ -19651,7 +19651,7 @@ var Listvue_type_script_lang_js_ListProperties = (Listvue_type_script_lang_js_de
 })), Listvue_type_script_lang_js_class2)) || Listvue_type_script_lang_js_class);
 
 // CONCATENATED MODULE: ../properties/src/properties/List.vue?vue&type=script&lang=js&
- /* harmony default export */ var Listvue_type_script_lang_js_ = (Listvue_type_script_lang_js_ListProperties); 
+ /* harmony default export */ var Listvue_type_script_lang_js_ = (Listvue_type_script_lang_js_ListProperties);
 // EXTERNAL MODULE: ../properties/src/properties/List.vue?vue&type=style&index=0&id=b056eee0&lang=scss&scoped=true&
 var Listvue_type_style_index_0_id_b056eee0_lang_scss_scoped_true_ = __webpack_require__("6ce4");
 
@@ -19672,7 +19672,7 @@ var List_component = Object(componentNormalizer["a" /* default */])(
   null,
   "b056eee0",
   null
-  
+
 )
 
 /* harmony default export */ var List = (List_component.exports);
@@ -19719,7 +19719,7 @@ Positionvue_type_script_lang_ts_PositionProperties = Object(external_tslib_["__d
 })], Positionvue_type_script_lang_ts_PositionProperties);
 /* harmony default export */ var Positionvue_type_script_lang_ts_ = (Positionvue_type_script_lang_ts_PositionProperties);
 // CONCATENATED MODULE: ../properties/src/properties/Position.vue?vue&type=script&lang=ts&
- /* harmony default export */ var properties_Positionvue_type_script_lang_ts_ = (Positionvue_type_script_lang_ts_); 
+ /* harmony default export */ var properties_Positionvue_type_script_lang_ts_ = (Positionvue_type_script_lang_ts_);
 // EXTERNAL MODULE: ../properties/src/properties/Position.vue?vue&type=style&index=0&id=1db45494&lang=scss&scoped=true&
 var Positionvue_type_style_index_0_id_1db45494_lang_scss_scoped_true_ = __webpack_require__("27c5");
 
@@ -19740,7 +19740,7 @@ var Position_component = Object(componentNormalizer["a" /* default */])(
   null,
   "1db45494",
   null
-  
+
 )
 
 /* harmony default export */ var Position = (Position_component.exports);
@@ -19859,7 +19859,7 @@ PropertiesBarvue_type_script_lang_ts_PropertiesContainer = Object(external_tslib
 })], PropertiesBarvue_type_script_lang_ts_PropertiesContainer);
 /* harmony default export */ var PropertiesBarvue_type_script_lang_ts_ = (PropertiesBarvue_type_script_lang_ts_PropertiesContainer);
 // CONCATENATED MODULE: ../properties/src/components/PropertiesBar.vue?vue&type=script&lang=ts&
- /* harmony default export */ var components_PropertiesBarvue_type_script_lang_ts_ = (PropertiesBarvue_type_script_lang_ts_); 
+ /* harmony default export */ var components_PropertiesBarvue_type_script_lang_ts_ = (PropertiesBarvue_type_script_lang_ts_);
 // EXTERNAL MODULE: ../properties/src/components/PropertiesBar.vue?vue&type=style&index=0&id=ccd5dc6c&lang=scss&scoped=true&
 var PropertiesBarvue_type_style_index_0_id_ccd5dc6c_lang_scss_scoped_true_ = __webpack_require__("ab7f");
 
@@ -19880,7 +19880,7 @@ var PropertiesBar_component = Object(componentNormalizer["a" /* default */])(
   null,
   "ccd5dc6c",
   null
-  
+
 )
 
 /* harmony default export */ var PropertiesBar = __webpack_exports__["a"] = (PropertiesBar_component.exports);
@@ -20100,7 +20100,7 @@ Object(external_tslib_["__decorate"])([Object(lib["b" /* Prop */])()], ImageUplo
 ImageUploadervue_type_script_lang_ts_ImageUploader = Object(external_tslib_["__decorate"])([lib["a" /* Component */]], ImageUploadervue_type_script_lang_ts_ImageUploader);
 /* harmony default export */ var ImageUploadervue_type_script_lang_ts_ = (ImageUploadervue_type_script_lang_ts_ImageUploader);
 // CONCATENATED MODULE: ../ui/src/ImageUploader.vue?vue&type=script&lang=ts&
- /* harmony default export */ var src_ImageUploadervue_type_script_lang_ts_ = (ImageUploadervue_type_script_lang_ts_); 
+ /* harmony default export */ var src_ImageUploadervue_type_script_lang_ts_ = (ImageUploadervue_type_script_lang_ts_);
 // EXTERNAL MODULE: ../ui/src/ImageUploader.vue?vue&type=style&index=0&id=b02861fe&lang=scss&scoped=true&
 var ImageUploadervue_type_style_index_0_id_b02861fe_lang_scss_scoped_true_ = __webpack_require__("2732");
 
@@ -20124,7 +20124,7 @@ var component = Object(componentNormalizer["a" /* default */])(
   null,
   "b02861fe",
   null
-  
+
 )
 
 /* harmony default export */ var src_ImageUploader = (component.exports);
@@ -20201,7 +20201,7 @@ Object(external_tslib_["__decorate"])([Object(lib["b" /* Prop */])(Object)], Sec
 SectionButtonsvue_type_script_lang_ts_SectionButtons = Object(external_tslib_["__decorate"])([lib["a" /* Component */]], SectionButtonsvue_type_script_lang_ts_SectionButtons);
 /* harmony default export */ var SectionButtonsvue_type_script_lang_ts_ = (SectionButtonsvue_type_script_lang_ts_SectionButtons);
 // CONCATENATED MODULE: ../ui/src/SectionButtons.vue?vue&type=script&lang=ts&
- /* harmony default export */ var src_SectionButtonsvue_type_script_lang_ts_ = (SectionButtonsvue_type_script_lang_ts_); 
+ /* harmony default export */ var src_SectionButtonsvue_type_script_lang_ts_ = (SectionButtonsvue_type_script_lang_ts_);
 // EXTERNAL MODULE: ../ui/src/SectionButtons.vue?vue&type=style&index=0&id=3406563c&lang=scss&scoped=true&
 var SectionButtonsvue_type_style_index_0_id_3406563c_lang_scss_scoped_true_ = __webpack_require__("e69b");
 
@@ -20222,7 +20222,7 @@ var SectionButtons_component = Object(componentNormalizer["a" /* default */])(
   null,
   "3406563c",
   null
-  
+
 )
 
 /* harmony default export */ var src_SectionButtons = (SectionButtons_component.exports);
@@ -20281,7 +20281,7 @@ DraggingTreeLeafvue_type_script_lang_ts_DraggingTreeLeaf = DraggingTreeLeaf_1 = 
 })], DraggingTreeLeafvue_type_script_lang_ts_DraggingTreeLeaf);
 /* harmony default export */ var DraggingTreeLeafvue_type_script_lang_ts_ = (DraggingTreeLeafvue_type_script_lang_ts_DraggingTreeLeaf);
 // CONCATENATED MODULE: ../ui/src/DraggingTreeLeaf.vue?vue&type=script&lang=ts&
- /* harmony default export */ var src_DraggingTreeLeafvue_type_script_lang_ts_ = (DraggingTreeLeafvue_type_script_lang_ts_); 
+ /* harmony default export */ var src_DraggingTreeLeafvue_type_script_lang_ts_ = (DraggingTreeLeafvue_type_script_lang_ts_);
 // EXTERNAL MODULE: ../ui/src/DraggingTreeLeaf.vue?vue&type=style&index=0&id=5ef0f9c9&lang=scss&scoped=true&
 var DraggingTreeLeafvue_type_style_index_0_id_5ef0f9c9_lang_scss_scoped_true_ = __webpack_require__("5074");
 
@@ -20302,7 +20302,7 @@ var DraggingTreeLeaf_component = Object(componentNormalizer["a" /* default */])(
   null,
   "5ef0f9c9",
   null
-  
+
 )
 
 /* harmony default export */ var src_DraggingTreeLeaf = (DraggingTreeLeaf_component.exports);
@@ -20345,7 +20345,7 @@ DraggingTreevue_type_script_lang_ts_DraggingTree = Object(external_tslib_["__dec
 })], DraggingTreevue_type_script_lang_ts_DraggingTree);
 /* harmony default export */ var DraggingTreevue_type_script_lang_ts_ = (DraggingTreevue_type_script_lang_ts_DraggingTree);
 // CONCATENATED MODULE: ../ui/src/DraggingTree.vue?vue&type=script&lang=ts&
- /* harmony default export */ var src_DraggingTreevue_type_script_lang_ts_ = (DraggingTreevue_type_script_lang_ts_); 
+ /* harmony default export */ var src_DraggingTreevue_type_script_lang_ts_ = (DraggingTreevue_type_script_lang_ts_);
 // EXTERNAL MODULE: ../ui/src/DraggingTree.vue?vue&type=style&index=0&id=6e0a4006&lang=scss&scoped=true&
 var DraggingTreevue_type_style_index_0_id_6e0a4006_lang_scss_scoped_true_ = __webpack_require__("1f2d");
 
@@ -20366,7 +20366,7 @@ var DraggingTree_component = Object(componentNormalizer["a" /* default */])(
   null,
   "6e0a4006",
   null
-  
+
 )
 
 /* harmony default export */ var src_DraggingTree = (DraggingTree_component.exports);
@@ -21432,7 +21432,7 @@ var SharePageEditorvue_type_script_lang_js_SharePageEditor = (_dec = Object(lib[
 }), Object(applyDecoratedDescriptor["a" /* default */])(_class2.prototype, "handleVisibleChange", [_dec4], Object.getOwnPropertyDescriptor(_class2.prototype, "handleVisibleChange"), _class2.prototype), Object(applyDecoratedDescriptor["a" /* default */])(_class2.prototype, "handleAddressChange", [_dec5], Object.getOwnPropertyDescriptor(_class2.prototype, "handleAddressChange"), _class2.prototype)), _class2)) || _class);
 
 // CONCATENATED MODULE: ./src/components/common/SharePageEditor.vue?vue&type=script&lang=js&
- /* harmony default export */ var SharePageEditorvue_type_script_lang_js_ = (SharePageEditorvue_type_script_lang_js_SharePageEditor); 
+ /* harmony default export */ var SharePageEditorvue_type_script_lang_js_ = (SharePageEditorvue_type_script_lang_js_SharePageEditor);
 // EXTERNAL MODULE: ./src/components/common/SharePageEditor.vue?vue&type=style&index=0&id=2f2a49c8&lang=scss&scoped=true&
 var SharePageEditorvue_type_style_index_0_id_2f2a49c8_lang_scss_scoped_true_ = __webpack_require__("ef6e");
 
@@ -21456,7 +21456,7 @@ var component = Object(componentNormalizer["a" /* default */])(
   null,
   "2f2a49c8",
   null
-  
+
 )
 
 /* harmony default export */ var common_SharePageEditor = (component.exports);
@@ -21504,7 +21504,7 @@ Previewervue_type_script_lang_ts_Previewer = Object(external_tslib_["__decorate"
 })], Previewervue_type_script_lang_ts_Previewer);
 /* harmony default export */ var Previewervue_type_script_lang_ts_ = (Previewervue_type_script_lang_ts_Previewer);
 // CONCATENATED MODULE: ./src/components/common/Previewer.vue?vue&type=script&lang=ts&
- /* harmony default export */ var common_Previewervue_type_script_lang_ts_ = (Previewervue_type_script_lang_ts_); 
+ /* harmony default export */ var common_Previewervue_type_script_lang_ts_ = (Previewervue_type_script_lang_ts_);
 // EXTERNAL MODULE: ./src/components/common/Previewer.vue?vue&type=style&index=0&id=712fe1f8&lang=scss&scoped=true&
 var Previewervue_type_style_index_0_id_712fe1f8_lang_scss_scoped_true_ = __webpack_require__("1a94");
 
@@ -21525,7 +21525,7 @@ var Previewer_component = Object(componentNormalizer["a" /* default */])(
   null,
   "712fe1f8",
   null
-  
+
 )
 
 /* harmony default export */ var common_Previewer = (Previewer_component.exports);
@@ -21621,7 +21621,7 @@ Toolbarvue_type_script_lang_ts_Toolbar = Object(external_tslib_["__decorate"])([
 })], Toolbarvue_type_script_lang_ts_Toolbar);
 /* harmony default export */ var Toolbarvue_type_script_lang_ts_ = (Toolbarvue_type_script_lang_ts_Toolbar);
 // CONCATENATED MODULE: ./src/components/Toolbar.vue?vue&type=script&lang=ts&
- /* harmony default export */ var components_Toolbarvue_type_script_lang_ts_ = (Toolbarvue_type_script_lang_ts_); 
+ /* harmony default export */ var components_Toolbarvue_type_script_lang_ts_ = (Toolbarvue_type_script_lang_ts_);
 // EXTERNAL MODULE: ./src/components/Toolbar.vue?vue&type=style&index=1&lang=scss&
 var Toolbarvue_type_style_index_1_lang_scss_ = __webpack_require__("2a03");
 
@@ -21642,7 +21642,7 @@ var Toolbar_component = Object(componentNormalizer["a" /* default */])(
   null,
   null,
   null
-  
+
 )
 
 /* harmony default export */ var components_Toolbar = (Toolbar_component.exports);
@@ -21720,7 +21720,7 @@ BasePanelvue_type_script_lang_ts_BasePanel = Object(external_tslib_["__decorate"
 })], BasePanelvue_type_script_lang_ts_BasePanel);
 /* harmony default export */ var BasePanelvue_type_script_lang_ts_ = (BasePanelvue_type_script_lang_ts_BasePanel);
 // CONCATENATED MODULE: ./src/components/panels/BasePanel.vue?vue&type=script&lang=ts&
- /* harmony default export */ var panels_BasePanelvue_type_script_lang_ts_ = (BasePanelvue_type_script_lang_ts_); 
+ /* harmony default export */ var panels_BasePanelvue_type_script_lang_ts_ = (BasePanelvue_type_script_lang_ts_);
 // EXTERNAL MODULE: ./src/components/panels/BasePanel.vue?vue&type=style&index=0&id=d2e66f38&lang=scss&scoped=true&
 var BasePanelvue_type_style_index_0_id_d2e66f38_lang_scss_scoped_true_ = __webpack_require__("3d9c");
 
@@ -21745,7 +21745,7 @@ var BasePanel_component = Object(componentNormalizer["a" /* default */])(
   null,
   "d2e66f38",
   null
-  
+
 )
 
 /* harmony default export */ var panels_BasePanel = (BasePanel_component.exports);
@@ -21944,7 +21944,7 @@ LayersPanelvue_type_script_lang_ts_LayersPanel = Object(external_tslib_["__decor
 })], LayersPanelvue_type_script_lang_ts_LayersPanel);
 /* harmony default export */ var LayersPanelvue_type_script_lang_ts_ = (LayersPanelvue_type_script_lang_ts_LayersPanel);
 // CONCATENATED MODULE: ./src/components/panels/LayersPanel.vue?vue&type=script&lang=ts&
- /* harmony default export */ var panels_LayersPanelvue_type_script_lang_ts_ = (LayersPanelvue_type_script_lang_ts_); 
+ /* harmony default export */ var panels_LayersPanelvue_type_script_lang_ts_ = (LayersPanelvue_type_script_lang_ts_);
 // EXTERNAL MODULE: ./src/components/panels/LayersPanel.vue?vue&type=style&index=0&id=39b705df&lang=scss&scoped=true&
 var LayersPanelvue_type_style_index_0_id_39b705df_lang_scss_scoped_true_ = __webpack_require__("f20e");
 
@@ -21965,7 +21965,7 @@ var LayersPanel_component = Object(componentNormalizer["a" /* default */])(
   null,
   "39b705df",
   null
-  
+
 )
 
 /* harmony default export */ var panels_LayersPanel = (LayersPanel_component.exports);
@@ -22094,7 +22094,7 @@ NodeListPanelvue_type_script_lang_ts_NodeList = Object(external_tslib_["__decora
 })], NodeListPanelvue_type_script_lang_ts_NodeList);
 /* harmony default export */ var NodeListPanelvue_type_script_lang_ts_ = (NodeListPanelvue_type_script_lang_ts_NodeList);
 // CONCATENATED MODULE: ./src/components/panels/NodeListPanel.vue?vue&type=script&lang=ts&
- /* harmony default export */ var panels_NodeListPanelvue_type_script_lang_ts_ = (NodeListPanelvue_type_script_lang_ts_); 
+ /* harmony default export */ var panels_NodeListPanelvue_type_script_lang_ts_ = (NodeListPanelvue_type_script_lang_ts_);
 // EXTERNAL MODULE: ./src/components/panels/NodeListPanel.vue?vue&type=style&index=0&lang=scss&
 var NodeListPanelvue_type_style_index_0_lang_scss_ = __webpack_require__("21bd");
 
@@ -22115,7 +22115,7 @@ var NodeListPanel_component = Object(componentNormalizer["a" /* default */])(
   null,
   null,
   null
-  
+
 )
 
 /* harmony default export */ var NodeListPanel = (NodeListPanel_component.exports);
@@ -22152,7 +22152,7 @@ NodesBarvue_type_script_lang_ts_NodesBar = Object(external_tslib_["__decorate"])
 })], NodesBarvue_type_script_lang_ts_NodesBar);
 /* harmony default export */ var NodesBarvue_type_script_lang_ts_ = (NodesBarvue_type_script_lang_ts_NodesBar);
 // CONCATENATED MODULE: ./src/components/NodesBar.vue?vue&type=script&lang=ts&
- /* harmony default export */ var components_NodesBarvue_type_script_lang_ts_ = (NodesBarvue_type_script_lang_ts_); 
+ /* harmony default export */ var components_NodesBarvue_type_script_lang_ts_ = (NodesBarvue_type_script_lang_ts_);
 // EXTERNAL MODULE: ./src/components/NodesBar.vue?vue&type=style&index=0&id=b2b5e536&lang=scss&scoped=true&
 var NodesBarvue_type_style_index_0_id_b2b5e536_lang_scss_scoped_true_ = __webpack_require__("1f21");
 
@@ -22173,7 +22173,7 @@ var NodesBar_component = Object(componentNormalizer["a" /* default */])(
   null,
   "b2b5e536",
   null
-  
+
 )
 
 /* harmony default export */ var components_NodesBar = (NodesBar_component.exports);
@@ -22290,7 +22290,7 @@ componentsvue_type_script_lang_ts_Editor = Object(external_tslib_["__decorate"])
 })], componentsvue_type_script_lang_ts_Editor);
 /* harmony default export */ var componentsvue_type_script_lang_ts_ = (componentsvue_type_script_lang_ts_Editor);
 // CONCATENATED MODULE: ./src/components/index.vue?vue&type=script&lang=ts&
- /* harmony default export */ var src_componentsvue_type_script_lang_ts_ = (componentsvue_type_script_lang_ts_); 
+ /* harmony default export */ var src_componentsvue_type_script_lang_ts_ = (componentsvue_type_script_lang_ts_);
 // EXTERNAL MODULE: ./src/components/index.vue?vue&type=style&index=0&id=9fb850e0&lang=scss&scoped=true&
 var componentsvue_type_style_index_0_id_9fb850e0_lang_scss_scoped_true_ = __webpack_require__("74cd");
 
@@ -22311,7 +22311,7 @@ var components_component = Object(componentNormalizer["a" /* default */])(
   null,
   "9fb850e0",
   null
-  
+
 )
 
 /* harmony default export */ var components = (components_component.exports);

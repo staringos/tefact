@@ -429,4 +429,20 @@ export default class Engine extends EventEmitter<string, ITarget> implements IEn
   public back() {
     this.emit(EVENT.BACK);
   }
+
+  public getNodeById(id: string): IBaseNode | undefined {
+    if (!this._allNodesMap) return undefined;
+    return this._allNodesMap[id];
+  }
+
+  public generateWidget(name: string, widget: IBaseNode) {
+    if (!this.setting || !this.setting.onAddWidget) return false;
+
+    return this.setting.onAddWidget({
+      from_target_id: this.target.id,
+      from_node_id: widget.id,
+      name,
+      config: widget
+    })
+  }
 }

@@ -101,15 +101,12 @@
 import { Component, Prop, Watch } from "vue-property-decorator";
 import AddButton from "../components/AddButton.vue";
 import nodes from "./";
-import { SectionButtons } from "@tefact/ui";
-import NodeContextMenu from "../components/NodeContextMenu.vue";
+import { SectionButtons, NodeContextMenu } from "@tefact/ui";
 import { BaseView } from "@tefact/core";
 import type { IBaseNode } from "@tefact/core";
 import { hasMetaKeyPass, transformStyle } from "@tefact/utils";
 import draggable from "vuedraggable";
 import cloneDeep from "lodash/cloneDeep";
-
-// const editor = namespace("editor");
 
 type POS = { x: number; y: number };
 
@@ -130,10 +127,6 @@ export default class SectionNode extends BaseView {
   @Prop(Boolean) active!: boolean;
   @Prop(Boolean) isMobile!: boolean;
   @Prop(Number) amount!: number;
-
-  // @editor.Getter currentNodesIdsGetter;
-  // @editor.Action activeNode;
-  // @editor.Action multipleActiveNode;
 
   contextNodeId: string | null = null;
   contextMenuVisible = false;
@@ -214,14 +207,16 @@ export default class SectionNode extends BaseView {
         break;
     }
   }
+
   handleContextMenuShow(e: any, visible: boolean, nodeId: string) {
     if (visible) {
       this.contextNodeId = nodeId;
       this.contextPos = { x: e.clientX, y: e.clientY };
       e.preventDefault();
-    } else {
-      this.contextNodeId = null;
     }
+    // else {
+    // this.contextNodeId = null;
+    // }
     this.contextMenuVisible = visible;
   }
 

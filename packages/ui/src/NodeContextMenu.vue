@@ -2,7 +2,7 @@
   <el-menu
     default-active="2"
     class="node-context-menu"
-    v-if="visible"
+    v-show="visible"
     :style="style"
   >
     <el-menu-item
@@ -14,21 +14,32 @@
       <i :class="menu.icon"></i>
       <span slot="title">{{ menu.name }}</span>
     </el-menu-item>
+    <WidgetDialog
+      v-model="isWidgetDialogShow"
+      :nodeId="nodeId"
+    />
   </el-menu>
 </template>
 <script lang="ts">
 import { Component, Prop, Watch } from "vue-property-decorator";
 import { BaseView } from "@tefact/core";
 import type { IPosition } from "@tefact/core";
+import WidgetDialog from "./WidgetDialog.vue";
 
 // const editor = namespace("editor");
 
-@Component({})
+@Component({
+  components: {
+    WidgetDialog
+  }
+})
 export default class NodeContextMenu extends BaseView {
   @Prop(Boolean) visible!: boolean;
   @Prop(String) nodeId!: string;
   @Prop(String) sectionId!: string;
   @Prop() pos!: IPosition;
+
+  isWidgetDialogShow = false;
 
   // @editor.Action deleteNode
   // @editor.Action copyNode
@@ -83,6 +94,16 @@ export default class NodeContextMenu extends BaseView {
         type: "copy",
         onClick: () => {
           this.engine.copyNode(this.nodeId);
+          this.$emit("hide");
+        },
+      },
+      {
+        name: "生成模版组件",
+        icon: "el-add",
+        class: "",
+        type: "copy",
+        onClick: () => {
+          this.isWidgetDialogShow = true;
           this.$emit("hide");
         },
       },
