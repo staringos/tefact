@@ -61,6 +61,8 @@ export default class SlotWrapper extends BaseView {
   }
 
   handleActiveUpdate() {
+    if (this.preview) return;
+
     if (hasMetaKeyPass()) {
       return this.engine.moreActive(this.node.id);
     }

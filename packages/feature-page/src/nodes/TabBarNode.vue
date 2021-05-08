@@ -2,8 +2,9 @@
   <SlotWrapper
     v-bind="$attrs"
     v-on="$listeners"
-    :className="{ 'tab-bar-container': true, 'tab-bar-editing': !preview }"
+    :className="{ 'tab-bar-container': true }"
     :node="node"
+    :preview="preview"
   >
     <ul>
       <li v-for="(tab, i) in nodeData.tabs" :key="i" @click="handleSwitch(tab)">
@@ -27,10 +28,6 @@
   flex: 1;
   z-index: 999;
   box-sizing: border-box;
-
-  &.tab-bar-editing:hover {
-    border: 1px solid $editor-border-active-color;
-  }
 
   ul{
     display: flex;
@@ -141,7 +138,7 @@ export default class TabBarNode extends NodeClass<IBaseNode> {
           },
           {
             type: "TextRow",
-            condition: (cur) => {
+            condition: (cur: any) => {
               return cur.type === "jump"
             },
             params: {

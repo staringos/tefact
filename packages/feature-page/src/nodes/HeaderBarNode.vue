@@ -4,6 +4,7 @@
     v-bind="$attrs"
     v-on="$listeners"
     :node="node"
+    :preview="preview"
   >
     <div class="left-area">
       <SlotArea :preview="preview" />

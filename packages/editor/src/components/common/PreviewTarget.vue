@@ -48,7 +48,7 @@
           <img :src="qrcode" />
           <p class="sub-description">手机扫码获取页面</p>
         </div>
-        <div class="musk" v-if="!page.share && !isSharePage">
+        <div class="musk" v-if="!page.share && !isSharePage && (app ? app.app_type !== 'mini-program' : true)">
           <p class="text">请分享后查看...</p>
         </div>
       </div>
