@@ -11,11 +11,11 @@
   >
     <el-form>
       <el-form-item label="组件名称">
-        <el-input type="text" v-model="name"></el-input>
+        <el-input type="text" v-model="name" @keydown.stop></el-input>
       </el-form-item>
       <el-form-item>
         <el-button type="primary" @click="handleSubmit">立即创建</el-button>
-        <el-button>取消</el-button>
+        <el-button @click="handleClose">取消</el-button>
       </el-form-item>
     </el-form>
   </el-dialog>

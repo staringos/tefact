@@ -123,7 +123,7 @@ export interface ISetting {
 
   // widget
   onGetWidgetList?: () => Promise<Array<IWidget>>;
-  onDeleteWidget?: () => Promise<boolean>;
+  onDeleteWidget?: (id: string) => Promise<boolean>;
   onAddWidget?: (widget: IWidget) => Promise<boolean>;
 }
 

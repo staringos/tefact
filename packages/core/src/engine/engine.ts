@@ -143,7 +143,6 @@ export default class Engine extends EventEmitter<string, ITarget> implements IEn
 
   public add(config: IBaseNode, index = -1) {
     if (!this.target) return;
-
     const target = this.target;
     const newNode = cloneDeep(config);
     newNode.id = generateId();

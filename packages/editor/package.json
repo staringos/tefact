@@ -29,6 +29,7 @@
     "csstype": "^3.0.6",
     "element-ui": "^2.4.5",
     "eventemitter3": "^4.0.7",
+    "html2canvas": "^1.0.0-rc.7",
     "lodash": "^4.17.20",
     "qrcode": "^1.4.4",
     "vue": "^2.6.11",

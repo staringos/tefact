@@ -98,8 +98,8 @@ export default class NodeContextMenu extends BaseView {
         },
       },
       {
-        name: "生成模版组件",
-        icon: "el-add",
+        name: "生成组件",
+        icon: "el-icon-box",
         class: "",
         type: "copy",
         onClick: () => {
