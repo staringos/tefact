@@ -6,7 +6,12 @@
     @back="handleGoBack"
     @click.stop
   >
-    <NodeList v-if="!hasCategory" :list="list" :subNodeType="subNodeType" />
+    <NodeList
+      v-if="!hasCategory"
+      :list="list"
+      :subNodeType="subNodeType"
+      @changeSubNodeType="handleSubNodeTypeChange"
+    />
     <template v-else>
       <div
         class="classified-node-list"
@@ -16,7 +21,12 @@
         <div class="classified-node-header">
           {{category}}
         </div>
-        <NodeList v-if="editorDetails.classifiedList" :list="editorDetails.classifiedList[category]" :subNodeType="subNodeType" />
+        <NodeList
+          v-if="editorDetails.classifiedList"
+          :list="editorDetails.classifiedList[category]"
+          :subNodeType="subNodeType"
+          @changeSubNodeType="handleSubNodeTypeChange"
+        />
       </div>
     </template>
   </BasePanel>
@@ -97,6 +107,9 @@ export default class NodeListPanel extends BaseView {
     return this.editorDetails.list;
   }
 
+  handleSubNodeTypeChange(type: string) {
+    this.subNodeType = type;
+  }
 
   handleGoBack() {
     this.subNodeType = null;

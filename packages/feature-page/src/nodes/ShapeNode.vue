@@ -57,14 +57,16 @@ export default class ShapeNode extends NodeClass<IBaseNode> {
   editing = false;
 
   static DEFAULT = {
-    ...getBaseNode(50, 50, "tefact-icon tf-icon-star"),
+    ...getBaseNode(50, 50),
     type: "ShapeNode",
-    data: {},
+    data: {
+      target: "tefact-icon tf-icon-star"
+    },
   } as IBaseNode;
 
   static NODE = {
     icon: "tf-icon-shapes",
-    type: "text",
+    type: "ShapeNode",
     title: "图形",
     nodeData: ShapeNode.DEFAULT,
   };

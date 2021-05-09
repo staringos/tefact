@@ -28,7 +28,7 @@
         @click="handlePreviewer"
         >预览</el-button
       >
-      <SharePageEditor v-if="!setting.app.type || setting.app.type === '0' || setting.app.type === 'normal'" :page="target" :pageType="featureType">
+      <SharePageEditor v-if="!setting || !setting.app.type || setting.app.type === '0' || setting.app.type === 'normal'" :page="target" :pageType="featureType">
         <el-button type="info" icon="el-icon-share" size="small"
           >分享</el-button
         >

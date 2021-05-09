@@ -45,10 +45,10 @@ export default class NodeList extends BaseView {
     this.engine.cleanDragging();
   }
 
-  handleSelect(node) {
+  handleSelect(node: any) {
     const { nodeData } = node;
     if (nodeData.type === "ShapeNode" && this.subNodeType !== "shape") {
-      this.subNodeType = "shape";
+      this.$emit("changeSubNodeType", "shape")
       return;
     }
 
