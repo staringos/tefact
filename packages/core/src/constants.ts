@@ -13,7 +13,7 @@ export const DefaultTarget: ITarget = {
     children: [] as IBaseNode[],
     slots: {}
   },
-}
+};
 
 export const EVENT = {
   INPUT: "input",
@@ -30,13 +30,13 @@ export const EVENT = {
   MOVE: "move",
   SAVE: "save",
   GOTO: "goto"
-}
+};
 
 export const DRAGGING_TYPE = {
   MOVE: "move",
   ADD: "add",
-}
+};
 
 export const EVENT_INSIDE = {
   SWITCH_PROPERTIES_TAB: "SWITCH_PROPERTIES_TAB",
-}
+};

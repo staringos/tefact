@@ -53,7 +53,7 @@ export default function BFS<T extends {
       parent.push(cloneDeep(target));
       return list;
     }
-  } as any
+  } as any;
 }
 
 function BFSFind<T extends {
