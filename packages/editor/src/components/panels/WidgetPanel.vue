@@ -1,6 +1,6 @@
 <template>
   <BasePanel class="config-panel" title="模版组件">
-    <el-tabs v-model="activeName" @tab-click="handleClick">
+    <el-tabs v-model="activeName">
       <el-tab-pane label="自定义" name="custom">
         <ul class="widget-list" v-if="list && list.length > 0">
           <li
@@ -17,20 +17,21 @@
         </ul>
         <p v-else style="font-size: 12px; color: #a0a0a0;">在编辑器中，选择组件右键，添加模版组件</p>
       </el-tab-pane>
-      <el-tab-pane label="公共" name="public">公共</el-tab-pane>
+      <el-tab-pane label="公共" name="public"></el-tab-pane>
     </el-tabs>
   </BasePanel>
 </template>
 <style lang="scss" scoped>
+::v-deep .el-tabs__nav-scroll {
+  display: flex;
+  justify-content: center;
+}
+
 .widget-list {
   display: flex;
   flex-direction: row;
   flex-flow: row wrap;
   margin: 5px 0 0 5px;
-
-  ::v-deep.el-tabs__nav-scroll {
-    display: flex;
-  }
 
   .widget-item {
     width: 70px;
