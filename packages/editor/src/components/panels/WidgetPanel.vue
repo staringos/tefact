@@ -17,7 +17,7 @@
         </ul>
         <p v-else style="font-size: 12px; color: #a0a0a0;">在编辑器中，选择组件右键，添加模版组件</p>
       </el-tab-pane>
-      <el-tab-pane label="公共" name="public"></el-tab-pane>
+      <el-tab-pane label="公共组件" name="public"></el-tab-pane>
     </el-tabs>
   </BasePanel>
 </template>

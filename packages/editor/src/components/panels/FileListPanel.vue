@@ -1,28 +1,58 @@
 <template>
-  <BasePanel class="config-panel" title="配置">
+  <BasePanel class="config-panel" title="资源库">
+    <el-tabs v-model="activeName">
+      <el-tab-pane label="上传" name="custom"></el-tab-pane>
+      <el-tab-pane label="公共资源" name="public"></el-tab-pane>
+    </el-tabs>
     <ul class="file-list">
       <li class="file-item" v-for="(item) in list" :key="item.id" @click="handleClick(item)">
         <img :src="`https://${item.path + '?imageView2/0/w/70'}`" />
         <i class="el-icon-delete"></i>
       </li>
     </ul>
+
+    <div class="pagination-area">
+      <el-pagination
+        :current-page.sync="pageNum"
+        layout="prev, pager, next"
+        :total="total"
+      >
+      </el-pagination>
+    </div>
   </BasePanel>
 </template>
 <style lang="scss" scoped>
-.file-list {
+::v-deep .el-tabs__nav-scroll {
   display: flex;
-  flex-direction: row;
-  flex-flow: row wrap;
+  justify-content: center;
+}
+
+.pagination-area {
+  overflow: hidden;
+
+  ::v-deep .el-pagination {
+    overflow: auto;
+  }
+}
+
+.file-list {
+  //display: flex;
+  //flex-direction: row;
+  //flex-flow: row wrap;
   margin: 5px 0 0 5px;
+  column-count: 2;
+  column-width: 70px;
+  column-gap: 5px;
 
   .file-item {
-    width: 70px;
-    min-height: 50px;
+    //width: 70px;
+    //min-height: 50px;
     border-radius: 3px;
-    margin-right: 5px;
+    //margin-right: 5px;
     list-style: none;
     position: relative;
     cursor: pointer;
+    break-inside: avoid;
 
     img {
       width: 70px;
@@ -53,7 +83,7 @@
 }
 </style>
 <script lang="ts">
-import { Vue, Component } from 'vue-property-decorator'
+import { Vue, Component, Watch } from 'vue-property-decorator'
 import BasePanel from "TEFACT_EDITOR/components/panels/BasePanel.vue";
 import { BaseView, IBaseNode, IFile } from "@tefact/core";
 import { FORM_NODE_LIST, PAGE_NODE_LIST } from "TEFACT_EDITOR/components/features"
@@ -66,8 +96,18 @@ import cloneDeep from "lodash/cloneDeep";
 })
 export default class FileListPanel extends BaseView {
   list = [] as Array<IFile>;
+  activeName = "custom";
 
-  handleClick(cur) {
+  total = 0;
+  pageNum = 1;
+  pageSize = 20;
+
+  @Watch("pageNum")
+  handlePageNumChange() {
+    this.refresh();
+  }
+
+  handleClick(cur: any) {
     let nodeData = null as null | IBaseNode;
 
     let parentId = undefined as any;
@@ -88,9 +128,20 @@ export default class FileListPanel extends BaseView {
     }
   }
 
-  async mounted() {
+  async refresh() {
     if (!this.setting.onGetFileList) return;
-    this.list = (await this.setting.onGetFileList());
+    const res = (await this.setting.onGetFileList({
+      pageNum: this.pageNum,
+      pageSize: this.pageSize
+    })) as any;
+    this.list = res.data;
+
+    if (!res.total) return;
+    this.total = res.page?.total;
+  }
+
+  mounted() {
+    this.refresh();
   }
 }
 </script>

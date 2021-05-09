@@ -115,7 +115,7 @@ export interface ISetting {
   onGetTargetList?: () => Promise<Array<ITarget>>;
 
   // file
-  onGetFileList?: () => Promise<Array<IFile>>;
+  onGetFileList?: (page: IPagination) => Promise<Array<IFile>>;
   onDeleteFile?: (id: string) => boolean;
 
   // data set
@@ -138,6 +138,11 @@ export interface IWidget {
   app_id?: string;
   create_user_id?: string;
   config: IBaseNode;
+}
+
+export interface IPagination {
+  pageNum: number;
+  pageSize: number;
 }
 
 export interface ShareInfo {
