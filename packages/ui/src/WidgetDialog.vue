@@ -8,10 +8,17 @@
     append-to-body
     :close-on-click-modal="false"
     :close-on-press-escape="false"
+    @keydown.stop.prevent
+    @keyup.stop.prevent
+    @keypress.stop.prevent
   >
     <el-form>
       <el-form-item label="组件名称">
-        <el-input type="text" v-model="name" @keydown.stop></el-input>
+        <el-input
+          type="text"
+          v-model="name"
+          @keydown.native.stop
+        ></el-input>
       </el-form-item>
       <el-form-item>
         <el-button type="primary" @click="handleSubmit">立即创建</el-button>
@@ -43,6 +50,8 @@ export default class WidgetDialog extends BaseView {
       return this.$message.error("请输入组件名称");
 
     const node = this.engine.getNodeById(this.nodeId);
+    if (!node) return;
+
     const res = await this.engine.generateWidget(this.name, node);
     this.handleClose();
   }

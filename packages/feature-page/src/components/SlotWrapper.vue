@@ -2,9 +2,19 @@
   <div
     :class="classObj"
     :style="nodeBaseStyle"
+    @contextmenu.stop.prevent="handleContextMenu"
     @click.stop="handleActiveUpdate"
   >
     <slot></slot>
+
+    <NodeContextMenu
+      :menus="['delete', 'generateWidget']"
+      :nodeId="node.id"
+      :sectionId="null"
+      :visible="contextMenuVisible"
+      :pos="contextPos"
+      @hide="handleContextMenuShow"
+    />
   </div>
 </template>
 <style lang="scss" scoped>
@@ -21,20 +31,24 @@
 <script type="ts">
 import { Vue, Component, Prop } from 'nuxt-property-decorator'
 import nodes from "../nodes"
-import get from "lodash/get"
 import { hasMetaKeyPass } from "@tefact/utils";
 import { BaseView } from "@tefact/core"
-import { transformStyle } from "@tefact/utils"
+import { transformStyle } from "@tefact/utils";
+import { NodeContextMenu } from "@tefact/ui";
 
 @Component({
   components: {
     ...nodes,
+    NodeContextMenu,
   }
 })
 export default class SlotWrapper extends BaseView {
-  @Prop() className
-  @Prop() preview
-  @Prop() node
+  contextPos = null;
+  contextMenuVisible = false;
+
+  @Prop() className;
+  @Prop() preview;
+  @Prop() node;
 
   get editing() {
     return !this.preview;
@@ -58,6 +72,15 @@ export default class SlotWrapper extends BaseView {
     const result = transformStyle(this.node);
     result.position = "absolute";
     return result;
+  }
+
+  handleContextMenuShow() {
+    this.contextMenuVisible = false;
+  }
+
+  handleContextMenu(e) {
+    this.contextPos = { x: e.clientX, y: e.clientY };
+    this.contextMenuVisible = true;
   }
 
   handleActiveUpdate() {

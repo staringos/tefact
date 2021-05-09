@@ -36,6 +36,8 @@ export interface ITargetConfig {
   slots?: Record<string, IBaseNode>;
 }
 
+export type POS = { x: number; y: number };
+
 export interface IPos {
   x: number;
   y: number;

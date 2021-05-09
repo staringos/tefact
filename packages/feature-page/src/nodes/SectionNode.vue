@@ -108,8 +108,6 @@ import { hasMetaKeyPass, transformStyle } from "@tefact/utils";
 import draggable from "vuedraggable";
 import cloneDeep from "lodash/cloneDeep";
 
-type POS = { x: number; y: number };
-
 @Component({
   components: {
     SectionButtons,
@@ -120,6 +118,16 @@ type POS = { x: number; y: number };
   },
 })
 export default class SectionNode extends BaseView {
+  contextNodeId: string | null = null;
+  contextMenuVisible = false;
+  contextPos = null as any;
+
+  vLine = [];
+  hLine = [];
+
+  hBorderLineStyle: any = null;
+  vBorderLineStyle: any = null;
+
   @Prop() section!: IBaseNode;
   @Prop(Boolean) preview!: boolean;
   @Prop() index!: number;
@@ -127,16 +135,6 @@ export default class SectionNode extends BaseView {
   @Prop(Boolean) active!: boolean;
   @Prop(Boolean) isMobile!: boolean;
   @Prop(Number) amount!: number;
-
-  contextNodeId: string | null = null;
-  contextMenuVisible = false;
-  contextPos: POS | null = null;
-
-  vLine = [];
-  hLine = [];
-
-  hBorderLineStyle: any = null;
-  vBorderLineStyle: any = null;
 
   get bgStyle() {
     const res = {} as any;

@@ -28,6 +28,10 @@
   flex-flow: row wrap;
   margin: 5px 0 0 5px;
 
+  ::v-deep.el-tabs__nav-scroll {
+    display: flex;
+  }
+
   .widget-item {
     width: 70px;
     min-height: 50px;
@@ -89,7 +93,7 @@ import cloneDeep from 'lodash/cloneDeep'
   }
 })
 export default class WidgetPanel extends BaseView {
-  activeName="custom";
+  activeName = "custom";
   list: Array<any> = [];
 
   handleClick(item) {
@@ -104,16 +108,23 @@ export default class WidgetPanel extends BaseView {
       else parentId = this.engine.activatedNodeParentId;
     }
 
+    if (node.position === 'slot') {
+      return this.engine.addSlot(node.slot, node);
+    }
+
     if (this.featureType === "form") return this.engine.add(node, -1);
     this.engine.addNode(node, parentId);
   }
 
   async handleDelete(item) {
+    if (!this.setting || !this.setting.onDeleteWidget) return;
+
     await this.setting.onDeleteWidget(item.id);
     this.refresh();
   }
 
   async refresh() {
+    if (!this.setting || !this.setting.onGetWidgetList) return;
     this.list = await this.setting.onGetWidgetList();
   }
 

@@ -2,24 +2,24 @@
   <div :class="{'page-canvas-container': true, 'tab-bar-page': hasTabBar, 'header-bar-page': hasHeaderBar}">
     <SlotPosition :slots="slots" name="HeaderBar" :preview="preview" />
     <div
-        :class="`editor-page-canvas ${direction}-side`"
-        :style="style"
-        @click="handlePageClick"
+      :class="`editor-page-canvas ${direction}-side`"
+      :style="style"
+      @click="handlePageClick"
     >
       <div class="section section-add" v-if="!sections || sections.length < 1">
         <AddButton :index="0" :pageId="pageId" show></AddButton>
       </div>
       <PageSection
-          v-for="(section, i) in sections"
-          :key="section.id"
-          :index="i"
-          :section="section"
-          :pageId="pageId"
-          :preview="preview"
-          :isMobile="isMobile"
-          :amount="sections.length"
-          :active="activeNodeId === section.id"
-          @activeChange="handleActiveChange(section.id)"
+        v-for="(section, i) in sections"
+        :key="section.id"
+        :index="i"
+        :section="section"
+        :pageId="pageId"
+        :preview="preview"
+        :isMobile="isMobile"
+        :amount="sections.length"
+        :active="activeNodeId === section.id"
+        @activeChange="handleActiveChange(section.id)"
       ></PageSection>
     </div>
     <SlotPosition :slots="slots" name="TabBar" :preview="preview" />

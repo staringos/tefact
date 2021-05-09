@@ -38,6 +38,7 @@ export default class NodeContextMenu extends BaseView {
   @Prop(String) nodeId!: string;
   @Prop(String) sectionId!: string;
   @Prop() pos!: IPosition;
+  @Prop() menus!: Array<string>;
 
   isWidgetDialogShow = false;
 
@@ -46,8 +47,9 @@ export default class NodeContextMenu extends BaseView {
   // @editor.Action reOrderNode
 
   get options() {
-    return [
+    let menus = [
       {
+        id: "top",
         name: "置顶",
         icon: "tefact-icon tf-icon-vertical-align-top",
         class: "",
@@ -58,6 +60,7 @@ export default class NodeContextMenu extends BaseView {
         },
       },
       {
+        id: "bottom",
         name: "置底",
         icon: "tefact-icon tf-icon-vertical-align-bottom",
         class: "",
@@ -68,6 +71,7 @@ export default class NodeContextMenu extends BaseView {
         },
       },
       {
+        id: "up",
         name: "上移一个",
         icon: "tefact-icon el-icon-top",
         class: "",
@@ -78,6 +82,7 @@ export default class NodeContextMenu extends BaseView {
         },
       },
       {
+        id: "down",
         name: "下移一个",
         icon: "tefact-icon el-icon-bottom",
         class: "",
@@ -88,6 +93,7 @@ export default class NodeContextMenu extends BaseView {
         },
       },
       {
+        id: "copy",
         name: "复制",
         icon: "tefact-icon tf-icon-clipboard",
         class: "",
@@ -98,6 +104,7 @@ export default class NodeContextMenu extends BaseView {
         },
       },
       {
+        id: "generateWidget",
         name: "生成组件",
         icon: "el-icon-box",
         class: "",
@@ -108,6 +115,7 @@ export default class NodeContextMenu extends BaseView {
         },
       },
       {
+        id: "delete",
         name: "删除",
         icon: "el-icon-delete",
         class: "el-icon-delete",
@@ -118,6 +126,14 @@ export default class NodeContextMenu extends BaseView {
         },
       },
     ];
+
+    if (this.menus && this.menus.length > 0) {
+      menus = menus.filter(cur => {
+        return this.menus.indexOf(cur.id) !== -1;
+      });
+    }
+
+    return menus;
   }
 
   get style() {

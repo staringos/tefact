@@ -47,6 +47,8 @@ export default class SlotPosition extends BaseView {
   @Prop() slots
   @Prop() name
 
+  contextMenuVisible = false;
+
   get child() {
     return null
   }
