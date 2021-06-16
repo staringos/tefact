@@ -26,8 +26,6 @@ import { BaseView } from "@tefact/core";
 import type { IPosition } from "@tefact/core";
 import WidgetDialog from "./WidgetDialog.vue";
 
-// const editor = namespace("editor");
-
 @Component({
   components: {
     WidgetDialog
