@@ -2,6 +2,10 @@ import { ISetting } from "../types";
 import { BaseNodeStyle } from "./nodes";
 
 export const DEFAULT_SETTING: ISetting = {
+  app: {
+    id: (new Date()).toTimeString(),
+    type: "normal"
+  },
   uploadUrl: "/core/upload-files/tefact-saas",
   customHeader: {},
   formList: [],

@@ -42,7 +42,7 @@
 }
 </style>
 <script lang="ts">
-import { Vue, Component, Prop } from 'nuxt-property-decorator'
+import { Vue, Component, Prop } from 'vue-property-decorator'
 import SlotArea from "../components/SlotArea.vue"
 import NodeClass from "../nodes/NodeClass"
 import { FreeNodeData, getBaseNode, IBaseNode } from "@tefact/core"
@@ -51,7 +51,7 @@ import SlotWrapper from "../components/SlotWrapper.vue"
 
 @Component({
   components: { SlotWrapper, SlotArea }
-})
+} as any)
 export default class HeaderBarNode extends NodeClass<IBaseNode> {
   title = "首页"
   @Prop() preview

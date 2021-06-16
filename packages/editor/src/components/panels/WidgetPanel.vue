@@ -83,7 +83,7 @@
 }
 </style>
 <script lang="ts">
-import { Vue, Component } from 'nuxt-property-decorator'
+import { Vue, Component } from 'vue-property-decorator'
 import BasePanel from "TEFACT_EDITOR/components/panels/BasePanel.vue";
 import { BaseView } from "@tefact/core"
 import cloneDeep from 'lodash/cloneDeep'

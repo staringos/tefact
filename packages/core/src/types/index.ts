@@ -94,7 +94,7 @@ export interface IFile {
 
 export interface ISetting {
   app?: {
-    id: string;
+    id?: string;
     type: string
   };
   device: DeviceType;

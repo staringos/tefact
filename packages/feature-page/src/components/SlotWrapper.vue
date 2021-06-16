@@ -29,7 +29,7 @@
 }
 </style>
 <script type="ts">
-import { Vue, Component, Prop } from 'nuxt-property-decorator'
+import { Vue, Component, Prop } from 'vue-property-decorator'
 import nodes from "../nodes"
 import { hasMetaKeyPass } from "@tefact/utils";
 import { BaseView } from "@tefact/core"
