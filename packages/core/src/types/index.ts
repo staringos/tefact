@@ -66,7 +66,7 @@ export interface IDataSet {
   name: string;
   union: string;
   type: 'custom' | 'datasource';
-  bind_type: 'app' | 'target';
+  bind_type: 'app' | "target";
   data_type: 'string' | 'number' | 'array' | 'object';
   datasource_id?: string;
   data_table_id?: string;
