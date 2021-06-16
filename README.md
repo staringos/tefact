@@ -5,6 +5,7 @@
   <a href="https://staringos.com">Website</a> | 
   <a href="http://saas.staringos.com">Usage</a> | 
   <a href="https://staringos.com/docs">Documents</a> | 
+  <a href="https://github.com/staringos/tefact-example">Example</a> | 
   <a href="https://staringos.com/docs/join-us">Community</a> | 
   <a href="https://staringos.com/docs/join-us">Support</a>
 </div>
@@ -26,6 +27,8 @@
 Lightweight no-code editor for `website`、`H5 page` and `Form`. Build your application without code!
 
 <a href="./README-CN.md">[中文文档]</a>
+
+<a href="https://github.com/staringos/tefact-example">[Dev Example]</a>
 
 <img src="./docs/assets/images/show.gif" align="center">
 

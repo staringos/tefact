@@ -27,6 +27,8 @@
 
 <a href="./README.md">[English Docs]</a>
 
+<a href="https://github.com/staringos/tefact-example">[开发Demo]</a>
+
 <img src="./docs/assets/images/show.gif" align="center" width="80%">
 
 依赖:
