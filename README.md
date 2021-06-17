@@ -28,7 +28,7 @@ Lightweight no-code editor for `website`、`H5 page` and `Form`. Build your appl
 
 <a href="./README-CN.md">[中文文档]</a>
 
-<a href="https://github.com/staringos/tefact-example">[Dev Example]</a>
+<a href="https://github.com/staringos/tefact-example">[Example]</a>
 
 <img src="./docs/assets/images/show.gif" align="center">
 
@@ -40,19 +40,21 @@ Dependencies:
 
 ## Getting Start
 
-Install dependency:
+Recommend: Fork [example project](https://github.com/staringos/tefact-example) to getting start. or manually import:
+
+1. Install dependency:
 
 ```shell script
 yarn add @tefact/editor
 ```
 
-Import styles to your css or less file:
+2. Import styles to your css or less file:
 
 ```vue
 import "@tefact/editor/lib/index.css"
 ```
 
-Add `@tefact` package to your webpack transport.
+3. Add `@tefact` package to your webpack transport.
 
 `webpack.config.js` or `nuxt.config.js`
 
@@ -66,7 +68,7 @@ Add `@tefact` package to your webpack transport.
 }
 ```
 
-Import Editor to you.
+4. Import Editor to you.
 
 ```vue
 <template>
