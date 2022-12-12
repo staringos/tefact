@@ -1,7 +1,12 @@
 # ⚠️ Warning
 
 This project is not maintain. You can see our new version Low-Code Editor in [staringos/mtbird](https://github.com/staringos/mtbird)
+<br />
 这个项目将不在维护，您可以查看我们的新版本开源低代码编辑器 [staringos/mtbird](https://github.com/staringos/mtbird)
+
+<br />
+<br />
+<br />
 
 <div align="center">
   <img src="./docs/assets/images/logo-banner-2.png">
