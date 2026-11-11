@@ -2,7 +2,6 @@
   "name": "@tefact/properties",
   "version": "0.0.2-alpha.9",
   "description": "> TODO: description",
-  "author": "GeorgeZou <zousongqi@foxmail.com>",
   "homepage": "",
   "license": "ISC",
   "main": "./src/index.ts",
