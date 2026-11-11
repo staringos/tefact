@@ -2,7 +2,6 @@
   "name": "@tefact/core",
   "version": "0.0.2-alpha.9",
   "description": "> TODO: description",
-  "author": "GeorgeZou <zousongqi@foxmail.com>",
   "repository": {
     "type": "git",
     "url": "https://github.com/tefact/tefact-engine.git",
